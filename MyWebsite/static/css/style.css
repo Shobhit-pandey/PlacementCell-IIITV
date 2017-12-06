@@ -15,14 +15,6 @@ a,button{outline: none!important;} /* Prevent ugly blue glow on chrome and safar
 /* = Blocs
 -------------------------------------------------------------- */
 
-.scroll {
-     /*Set a css background */
-    background:url(http://placekitten.com/1000/700) fixed;
-    
-    
-}
-
-
 .bloc{
 	width:100%;
 	clear:both;
@@ -697,7 +689,6 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 .head-logo{
 	float:left;
 	margin-right:12px;
-	
 }
 .winner1{
 	padding:20px 20px 20px 20px;
