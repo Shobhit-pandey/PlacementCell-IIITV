@@ -22,6 +22,7 @@ import MyWebsite
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^quiz/', include('quiz.urls')),
     url(r'^', include('MyWebsite.urls', namespace="mywebsite")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
