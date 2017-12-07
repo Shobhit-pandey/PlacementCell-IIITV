@@ -18,3 +18,6 @@ def about(request):
 
 def procedure(request):
     return render(request,'Procedure.html')
+
+def academic(request):
+    return render(request,'Academic.html')
