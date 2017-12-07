@@ -3,12 +3,12 @@ import random
 from datetime import datetime
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, TemplateView, FormView
 
-from .forms import QuestionForm, EssayForm
+from .forms import QuestionForm, EssayForm, CreatequizForm
 from .models import Quiz, Category, Progress, Sitting, Question
 from essay.models import Essay_Question
 
@@ -32,6 +32,7 @@ class SittingFilterTitleMixin(object):
 
 class QuizListView(ListView):
     model = Quiz
+
 
     def get_queryset(self):
         queryset = super(QuizListView, self).get_queryset()
@@ -380,3 +381,21 @@ def anon_session_score(session, to_add=0, possible=0):
         session["session_score_possible"] += possible
 
     return session["session_score"], session["session_score_possible"]
+
+
+def Createquestion(request):
+    pass
+
+
+
+def Createquiz(request):
+    if request.method == 'POST':
+        form = CreatequizForm(initial = {'user_id':request.user.id})
+        if form.is_valid():
+            form.save()
+            return redirect('createquestion')
+
+    else:
+        form = Createquestion(initial = {'user_id':request.user.id})
+    return redirect('createquiz')
+
