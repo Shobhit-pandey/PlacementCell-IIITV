@@ -17,8 +17,6 @@ from django.conf import settings
 
 from model_utils.managers import InheritanceManager
 
-from quiz.get_username import get_username
-
 
 class CategoryManager(models.Manager):
 

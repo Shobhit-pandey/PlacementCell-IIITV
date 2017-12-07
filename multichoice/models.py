@@ -2,8 +2,6 @@ from __future__ import unicode_literals
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext as _
 from django.db import models
-
-from quiz.get_username import get_username
 from quiz.models import Question
 
 
