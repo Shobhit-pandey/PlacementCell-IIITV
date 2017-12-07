@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles%}
-<!-- saved from url=(0050)https://tnp.iitd.ac.in/newtnp/recruiter-login.html -->
+<!-- saved from url=(0050)http://iiitvadodara.ac.in/ -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta name="keywords" content="">
@@ -17,7 +17,7 @@
 	<script src="{% static 'javascript/blocs.min.js' %}"></script>
 	<script src="{% static 'javascript/jqBootstrapValidation.js' %}"></script>
 	<script src="{% static 'javascript/formHandler.js' %}"></script>
-    <title>Recruiter Login - T&amp;P IIIT Vadodara</title>
+    <title>Students Login - T&amp;P IIIT Vadodara</title>
 
 
 <!-- Google Analytics -->
@@ -33,78 +33,81 @@
 <div class="bloc bg-repeat bgc-ghost-white l-bloc" id="bloc-0">
 	<div class="container bloc-sm">
 		<div class="row">
-			<div class="col-sm-12">
-				<a href="http://iiitvadodara.ac.in/index.php"><img src="{% static 'images/iiitv_logo.png' %}" class="head-logo" height="56"></a>
+			<div class="col-sm-6">
+				<a href="{% url 'mywebsite:home' %}"><img src="{% static 'images/iiitv_logo.png' %}" class="head-logo" height="80"></a>
 				<h4 class=" tc-black mg-sm">
-					<a class="ltc-black" href="http://iiitvadodara.ac.in/index.php">Training &amp; Placement Cell</a><br>
+					<a class="ltc-black"  href="{% url 'mywebsite:home' %}">Training &amp; Placement Cell</a><br>
 				</h4>
 				<h6 class=" mg-clear tc-1">
-					 <a class="pull-left" href="http://iiitvadodara.ac.in/index.php" target="_blank">Indian Institute of Information Technology Vadodara</a><br>
+
+					 <a class="pull-left" href="http://iiitvadodara.ac.in/" target="_blank">Indian Institute of Information Technology Vadodara</a><br>
 				</h6>
 			</div>
-		</div>
-	</div>
-</div>
-<!-- bloc-0 END -->
-
-<!-- bloc-1 -->
-<div class="bloc b-divider l-bloc bgc-white" id="bloc-1">
-
-
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-6">
+				<div class="col-sm-6 right-align">
 				<ul class="list-unstyled list-horizontal-layout">
 					<li>
+						<a href="{% url 'mywebsite:student' %}" class="btn btn-d btn-sq btn-sm nav-button">Students</a>
+					</li>
+					<li>
+						<a href="{% url 'mywebsite:recruiter' %}" class="btn btn-d btn-sq btn-sm nav-button">Recruiters</a>
+					</li>
+					<li>
 						<div class="btn-group btn-dropdown">
-							<a href=" #" class="btn btn-d btn-sq btn-sm nav-button dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Why IITD<span class="caret"></span></a>
+							<a href="#" class="btn btn-d btn-sq btn-sm nav-button dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Achievements<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
+
+
 								<li>
-									<a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block">Why IIT Delhi</a>
+									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Academics</a>
 								</li>
 								<li>
-									<a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block">Students</a>
+									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Beyond Academics</a>
 								</li>
-								<li>
-									<a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block">Academics</a>
-								</li>
-								<li>
-									<a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block">Beyond Academics</a>
-								</li>
-								<li>
-									<a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block">Alumni</a>
-								</li>
-								<li>
-									<a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block">Reseach &amp; Development</a>
-								</li>
+
 							</ul>
 						</div>
 					</li>
 					<li>
-						<a href="https://tnp.iitd.ac.in/newtnp/departments-and-disciplines.html" class="btn btn-d btn-sq btn-sm nav-button">Departments</a>
+						<a href="http://iiitvadodara.ac.in/" class="btn btn-d btn-sq btn-sm nav-button">Departments</a>
 					</li>
 					<li>
-						<a href="https://tnp.iitd.ac.in/newtnp/rules-and-procedures.html" class="btn btn-d btn-sq btn-sm nav-button">Procedures</a>
+						<div class="btn-group btn-dropdown">
+							<a href="#" class="btn btn-d btn-sq btn-sm nav-button dropdown-toggle" data-toggle="dropdown" aria-expanded="false">About<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+
+
+								<li>
+									<a href="{% url 'mywebsite:about' %}" class="a-btn a-block">About US</a>
+								</li>
+								<li>
+									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Contact Us</a>
+								</li>
+                                <li>
+									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Gallery</a>
+								</li>
+								<li>
+									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">College Team</a>
+								</li>
+								<li>
+									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Alumni</a>
+								</li>
+								<li>
+									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Reseach &amp; Development</a>
+								</li>
+							</ul>
+						</div>
 					</li>
-					<li>
-						<a href="https://tnp.iitd.ac.in/newtnp/about-us.html" class="btn btn-d btn-sq btn-sm nav-button">About Us</a>
-					</li>
+
+
+
+
 				</ul>
 			</div>
-			<div class="col-sm-6">
-				<ul class="list-unstyled list-horizontal-layout right-align">
-					<li>
-						<a href="https://tnp.iitd.ac.in/newtnp/recruiter-login.html" class="btn btn-d btn-sq btn-sm nav-button">Recruiter Login</a>
-					</li>
-					<li>
-						<a href="https://tnp.iitd.ac.in/newtnp/for-students.html" class="btn btn-d btn-sq btn-sm nav-button">Student Login</a>
-					</li>
-				</ul>
-			</div>
+
 		</div>
 	</div>
 </div>
-<!-- bloc-1 END -->
+<!-- bloc-0 END -->
 
 <!-- bloc-44 --><!--
 <div class="bloc bgc-white bg-Rec-header d-bloc" id="bloc-44">
@@ -146,7 +149,7 @@
 									Password
 								</label>
 								<input id="email_1666" class="form-control" type="password" required="">
-							<div class="help-block"></div></div><a href="https://tnp.iitd.ac.in/newtnp/rules-and-procedures.html" class="btn btn-clean btn-dim-gray">New User?</a>
+							<div class="help-block"></div></div><a href="{% url 'mywebsite:home' %}" class="btn btn-clean btn-dim-gray">New User?</a>
 							<button id="comp-login-btn" class="bloc-button btn btn-glossy pull-left btn-dodger-blue" type="submit">
 								Login
 							</button>
@@ -209,7 +212,7 @@
 </div>
 <!-- comp-hotels END -->
 
-<!-- ScrollToTop Button -->
+<!-- ScrollToTop Button -
 <a class="bloc-button btn btn-d scrollToTop" onclick="scrollToTarget(&#39;1&#39;)"><span class="fa fa-chevron-up"></span></a>
 <!-- ScrollToTop Button END-->
 
@@ -222,27 +225,27 @@
 			<div class="col-sm-2">
 				<img src="{% static 'images/iiitv_logo.png' %}" class="head-logo" height="48">
 				<h5 class="mg-clear">
-					<a class="ltc-black" href="http://iiitvadodara.ac.in/index.php">Training &amp; Placement Cell, IIIT Vadodara</a><br>
+					<a class="ltc-black" href="{% url 'mywebsite:home' %}">Training &amp; Placement Cell, IIIT Vadodara</a><br>
 				</h5>
 			</div>
 			<div class="col-sm-2">
 				<h3 class="mg-md bloc-mob-center-text  tc-dim-gray">
-					<a href="http://iiitvadodara.ac.in/index.php">Why IITD</a><a class="a-btn a-block bloc-mob-center-text" href="http://iiitvadodara.ac.in/index.php">Students</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">Academics</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">Departments</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">Beyond Academics</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">Alumni</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">R&amp;D</a><br>
+					<a href="http://iiitvadodara.ac.in/index.php">Achievements</a><a class="a-btn a-block bloc-mob-center-text" href="http://iiitvadodara.ac.in/index.php">Academics</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">Beyond Academics</a><br>
 				</h3>
 			</div>
 			<div class="col-sm-2">
 				<h3 class="mg-md bloc-mob-center-text  tc-dim-gray">
-					<a href="http://iiitvadodara.ac.in/index.php">Procedures</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">Register</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">Downloads</a><br>
+					<a href="http://iiitvadodara.ac.in/index.php">Departments</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">Procedures</a><a href="{% url 'mywebsite:recruiter' %}" class="a-btn a-block bloc-mob-center-text">Register</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">Downloads</a><br>
 				</h3>
 			</div>
 			<div class="col-sm-2">
 				<h3 class="mg-md bloc-mob-center-text  tc-dim-gray">
-					<a href="http://iiitvadodara.ac.in/index.php">About Us</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">Contact Us</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">The Team</a><br>
+					<a href="{% url 'mywebsite:about' %}">About Us</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">Contact Us</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">College Team</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">Gallery</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">Alumni</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">R&amp;D</a><br>
 				</h3>
 			</div>
 			<div class="col-sm-1">
 				<h3 class="mg-md bloc-mob-center-text  tc-dim-gray">
-					<a href="http://iiitvadodara.ac.in/index.php">Login</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">Recruiters</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">Students</a><br>
+					<a href="{% url 'mywebsite:recruiter' %}">Login</a><a href="{% url 'mywebsite:recruiter' %}" class="a-btn a-block bloc-mob-center-text">Recruiters</a><a href="{% url 'mywebsite:student' %}" class="a-btn a-block bloc-mob-center-text">Students</a><br>
 				</h3>
 			</div>
 			<div class="col-sm-3">
