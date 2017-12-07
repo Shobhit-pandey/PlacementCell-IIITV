@@ -1,5 +1,6 @@
 from django import forms
 from django.forms.widgets import RadioSelect, Textarea
+from quiz.models import Quiz
 
 
 class QuestionForm(forms.Form):
@@ -15,3 +16,12 @@ class EssayForm(forms.Form):
         super(EssayForm, self).__init__(*args, **kwargs)
         self.fields["answers"] = forms.CharField(
             widget=Textarea(attrs={'style': 'width:100%'}))
+
+
+class CreatequizForm(forms.ModelForm):
+    user_id = forms.IntegerField(widget = forms.HiddenInput())
+    model = Quiz
+    class Meta:
+        fields = ('user_id','title','descriptiion','start_time','end_time','url','category','random_order','max_questions','answers_at_end',
+                  'exam_paper','single_attempt','pass_mark','success_text','fail_text','draft')
+
