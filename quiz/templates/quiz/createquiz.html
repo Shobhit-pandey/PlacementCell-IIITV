@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Create Quiz" %}{% endblock %}
+
+{% block content %}
+<form method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<div class="row" style="padding-top: 30px">
+
+        <button type="submit">Add Quiz</button>
+    </div>
+</form>
+{% endblock %}

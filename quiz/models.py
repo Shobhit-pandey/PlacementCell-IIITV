@@ -17,6 +17,8 @@ from django.conf import settings
 
 from model_utils.managers import InheritanceManager
 
+from quiz.get_username import get_username
+
 
 class CategoryManager(models.Manager):
 
@@ -70,7 +72,7 @@ class SubCategory(models.Model):
 @python_2_unicode_compatible
 class Quiz(models.Model):
 
-    user_id = models.ForeignKey(User , null=False,blank=False,editable=False)
+    user_id = models.CharField(default=get_username(),max_length=100,null=False,blank=False,editable=False)
 
     title = models.CharField(
         verbose_name=_("Title"),
@@ -82,12 +84,12 @@ class Quiz(models.Model):
 
     start_time = models.DateTimeField(
         verbose_name=_("Start Time"),
-        blank=False,help_text=_("Start time of quiz"),default=False,
+        blank=False,help_text=_("Start time of quiz"),default=timezone.now(),
     )
 
     end_time = models.DateTimeField(
         verbose_name=_("End Time"),
-        blank=False,help_text=_("End time of the quiz"),default=False,
+        blank=False,help_text=_("End time of the quiz"),default=timezone.now(),
     )
 
     url = models.SlugField(

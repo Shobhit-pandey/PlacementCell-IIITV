@@ -6,7 +6,7 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from django.utils.decorators import method_decorator
-from django.views.generic import DetailView, ListView, TemplateView, FormView
+from django.views.generic import DetailView, ListView, TemplateView, FormView, CreateView
 
 from .forms import QuestionForm, EssayForm, CreatequizForm
 from .models import Quiz, Category, Progress, Sitting, Question
@@ -384,18 +384,31 @@ def anon_session_score(session, to_add=0, possible=0):
 
 
 def Createquestion(request):
-    pass
+    return render(request, 'quiz/createquiz.html')
 
 
+# class CreateQuizView(CreateView):
+#     redirect_field_name ='quiz/addquestion.html'
+#     form_class = CreatequizForm
+#     model = Quiz
+#     template_name = 'quiz/createquiz.html'
 
 def Createquiz(request):
+    print ("1")
+    form=CreatequizForm(initial={'user_id':request.user.id})
     if request.method == 'POST':
-        form = CreatequizForm(initial = {'user_id':request.user.id})
+        print("2")
+        form = CreatequizForm(request.POST,initial={'user_id':request.user.id})
+        print("3")
         if form.is_valid():
+            print("4")
             form.save()
+            print("5")
             return redirect('createquestion')
 
     else:
-        form = Createquestion(initial = {'user_id':request.user.id})
-    return redirect('createquiz')
+        print("6")
+        form = CreatequizForm(initial={'user_id':request.user.id})
+        print("7")
+    return render(request,'quiz/createquiz.html',{'form':form})
 
