@@ -5,6 +5,7 @@ import json
 from datetime import datetime
 
 import django
+from django.contrib.auth.models import User
 from django.db import models
 from django.core.exceptions import ValidationError, ImproperlyConfigured
 from django.core.validators import MaxValueValidator
@@ -68,6 +69,8 @@ class SubCategory(models.Model):
 
 @python_2_unicode_compatible
 class Quiz(models.Model):
+
+    user_id = models.ForeignKey(User , null=False,blank=False,editable=False)
 
     title = models.CharField(
         verbose_name=_("Title"),
