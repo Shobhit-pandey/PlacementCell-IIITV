@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext as _
 from django.db import models
+
+from quiz.get_username import get_username
 from quiz.models import Question
 
 
@@ -13,6 +15,8 @@ ANSWER_ORDER_OPTIONS = (
 
 
 class MCQuestion(Question):
+
+    user_id = models.CharField(default=get_username(), max_length=100, null=False, blank=False, editable=False)
 
     answer_order = models.CharField(
         max_length=30, null=True, blank=True,
