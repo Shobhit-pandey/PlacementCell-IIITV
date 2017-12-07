@@ -5,6 +5,21 @@
     <title></title>
 </head>
 <body>
+<div class="row" style="padding-top: 30px">
 
+    <button type="submit"><a href="{% url 'addmcq' %}">Add MCQ</a></button>
+    </div>
+<div class="row" style="padding-top: 30px">
+
+        <button type="submit"><a href="{% url 'addtf' %}">Add T/F</a></button>
+    </div>
+
+<div class="row" style="padding-top: 30px">
+
+        <button type="submit"><a href="{% url 'addessay' %}">Add Essay</a></button>
+    </div>
+<p>Adding completed ? click
+<a href="{% url 'mywebsite:home' %}">here</a> to go out
+</p>
 </body>
 </html>

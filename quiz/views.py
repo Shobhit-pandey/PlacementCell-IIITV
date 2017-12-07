@@ -384,31 +384,26 @@ def anon_session_score(session, to_add=0, possible=0):
 
 
 def Createquestion(request):
-    return render(request, 'quiz/createquiz.html')
+    return render(request, 'quiz/addquestion.html')
 
-
-# class CreateQuizView(CreateView):
-#     redirect_field_name ='quiz/addquestion.html'
-#     form_class = CreatequizForm
-#     model = Quiz
-#     template_name = 'quiz/createquiz.html'
 
 def Createquiz(request):
-    print ("1")
     form=CreatequizForm(initial={'user_id':request.user.id})
     if request.method == 'POST':
-        print("2")
         form = CreatequizForm(request.POST,initial={'user_id':request.user.id})
-        print("3")
         if form.is_valid():
-            print("4")
             form.save()
-            print("5")
             return redirect('createquestion')
 
     else:
-        print("6")
         form = CreatequizForm(initial={'user_id':request.user.id})
-        print("7")
     return render(request,'quiz/createquiz.html',{'form':form})
+
+def AddMcq(request):
+    pass
+
+def AddTF(request):
+    pass
+def AddEssay(request):
+    pass
 

@@ -2,10 +2,13 @@ from __future__ import unicode_literals
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext as _
 from django.db import models
+
+from quiz.get_username import get_username
 from quiz.models import Question
 
 
 class TF_Question(Question):
+    user_id = models.CharField(default=get_username(), max_length=100, null=False, blank=False, editable=False)
     correct = models.BooleanField(blank=False,
                                   default=False,
                                   help_text=_("Tick this if the question "

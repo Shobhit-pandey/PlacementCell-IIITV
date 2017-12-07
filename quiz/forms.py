@@ -33,23 +33,10 @@ class CreatequizForm(forms.Form):
     answers_at_end=forms.BooleanField(required=False)
     exam_paper=forms.BooleanField(required=False)
     single_attempt=forms.BooleanField(required=False)
-    pass_mark=forms.IntegerField(required=False)
+    pass_mark=forms.IntegerField(required=False,initial=0)
     success_text=forms.CharField(max_length=100,required=False)
     fail_text=forms.CharField(max_length=100,required=False)
     draft=forms.BooleanField(required=False)
-    # user_id = forms.IntegerField()
-    # class Meta:
-    #     model = Quiz
-    #     fields = ('title','description','start_time','end_time','url','category','random_order','max_questions','answers_at_end',
-    #               'exam_paper','single_attempt','pass_mark','success_text','fail_text','draft')
-    # def clean_start_time(self):
-    #     start_time = self.cleaned_data.get('start_time')
-    #     end_time = self.cleaned_data.get('end_time')
-    #     if start_time < timezone.now():
-    #         raise forms.ValidationError("start time should be in future")
-    #     if start_time > end_time:
-    #         raise forms.ValidationError("start time shold not after end time")
-    #     return self.cleaned_data.get('start_time')
 
     def save(self,kwargs=None):
         u=Quiz.objects.create(
