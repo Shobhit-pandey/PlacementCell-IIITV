@@ -6,3 +6,9 @@ from django.shortcuts import render
 
 def home(request):
     return render(request,'home.html')
+
+def student(request):
+    return render(request,'Student.html')
+
+def recruiter(request):
+    return render(request,'Recruiter.html')
