@@ -72,7 +72,7 @@ class SubCategory(models.Model):
 @python_2_unicode_compatible
 class Quiz(models.Model):
 
-    user_id = models.CharField(default=get_username(),max_length=100,null=False,blank=False,editable=False)
+    user_id = models.CharField(default='0',max_length=100,null=False,blank=False,editable=False)
 
     title = models.CharField(
         verbose_name=_("Title"),
@@ -562,6 +562,7 @@ class Question(models.Model):
     Base class for all question types.
     Shared properties placed here.
     """
+    user_id = models.CharField(default='0', max_length=100, null=False, blank=False, editable=False)
 
     quiz = models.ManyToManyField(Quiz,
                                   verbose_name=_("Quiz"),

@@ -16,8 +16,6 @@ ANSWER_ORDER_OPTIONS = (
 
 class MCQuestion(Question):
 
-    user_id = models.CharField(default=get_username(), max_length=100, null=False, blank=False, editable=False)
-
     answer_order = models.CharField(
         max_length=30, null=True, blank=True,
         choices=ANSWER_ORDER_OPTIONS,

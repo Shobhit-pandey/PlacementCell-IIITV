@@ -8,7 +8,6 @@ from quiz.models import Question
 
 
 class TF_Question(Question):
-    user_id = models.CharField(default=get_username(), max_length=100, null=False, blank=False, editable=False)
     correct = models.BooleanField(blank=False,
                                   default=False,
                                   help_text=_("Tick this if the question "

@@ -4,6 +4,11 @@ from django.utils import timezone
 
 from quiz.models import Quiz, Category
 
+ANSWER_ORDER_OPTIONS = (
+    ('content', ('Content')),
+    ('random', ('Random')),
+    ('none', ('None'))
+)
 
 class QuestionForm(forms.Form):
     def __init__(self, question, *args, **kwargs):
@@ -58,3 +63,7 @@ class CreatequizForm(forms.Form):
             draft=self.cleaned_data.get('draft'))
         u.save()
         return u
+
+# class CreateMCQForm(forms.Form):
+#     user_id = forms.CharField(max_length=100, required=True, widget=forms.HiddenInput())
+#     answer_order=forms.ChoiceField(ANSWER_ORDER_OPTIONS,required=True)

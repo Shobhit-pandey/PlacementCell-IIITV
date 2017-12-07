@@ -9,7 +9,6 @@ from django.db import models
 
 @python_2_unicode_compatible
 class Essay_Question(Question):
-    user_id = models.CharField(default=get_username(), max_length=100, null=False, blank=False, editable=False)
 
     def check_if_correct(self, guess):
         return False
