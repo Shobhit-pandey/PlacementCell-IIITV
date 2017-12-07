@@ -12,3 +12,6 @@ def student(request):
 
 def recruiter(request):
     return render(request,'Recruiter.html')
+
+def about(request):
+    return render(request,'About.html')
