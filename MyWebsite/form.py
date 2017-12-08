@@ -13,11 +13,13 @@ class RecruiterForm(forms.ModelForm):
 class BeyondAcademicImagesForm(forms.ModelForm):
     class Meta:
         model = BeyondAcademicImages
+        exclude=[]
 
 
 
 class BeyondAcademicVideosForm(forms.ModelForm):
     class Meta:
         model = BeyondAcademicVideos
+        exclude=[]
 
 

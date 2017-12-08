@@ -118,57 +118,83 @@
 
 </div> -->
 <!-- bloc-1 END -->
+{% if user.is_superuser %}
+    <h1 style="text-align: center"><a href="{% url 'mywebsite:addimages' %}">Add Image</a>  <a href="{% url 'mywebsite:addvideos' %}">Add Video</a> <a href="#">Add Highlight</a></h1>
+{% endif %}
+<h1 style="text-align: center">Beyond Academic</h1>
+<div class="card" style="margin-top: 60px;width:80%;height: auto;margin-left: 130px;background-color:white">
+<div class="container">
+{% for images in image %}
+    {% if forloop.counter|divisibleby:"2" or forloop.counter == 1 %}
+            <div class="row" style="margin-top:20px;">
+     {% endif %}
 
+<div class="col-sm-6 col-md-4 col-lg-3 col-mt-4" style="margin-top: 80px;margin-left: 80px;margin-bottom: 40px;">
+    <div class="card" style="background-color: white">
+                    <div class="hn" style="background-size: cover; background-position: center; height:50%;">
+                    <img class="card-img-top"  src="{{ images.image.url }}" style="background-size: 100%;  min-width: 100%;  min-height: 100%;">
+                    </div>
+                    <div class="card-block" style="height: 50%;">
+                        <h5 class="text-bold">{{ images.description }}</h5>
+                    </div>
+                </div>
+            </div>
 
-<div class="bloc bg-repeat bgc-ghost-white l-bloc" id="bloc-45" >
-	<div class="container bloc-md" >
-		<div class="row">
-            <div class="contents-wrapper" id="recruit">
-            <!-- Contents starts here -->
-            <div class="content">
-
-                <div class="container">
-                  <div class="row">
-                      {% for images in image %}
-                      <div class="col-sm-4" style=" margin: 20px 15% 20px 20px;">
-                        {% if images %}
-                          <img src="{% images.url %}" alt="HTML5 Icon-1" width="120%" height="250">
+{% if forloop.counter|divisibleby:"2" or forloop.last == true %}
+            </div>
+      {% endif %}
+{% endfor %}
+</div>
+</div>
+{#<div class="bloc bg-repeat bgc-ghost-white l-bloc" id="bloc-45" >#}
+{#	<div class="container bloc-md" >#}
+{#		<div class="row">#}
+{#            <div class="contents-wrapper" id="recruit">#}
+{#            <!-- Contents starts here -->#}
+{#            <div class="content">#}
+{##}
+{#                <div class="container">#}
+{#                  <div class="row">#}
+{#                      {% for images in image %}#}
+{#                      <div class="col-sm-4" style=" margin: 20px 15% 20px 20px;">#}
+{#                        {% if images %}#}
+{#                          <img src="{% images.url %}" alt="HTML5 Icon-1" width="120%" height="250">#}
 {#                    <p style=" margin: 20px;">IIIT-V  Volley Ball college team secured 2nd place in INTER IIIT SPORTS MEET held at kanchipuram, Dec. 2016. </p>#}
-                        <p style=" margin: 20px;">{{ images.description }} </p>
-                            </div>
-                          {% endif %}
-                      {% endfor %}
-
+{#                        <p style=" margin: 20px;">{{ images.description }} </p>#}
+{#                            </div>#}
+{#                          {% endif %}#}
+{#                      {% endfor %}#}
+{##}
 {#                    <div class="col-sm-4" style=" margin: 20px;">#}
 {#                    <img src="{% static 'images/iiit_sports_2.jpg' %}" alt="HTML5 Icon" width="120%" height="250">#}
 {#                        <p style=" margin: 20px;">IIIT-V Football college team secured 2nd place in INTER IIIT SPORTS MEET held at kanchipuram, Dec. 2016.</p>#}
 {#                    </div>#}
-                  </div>
-                </div>
-
-            </div>
-
-                <div class="content">
-
-                <div class="container">
-                  <div class="row">
-                     <div class="col-sm-4" style=" margin: 20px 15% 20px 20px;">
-                    <img src="{% static 'images/iiit_sports_3.jpg' %}" alt="HTML5 Icon" width="120%" height="250">
-                        <p style=" margin: 20px;">IIIT-V Table Tennis college team secured 3nd place in INTER IIIT SPORTS MEET held at kanchipuram, Dec. 2016.</p>
-                    </div>
-                        <div class="col-sm-4" style=" margin: 20px;">
-                    <img src="{% static 'images/iiit_sports_4.jpg' %}" alt="HTML5 Icon" width="120%" height="250">
-                        <p style=" margin: 20px;">IIIT-V has secured the best overall performance college award in INTER IIIT SPORTS MEET held at kanchipuram, Dec. 2016.</p>
-                    </div>
-
-                  </div>
-                </div>
-
-            </div>
-        </div>
-        </div>
-	</div>
-</div>
+{#                  </div>#}
+{#                </div>#}
+{##}
+{#            </div>#}
+{##}
+{#                <div class="content">#}
+{##}
+{#                <div class="container">#}
+{#                  <div class="row">#}
+{#                     <div class="col-sm-4" style=" margin: 20px 15% 20px 20px;">#}
+{#                    <img src="{% static 'images/iiit_sports_3.jpg' %}" alt="HTML5 Icon" width="120%" height="250">#}
+{#                        <p style=" margin: 20px;">IIIT-V Table Tennis college team secured 3nd place in INTER IIIT SPORTS MEET held at kanchipuram, Dec. 2016.</p>#}
+{#                    </div>#}
+{#                        <div class="col-sm-4" style=" margin: 20px;">#}
+{#                    <img src="{% static 'images/iiit_sports_4.jpg' %}" alt="HTML5 Icon" width="120%" height="250">#}
+{#                        <p style=" margin: 20px;">IIIT-V has secured the best overall performance college award in INTER IIIT SPORTS MEET held at kanchipuram, Dec. 2016.</p>#}
+{#                    </div>#}
+{##}
+{#                  </div>#}
+{#                </div>#}
+{##}
+{#            </div>#}
+{#        </div>#}
+{#        </div>#}
+{#	</div>#}
+{#</div>#}
 
 <!--after  image-->
 

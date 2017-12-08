@@ -405,6 +405,8 @@ def Createquiz(request):
     return render(request,'quiz/createquiz.html',{'form':form})
 
 def AddMcq(request):
+    # quiz = Quiz.objects.filter('user_id'=request.user.id)
+    # print(quiz)
     if request.method == "POST":
         mcq_form=MCQuestionForm(request.POST,request.FILES)
         if mcq_form.is_valid():
