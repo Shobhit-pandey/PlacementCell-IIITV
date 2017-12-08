@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
+from django.views.generic import TemplateView
 
 
 def home(request):
@@ -17,12 +18,17 @@ def about(request):
     return render(request,'About.html')
 
 def procedure(request):
-    return render(request,'Procedure.html')
+    return render(request, 'Procedure.html')
 
 def academic(request):
-    return render(request,'Academic.html')
+    return render(request, 'Academic.html')
 
-def contact(request):
-    return render(request,'Contact.html')
+def contact(request) :
+    return render(request, 'Contact.html')
 def department(request):
-    return render(request,'departments.html')
+    return render(request, 'departments.html')
+
+def beyondacademics(request):
+    return render(request, 'beyond.html')
+
+
