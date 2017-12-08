@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 from django.core.urlresolvers import reverse
 from django.shortcuts import render,redirect
 
 from MyWebsite.form import RecruiterForm, BeyondAcademicImagesForm, BeyondAcademicVideosForm, \
-    BeyondAcademicHighlightForm, RecruiterInternshipIndustrialForm, RecruiterInternshipNGOForm
-from MyWebsite.models import BeyondAcademicImages, BeyondAcademicVideos
+    BeyondAcademicHighlightForm, RecruiterInternshipIndustrialForm, RecruiterInternshipNGOForm, PastRecruiterForm
+from MyWebsite.models import BeyondAcademicImages, BeyondAcademicVideos, BeyondAcademicsHighlight, PastRecruiter, \
+    RecruiterInternshipIndustrial, RecruiterInternshipNGO
 
 
 def home(request):
@@ -16,7 +20,10 @@ def student(request):
     return render(request,'Student.html')
 
 def recruiter(request):
-    return render(request,'Recruiter.html')
+    images = PastRecruiter.objects.all()
+    industrials = RecruiterInternshipIndustrial.objects.all()
+    ngos = RecruiterInternshipNGO.objects.all()
+    return render(request,'Recruiter.html',{'images':images,'industrials':industrials,'ngos':ngos})
 
 def about(request):
     return render(request,'About.html')
@@ -44,11 +51,12 @@ def recruiter_form(request):
 def beyond_academic(request):
     image = BeyondAcademicImages.objects.all()
     video = BeyondAcademicVideos.objects.all()
-    return render(request, 'beyond_academics.html',{'image':image,'video':video})
+    highlight = BeyondAcademicsHighlight.objects.all()
+    return render(request, 'beyond_academics.html',{'image':image,'video':video,'highlight':highlight})
 
-def Addimages(request):
+def AddBeyondAcademicimages(request):
     if request.method == 'POST':
-        form = BeyondAcademicImagesForm(request.POST)
+        form = BeyondAcademicImagesForm(request.POST,request.FILES)
 
         if form.is_valid():
             form.save()
@@ -58,9 +66,9 @@ def Addimages(request):
     return render(request, 'AddBeyondAcademicImage.html', {'form':form})
 
 
-def Addvideos(request):
+def AddBeyondAcademicvideos(request):
     if request.method == 'POST':
-        form = BeyondAcademicVideosForm(request.POST)
+        form = BeyondAcademicVideosForm(request.POST,request.FILES)
 
         if form.is_valid():
             form.save()
@@ -90,7 +98,7 @@ def Addinterndescrip(request):
 
         if form.is_valid():
             form.save()
-            return redirect('mywebsite:beyond_academic')
+            return redirect('mywebsite:recruiter')
 
     else:
         form = RecruiterInternshipIndustrialForm()
@@ -102,11 +110,46 @@ def Addngodescrip(request):
         form =RecruiterInternshipNGOForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('mywebsite:beyond_academic')
+            return redirect('mywebsite:recruiter')
 
     else:
         form = RecruiterInternshipNGOForm()
     return render(request,'AddRecruiterInternshipNGO.html',{'form':form})
+
+
+def addPastRecruiterimage(request):
+    if request.method == 'POST':
+        form =PastRecruiterForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('mywebsite:recruiter')
+
+    else:
+        form = PastRecruiterForm()
+    return render(request,'Addpastrecuiter.html',{'form':form})
+
+
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data = request.POST , user = request.user)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request,form.user)
+            return redirect("mywebsite:recruiter")
+        else:
+            return redirect("mywebsite:recruiter")
+    else:
+        form = PasswordChangeForm(user = request.user)
+
+        args = {'form':form}
+
+        return render(request,'change_password.html',{'form':form})
+
+
+
+
 
 
 

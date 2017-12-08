@@ -46,7 +46,7 @@ class Recruiter(models.Model):
     Telecom = models.BooleanField()
     Finance = models.BooleanField()
     Consulting = models.BooleanField()
-    Other_field = models.CharField(max_length=400)
+    Other_field = models.CharField(max_length=400,default="",blank=True,null=False)
     Organization_profile = models.CharField(max_length = 250,blank=True,null=True)
 
     offer = models.CharField(max_length = 100,choices = Offer_Choices,default = 'JOB ONLY')
@@ -67,7 +67,7 @@ class Recruiter(models.Model):
     Group_Discussion = models.BooleanField()
     Personal_Interview = models.BooleanField()
     Written_Test_Technical = models.BooleanField()
-    Other = models.CharField(max_length=400)
+    Other = models.CharField(max_length=400,default="",null=False,blank=False)
     Offers_intend = models.IntegerField(blank = True,null=True)
     Officials_Visit = models.IntegerField(blank=True,null=True)
     Rooms_required = models.IntegerField(blank = True,null=True)
@@ -121,7 +121,7 @@ class BeyondAcademicVideos(models.Model):
 
 
 class BeyondAcademicsHighlight(models.Model):
-    highlight = models.CharField(max_length=250,blank=False)
+    highlight = models.CharField(max_length=2500,blank=False)
 
     def get_absolute_url(self):
         return reverse("contact")

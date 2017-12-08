@@ -30,7 +30,7 @@
 <div class="page-container">
 
 <!-- bloc-0 -->
-<div class="bloc bg-repeat bgc-ghost-white l-bloc" id="bloc-0">
+<div class="bloc bg-repeat bgc-white l-bloc" id="bloc-0">
 	<div class="container bloc-sm">
 		<div class="row">
 			<div class="col-sm-6">
@@ -45,16 +45,12 @@
 			</div>
 				<div class="col-sm-6 right-align">
 				<ul class="list-unstyled list-horizontal-layout">
-                    <li>
+
+					<li>
 						<a href="{% url 'quiz_category_list_all' %}" class="btn btn-d btn-sq btn-sm nav-button">Quiz</a>
 					</li>
 					<li>
-						<a style="border-width:0px 0px 2px 0px;
-	border-radius:0px 0px 0px ;
-	border-color:rgba(0,0,0,0.7);
-	background-color:rgba(0,0,0,0.0);
-	color:#000000!important;
-" href="{% url 'mywebsite:student' %}" class="btn btn-d btn-sq btn-sm nav-button">Students</a>
+						<a href="{% url 'mywebsite:student' %}" class="btn btn-d btn-sq btn-sm nav-button">Students</a>
 					</li>
 					<li>
 						<a href="{% url 'mywebsite:recruiter' %}" class="btn btn-d btn-sq btn-sm nav-button">Recruiters</a>
@@ -69,14 +65,14 @@
 									<a href="{% url 'mywebsite:academic' %}" class="a-btn a-block">Academics</a>
 								</li>
 								<li>
-									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Beyond Academics</a>
+									<a href="{% url 'mywebsite:beyond_academic' %}" class="a-btn a-block">Beyond Academics</a>
 								</li>
 
 							</ul>
 						</div>
 					</li>
 					<li>
-						<a href="{% url 'mywebsite:department' %}" class="btn btn-d btn-sq btn-sm nav-button">Departments</a>
+						<a  href="{% url 'mywebsite:department' %}" class="btn btn-d btn-sq btn-sm nav-button">Departments</a>
 					</li>
 					<li>
 						<div class="btn-group btn-dropdown">
@@ -132,10 +128,11 @@
   bloc-44 END  -->
 
 <!-- bloc-45 -->
+
 <div class="bloc tc-dim-gray bgc-white l-bloc" id="bloc-45" >
 	<div class="container bloc-md" >
 		<div class="row">
-
+            {% if not user.is_authenticated %}
 			<div class="col-sm-4" >
 				<div class="panel">
 					<div class="panel-heading">
@@ -144,30 +141,41 @@
 						</h3>
 					</div>
 					<div class="panel-body">
-						<form id="form_1666" novalidate="">
+                        {% if form.errors %}
+                      <p>your username and password didnot match</p>
+                        {% endif %}
 
+                        <form id="form_1666" novalidate="" action="{% url 'login' %}" method="POST">
+                            {% csrf_token %}
 							<div class="form-group">
 								<label>
 									Username
 								</label>
-								<input id="name_1666" class="form-control" required="">
+								<input id="name_1666" name="username" placeholder="username" class="form-control" required="">
 							<div class="help-block"></div></div>
 							<div class="form-group">
 								<label>
 									Password
 								</label>
-								<input id="email_1666" class="form-control" type="password" required="">
-							<div class="help-block"></div></div>
-							<button id="comp-login-btn" class="bloc-button btn btn-glossy pull-center btn-dodger-green" type="submit">
+                                    <input id="email_1666" name="password" placeholder="Password" class="form-control" type="password" required="">
+							<div class="help-block"></div></div><a href="{% url 'reset_password' %}" class="btn btn-clean btn-dim-gray">Forget Password?</a>
+                            <button id="comp-login-btn" class="bloc-button btn btn-glossy pull-left btn-dodger-blue" type="submit" value="login">
 								Login
 							</button>
+                            <input type="hidden" name="next" value="{{next}}">
 						</form>
 					</div>
 				</div>
 			</div>
+        {% elif user.is_authenticated and not user.is_staff and not user.is_superuser%}
+    <a href="{% url 'logout' %}">Logout</a>
+    <a href="{% url 'mywebsite:change_password' %}">Change Password</a>
+{% endif %}
         </div>
 	</div>
 </div>
+
+
 <!-- bloc-45 END -->
 
 <!-- comp-hotels
