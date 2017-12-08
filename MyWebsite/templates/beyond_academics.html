@@ -23,7 +23,53 @@
 <!-- Google Analytics -->
 
 <!-- Google Analytics END -->
+<style>
+     .card {
+    font-size: 1em;
+    overflow: hidden;
+    padding: 0;
+     height: 300px;
+    border: none;
+    border-radius: .28571429rem;
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+}
+.card-block {
+    font-size: 1em;
+    position: relative;
+    margin: 0;
+    padding: 1em;
+    border: none;
+    border-top: 1px solid rgba(34, 36, 38, .1);
+    box-shadow: none;
+}
 
+ .card:hover {
+     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+
+ }
+.card-img-top {
+    display: block;
+    width: 100%;
+    height: 100px;
+}
+        .text-bold {
+    font-weight: 700;
+}
+
+.meta {
+    font-size: 1em;
+    color: rgba(0, 0, 0, .4);
+}
+
+.meta a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, .4);
+}
+
+.meta a:hover {
+    color: rgba(0, 0, 0, .87);
+}
+</style>
 </head>
 <body>
 <!-- Main container -->
@@ -119,10 +165,10 @@
 </div> -->
 <!-- bloc-1 END -->
 {% if user.is_superuser %}
-    <h1 style="text-align: center"><a href="{% url 'mywebsite:addimages' %}">Add Image</a>  <a href="{% url 'mywebsite:addvideos' %}">Add Video</a> <a href="#">Add Highlight</a></h1>
+    <h1 style="text-align: center"><a href="{% url 'mywebsite:addBeyondAcademicimages' %}">Add Image</a>  <a href="{% url 'mywebsite:addBeyondAcademicvideos' %}">Add Video</a> <a href="{% url 'mywebsite:addBeyondAcademichighlight' %}">Add Highlight</a></h1>
 {% endif %}
 <h1 style="text-align: center">Beyond Academic</h1>
-<div class="card" style="margin-top: 60px;width:80%;height: auto;margin-left: 130px;background-color:white">
+<div class="card" style="margin-top: 60px;width:100%;height: auto;margin-left: 0px;background-color:white">
 <div class="container">
 {% for images in image %}
     {% if forloop.counter|divisibleby:"2" or forloop.counter == 1 %}
@@ -131,13 +177,14 @@
 
 <div class="col-sm-6 col-md-4 col-lg-3 col-mt-4" style="margin-top: 80px;margin-left: 80px;margin-bottom: 40px;">
     <div class="card" style="background-color: white">
-                    <div class="hn" style="background-size: cover; background-position: center; height:50%;">
+                    <div class="hn" style="background-size: cover; background-position: center; height:100%;">
                     <img class="card-img-top"  src="{{ images.image.url }}" style="background-size: 100%;  min-width: 100%;  min-height: 100%;">
                     </div>
-                    <div class="card-block" style="height: 50%;">
+
+                </div>
+<div class="card-block" style="height: 50%;">
                         <h5 class="text-bold">{{ images.description }}</h5>
                     </div>
-                </div>
             </div>
 
 {% if forloop.counter|divisibleby:"2" or forloop.last == true %}
@@ -206,8 +253,12 @@
             <!-- Contents starts here -->
             <div class="content">
                 <p><strong>Some other Highlights</strong></p>
-                <ul><li>IIIT Vadodara's music club has secured the 1st prize and won a cash prize of ₹10,000 in concurs hosted by DA-IICT</li>
-                    <li>IIIT Vadodara's Drama club has secured the 2nd prize Amalthea hosted by IIT Gandhinagar</li>
+                <ul>
+                    {% for high in highlight %}
+                        <li>{{ high.highlight }}</li>
+                    {% endfor %}
+{#                    <li>IIIT Vadodara's music club has secured the 1st prize and won a cash prize of ₹10,000 in concurs hosted by DA-IICT</li>#}
+{#                    <li>IIIT Vadodara's Drama club has secured the 2nd prize Amalthea hosted by IIT Gandhinagar</li>#}
                     </ul>
             </div>
         </div>

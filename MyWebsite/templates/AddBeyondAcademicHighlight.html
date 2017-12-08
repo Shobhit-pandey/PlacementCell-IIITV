@@ -2,10 +2,108 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <title>Add HighLight</title>
+        <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <link rel="shortcut icon" type="image/png" href="http://iiitvadodara.ac.in/img/IIITV_Logo_1x1_small.png">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+	<link href="{% static 'css/css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/css(1)' %}" rel="stylesheet" type="text/css">
+
+	<script src="{% static 'javascript/jquery-2.1.0.min.js.download' %}"></script>
+	<script src="{% static 'javascript/bootstrap.min.js.download' %}"></script>
+	<script src="{% static 'javascript/blocs.min.js.download' %}"></script>
 </head>
 <body>
+<div class="page-container">
 
+<!-- bloc-0 -->
+<div class="bloc bg-repeat bgc-white l-bloc" id="bloc-0">
+	<div class="container bloc-sm">
+		<div class="row">
+			<div class="col-sm-6">
+				<a href="{% url 'mywebsite:home' %}"><img src="{% static 'images/iiitv_logo.png' %}" class="head-logo" height="80"></a>
+				<h4 class=" tc-black mg-sm">
+					<a class="ltc-black"  href="{% url 'mywebsite:home' %}">Training &amp; Placement Cell</a><br>
+				</h4>
+				<h6 class=" mg-clear tc-1">
+
+					 <a class="pull-left" href="http://iiitvadodara.ac.in/" target="_blank">Indian Institute of Information Technology Vadodara</a><br>
+				</h6>
+			</div>
+				<div class="col-sm-6 right-align">
+				<ul class="list-unstyled list-horizontal-layout">
+
+					<li>
+						<a href="{% url 'quiz_category_list_all' %}" class="btn btn-d btn-sq btn-sm nav-button">Quiz</a>
+					</li>
+					<li>
+						<a href="{% url 'mywebsite:student' %}" class="btn btn-d btn-sq btn-sm nav-button">Students</a>
+					</li>
+					<li>
+						<a href="{% url 'mywebsite:recruiter' %}" class="btn btn-d btn-sq btn-sm nav-button">Recruiters</a>
+					</li>
+					<li>
+						<div class="btn-group btn-dropdown">
+							<a href="#" class="btn btn-d btn-sq btn-sm nav-button dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Achievements<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+
+
+								<li>
+									<a href="{% url 'mywebsite:academic' %}" class="a-btn a-block">Academics</a>
+								</li>
+								<li>
+									<a href="{% url 'mywebsite:beyond_academic' %}" class="a-btn a-block">Beyond Academics</a>
+								</li>
+
+							</ul>
+						</div>
+					</li>
+					<li>
+						<a  href="{% url 'mywebsite:department' %}" class="btn btn-d btn-sq btn-sm nav-button">Departments</a>
+					</li>
+					<li>
+						<div class="btn-group btn-dropdown">
+							<a href="#" class="btn btn-d btn-sq btn-sm nav-button dropdown-toggle" data-toggle="dropdown" aria-expanded="false">About<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+
+
+								<li>
+									<a href="{% url 'mywebsite:about' %}" class="a-btn a-block">About US</a>
+								</li>
+								<li>
+									<a href="{% url 'mywebsite:contact' %}" class="a-btn a-block">Contact Us</a>
+								</li>
+                                <li>
+									<a href="http://iiitvadodara.ac.in/gallery.php" class="a-btn a-block">Gallery</a>
+								</li>
+								<li>
+									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">College Team</a>
+								</li>
+								<li>
+									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Alumni</a>
+								</li>
+								<li>
+									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Reseach &amp; Development</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+
+
+
+
+				</ul>
+			</div>
+
+		</div>
+	</div>
+</div>
  {% if user.is_superuser %}
 <form method="post">
     {% csrf_token %}
