@@ -4,7 +4,8 @@ from __future__ import unicode_literals
 from django.core.urlresolvers import reverse
 from django.shortcuts import render,redirect
 
-from MyWebsite.form import RecruiterForm, BeyondAcademicImagesForm, BeyondAcademicVideosForm
+from MyWebsite.form import RecruiterForm, BeyondAcademicImagesForm, BeyondAcademicVideosForm, \
+    BeyondAcademicHighlightForm, RecruiterInternshipIndustrialForm, RecruiterInternshipNGOForm
 from MyWebsite.models import BeyondAcademicImages, BeyondAcademicVideos
 
 
@@ -54,7 +55,7 @@ def Addimages(request):
             return redirect('mywebsite:beyond_academic')
     else:
         form = BeyondAcademicImagesForm()
-    return render(request,'AddImage.html',{'form':form})
+    return render(request, 'AddBeyondAcademicImage.html', {'form':form})
 
 
 def Addvideos(request):
@@ -66,7 +67,46 @@ def Addvideos(request):
             return redirect('mywebsite:beyond_academic')
     else:
         form = BeyondAcademicVideosForm()
-    return render(request,'AddVideo.html',{'form':form})
+    return render(request, 'AddBeyondAcademicVideo.html', {'form':form})
+
+
+def AddBeyondAcademicHighlight(request):
+    if request.method == "POST":
+        form =  BeyondAcademicHighlightForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('mywebsite:beyond_academic')
+    else:
+        form = BeyondAcademicHighlightForm()
+    return render(request, 'AddBeyondAcademicHighlight.html', {'form':form})
+
+
+
+
+def Addinterndescrip(request):
+    if request.method == 'POST':
+        form =RecruiterInternshipIndustrialForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('mywebsite:beyond_academic')
+
+    else:
+        form = RecruiterInternshipIndustrialForm()
+    return render(request,'AddRecruiterInternshipIndustrial.html',{'form':form})
+
+
+def Addngodescrip(request):
+    if request.method == 'POST':
+        form =RecruiterInternshipNGOForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('mywebsite:beyond_academic')
+
+    else:
+        form = RecruiterInternshipNGOForm()
+    return render(request,'AddRecruiterInternshipNGO.html',{'form':form})
 
 
 

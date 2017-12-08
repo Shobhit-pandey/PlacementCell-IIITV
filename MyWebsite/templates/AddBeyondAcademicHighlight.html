@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add HighLight</title>
+</head>
+<body>
+
+ {% if user.is_superuser %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add</button>
+</form>
+    {% else %}
+    <h1>Behave yourself you are not super user</h1>
+{% endif %}
+</body>
+</html>
