@@ -24,3 +24,5 @@ def academic(request):
 
 def contact(request):
     return render(request,'Contact.html')
+def department(request):
+    return render(request,'departments.html')
