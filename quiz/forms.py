@@ -90,7 +90,7 @@ class AnswerForm(forms.ModelForm):
         model = Answer
         fields=('content','correct')
         exclude = []
-MCQFormSet = inlineformset_factory(MCQuestion,Answer,form=AnswerForm,can_delete=False,extra=2)
+MCQFormSet = inlineformset_factory(MCQuestion,Answer,form=AnswerForm,can_delete=False)
 
 class TFForm(forms.ModelForm):
     class Meta:

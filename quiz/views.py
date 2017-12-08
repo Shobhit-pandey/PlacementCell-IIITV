@@ -415,7 +415,7 @@ def AddMcq(request):
                 return redirect('createquestion')
 
     else:
-        mcq_form=TFForm()
+        mcq_form=MCQuestionForm()
         answer__formset=MCQFormSet()
     return render(request,'quiz/addmcq.html',{'mcq_form':mcq_form,'answer_formset':answer__formset})
 def AddTF(request):
