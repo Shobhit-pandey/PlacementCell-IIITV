@@ -40,7 +40,7 @@ Offer_Choices = (
 
 class Recruiter(models.Model):
     Organization_name = models.CharField(max_length=100,blank=False,null=False)
-    Organization_website = models.TextField(validators=[URLValidator()])
+    Organization_website = models.CharField(max_length=1000,validators=[URLValidator()])
     Information_Technology = models.BooleanField()
     Analytics = models.BooleanField()
     E_Commerce = models.BooleanField()
