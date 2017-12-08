@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="POST">
+    {% csrf_token %}
+    {{ essay_form.as_p }}
+    <div class="row" style="padding-top: 30px">
+        <button type="submit"><a>Add Essay</a></button>
+    </div>
+</form>
+</body>
+</html>

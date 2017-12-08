@@ -5,6 +5,7 @@ import json
 from datetime import datetime
 
 import django
+from django.contrib.auth.models import User
 from django.db import models
 from django.core.exceptions import ValidationError, ImproperlyConfigured
 from django.core.validators import MaxValueValidator
@@ -69,6 +70,8 @@ class SubCategory(models.Model):
 @python_2_unicode_compatible
 class Quiz(models.Model):
 
+    user_id = models.CharField(default='0',max_length=100,null=False,blank=False,editable=False)
+
     title = models.CharField(
         verbose_name=_("Title"),
         max_length=60, blank=False)
@@ -79,12 +82,12 @@ class Quiz(models.Model):
 
     start_time = models.DateTimeField(
         verbose_name=_("Start Time"),
-        blank=False,help_text=_("Start time of quiz"),default=False,
+        blank=False,help_text=_("Start time of quiz"),default=timezone.now(),
     )
 
     end_time = models.DateTimeField(
         verbose_name=_("End Time"),
-        blank=False,help_text=_("End time of the quiz"),default=False,
+        blank=False,help_text=_("End time of the quiz"),default=timezone.now(),
     )
 
     url = models.SlugField(
@@ -557,6 +560,7 @@ class Question(models.Model):
     Base class for all question types.
     Shared properties placed here.
     """
+    user_id = models.CharField(default='0', max_length=100, null=False, blank=False, editable=False)
 
     quiz = models.ManyToManyField(Quiz,
                                   verbose_name=_("Quiz"),

@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib import admin
 from django.contrib.admin.widgets import FilteredSelectMultiple
+from django.contrib.auth.models import User
+from django.utils.functional import curry
 from django.utils.translation import ugettext_lazy as _
 
 from .models import Quiz, Category, SubCategory, Progress, Question
@@ -20,10 +22,9 @@ class QuizAdminForm(forms.ModelForm):
     django-admin-interface-using-horizontal-filter-with-
     inline-manytomany-field
     """
-
     class Meta:
         model = Quiz
-        exclude = []
+        exclude = ['user_id']
 
     questions = forms.ModelMultipleChoiceField(
         queryset=Question.objects.all().select_subclasses(),
@@ -34,7 +35,9 @@ class QuizAdminForm(forms.ModelForm):
             is_stacked=False))
 
     def __init__(self, *args, **kwargs):
+        # self.user_id = kwargs.pop('user_id')
         super(QuizAdminForm, self).__init__(*args, **kwargs)
+        # self.fields['user_id']=self.user_id
         if self.instance.pk:
             self.fields['questions'].initial =\
                 self.instance.question_set.all().select_subclasses()
@@ -50,10 +53,9 @@ class QuizAdminForm(forms.ModelForm):
 class QuizAdmin(admin.ModelAdmin):
     form = QuizAdminForm
 
-    list_display = ('title', 'category', )
+    list_display = ('title', 'category' )
     list_filter = ('category',)
     search_fields = ('description', 'category', )
-
 
 class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('category', )

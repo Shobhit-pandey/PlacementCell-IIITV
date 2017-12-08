@@ -16,5 +16,11 @@ def recruiter(request):
 def about(request):
     return render(request,'About.html')
 
-def department(request):
-    return render(request,'departments.html')
+def procedure(request):
+    return render(request,'Procedure.html')
+
+def academic(request):
+    return render(request,'Academic.html')
+
+def contact(request):
+    return render(request,'Contact.html')
