@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^academic/$', views.academic, name='academic'),
     url(r'^contact/$', views.contact, name='contact'),
     url(r'^department/$', views.department, name='department'),
-
+    url(r'^recruiter/form$', views.recruiter_form, name='recruiter_form'),
+    url(r'^beyond-academic$', views.beyond_academic, name='beyond_academic'),
     ]

@@ -4,34 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="{% static 'javascript/dynamic-formset.js' %}"></script>
 </head>
 <body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="{% static 'javascript/dynamic-formset.js' %}"></script>
+<script type="text/javascript">
+    <!--
+    $(function () {
+    $('.add-row').click(function() {
+        return addForm(this, '{{ answer_formset.prefix }}');
+    });
+    $('.delete-row').click(function() {
+        return deleteForm(this, '{{ answer_formset.prefix }}');
+    })
+})
+    //-->
+    </script>
 <form method="POST">
     {% csrf_token %}
     {{ mcq_form.as_p }}
-    {{ answer_formset.as_table }}
+{#    {{ answer_formset.as_table }}#}
+  <table id="id_forms_table" border="0" cellpadding="0" cellspacing="5">
+        <thead>
+    	    <tr>
+    	        <th scope="col">&nbsp;</th>
+    	        <th scope="col">Answer List</th>
+    	        <th scope="col">&nbsp;</th>
+    	        <th scope="col">&nbsp;</th>
+    	    </tr>
+        </thead>
+        <tbody>
+            {% for form in answer_formset.forms %}
+    	    <tr id="{{ form.prefix }}-row" class="dynamic-form">
+    	        <td>Answer {{ form.content }}</td>
+    	        <td>Correct {{ form.correct }} Tick if this is correct answer</td>
+            </tr>
+    	    {% endfor %}
+            <tr>
+    	        <td colspan="4"><a href="javascript:void(0)" class="add-row">add answer</a></td>
+    	    </tr>
+        </tbody>
+    </table>
     {{ answer_formset.management_form }}
-{#    {{ answer_formset.as_p }}#}
-{#    {% for answer_form in answer_formset %}#}
-{#        <div class="link-formset">#}
-{#            {{ answer_form.content }}#}
-{##}
-{##}
-{#            {{ answer_form.correct }}#}
-{#        </div>#}
-{#    {% endfor %}#}
     <div class="row" style="padding-top: 30px">
 
         <button type="submit"><a>Add MCQ</a></button>
     </div>
 </form>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="{% static 'path_to/jquery.formset.js' %}"></script>
-<script>
-    $('.link-formset').formset({
-        addText: 'add link',
-        deleteText: 'remove'
-    });
-   </script>
     </body>
 </html>

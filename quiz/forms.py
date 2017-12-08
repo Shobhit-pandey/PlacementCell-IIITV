@@ -2,6 +2,7 @@ from django import forms
 from django.forms.widgets import RadioSelect, Textarea
 from django.utils import timezone
 from django.forms.models import inlineformset_factory
+
 from essay.models import Essay_Question
 
 from true_false.models import TF_Question
@@ -89,7 +90,7 @@ class AnswerForm(forms.ModelForm):
         model = Answer
         fields=('content','correct')
         exclude = []
-MCQFormSet = inlineformset_factory(MCQuestion,Answer,form=AnswerForm)
+MCQFormSet = inlineformset_factory(MCQuestion,Answer,form=AnswerForm,can_delete=False)
 
 class TFForm(forms.ModelForm):
     class Meta:
