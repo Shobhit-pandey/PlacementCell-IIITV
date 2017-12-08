@@ -890,12 +890,15 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	background:#524f56;
 	color:#FFFFFF!important;
 }
-.btn-dodger-blue{
-	background:#1E8EFF;
+.btn-dodger-green{
+	background: #13cc40;
 	color:#FFFFFF!important;
 }
-.btn-dodger-blue:hover{
-	background:#1872cc;
+.pull-center{
+	margin-left: 10%;
+}
+.btn-dodger-green:hover{
+	background: #13e443;
 	color:#FFFFFF!important;
 }
 .btn-united-nations-blue{
