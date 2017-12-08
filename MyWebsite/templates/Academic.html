@@ -45,6 +45,10 @@
 			</div>
 				<div class="col-sm-6 right-align">
 				<ul class="list-unstyled list-horizontal-layout">
+
+					<li>
+						<a href="{% url 'quiz_category_list_all' %}" class="btn btn-d btn-sq btn-sm nav-button">Quiz</a>
+					</li>
 					<li>
 						<a href="{% url 'mywebsite:student' %}" class="btn btn-d btn-sq btn-sm nav-button">Students</a>
 					</li>
@@ -61,14 +65,14 @@
 									<a href="{% url 'mywebsite:academic' %}" class="a-btn a-block">Academics</a>
 								</li>
 								<li>
-									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Beyond Academics</a>
+									<a href="{% url 'mywebsite:beyond_academic' %}" class="a-btn a-block">Beyond Academics</a>
 								</li>
 
 							</ul>
 						</div>
 					</li>
 					<li>
-						<a href="http://iiitvadodara.ac.in/" class="btn btn-d btn-sq btn-sm nav-button">Departments</a>
+						<a  href="{% url 'mywebsite:department' %}" class="btn btn-d btn-sq btn-sm nav-button">Departments</a>
 					</li>
 					<li>
 						<div class="btn-group btn-dropdown">
@@ -97,8 +101,13 @@
 							</ul>
 						</div>
 					</li>
-                </ul>
+
+
+
+
+				</ul>
 			</div>
+
 		</div>
 	</div>
 </div>

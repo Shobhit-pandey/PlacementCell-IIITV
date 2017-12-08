@@ -3,7 +3,8 @@ from __future__ import unicode_literals
 
 from django.contrib import admin
 
-from MyWebsite.models import Recruiter, Gallery, PastRecruiter,BeyondAcademicImages,BeyondAcademicVideos
+from MyWebsite.models import Recruiter, Gallery, PastRecruiter, BeyondAcademicImages, BeyondAcademicVideos, \
+    BeyondAcademicsHighlight, RecruiterInternshipIndustrial, RecruiterInternshipNGO
 from true_false.models import TF_Question
 
 from quiz.models import CategoryManager, Category, Question, Sitting, SittingManager, Progress, ProgressManager, Quiz, \
@@ -21,3 +22,8 @@ admin.site.register(PastRecruiter)
 # admin.site.register(SelectionProcess)
 admin.site.register(BeyondAcademicImages)
 admin.site.register(BeyondAcademicVideos)
+admin.site.register(BeyondAcademicsHighlight)
+admin.site.register(RecruiterInternshipIndustrial)
+admin.site.register(RecruiterInternshipNGO)
+
+

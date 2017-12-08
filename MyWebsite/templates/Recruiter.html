@@ -23,7 +23,51 @@
 <!-- Google Analytics -->
 
 <!-- Google Analytics END -->
+<style>
+     .card {
+    font-size: 1em;
+    padding: 0;
+    border: none;
+    border-radius: .28571429rem;
+}
+.card-block {
+    font-size: 1em;
+    position: relative;
+    margin: 0;
+    padding: 1em;
+    border: none;
+    border-top: 1px solid rgba(34, 36, 38, .1);
+    box-shadow: none;
+}
 
+ .card:hover {
+     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+
+ }
+.card-img-top {
+    display: block;
+    width: 100%;
+    height: 100px;
+}
+        .text-bold {
+    font-weight: 700;
+}
+
+.meta {
+    font-size: 1em;
+    color: rgba(0, 0, 0, .4);
+}
+
+.meta a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, .4);
+}
+
+.meta a:hover {
+    color: rgba(0, 0, 0, .87);
+}
+
+</style>
 </head>
 <body>
 <!-- Main container -->
@@ -45,20 +89,15 @@
 			</div>
 				<div class="col-sm-6 right-align">
 				<ul class="list-unstyled list-horizontal-layout">
+
 					<li>
 						<a href="{% url 'quiz_category_list_all' %}" class="btn btn-d btn-sq btn-sm nav-button">Quiz</a>
 					</li>
-
-							<li>
+					<li>
 						<a href="{% url 'mywebsite:student' %}" class="btn btn-d btn-sq btn-sm nav-button">Students</a>
 					</li>
 					<li>
-						<a style="border-width:0px 0px 2px 0px;
-	border-radius:0px 0px 0px ;
-	border-color:rgba(0,0,0,0.7);
-	background-color:rgba(0,0,0,0.0);
-	color:#000000!important;
-" href="{% url 'mywebsite:recruiter' %}" class="btn btn-d btn-sq btn-sm nav-button">Recruiters</a>
+						<a href="{% url 'mywebsite:recruiter' %}" class="btn btn-d btn-sq btn-sm nav-button">Recruiters</a>
 					</li>
 					<li>
 						<div class="btn-group btn-dropdown">
@@ -70,14 +109,14 @@
 									<a href="{% url 'mywebsite:academic' %}" class="a-btn a-block">Academics</a>
 								</li>
 								<li>
-									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Beyond Academics</a>
+									<a href="{% url 'mywebsite:beyond_academic' %}" class="a-btn a-block">Beyond Academics</a>
 								</li>
 
 							</ul>
 						</div>
 					</li>
 					<li>
-						<a href="{% url 'mywebsite:department' %}" class="btn btn-d btn-sq btn-sm nav-button">Departments</a>
+						<a  href="{% url 'mywebsite:department' %}" class="btn btn-d btn-sq btn-sm nav-button">Departments</a>
 					</li>
 					<li>
 						<div class="btn-group btn-dropdown">
@@ -178,38 +217,63 @@
 		</div>
 	</div>
 </div>
+{% if user.is_superuser %}
+    <h1 style="text-align: center"><a href="{% url 'mywebsite:addPastRecruiterimage' %}">Add Past Recruiter Images</a>  <a href="{% url 'mywebsite:addinterndescrip' %}">Add Internship (Academic/Industry)</a> <a href="{% url 'mywebsite:addngodescip' %}">Add Rural Internship with NGOs</a></h1>
+{% endif %}
 <!-- bloc-45 END -->
-<div class="bloc tc-dim-gray bgc-white l-bloc" id="bloc-45" >
-	<div class="container bloc-md" >
-		<div class="row">
-            <div class="contents-wrapper" id="recruit">
-            <!-- Contents starts here -->
-            <div class="content">
-                <h1>Past Recruiters</h1>
-                <div style="margin-top:50px;">
-                    <img src="https://lh5.googleusercontent.com/PNv7ZG2jVfeOWNC-ji-4T8AIAF7y8S_wtZqyDKZPBInySaNYm75nh-Y4o8fwLuBUA3U2AVRSPegSSkhMDk_CfcH0F48595fMsCfQ9K2BvJ56MHLcH68=w170" alt="HTML5 Icon" style="width:20%;">
-                    <img src="https://lh4.googleusercontent.com/V28dYfxf5d4Teg7Fl5bghvyBn49NrrlAve7rbkWa336EKh4DEpzk_6qMLdvQo_TrBaCkUph3Bqef-nMlXCIunpUmm7mzrSMPEDvR5YSjnmXFP6VCHKU=w271" alt="HTML5 Icon" style="width:20%;">
-                    <img src="https://lh3.googleusercontent.com/oczzYIEGU7qFhCMJ2D_WoZRDcek6-EdmVY_7bWwhQHYAyIdzweB5-Jqxv5GowqENqOcRGdNsPZ_ggTyBoVKlYZN8X5-tVsOsflzxwFdEPuqNvlN49io=w170" alt="HTML5 Icon" style="width:20%;">
-                    <img src="https://lh5.googleusercontent.com/ZHWEksrzUHtE8klr2kfPQGYA94nERZ9ZiIqI4b0m1xtkjWcghCNmMSfG2c8BtxjD_Hlk96hkSvls4PhriDICFMcqAqfP1uK8QonznMc_5Hqxs9SBXlw=w271" alt="HTML5 Icon" style="width:20%;">
-                </div>
-                <div>
-                    <img src="https://lh6.googleusercontent.com/-lEg8DyyFW9U7Ols6bWiKBWFMjOVdAauLIuf9Q3I_Tdsa2NAp1aEhQLP5lmJ9bF-dY9GI1dyXIwStMWpd9Ow65FFUXMEyzyazrRGAozBNcvPPRxewLA=w170" alt="HTML5 Icon" style="width:20%;">
-                    <img src="https://lh3.googleusercontent.com/RdnmsvrCfQ-S0mn4bwb7zrb8Cr4ij3M_Mu7-0KLBB54lQ84407HVvc5O2Q7sGmkmcON3B_FZ-PhNonASmhPJS62PiDLZken9TiSeS4EyfsBBkyuwROZY=w371" alt="HTML5 Icon" style="width:20%;">
-                    <img src="https://lh3.googleusercontent.com/QOdab2loubVc2H6HeyYeWUN036Znj9xGIHnpiF37pzxCh1fmKBr5L7NbkDfjlXfi4MHqZoR4UZce1Olap3LuXU3yjFilE4hCFeXBpN8mPo0x5Vazvg=w271" alt="HTML5 Icon" style="width:20%;">
-                    <img src="https://lh4.googleusercontent.com/FnFcuTpLohqT5A7Q07tpx7V-QkWb2-pO6G3SS4fe4U37lcKHc4NGancNhvy_I37W2DAYlC_R6B7hHGNq2gjWUAoK16Sgulf1fLsvTnkN78ZOB-jRZdE=w170" alt="HTML5 Icon" style="width:20%;">
-                </div>
-                <div>
-                    <img src="https://lh3.googleusercontent.com/n77bBbPmoOxoYYwypkm7O-hRLANsoQ3kvSbuMCIrVgPSqpCz0EukaWpasF-FS_FF1HEekT4sazsKDoplZkI9uxKLVjR1tVi-g5TISY73dQX_sRX2VQ=w271" alt="HTML5 Icon" style="width:20%;">
-                    <img src="https://lh4.googleusercontent.com/asB4A8fRKRPlt8rOTwLsZrRF-CBQw-UP-FdMcLlRRQyE_kC05_apY96trky2VRzUM0eUszC9ygSJvGQRkqM17M7N674lekb4ZQB-OS5iCtghFuj1GPU=w170" alt="HTML5 Icon" style="width:20%;">
-                    <img src="https://lh6.googleusercontent.com/9-SpDVhm7UGsfGB4jetNs1Row3WzlLEJ031em-9RU0wJJyjrVgztzaHGIJ7gXq2xoScGyy3L=w170" alt="HTML5 Icon" style="width:20%;">
-                </div>
+<h1 style="text-align: center">Past Recruiters</h1>
+<div class="card" style="margin-top: 60px;width:100%;height: auto;margin-left: 0px;background-color:white">
+<div class="container">
+{% for image in images %}
+    {% if forloop.counter|divisibleby:"4" or forloop.counter == 1 %}
+            <div class="row" style="margin-top:20px;">
+     {% endif %}
 
-
+<div class="col-sm-6 col-md-4 col-lg-3 col-mt-4" style="margin-top: 80px;margin-left: 80px;margin-bottom: 40px;">
+    <div class="card" style="background-color: white">
+                    <div class="hn" style="background-size: cover; background-position: center; height:50%;">
+                    <img class="card-img-top"  src="{{ image.image.url }}" style="background-size: 100%;  min-width: 100%;  min-height: 100%;">
+                    </div>
+                </div>
             </div>
-        </div>
-        </div>
-	</div>
+
+{% if forloop.counter|divisibleby:"3" or forloop.last == true %}
+            </div>
+      {% endif %}
+{% endfor %}
 </div>
+</div>
+{#<div class="bloc tc-dim-gray bgc-white l-bloc" id="bloc-45" >#}
+{#	<div class="container bloc-md" >#}
+{#		<div class="row">#}
+{#            <div class="contents-wrapper" id="recruit">#}
+{#            <!-- Contents starts here -->#}
+{#            <div class="content">#}
+{#                <h1>Past Recruiters</h1>#}
+{#                <div style="margin-top:50px;">#}
+{#                    <img src="https://lh5.googleusercontent.com/PNv7ZG2jVfeOWNC-ji-4T8AIAF7y8S_wtZqyDKZPBInySaNYm75nh-Y4o8fwLuBUA3U2AVRSPegSSkhMDk_CfcH0F48595fMsCfQ9K2BvJ56MHLcH68=w170" alt="HTML5 Icon" style="width:20%;">#}
+{#                    <img src="https://lh4.googleusercontent.com/V28dYfxf5d4Teg7Fl5bghvyBn49NrrlAve7rbkWa336EKh4DEpzk_6qMLdvQo_TrBaCkUph3Bqef-nMlXCIunpUmm7mzrSMPEDvR5YSjnmXFP6VCHKU=w271" alt="HTML5 Icon" style="width:20%;">#}
+{#                    <img src="https://lh3.googleusercontent.com/oczzYIEGU7qFhCMJ2D_WoZRDcek6-EdmVY_7bWwhQHYAyIdzweB5-Jqxv5GowqENqOcRGdNsPZ_ggTyBoVKlYZN8X5-tVsOsflzxwFdEPuqNvlN49io=w170" alt="HTML5 Icon" style="width:20%;">#}
+{#                    <img src="https://lh5.googleusercontent.com/ZHWEksrzUHtE8klr2kfPQGYA94nERZ9ZiIqI4b0m1xtkjWcghCNmMSfG2c8BtxjD_Hlk96hkSvls4PhriDICFMcqAqfP1uK8QonznMc_5Hqxs9SBXlw=w271" alt="HTML5 Icon" style="width:20%;">#}
+{#                </div>#}
+{#                <div>#}
+{#                    <img src="https://lh6.googleusercontent.com/-lEg8DyyFW9U7Ols6bWiKBWFMjOVdAauLIuf9Q3I_Tdsa2NAp1aEhQLP5lmJ9bF-dY9GI1dyXIwStMWpd9Ow65FFUXMEyzyazrRGAozBNcvPPRxewLA=w170" alt="HTML5 Icon" style="width:20%;">#}
+{#                    <img src="https://lh3.googleusercontent.com/RdnmsvrCfQ-S0mn4bwb7zrb8Cr4ij3M_Mu7-0KLBB54lQ84407HVvc5O2Q7sGmkmcON3B_FZ-PhNonASmhPJS62PiDLZken9TiSeS4EyfsBBkyuwROZY=w371" alt="HTML5 Icon" style="width:20%;">#}
+{#                    <img src="https://lh3.googleusercontent.com/QOdab2loubVc2H6HeyYeWUN036Znj9xGIHnpiF37pzxCh1fmKBr5L7NbkDfjlXfi4MHqZoR4UZce1Olap3LuXU3yjFilE4hCFeXBpN8mPo0x5Vazvg=w271" alt="HTML5 Icon" style="width:20%;">#}
+{#                    <img src="https://lh4.googleusercontent.com/FnFcuTpLohqT5A7Q07tpx7V-QkWb2-pO6G3SS4fe4U37lcKHc4NGancNhvy_I37W2DAYlC_R6B7hHGNq2gjWUAoK16Sgulf1fLsvTnkN78ZOB-jRZdE=w170" alt="HTML5 Icon" style="width:20%;">#}
+{#                </div>#}
+{#                <div>#}
+{#                    <img src="https://lh3.googleusercontent.com/n77bBbPmoOxoYYwypkm7O-hRLANsoQ3kvSbuMCIrVgPSqpCz0EukaWpasF-FS_FF1HEekT4sazsKDoplZkI9uxKLVjR1tVi-g5TISY73dQX_sRX2VQ=w271" alt="HTML5 Icon" style="width:20%;">#}
+{#                    <img src="https://lh4.googleusercontent.com/asB4A8fRKRPlt8rOTwLsZrRF-CBQw-UP-FdMcLlRRQyE_kC05_apY96trky2VRzUM0eUszC9ygSJvGQRkqM17M7N674lekb4ZQB-OS5iCtghFuj1GPU=w170" alt="HTML5 Icon" style="width:20%;">#}
+{#                    <img src="https://lh6.googleusercontent.com/9-SpDVhm7UGsfGB4jetNs1Row3WzlLEJ031em-9RU0wJJyjrVgztzaHGIJ7gXq2xoScGyy3L=w170" alt="HTML5 Icon" style="width:20%;">#}
+{#                </div>#}
+{##}
+{##}
+{#            </div>#}
+{#        </div>#}
+{#        </div>#}
+{#	</div>#}
+{#</div>#}
 
 <!--after company image-->
 
@@ -221,12 +285,10 @@
             <!-- Contents starts here -->
             <div class="content">
                 <p><strong>Some of the Past Internship (Academic/Industry) Organisations</strong></p>
-                <ul><li>Indian Institute of Technology (Bombay, Madras)</li>
-                    <li>Indian Statistical Institute, Kolkata</li>
-                    <li>IISER, Bhopal</li>
-                    <li>AToS</li>
-                    <li>TCS</li>
-                    <li>IOCL</li>
+                <ul>
+                    {% for industrial in industrials %}
+                        <li>{{ industrial.description }}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
@@ -237,16 +299,11 @@
             <!-- Contents starts here -->
             <div class="content">
                 <p><strong>Rural Internship with NGOs</strong></p>
-                <ul><li>NHEPES (North himalayan environment protection and education society), Himachal Pradesh</li>
-                    <li>Savigya, Ratlam, Madhya Pradesh</li>
-                    <li>CHETNA, Ahmedabad, Gujarat</li>
-                    <li>SEWA, Vapi, Gujarat</li>
-                    <li>Action Aid, Delhi/Rajasthan/Bihar</li>
-                    <li>Aravali, Jaipur, Rajasthan</li>
-                    <li>Atma Vani, Kanpur, Uttar Pradesh</li>
-                    <li>People's Action for Social Service, Chittoor, Andradha Pradesh</li>
-                    <li>Navjeevan Trust, Rajkot, Gujarat</li>
-                    <li>AidFaridabad, Haryana</li>
+                <ul>
+
+                    {% for ngo in ngos %}
+                        <li>{{ ngo.description }}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>

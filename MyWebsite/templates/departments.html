@@ -62,22 +62,17 @@
 
 
 								<li>
-									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Academics</a>
+									<a href="{% url 'mywebsite:academic' %}" class="a-btn a-block">Academics</a>
 								</li>
 								<li>
-									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Beyond Academics</a>
+									<a href="{% url 'mywebsite:beyond_academic' %}" class="a-btn a-block">Beyond Academics</a>
 								</li>
 
 							</ul>
 						</div>
 					</li>
 					<li>
-						<a style="border-width:0px 0px 2px 0px;
-	border-radius:0px 0px 0px ;
-	border-color:rgba(0,0,0,0.7);
-	background-color:rgba(0,0,0,0.0);
-	color:#000000!important;
-" href="http://iiitvadodara.ac.in/" class="btn btn-d btn-sq btn-sm nav-button">Departments</a>
+						<a  href="{% url 'mywebsite:department' %}" class="btn btn-d btn-sq btn-sm nav-button">Departments</a>
 					</li>
 					<li>
 						<div class="btn-group btn-dropdown">
@@ -89,10 +84,10 @@
 									<a href="{% url 'mywebsite:about' %}" class="a-btn a-block">About US</a>
 								</li>
 								<li>
-									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Contact Us</a>
+									<a href="{% url 'mywebsite:contact' %}" class="a-btn a-block">Contact Us</a>
 								</li>
                                 <li>
-									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Gallery</a>
+									<a href="http://iiitvadodara.ac.in/gallery.php" class="a-btn a-block">Gallery</a>
 								</li>
 								<li>
 									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">College Team</a>
