@@ -1,6 +1,6 @@
 from django import forms
 
-from MyWebsite.models import Recruiter,BeyondAcademicImages,BeyondAcademicVideos
+from MyWebsite.models import Recruiter,BeyondAcademicImages,BeyondAcademicVideos,BeyondAcademicsHighlight
 
 
 class RecruiterForm(forms.ModelForm):
@@ -21,3 +21,8 @@ class BeyondAcademicVideosForm(forms.ModelForm):
         model = BeyondAcademicVideos
 
 
+
+class BeyondAcademicHighlightForm(forms.ModelForm):
+    class Meta:
+        model = BeyondAcademicsHighlight
+        exclude = []

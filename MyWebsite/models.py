@@ -118,3 +118,11 @@ class BeyondAcademicVideos(models.Model):
 
     def get_absolute_url(self):
         return reverse("contact")
+
+
+
+class BeyondAcademicsHighlight(models.Model):
+    highlight = models.CharField(max_length=250,blank=False)
+
+    def get_absolute_url(self):
+        return reverse("contact")

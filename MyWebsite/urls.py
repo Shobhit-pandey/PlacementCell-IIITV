@@ -15,4 +15,5 @@ urlpatterns = [
     url(r'^beyond-academic$', views.beyond_academic, name='beyond_academic'),
     url(r'^addimage/$',views.Addimages,name='addimages'),
     url(r'^addvideos/$',views.Addvideos,name='addvideos'),
+    url(r'^addhighlight/$',views.Addhighlight,name='addhighlight'),
     ]

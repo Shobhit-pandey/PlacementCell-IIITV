@@ -4,7 +4,8 @@ from __future__ import unicode_literals
 from django.core.urlresolvers import reverse
 from django.shortcuts import render,redirect
 
-from MyWebsite.form import RecruiterForm, BeyondAcademicImagesForm, BeyondAcademicVideosForm
+from MyWebsite.form import RecruiterForm, BeyondAcademicImagesForm, BeyondAcademicVideosForm, \
+    BeyondAcademicHighlightForm
 from MyWebsite.models import BeyondAcademicImages, BeyondAcademicVideos
 
 
@@ -69,4 +70,14 @@ def Addvideos(request):
     return render(request,'AddVideo.html',{'form':form})
 
 
+def AddHighlight(request):
+    if request.method == "POST":
+        form =  BeyondAcademicHighlightForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('mywebsite:beyond_academic')
+    else:
+        form = BeyondAcademicHighlightForm()
+    return render(request,'AddHighlight.html',{'form':form})
 
