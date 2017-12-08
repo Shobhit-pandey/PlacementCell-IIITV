@@ -3,7 +3,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Form - T&amp;P IIIT Vadodara</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}">
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
@@ -106,27 +113,30 @@
 		</div>
 	</div>
 </div>
-<div style="height: 10px;"></div>
-<div style="height: 30px;"><h3 style="text-align: center; font-size: 25px;">Recruiter Form</h3></div>
-<div style="height: 10px;"></div>
-<div class="contents-wrapper" style="background: #eeeeee;align-content: center;">
+  
+<div style="height: 40px;"></div>
+<div class="container" style="max_width:800px;background: rgba(119,180,255,0.26)">
+    <div style="height: 10px;"></div>
+    <div><h1 style="font-size: 200%; text-align: center;">Recruiter Form</h1></div>
+
+    <h5 style="color: red; margin-left: 20px;">*Required</h5>
 <form method="POST" style="padding:50px;">
                     {% csrf_token %}
 {#                    {{ form.as_p }}#}
 
 {#    #}
 
-    <label for="organization_name">Organization Name</label>
+    <label for="organization_name">Organization Name*</label>
         <br>{{ form.Organization_name }}
 
         <!--  <input style="margin-left:20px;" type="text" name="firstname" value=""> -->
 
     <br><br>
-    <label for="organization_website">Organization Website</label><br>
+    <label for="organization_website">Organization Website*</label><br>
     {{ form.Organization_website }}
     <br><br>
     <div style=" margin-bottom: 20px;border-bottom: #000000">
-        <h3>Organisation Sector</h3>
+        <h3>Organisation Sector*</h3>
      </div>
     <hr style="  display: block;
     margin-top: 0.5em;
@@ -176,41 +186,41 @@
     <label for="Organization_profile">Organization_Profile</label><br>
     {{ form.Organization_profile }}
             <br><br>
-     <label for="Offer">Offer</label><br>
+     <label for="Offer">Offer*</label><br>
     {{ form.offer }}
             <br><br>
-     <label for="Intern">Intern</label><br>
+     <label for="Intern">Intern*</label><br>
     {{ form.Intern }}
             <br><br>
-     <label for="Job_Profile">Job Profile</label><br>
+     <label for="Job_Profile">Job Profile*</label><br>
     {{ form.Job_Profile }}
             <br><br>
-     <label for="Job_Description">Job Description</label><br>
+     <label for="Job_Description">Job Description*</label><br>
     {{ form.Job_Description }}
             <br><br>
-     <label for="Locations">Locations</label><br>
+     <label for="Locations">Locations*</label><br>
     {{ form.Locations }}
             <br><br>
-     <label for="CTC">CTC</label><br>
+     <label for="CTC">CTC*</label><br>
     {{ form.CTC }}
             <br><br>
-     <label for="Service">Service</label><br>
+     <label for="Service">Service*</label><br>
     {{ form.service }}
             <br><br>
      <label for="Bond_Conditions">Bond Conditions</label><br>
     {{ form.Bond_Conditions }}
             <br><br>
-    <label for="Tentative_Date">Tentative Date</label><br>
+    <label for="Tentative_Date">Tentative Date*</label><br>
     {{ form.Tentative_Date }}
             <br><br>
     <label for="Other_details">Other Details</label><br>
     {{ form.Other_details }}
             <br><br>
-    <label for="Criteria">Criteria</label><br>
+    <label for="Criteria">Criteria*</label><br>
     {{ form.Criteria }}
             <br><br>
     <div style=" margin-bottom: 20px;">
-        <h3>Selective Process</h3>
+        <h3>Selective Process*</h3>
     </div>
     <hr style="  display: block;
     margin-top: 0.5em;
@@ -268,19 +278,19 @@
     <label for="Logistic_Support">Logistic Support</label><br>
     {{ form.Logistic_Support}}
             <br><br>
-    <label for="Name">Name</label><br>
+    <label for="Name">Name*</label><br>
     {{ form.Name }}
             <br><br>
 
-    <label for="Designation">Designation</label><br>
+    <label for="Designation">Designation*</label><br>
     {{ form.Designation }}
             <br><br>
 
-    <label for="Email">Email</label><br>
+    <label for="Email">Email*</label><br>
     {{ form.email }}
             <br><br>
 
-    <label for="Contact_Number">Contact Number</label><br>
+    <label for="Contact_Number">Contact Number*</label><br>
     {{ form.Contact_Number }}
 
             <br><br>
@@ -288,7 +298,7 @@
 
 {#    #}
                     <div class="row" style="padding-top: 30px;margin-left: 25%">
-                        <button type="submit" ><a>Submit Form</a></button></div>
+                        <button type="submit"><a>Submit Form</a></button></div>
 </form>
 </div>
 <div style="height: 50px;"></div>
