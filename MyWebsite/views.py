@@ -4,8 +4,10 @@ from __future__ import unicode_literals
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
+from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
 from django.shortcuts import render,redirect
+from django.views.decorators.csrf import csrf_protect
 
 from MyWebsite.form import RecruiterForm, BeyondAcademicImagesForm, BeyondAcademicVideosForm, \
     BeyondAcademicHighlightForm, RecruiterInternshipIndustrialForm, RecruiterInternshipNGOForm, PastRecruiterForm
@@ -38,15 +40,40 @@ def contact(request):
     return render(request,'Contact.html')
 def department(request):
     return render(request,'departments.html')
+
+@csrf_protect
 def recruiter_form(request):
     if request.method == 'POST':
         form = RecruiterForm(request.POST)
         if form.is_valid():
-            form.save()
+            value=form.save()
+            email = form.cleaned_data['email']
+            contact = form.cleaned_data['Contact_Number']
+            name = form.cleaned_data['Name']
+            value.save()
+            email = EmailMessage('Regarding recruitment',
+                                 "Received mail from"+str(email)+"\n\n"+"name:"+
+                                  str(name)+"\n"+"contact:"+str(contact),to=['',])
+            email.send()
+            email = EmailMessage('Regarding recruitment',
+                                 "Hey " + str(
+                                     name) + ",\n\n" + "We have "
+                                                          "recieved "
+                                                          "your request "
+                                                          "for recruitmrnt "
+                                                          "we wiill process\n" +
+                                 "We will contact you shortly on " +
+                                 str(contact),
+                                 to=[email,
+                                     'anjansrivathsav1997@gmail.com'],
+                                 reply_to=[email, ])
+            email.send()
+            print("reached")
             return redirect('mywebsite:home')
     else:
         form = RecruiterForm()
     return render(request, 'recruiterform.html', {'form': form})
+
 
 def beyond_academic(request):
     image = BeyondAcademicImages.objects.all()
