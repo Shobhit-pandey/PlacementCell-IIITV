@@ -126,3 +126,24 @@ class BeyondAcademicsHighlight(models.Model):
 
     def get_absolute_url(self):
         return reverse("contact")
+
+
+
+
+class RecruiterInternshipIndustrial(models.Model):
+    description = models.CharField(max_length=250,blank=False)
+
+    def get_absolute_url(self):
+        return reverse("contact")
+
+
+
+class RecruiterInternshipNGO(models.Model):
+    description = models.CharField(max_length=250,blank=False)
+
+    def get_absolute_url(self):
+        return reverse("contact")
+
+
+
+
