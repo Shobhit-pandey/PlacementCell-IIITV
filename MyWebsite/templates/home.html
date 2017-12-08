@@ -45,6 +45,10 @@
 			</div>
 				<div class="col-sm-6 right-align">
 				<ul class="list-unstyled list-horizontal-layout">
+
+					<li>
+						<a href="{% url 'quiz_category_list_all' %}" class="btn btn-d btn-sq btn-sm nav-button">Quiz</a>
+					</li>
 					<li>
 						<a href="{% url 'mywebsite:student' %}" class="btn btn-d btn-sq btn-sm nav-button">Students</a>
 					</li>
@@ -68,7 +72,7 @@
 						</div>
 					</li>
 					<li>
-						<a href="http://iiitvadodara.ac.in/" class="btn btn-d btn-sq btn-sm nav-button">Departments</a>
+						<a  href="{% url 'mywebsite:department' %}" class="btn btn-d btn-sq btn-sm nav-button">Departments</a>
 					</li>
 					<li>
 						<div class="btn-group btn-dropdown">
@@ -135,12 +139,13 @@
 	<div class="container bloc-md">
 		<div class="row">
 
-			<div class="col-sm-6">
+			<div class="col-sm-6 ">
 				<h3 class="mg-md  tc-dim-gray-2">
 					IIIT Vadodara gives you an edge over the rest.
 				</h3>
 				<p class=" mg-md text-left">
-				IIIT Vadodara is still in its early stages . students here carve thier way on your own . It’s in line with some of the top NITs and IITs right now. We are expecting even faster growth in the future.The Institute aims at evolving strong research programmes in a plethora of areas where IT shall provide a common link with profound emphasis on development of technology and its application.<br>
+				IIIT Vadodara is still in its early stages . students here carve thier w
+                    ay on your own . It’s in line with some of the top NITs and IITs right now. We are expecting even faster growth in the future.The Institute aims at evolving strong research programmes in a plethora of areas where IT shall provide a common link with profound emphasis on development of technology and its application.<br>
 				</p>
 				<h4 class="mg-sm">
 				<font size="-1">	<a class="dot-link ltc-celestial-blue" href="http://iiitvadodara.ac.in/about.php">Learn more →</a> <font></font><br>
@@ -326,14 +331,7 @@
 
 <!-- Footer - bloc-64 -->
 
-<div class="bloc bgc-white l-bloc" id="bloc-64">
-	<div class="container bloc-sm">
-		<div class="row">
-			<div class="col-sm-12">
-			</div>
-		</div>
-	</div>
-</div>
+
 <!-- Footer - bloc-64 END -->
 
 

@@ -8,12 +8,20 @@ body{
 }
 a:hover{text-decoration: none; cursor:pointer;}
 
-a,button{outline: none!important;} /* Prevent ugly blue glow on chrome and safari
+a,button{outline: none!important;} /* Prevent ugly blue glow on chrome and safari */
 
 #page-loading-blocs-notifaction{position: fixed;top: 0;bottom: 0;width: 100%;z-index:100000;background:#FFFFFF url("img/pageload-spinner.gif") no-repeat center center;}
 
 /* = Blocs
 -------------------------------------------------------------- */
+
+.scroll {
+     /*Set a css background */
+    background:url(http://placekitten.com/1000/700) fixed;
+
+
+}
+
 
 .bloc{
 	width:100%;

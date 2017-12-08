@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^procedure/$', views.procedure, name='procedure'),
     url(r'^academic/$', views.academic, name='academic'),
     url(r'^contact/$', views.contact, name='contact'),
+    url(r'^department/$', views.department, name='department'),
     ]
