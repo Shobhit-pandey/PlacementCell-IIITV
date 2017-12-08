@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 from django.core.urlresolvers import reverse
 from django.shortcuts import render,redirect
 
@@ -124,3 +127,29 @@ def addPastRecruiterimage(request):
     else:
         form = PastRecruiterForm()
     return render(request,'Addpastrecuiter.html',{'form':form})
+
+
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data = request.POST , user = request.user)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request,form.user)
+            return redirect("mywebsite:recruiter")
+        else:
+            return redirect("mywebsite:recruiter")
+    else:
+        form = PasswordChangeForm(user = request.user)
+
+        args = {'form':form}
+
+        return render(request,'change_password.html',{'form':form})
+
+
+
+
+
+
+
