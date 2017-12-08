@@ -176,7 +176,7 @@
 <div class="bloc bg-repeat bgc-ghost-white l-bloc" id="bloc-45">
 	<div class="container bloc-md">
 		<div class="row">
-
+            {% if not user.is_authenticated %}
 			<div class="col-sm-4">
 				<div class="panel">
 					<div class="panel-heading">
@@ -202,16 +202,20 @@
 									Password
 								</label>
 								<input id="email_1666" class="form-control"  name="password" placeholder="password" type="password" required="">
+                                <div class="help-block"></div></div><a href="{% url 'reset_password' %}" class="btn btn-clean btn-dim-gray">Forget Password?</a>
 							<button id="comp-login-btn" class="bloc-button btn btn-glossy pull-left btn-dodger-blue" type="submit" value="login">
 								Login
 							</button>
                                 <input type="hidden" name="next" value="{{next}}">
-                            </div>
                         </form>
 
                     </div>
 				</div>
 			</div>
+                {% elif user.is_authenticated and user.is_staff and not user.is_superuser %}
+    <a href="{% url 'logout' %}">Logout</a>
+    <a href="{% url 'mywebsite:change_password' %}">Change Password</a>
+        {% endif %}
 			<div class="col-sm-4" style="  align-self: center; float: right;">
 				<h3 style="  text-align: center; width: 100%;">
 				<a href="{% url 'mywebsite:procedure' %}">Click here to view the instruction for registration</a>

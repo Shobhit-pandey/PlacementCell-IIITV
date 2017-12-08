@@ -128,10 +128,11 @@
   bloc-44 END  -->
 
 <!-- bloc-45 -->
+
 <div class="bloc tc-dim-gray bgc-white l-bloc" id="bloc-45" >
 	<div class="container bloc-md" >
 		<div class="row">
-
+            {% if not user.is_authenticated %}
 			<div class="col-sm-4" >
 				<div class="panel">
 					<div class="panel-heading">
@@ -157,7 +158,7 @@
 									Password
 								</label>
                                     <input id="email_1666" name="password" placeholder="Password" class="form-control" type="password" required="">
-							<div class="help-block"></div></div><a href="{% url 'mywebsite:home' %}" class="btn btn-clean btn-dim-gray">New User?</a>
+							<div class="help-block"></div></div><a href="{% url 'reset_password' %}" class="btn btn-clean btn-dim-gray">Forget Password?</a>
                             <button id="comp-login-btn" class="bloc-button btn btn-glossy pull-left btn-dodger-blue" type="submit" value="login">
 								Login
 							</button>
@@ -166,9 +167,15 @@
 					</div>
 				</div>
 			</div>
+        {% elif user.is_authenticated and not user.is_staff and not user.is_superuser%}
+    <a href="{% url 'logout' %}">Logout</a>
+    <a href="{% url 'mywebsite:change_password' %}">Change Password</a>
+{% endif %}
         </div>
 	</div>
 </div>
+
+
 <!-- bloc-45 END -->
 
 <!-- comp-hotels
