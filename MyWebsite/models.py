@@ -1,6 +1,7 @@
 from pickletools import I
 from time import timezone
 
+from django.core.urlresolvers import reverse
 from django.core.validators import URLValidator
 from model_utils import models
 
@@ -61,3 +62,24 @@ class Recruiter(models.Model):
     email = models.EmailField(max_length=50, null=False,blank = False)
     Contact_Number = models.IntegerField(blank = False,null = False)
 
+
+    def get_absolute_url(self):
+        return reverse("academic")
+
+    def __str__(self):
+        return self.Organization_name
+
+
+
+class Gallary(models.Model):
+    image = models.ImageField(blank = True)
+
+    def get_absolue_url(self):
+        return reverse("contact")
+    
+    
+class PastRecruiter(models.Model):
+    image = models.ImageField(blank = True)
+    
+    def get_absolute_url(self):
+        return reverse("contact")
