@@ -129,14 +129,20 @@
 
                 <div class="container">
                   <div class="row">
-                    <div class="col-sm-4" style=" margin: 20px 15% 20px 20px;">
-                    <img src="{% static 'images/iiit_sports_1.jpg' %}" alt="HTML5 Icon-1" width="120%" height="250">
-                      <p style=" margin: 20px;">IIIT-V  Volley Ball college team secured 2nd place in INTER IIIT SPORTS MEET held at kanchipuram, Dec. 2016. </p>
-                    </div>
-                    <div class="col-sm-4" style=" margin: 20px;">
-                    <img src="{% static 'images/iiit_sports_2.jpg' %}" alt="HTML5 Icon" width="120%" height="250">
-                        <p style=" margin: 20px;">IIIT-V Football college team secured 2nd place in INTER IIIT SPORTS MEET held at kanchipuram, Dec. 2016.</p>
-                    </div>
+                      {% for images in image %}
+                      <div class="col-sm-4" style=" margin: 20px 15% 20px 20px;">
+                        {% if images %}
+                          <img src="{% images.url %}" alt="HTML5 Icon-1" width="120%" height="250">
+{#                    <p style=" margin: 20px;">IIIT-V  Volley Ball college team secured 2nd place in INTER IIIT SPORTS MEET held at kanchipuram, Dec. 2016. </p>#}
+                        <p style=" margin: 20px;">{{ images.description }} </p>
+                            </div>
+                          {% endif %}
+                      {% endfor %}
+
+{#                    <div class="col-sm-4" style=" margin: 20px;">#}
+{#                    <img src="{% static 'images/iiit_sports_2.jpg' %}" alt="HTML5 Icon" width="120%" height="250">#}
+{#                        <p style=" margin: 20px;">IIIT-V Football college team secured 2nd place in INTER IIIT SPORTS MEET held at kanchipuram, Dec. 2016.</p>#}
+{#                    </div>#}
                   </div>
                 </div>
 

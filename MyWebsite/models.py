@@ -100,3 +100,21 @@ class PastRecruiter(models.Model):
     
     def get_absolute_url(self):
         return reverse("contact")
+
+
+
+class BeyondAcademicImages(models.Model):
+    image = models.ImageField(blank=False)
+    description = models.CharField(max_length=250,blank=True)
+
+    def get_absolute_url(self):
+        return  reverse("contact")
+
+
+
+class BeyondAcademicVideos(models.Model):
+    video = models.FileField(blank=False)
+    description = models.CharField(max_length=250,blank=True)
+
+    def get_absolute_url(self):
+        return reverse("contact")
