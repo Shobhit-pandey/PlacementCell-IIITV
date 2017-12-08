@@ -46,5 +46,3 @@ class RecruiterInternshipNGOForm(forms.ModelForm):
         model = RecruiterInternshipNGO
         exclude = []
 
-
-

@@ -140,23 +140,28 @@
 						</h3>
 					</div>
 					<div class="panel-body">
-						<form id="form_1666" novalidate="">
+                        {% if form.errors %}
+                      <p>your username and password didnot match</p>
+                        {% endif %}
 
+                        <form id="form_1666" novalidate="" action="{% url 'login' %}" method="POST">
+                            {% csrf_token %}
 							<div class="form-group">
 								<label>
 									Username
 								</label>
-								<input id="name_1666" class="form-control" required="">
+								<input id="name_1666" name="username" placeholder="username" class="form-control" required="">
 							<div class="help-block"></div></div>
 							<div class="form-group">
 								<label>
 									Password
 								</label>
-								<input id="email_1666" class="form-control" type="password" required="">
+                                    <input id="email_1666" name="password" placeholder="Password" class="form-control" type="password" required="">
 							<div class="help-block"></div></div><a href="{% url 'mywebsite:home' %}" class="btn btn-clean btn-dim-gray">New User?</a>
-							<button id="comp-login-btn" class="bloc-button btn btn-glossy pull-left btn-dodger-blue" type="submit">
+                            <button id="comp-login-btn" class="bloc-button btn btn-glossy pull-left btn-dodger-blue" type="submit" value="login">
 								Login
 							</button>
+                            <input type="hidden" name="next" value="{{next}}">
 						</form>
 					</div>
 				</div>
