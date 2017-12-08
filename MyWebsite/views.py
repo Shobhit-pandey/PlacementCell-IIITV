@@ -37,3 +37,6 @@ def recruiter_form(request):
     else:
         form = RecruiterForm()
     return render(request, 'recruiterform.html', {'form': form})
+
+def beyond_academic(request):
+    return render(request, 'beyond_academics.html')
