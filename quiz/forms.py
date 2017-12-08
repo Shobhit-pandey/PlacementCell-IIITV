@@ -1,6 +1,12 @@
 from django import forms
 from django.forms.widgets import RadioSelect, Textarea
 from django.utils import timezone
+from django.forms.models import inlineformset_factory
+from essay.models import Essay_Question
+
+from true_false.models import TF_Question
+
+from multichoice.models import MCQuestion, Answer
 
 from quiz.models import Quiz, Category
 
@@ -66,4 +72,32 @@ class CreatequizForm(forms.Form):
 
 # class CreateMCQForm(forms.Form):
 #     user_id = forms.CharField(max_length=100, required=True, widget=forms.HiddenInput())
+#     category = forms.ModelChoiceField(queryset=Category.objects.all(), required=True)
+#     figure = forms.ImageField(required=False)
+#     content = forms.CharField(max_length=1000,required=True)
+#     explanation = forms.CharField(max_length=2000,required=False)
 #     answer_order=forms.ChoiceField(ANSWER_ORDER_OPTIONS,required=True)
+
+class MCQuestionForm(forms.ModelForm):
+    class Meta:
+        model=MCQuestion
+        fields=('category','figure','content','explanation','answer_order')
+        exclude = []
+
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields=('content','correct')
+        exclude = []
+MCQFormSet = inlineformset_factory(MCQuestion,Answer,form=AnswerForm)
+
+class TFForm(forms.ModelForm):
+    class Meta:
+        model=TF_Question
+        fields = ('category', 'figure', 'content', 'explanation', 'correct')
+        exclude=[]
+class EssayForm(forms.ModelForm):
+    class Meta:
+        model=Essay_Question
+        fields = ('category', 'figure', 'content', 'explanation',)
+        exclude=[]

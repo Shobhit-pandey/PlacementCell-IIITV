@@ -3,12 +3,17 @@ import random
 from datetime import datetime
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse
+from django.db import transaction
+from django.forms import formset_factory, BaseFormSet
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, TemplateView, FormView, CreateView
+from multichoice.models import Answer, MCQuestion
 
-from .forms import QuestionForm, EssayForm, CreatequizForm
+from .forms import QuestionForm, EssayForm, CreatequizForm, MCQuestionForm, AnswerForm, MCQFormSet, TFForm
 from .models import Quiz, Category, Progress, Sitting, Question
 from essay.models import Essay_Question
 
@@ -400,10 +405,37 @@ def Createquiz(request):
     return render(request,'quiz/createquiz.html',{'form':form})
 
 def AddMcq(request):
-    pass
+    if request.method == "POST":
+        mcq_form=MCQuestionForm(request.POST,request.FILES)
+        if mcq_form.is_valid():
+            new_mcq=mcq_form.save()
+            answer__formset=MCQFormSet(request.POST, request.FILES,instance=new_mcq)
+            if answer__formset.is_valid():
+                answer__formset.save()
+                return redirect('createquestion')
 
+    else:
+        mcq_form=TFForm()
+        answer__formset=MCQFormSet()
+    return render(request,'quiz/addmcq.html',{'mcq_form':mcq_form,'answer_formset':answer__formset})
 def AddTF(request):
-    pass
+    if request.method == "POST":
+        tf_form=TFForm(request.POST,request.FILES)
+        if tf_form.is_valid():
+            tf_form.save()
+            return redirect('createquestion')
+
+    else:
+        tf_form=TFForm()
+    return render(request,'quiz/addtf.html',{'tf_form':tf_form,})
 def AddEssay(request):
-    pass
+    if request.method == "POST":
+        essay_form=EssayForm(request.POST,request.FILES)
+        if essay_form.is_valid():
+            essay_form.save()
+            return redirect('createquestion')
+
+    else:
+        essay_form=EssayForm()
+    return render(request,'quiz/addessay.html',{'essay_form':essay_form,})
 
