@@ -15,3 +15,6 @@ def recruiter(request):
 
 def about(request):
     return render(request,'About.html')
+
+def department(request):
+    return render(request,'departments.html')

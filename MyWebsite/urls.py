@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^student/$', views.student, name='student'),
     url(r'^recruiter/$', views.recruiter, name='recruiter'),
     url(r'^about/$', views.about, name='about'),
+    url(r'^department/$', views.department, name='department'),
     ]
