@@ -211,7 +211,7 @@ def studentapply(request,pk):
 def addalumni(request):
     form = AlumniForm()
     if request.method == 'POST':
-        form = AlumniForm()
+        form = AlumniForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             return redirect('mywebsite:alumni')
@@ -223,7 +223,7 @@ def addalumni(request):
 def addresearch(request):
     form = ResearchForm()
     if request.method == 'POST':
-        form = ResearchForm()
+        form = ResearchForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             return redirect('mywebsite:research_development')
@@ -236,10 +236,10 @@ def addresearch(request):
 def addteamimage(request):
     form = CollegeTeamImageForm()
     if request.method == 'POST':
-        form = CollegeTeamImageForm()
+        form = CollegeTeamImageForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('mywebsite:about')
+            return redirect('mywebsite:college_team')
     else:
         form = CollegeTeamImageForm()
     return render(request,'Addteamimage.html',{'form':form})
@@ -249,10 +249,10 @@ def addteamimage(request):
 def addfacultyimage(request):
     form = CollegeTeamFacultyForm()
     if request.method == 'POST':
-        form = CollegeTeamFacultyForm()
+        form = CollegeTeamFacultyForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('mywebsite:about')
+            return redirect('mywebsite:college_team')
     else:
         form = CollegeTeamFacultyForm()
     return render(request,'Addfacultyimage.html',{'form':form})
@@ -263,10 +263,10 @@ def addfacultyimage(request):
 def addstudentimage(request):
     form = CollegeTeamStudentForm()
     if request.method == 'POST':
-        form = CollegeTeamStudentForm()
+        form = CollegeTeamStudentForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('mywebsite:about')
+            return redirect('mywebsite:college_team')
     else:
         form = CollegeTeamStudentForm()
     return render(request,'Addstudentimage.html',{'form':form})

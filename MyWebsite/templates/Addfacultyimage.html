@@ -5,11 +5,12 @@
     <title>Add Faculty Image</title>
 </head>
 <body>
+
 {% if user.is_superuser %}
   <form method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.as_p }}
-    <button type="submit" class="save btn btn-default">Add Research</button>
+    <button type="submit" class="save btn btn-default">Add Faculty</button>
   </form>
 {% else %}
     <h1>you are not allowed to be here goto home page from <a href="{% url 'mywebsite:home' %}">here</a></h1>

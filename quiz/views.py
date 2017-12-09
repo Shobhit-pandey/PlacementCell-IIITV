@@ -397,6 +397,7 @@ def Createquiz(request):
         form = CreatequizForm(request.POST, initial={'user_id': request.user.id})
         if form.is_valid():
             form.save()
+            request.session = True
             # TODO cookies addition
             return redirect('createquestion')
 
@@ -406,6 +407,7 @@ def Createquiz(request):
 
 
 def AddMcq(request):
+    # request.session.set_expiry()
     quiz = Quiz.objects.filter(user_id=request.user.id)
     quiz = list(quiz)
     quiz = quiz[-1]
@@ -413,22 +415,25 @@ def AddMcq(request):
     print(quiz)
     mcq_form = MCQuestionForm(initial={'user_id': request.user.id})
     answer__formset = MCQFormSet()
-    if request.method == "POST":
-        mcq_form = MCQuestionForm(request.POST, request.FILES, initial={'user_id': request.user.id})
-        if mcq_form.is_valid():
-            mcq_form.cleaned_data['user_id'] = request.user.id
-            new_mcq = mcq_form.save()
-            new_mcq.quiz = quiz
-            new_mcq.save()
-            answer__formset = MCQFormSet(request.POST, request.FILES, instance=new_mcq)
-            if answer__formset.is_valid():
-                answer__formset.save()
-                return redirect('createquestion')
+    if request.session:
+        if request.method == "POST":
+            mcq_form = MCQuestionForm(request.POST, request.FILES, initial={'user_id': request.user.id})
+            if mcq_form.is_valid():
+                mcq_form.cleaned_data['user_id'] = request.user.id
+                new_mcq = mcq_form.save()
+                new_mcq.quiz = quiz
+                new_mcq.save()
+                answer__formset = MCQFormSet(request.POST, request.FILES, instance=new_mcq)
+                if answer__formset.is_valid():
+                    answer__formset.save()
+                    return redirect('createquestion')
 
+        else:
+            mcq_form = MCQuestionForm(initial={'user_id': request.user.id})
+            answer__formset = MCQFormSet()
+        return render(request, 'quiz/addmcq.html', {'mcq_form': mcq_form, 'answer_formset': answer__formset})
     else:
-        mcq_form = MCQuestionForm(initial={'user_id': request.user.id})
-        answer__formset = MCQFormSet()
-    return render(request, 'quiz/addmcq.html', {'mcq_form': mcq_form, 'answer_formset': answer__formset})
+        return redirect('createquiz')
 
 
 def AddTF(request):
