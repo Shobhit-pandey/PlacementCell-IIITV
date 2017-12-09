@@ -20,5 +20,7 @@ urlpatterns = [
     url(r'^addBeyondAcademichighlight/$',views.AddBeyondAcademicHighlight,name='addBeyondAcademichighlight'),
     url(r'^addinterndescrip/$',views.Addinterndescrip,name='addinterndescrip'),
     url(r'^addngodescrip/$',views.Addngodescrip,name='addngodescip'),
+    url(r'^alumni/$', views.alumni, name='alumni'),
+    url(r'^research-development/$', views.research_development, name='research_development'),
     url(r'^change_password/$',views.change_password,name='change_password'),
     ]

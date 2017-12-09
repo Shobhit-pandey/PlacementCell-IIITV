@@ -42,6 +42,10 @@ def contact(request):
     return render(request,'Contact.html')
 def department(request):
     return render(request,'departments.html')
+def alumni(request):
+    return render(request,'alumni.html')
+def research_development(request):
+    return render(request,'research_development.html')
 
 @csrf_protect
 def recruiter_form(request):
