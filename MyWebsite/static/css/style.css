@@ -17,8 +17,8 @@ a,button{outline: none!important;} /* Prevent ugly blue glow on chrome and safar
 
 .scroll {
      /*Set a css background */
-    background:url(http://placekitten.com/1000/700) fixed;
-
+    background:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtPNOieeCgyli_AUlG92Mq0avCUKEQMeMwPFBKsUBio2-pkvTnwQ) fixed;
+    /*background-image: image('images/Home.jpg') fixed;*/
 
 }
 
