@@ -181,11 +181,6 @@ def change_password(request):
 
         return render(request,'change_password.html',{'form':form})
 
-
-
-
-
-
 class RecruiterListView(ListView):
 
     template_name = 'recruiter_list.html'
@@ -195,4 +190,13 @@ class RecruiterListView(ListView):
     def get_queryset(self):
         return Recruiter.objects.all()
 
+def studentapply(request,pk):
+    if request.method == 'POST':
+        form = CompaniesAppliedByStudentsForm(request.POST,initial={'user_id':request.user.id,'company_name':pk})
+        if form.is_valid():
+            form.save()
+            return redirect('mywebsite:student')
+    else:
+        form = CompaniesAppliedByStudentsForm(initial={'user_id': request.user.id, 'company_name': pk})
 
+    return render(request,'studentapply.html',{'form':form})
