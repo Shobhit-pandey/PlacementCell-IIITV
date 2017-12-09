@@ -1,7 +1,7 @@
 from django import forms
 
 from MyWebsite.models import Recruiter, BeyondAcademicImages, BeyondAcademicVideos, BeyondAcademicsHighlight, \
-    RecruiterInternshipIndustrial, RecruiterInternshipNGO, PastRecruiter
+    RecruiterInternshipIndustrial, RecruiterInternshipNGO, PastRecruiter, CompaniesAppliedByStudents
 
 
 class RecruiterForm(forms.ModelForm):
@@ -45,4 +45,27 @@ class RecruiterInternshipNGOForm(forms.ModelForm):
     class Meta:
         model = RecruiterInternshipNGO
         exclude = []
+
+
+
+class CompaniesAppliedByStudentsForm(forms.Form):
+    user_id = forms.CharField(max_length=50,required=True,widget=forms.HiddenInput())
+    roll_number = forms.CharField(max_length=20,required=True)
+    company_name = forms.CharField(max_length=250,required=True,widget=forms.HiddenInput())
+
+    def save(self):
+        u = CompaniesAppliedByStudents.objects.create(
+            user_id = self.cleaned_data.get('user_id'),
+            roll_number = self.cleaned_data.get('roll_number'),
+            company_name = self.cleaned_data.get('company_name'),
+
+        )
+
+
+
+
+
+
+
+
 

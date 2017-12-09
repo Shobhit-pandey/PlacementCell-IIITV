@@ -143,11 +143,10 @@ class RecruiterInternshipNGO(models.Model):
     def get_absolute_url(self):
         return reverse("contact")
 
+class CompaniesAppliedByStudents(models.Model):
+    user_id = models.CharField(max_length=50,default='null')
+    roll_number = models.CharField(max_length=20,default='0',null=False,blank=False)
+    company_name = models.CharField(max_length=250,null=False,blank=False)
 
-
-
-
-
-
-
-
+    def get_absolute_url(self):
+        return reverse("contact")
