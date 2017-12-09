@@ -172,18 +172,25 @@
              <div id="slide">
   <div class="slideshow-container">
       <div style="text-align: center">
-    <div class="mySlides fade"> <img src="http://www.menucool.com/slider/prod/image-slider-5.jpg" style="width:50%"> </div>
-    <div class="mySlides fade"> <img src="http://www.menucool.com/slider/prod/image-slider-4.jpg" style="width:50%"> </div>
-    <div class="mySlides fade"> <img src="http://www.menucool.com/slider/prod/image-slider-3.jpg" style="width:50%"> </div>
-    <div class="mySlides fade"> <img src="http://www.menucool.com/slider/prod/image-slider-2.jpg" style="width:50%"> </div>
+      <h3><a href="{% url 'mywebsite:teamimage' %}">Add Team Image</a></h3>
+    {% for team in addteamimage %}
+      <div class="mySlides fade"> <img src="{{ team.team_image.url }}" style="width:50%"> </div>
+    {% endfor %}
+{#    <div class="mySlides fade"> <img src="http://www.menucool.com/slider/prod/image-slider-5.jpg" style="width:50%"> </div>#}
+{#    <div class="mySlides fade"> <img src="http://www.menucool.com/slider/prod/image-slider-4.jpg" style="width:50%"> </div>#}
+{#    <div class="mySlides fade"> <img src="http://www.menucool.com/slider/prod/image-slider-3.jpg" style="width:50%"> </div>#}
+{#    <div class="mySlides fade"> <img src="http://www.menucool.com/slider/prod/image-slider-2.jpg" style="width:50%"> </div>#}
     <a style="" class="prev" onclick="plusSlides(-1)">&#10094;</a> <a class="next" onclick="plusSlides(1)">&#10095;</a> </div>
       </div>
   <br>
   <div style="text-align:center">
-  <span class="dot" onclick="currentSlide(1)"></span>
-  <span class="dot" onclick="currentSlide(2)"></span>
-  <span class="dot" onclick="currentSlide(3)"></span>
-  <span class="dot" onclick="currentSlide(4)"></span>
+      {% for teams in addteamimage %}
+       <span class="dot" onclick="currentSlide({{ forloop.counter }})"></span>
+      {% endfor %}
+{#  <span class="dot" onclick="currentSlide(1)"></span>#}
+{#  <span class="dot" onclick="currentSlide(2)"></span>#}
+{#  <span class="dot" onclick="currentSlide(3)"></span>#}
+{#  <span class="dot" onclick="currentSlide(4)"></span>#}
    </div>
 
 
@@ -205,24 +212,35 @@
 				</h2>
 			</div>
 		</div>
+
 		<div class="row voffset">
-			<div class="col-sm-4">
-				<img style="width: 80%; height: 290px" src="{% static 'images/profile.png' %}" class="img-responsive mg-md">
-				<h3>Prof. Ashish Phapholia</h3>
-                <h3>IEEE treasurer of gujarat</h3>
-
+           <h3><a href="{% url 'mywebsite:facultyimage' %}">Add Faculty Image</a></h3>
+            {% for faculty in addfacultyimage %}
+                <div class="col-sm-4">
+				<img style="width: 80%; height: 290px" src="{{ faculty.faculty_image.url }}" class="img-responsive mg-md">
+				<h3>{{ faculty.name }}</h3>
+                <h3>{{ faculty.description }}</h3>
 			</div>
-			<div class="col-sm-4">
-				<img style="width: 80%; height: 290px" src="{% static 'images/profile.png' %}" class="img-responsive mg-md">
-				<h3>Prof. Keyur Parmer</h3>
-                <h3>Cryptogrpahy</h3>
 
-			</div><div class="col-sm-4">
-				<img style="width: 80%; height: 290px" src="{% static 'images/profile.png' %}" class="img-responsive  mg-md">
-                <h3>Prof. Swapnil Lokande</h3>
-                <h3>Maths</h3>
+            {% endfor %}
 
-			</div>
+{#            <div class="col-sm-4">#}
+{#				<img style="width: 80%; height: 290px" src="{% static 'images/profile.png' %}" class="img-responsive mg-md">#}
+{#				<h3>Prof. Ashish Phapholia</h3>#}
+{#                <h3>IEEE treasurer of gujarat</h3>#}
+{##}
+{#			</div>#}
+{#			<div class="col-sm-4">#}
+{#				<img style="width: 80%; height: 290px" src="{% static 'images/profile.png' %}" class="img-responsive mg-md">#}
+{#				<h3>Prof. Keyur Parmer</h3>#}
+{#                <h3>Cryptogrpahy</h3>#}
+{##}
+{#			</div><div class="col-sm-4">#}
+{#				<img style="width: 80%; height: 290px" src="{% static 'images/profile.png' %}" class="img-responsive  mg-md">#}
+{#                <h3>Prof. Swapnil Lokande</h3>#}
+{#                <h3>Maths</h3>#}
+{##}
+{#			</div>#}
 
 		</div>
 	</div>
@@ -237,36 +255,46 @@
 				</h2>
 			</div>
 		</div>
-		<div class="row voffset">
-			<div class="col-sm-3">
-				<img style="width: 80%; height: 190px" src="{% static 'images/profile.png' %}" class="img-responsive mg-md">
-				<h3>Shobit</h3>
-                <h3>Third year</h3>
 
-			</div>
-			<div class="col-sm-3">
-				<img style="width: 80%; height: 190px" src="{% static 'images/profile.png' %}" class="img-responsive mg-md">
-				<h3>Mohak</h3>
-                <h3>Second year</h3>
 
-			</div>
-            <div class="col-sm-3">
-				<img style="width: 80%; height: 190px" src="{% static 'images/profile.png' %}" class="img-responsive  mg-md">
-                <h3>Name of student</h3>
-                <h3>first year</h3>
-
-			</div>
-             <div class="col-sm-3">
-				<img style="width: 80%; height: 190px" src="{% static 'images/profile.png' %}" class="img-responsive  mg-md">
-                <h3>Name of student</h3>
-                <h3>fourth year</h3>
-
-			</div>
-            </div>
+        <div class="row voffset">
+         <h3><a href="{% url 'mywebsite:studentimage' %}">Add Student Image</a></h3>
+			{% for student in addstudentimage %}
+                <div class="col-sm-3">
+				<img style="width: 80%; height: 190px" src="{{ student.student_image.url }}" class="img-responsive mg-md">
+				<h3>{{ student.name }}</h3>
+                <h3>{{ student.description }}</h3>
+			   </div>
+            {% endfor %}
+{#            <div class="col-sm-3">#}
+{#				<img style="width: 80%; height: 190px" src="{% static 'images/profile.png' %}" class="img-responsive mg-md">#}
+{#				<h3>Shobit</h3>#}
+{#                <h3>Third year</h3>#}
+{##}
+{#			</div>#}
+{#			<div class="col-sm-3">#}
+{#				<img style="width: 80%; height: 190px" src="{% static 'images/profile.png' %}" class="img-responsive mg-md">#}
+{#				<h3>Mohak</h3>#}
+{#                <h3>Second year</h3>#}
+{##}
+{#			</div>#}
+{#            <div class="col-sm-3">#}
+{#				<img style="width: 80%; height: 190px" src="{% static 'images/profile.png' %}" class="img-responsive  mg-md">#}
+{#                <h3>Name of student</h3>#}
+{#                <h3>first year</h3>#}
+{##}
+{#			</div>#}
+{#             <div class="col-sm-3">#}
+{#				<img style="width: 80%; height: 190px" src="{% static 'images/profile.png' %}" class="img-responsive  mg-md">#}
+{#                <h3>Name of student</h3>#}
+{#                <h3>fourth year</h3>#}
+{##}
+{#			</div>#}
 
 
 		</div>
 	</div>
+    </div>
 
     {% comment %}Website Maintainers and creators{% endcomment %}
     <div class="bloc tc-dim-gray bgc-white l-bloc" id="bloc-4">
@@ -449,4 +477,6 @@ function currentSlide(index) {
 
 
 </script> -->
-</body></html>
+</body>
+
+</html>

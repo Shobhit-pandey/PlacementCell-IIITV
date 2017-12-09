@@ -171,6 +171,34 @@ class Research(models.Model):
 
 
 
+class CollegeTeamImage(models.Model):
+    team_image = models.ImageField(blank=False,null=False)
+
+    def get_absolute_url(self):
+        return reverse("contact")
+
+
+class CollegeTeamFaculty(models.Model):
+    faculty_image = models.ImageField(blank=False,null=False)
+    name = models.CharField(max_length=50,blank=False,null=False)
+    description = models.CharField(max_length= 250,blank=False,null=False)
+
+    def get_absolute_url(self):
+        return reverse("contact")
+
+
+
+class CollegeTeamStudent(models.Model):
+    student_image = models.ImageField(blank=False, null=False)
+    name = models.CharField(max_length=50, blank=False, null=False)
+    description = models.CharField(max_length=250, blank=False, null=False)
+
+    def get_absolute_url(self):
+        return reverse("contact")
+
+
+
+
 
 
 

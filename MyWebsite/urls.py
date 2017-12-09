@@ -28,4 +28,7 @@ urlpatterns = [
     url(r'^recruiter-list/$',views.RecruiterListView,name='recruiterlist'),
     url(r'^add/alumni/$',views.addalumni,name='addalumni'),
     url(r'^add/research/$',views.addresearch,name='addresearch'),
+    url(r'^add/team/image/$',views.addteamimage,name='teamimage'),
+    url(r'^add/faculty/image/$',views.addfacultyimage,name='facultyimage'),
+    url(r'^add/student/image/$',views.addstudentimage,name='studentimage'),
     ]
