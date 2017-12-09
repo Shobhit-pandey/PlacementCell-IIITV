@@ -9,9 +9,104 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" type="image/png" href="http://iiitvadodara.ac.in/img/IIITV_Logo_1x1_small.png">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+	<link href="{% static 'css/css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/css(1)' %}" rel="stylesheet" type="text/css">
+
+	<script src="{% static 'javascript/jquery-2.1.0.min.js.download' %}"></script>
+	<script src="{% static 'javascript/bootstrap.min.js.download' %}"></script>
+	<script src="{% static 'javascript/blocs.min.js.download' %}"></script>
     <title>Form - T&amp;P IIIT Vadodara</title>
 </head>
 <body>
+<div class="page-container">
+
+<!-- bloc-0 -->
+<div class="bloc bg-repeat bgc-white l-bloc" id="bloc-0">
+	<div class="container bloc-sm">
+		<div class="row">
+			<div class="col-sm-6">
+				<a href="{% url 'mywebsite:home' %}"><img src="{% static 'images/iiitv_logo.png' %}" class="head-logo" height="80"></a>
+				<h4 class=" tc-black mg-sm">
+					<a class="ltc-black"  href="{% url 'mywebsite:home' %}">Training &amp; Placement Cell</a><br>
+				</h4>
+				<h6 class=" mg-clear tc-1">
+
+					 <a class="pull-left" href="http://iiitvadodara.ac.in/" target="_blank">Indian Institute of Information Technology Vadodara</a><br>
+				</h6>
+			</div>
+				<div class="col-sm-6 right-align">
+				<ul class="list-unstyled list-horizontal-layout">
+
+					<li>
+						<a href="{% url 'quiz_category_list_all' %}" class="btn btn-d btn-sq btn-sm nav-button">Quiz</a>
+					</li>
+					<li>
+						<a href="{% url 'mywebsite:student' %}" class="btn btn-d btn-sq btn-sm nav-button">Students</a>
+					</li>
+					<li>
+						<a href="{% url 'mywebsite:recruiter' %}" class="btn btn-d btn-sq btn-sm nav-button">Recruiters</a>
+					</li>
+					<li>
+						<div class="btn-group btn-dropdown">
+							<a href="#" class="btn btn-d btn-sq btn-sm nav-button dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Achievements<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+
+
+								<li>
+									<a href="{% url 'mywebsite:academic' %}" class="a-btn a-block">Academics</a>
+								</li>
+								<li>
+									<a href="{% url 'mywebsite:beyond_academic' %}" class="a-btn a-block">Beyond Academics</a>
+								</li>
+
+							</ul>
+						</div>
+					</li>
+					<li>
+						<a  href="{% url 'mywebsite:department' %}" class="btn btn-d btn-sq btn-sm nav-button">Departments</a>
+					</li>
+					<li>
+						<div class="btn-group btn-dropdown">
+							<a href="#" class="btn btn-d btn-sq btn-sm nav-button dropdown-toggle" data-toggle="dropdown" aria-expanded="false">About<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+
+
+								<li>
+									<a href="{% url 'mywebsite:about' %}" class="a-btn a-block">About US</a>
+								</li>
+								<li>
+									<a href="{% url 'mywebsite:contact' %}" class="a-btn a-block">Contact Us</a>
+								</li>
+                                <li>
+									<a href="http://iiitvadodara.ac.in/gallery.php" class="a-btn a-block">Gallery</a>
+								</li>
+								<li>
+									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">College Team</a>
+								</li>
+								<li>
+									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Alumni</a>
+								</li>
+								<li>
+									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Reseach &amp; Development</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+
+
+
+
+				</ul>
+			</div>
+
+		</div>
+	</div>
+</div>
 <div style="height: 40px;"></div>
 <div class="container" style="max_width:800px;background: rgba(119,180,255,0.26)">
     <div style="height: 10px;"></div>
@@ -199,394 +294,7 @@
                         <button type="submit"><a>Submit Form</a></button></div>
 </form>
 </div>
+</div>
 <div style="height: 50px;"></div>
 </body>
 </html>
-
-{##}
-{#<!DOCTYPE html>#}
-{#{% load staticfiles%}#}
-{#<!-- saved from url=(0050)http://iiitvadodara.ac.in/ -->#}
-{#<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">#}
-{##}
-{#    <meta name="keywords" content="">#}
-{#    <meta name="description" content="">#}
-{#    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">#}
-{#    <link rel="shortcut icon" type="image/png" href="http://iiitvadodara.ac.in/img/IIITV_Logo_1x1_small.png">#}
-{#    <link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}">#}
-{#	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">#}
-{#	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"><link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}"><link href="{% static 'css/css' %}" rel="stylesheet" type="text/css">#}
-{#<link href="{% static 'css/css(1)' %}" rel="stylesheet" type="text/css">#}
-{##}
-{#	<script src="{% static 'javascript/jquery-2.1.0.min.js' %}"></script>#}
-{#	<script src="{% static 'javascript/bootstrap.min.js' %}"></script>#}
-{#	<script src="{% static 'javascript/blocs.min.js' %}"></script>#}
-{#	<script src="{% static 'javascript/jqBootstrapValidation.js' %}"></script>#}
-{#	<script src="{% static 'javascript/formHandler.js' %}"></script>#}
-{#    <title>Form - T&amp;P IIIT Vadodara</title>#}
-{##}
-{##}
-{#<!-- Google Analytics -->#}
-{##}
-{#<!-- Google Analytics END -->#}
-{##}
-{#</head>#}
-{#<body>#}
-{#<!-- Main container -->#}
-{#<div class="page-container">#}
-{##}
-{#<!-- bloc-0 -->#}
-{#<div class="bloc bg-repeat bgc-ghost-white l-bloc" id="bloc-0">#}
-{#	<div class="container bloc-sm">#}
-{#		<div class="row">#}
-{#			<div class="col-sm-6">#}
-{#				<a href="{% url 'mywebsite:home' %}"><img src="{% static 'images/iiitv_logo.png' %}" class="head-logo" height="80"></a>#}
-{#				<h4 class=" tc-black mg-sm">#}
-{#					<a class="ltc-black"  href="{% url 'mywebsite:home' %}">Training &amp; Placement Cell</a><br>#}
-{#				</h4>#}
-{#				<h6 class=" mg-clear tc-1">#}
-{##}
-{#					 <a class="pull-left" href="http://iiitvadodara.ac.in/" target="_blank">Indian Institute of Information Technology Vadodara</a><br>#}
-{#				</h6>#}
-{#			</div>#}
-{#				<div class="col-sm-6 right-align">#}
-{#				<ul class="list-unstyled list-horizontal-layout">#}
-{#					<li>#}
-{#						<a href="{% url 'mywebsite:student' %}" class="btn btn-d btn-sq btn-sm nav-button">Students</a>#}
-{#					</li>#}
-{#					<li>#}
-{#						<a href="{% url 'mywebsite:recruiter' %}" class="btn btn-d btn-sq btn-sm nav-button">Recruiters</a>#}
-{#					</li>#}
-{#					<li>#}
-{#						<div class="btn-group btn-dropdown">#}
-{#							<a href="#" class="btn btn-d btn-sq btn-sm nav-button dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Achievements<span class="caret"></span></a>#}
-{#							<ul class="dropdown-menu" role="menu">#}
-{##}
-{##}
-{#								<li>#}
-{#									<a href="{% url 'mywebsite:academic' %}" class="a-btn a-block">Academics</a>#}
-{#								</li>#}
-{#								<li>#}
-{#									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Beyond Academics</a>#}
-{#								</li>#}
-{##}
-{#							</ul>#}
-{#						</div>#}
-{#					</li>#}
-{#					<li>#}
-{#						<a href="http://iiitvadodara.ac.in/" class="btn btn-d btn-sq btn-sm nav-button">Departments</a>#}
-{#					</li>#}
-{#					<li>#}
-{#						<div class="btn-group btn-dropdown">#}
-{#							<a href="#" class="btn btn-d btn-sq btn-sm nav-button dropdown-toggle" data-toggle="dropdown" aria-expanded="false">About<span class="caret"></span></a>#}
-{#							<ul class="dropdown-menu" role="menu">#}
-{##}
-{##}
-{#								<li>#}
-{#									<a style="border-width:0px 0px 2px 0px;#}
-{#	border-radius:0px 0px 0px ;#}
-{#	border-color:rgba(0,0,0,0.7);#}
-{#	background-color:rgba(0,0,0,0.0);#}
-{#	color:#000000!important;#}
-{#" href="{% url 'mywebsite:about' %}" class="a-btn a-block">About US</a>#}
-{#								</li>#}
-{#								<li>#}
-{#									<a href="{% url 'mywebsite:contact' %}" class="a-btn a-block">Contact Us</a>#}
-{#								</li>#}
-{#                                <li>#}
-{#									<a href="http://iiitvadodara.ac.in/gallery.php" class="a-btn a-block">Gallery</a>#}
-{#								</li>#}
-{#								<li>#}
-{#									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">College Team</a>#}
-{#								</li>#}
-{#								<li>#}
-{#									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Alumni</a>#}
-{#								</li>#}
-{#								<li>#}
-{#									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Reseach &amp; Development</a>#}
-{#								</li>#}
-{#							</ul>#}
-{#						</div>#}
-{#					</li>#}
-{##}
-{##}
-{##}
-{##}
-{#				</ul>#}
-{#			</div>#}
-{##}
-{#		</div>#}
-{#	</div>#}
-{#</div>#}
-{#<!-- bloc-0 END -->#}
-{##}
-{#<!-- bloc-44 --><!--#}
-{#<div class="bloc bgc-white bg-Rec-header d-bloc" id="bloc-44">#}
-{#	<div class="container">#}
-{#		<div class="row">#}
-{#			<div class="col-sm-12">#}
-{#				<h2 class=" hero-h-std tc-white text-w-lg mg-clear">#}
-{#					Recruiter Login#}
-{#				</h2>#}
-{#			</div>#}
-{#		</div>#}
-{#	</div>#}
-{#</div>#}
-{#  bloc-44 END  -->#}
-{#<div class="bloc tc-dim-gray bgc-white l-bloc" id="bloc-45" style="height: 50px;" >#}
-{#</div>#}
-{#<!-- bloc-45 -->#}
-{#<div class="bloc tc-dim-gray bgc-white l-bloc" id="bloc-45" >#}
-{#	<div class="container bloc-md" >#}
-{#		<div class="row">#}
-{#            <div class="contents-wrapper" style="background: #eeeeee">#}
-{#            <!-- Contents starts here -->#}
-{#            <div class="content">#}
-{##}
-{#start form#}
-{#<form method="POST" style="padding:20px;">#}
-{#                    {% csrf_token %}#}
-{#                    {{ form.as_p }}#}
-{##}
-{#    <label for="organization_name">Organization Name</label>#}
-{#         {{ form.Organization_name }}#}
-{##}
-{#    <br><br>#}
-{#    <label for="organization_website">Organization Website</label>#}
-{#    {{ form.Organization_website }}#}
-{#    <br><br>#}
-{#    <div style=" margin-bottom: 20px;border-bottom: #000000">#}
-{#        <h3>Organisation Sector</h3>#}
-{#     </div>#}
-{#    <hr style="  display: block;#}
-{#    margin-top: 0.5em;#}
-{#    margin-bottom: 0.5em;#}
-{#    margin-left: auto;#}
-{#    margin-right: auto;#}
-{#    border-style: inset;#}
-{#    border-width: 1px;">#}
-{#    <div style="margin-left: 5%;margin-top: 10px;">#}
-{#    {{ form.Information_Technology }}#}
-{#    <label for="information_technology">Information Technology</label>#}
-{##}
-{#        <br><br>#}
-{#        {{ form.Analytics}}#}
-{#    <label for="analytics">Analytics</label>#}
-{##}
-{#        <br><br>#}
-{#        {{ form.E_Commerce }}#}
-{#    <label for="e_commerce">E Commerce</label>#}
-{##}
-{#        <br><br>#}
-{#        {{ form.Telecom }}#}
-{#    <label for="telecom">Telecom</label>#}
-{##}
-{#        <br><br>#}
-{#        {{ form.Finance }}#}
-{#    <label for="Finance">Finance</label>#}
-{##}
-{#        <br><br>#}
-{#        {{ form.Consulting }}#}
-{#    <label for="Consulting">Consulting</label>#}
-{##}
-{#        <br><br>#}
-{##}
-{##}
-{#    <label for="Other_field">Other</label>#}
-{#    {{ form.Other_field}}#}
-{#            </div>#}
-{#<hr style="  display: block;#}
-{#    margin-top: 20px;#}
-{#    margin-bottom: 0.5em;#}
-{#    margin-left: auto;#}
-{#    margin-right: auto;#}
-{#    border-style: inset;#}
-{#    border-width: 1px;">#}
-{#            <br><br>#}
-{#    <label for="Organization_profile">Organization_Profile</label>#}
-{#    {{ form.Organization_profile }}#}
-{#            <br><br>#}
-{#     <label for="Offer">Offer</label>#}
-{#    {{ form.offer }}#}
-{#            <br><br>#}
-{#     <label for="Intern">Intern</label>#}
-{#    {{ form.Intern }}#}
-{#            <br><br>#}
-{#     <label for="Job_Profile">Job Profile</label>#}
-{#    {{ form.Job_Profile }}#}
-{#            <br><br>#}
-{#     <label for="Job_Description">Job Description</label>#}
-{#    {{ form.Job_Description }}#}
-{#            <br><br>#}
-{#     <label for="Locations">Locations</label>#}
-{#    {{ form.Locations }}#}
-{#            <br><br>#}
-{#     <label for="CTC">CTC</label>#}
-{#    {{ form.CTC }}#}
-{#            <br><br>#}
-{#     <label for="Service">Service</label>#}
-{#    {{ form.service }}#}
-{#            <br><br>#}
-{#     <label for="Bond_Conditions">Bond Conditions</label>#}
-{#    {{ form.Bond_Conditions }}#}
-{#            <br><br>#}
-{#    <label for="Tentative_Date">Tentative Date</label>#}
-{#    {{ form.Tentative_Date }}#}
-{#            <br><br>#}
-{#    <label for="Other_details">Other Details</label>#}
-{#    {{ form.Other_details }}#}
-{#            <br><br>#}
-{#    <label for="Criteria">Criteria</label>#}
-{#    {{ form.Criteria }}#}
-{#            <br><br>#}
-{#    <div style=" margin-bottom: 20px;">#}
-{#        <h3>Selective Process</h3>#}
-{#    </div>#}
-{#    <hr style="  display: block;#}
-{#    margin-top: 0.5em;#}
-{#    margin-bottom: 0.5em;#}
-{#    margin-left: auto;#}
-{#    margin-right: auto;#}
-{#    border-style: inset;#}
-{#    border-width: 1px;">#}
-{#            <div style="margin-left: 5%;">#}
-{##}
-{#    {{ form.Shortlisting_From_Resumes }}#}
-{#    <label for="Shortlisting_From_Resumes">Shortlisting From Resumes</label>#}
-{##}
-{#            <br><br>#}
-{#                {{ form.Written_Test_Apptitute }}#}
-{#    <label for="Written_Test_Apptitute">Written Test Apptitute</label>#}
-{##}
-{#            <br><br>#}
-{#                {{ form.Group_Discussion }}#}
-{#    <label for="Group_Discussion">Group Discussion</label>#}
-{##}
-{#            <br><br>#}
-{#                {{ form.Personal_Interview }}#}
-{#    <label for="Personal_Interview">Personal Interview</label>#}
-{##}
-{#            <br><br>#}
-{#                {{ form.Written_Test_Technical }}#}
-{#    <label for="Written_Test_Technical">Written Test Technical</label>#}
-{##}
-{#            <br><br>#}
-{#    <label for="Other">Other</label><br>#}
-{#    {{ form.Other }}#}
-{#                </div>#}
-{#    <hr style="  display: block;#}
-{#    margin-top: 20px;#}
-{#    margin-bottom: 0.5em;#}
-{#    margin-left: auto;#}
-{#    margin-right: auto;#}
-{#    border-style: inset;#}
-{#    border-width: 1px;">#}
-{#            <br><br>#}
-{#    <label for="Offers_intend">Offers Intend</label>#}
-{#    {{ form.Offers_intend }}#}
-{##}
-{#            <br><br>#}
-{#    <label for="Officials_Visit">Officials Visit</label>#}
-{#    {{ form.Officials_Visit }}#}
-{#            <br><br>#}
-{#    <label for="Rooms_required">Rooms Required</label>#}
-{#    {{ form.Rooms_required }}#}
-{#            <br><br>#}
-{#    <label for="Rooms_Type">Rooms Type</label>#}
-{#    {{ form.Rooms_Type }}#}
-{#            <br><br>#}
-{#    <label for="Logistic_Support">Logistic Support</label>#}
-{#    {{ form.Logistic_Support}}#}
-{#            <br><br>#}
-{#    <label for="Name">Name</label>#}
-{#    {{ form.Name }}#}
-{#            <br><br>#}
-{##}
-{#    <label for="Designation">Designation</label>#}
-{#    {{ form.Designation }}#}
-{#            <br><br>#}
-{##}
-{#    <label for="Email">Email</label>#}
-{#    {{ form.email }}#}
-{#            <br><br>#}
-{##}
-{#    <label for="Contact_Number">Contact Number</label>#}
-{#    {{ form.Contact_Number }}#}
-{##}
-{#            <br><br>#}
-{##}
-{##}
-{##}
-{#    <label></label>#}
-{#                    <div class="row" style="padding-top: 30px;margin-left: 25%">#}
-{#                        <button  type="submit"><a>Submit Form</a></button></div>#}
-{#</form>#}
-{#END FORM /#}
-{##}
-{##}
-{##}
-{#            </div>#}
-{#        </div>#}
-{#        </div>#}
-{#	</div>#}
-{#</div>#}
-{#<!-- bloc-45 END -->#}
-{##}
-{#<!-- ScrollToTop Button -#}
-{#<a class="bloc-button btn btn-d scrollToTop" onclick="scrollToTarget(&#39;1&#39;)"><span class="fa fa-chevron-up"></span></a>#}
-{#<!-- ScrollToTop Button END-->#}
-{#<div class="bloc tc-dim-gray bgc-white l-bloc" id="bloc-45" style="height: 50px;" >#}
-{#</div>#}
-{##}
-{#<!-- Footer - bloc-63 -->#}
-{##}
-{#<div class="bloc bg-repeat bgc-ghost-white l-bloc" id="bloc-63" style="border-style: solid"><center><img style="background: white; margin-top: -48px; padding: 2px; border-radius: 50%;border-style: solid;border-width: 5px; align-content: center;" src="{% static 'images/iiitv_logo.png' %}" alt="iiitv" width="90" height="90"></center>#}
-{#	<div class="container bloc-md">#}
-{#		<div class="row">#}
-{#			<div class="col-sm-2">#}
-{#				<img src="{% static 'images/iiitv_logo.png' %}" class="head-logo" height="48">#}
-{#				<h5 class="mg-clear">#}
-{#					<a class="ltc-black" href="{% url 'mywebsite:home' %}">Training &amp; Placement Cell, IIIT Vadodara</a><br>#}
-{#				</h5>#}
-{#			</div>#}
-{#			<div class="col-sm-2">#}
-{#				<h3 class="mg-md bloc-mob-center-text  tc-dim-gray">#}
-{#					<a href="http://iiitvadodara.ac.in/index.php">Achievements</a><a class="a-btn a-block bloc-mob-center-text" href="{% url 'mywebsite:academic' %}">Academics</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">Beyond Academics</a><br>#}
-{#				</h3>#}
-{#			</div>#}
-{#			<div class="col-sm-2">#}
-{#				<h3 class="mg-md bloc-mob-center-text  tc-dim-gray">#}
-{#					<a href="http://iiitvadodara.ac.in/index.php">Departments</a><a href="{% url 'mywebsite:procedure' %}" class="a-btn a-block bloc-mob-center-text">Procedures</a><a href="{% url 'mywebsite:recruiter' %}" class="a-btn a-block bloc-mob-center-text">Register</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">Downloads</a><br>#}
-{#				</h3>#}
-{#			</div>#}
-{#			<div class="col-sm-2">#}
-{#				<h3 class="mg-md bloc-mob-center-text  tc-dim-gray">#}
-{#					<a href="{% url 'mywebsite:about' %}">About Us</a><a href="{% url 'mywebsite:contact' %}" class="a-btn a-block bloc-mob-center-text">Contact Us</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">College Team</a><a href="http://iiitvadodara.ac.in/gallery.php" class="a-btn a-block bloc-mob-center-text">Gallery</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">Alumni</a><a href="http://iiitvadodara.ac.in/index.php" class="a-btn a-block bloc-mob-center-text">R&amp;D</a><br>#}
-{#				</h3>#}
-{#			</div>#}
-{#			<div class="col-sm-1">#}
-{#				<h3 class="mg-md bloc-mob-center-text  tc-dim-gray">#}
-{#					<a href="{% url 'mywebsite:recruiter' %}">Login</a><a href="{% url 'mywebsite:recruiter' %}" class="a-btn a-block bloc-mob-center-text">Recruiters</a><a href="{% url 'mywebsite:student' %}" class="a-btn a-block bloc-mob-center-text">Students</a><br>#}
-{#				</h3>#}
-{#			</div>#}
-{#			<div class="col-sm-3">#}
-{#				<h3 class="mg-md  text-right tc-dim-gray">#}
-{#					Training &amp; Placement Office#}
-{#				</h3>#}
-{#				<p class="text-right">#}
-{#					c/o Block No.9<br> Government Engineering College<br>Sector-28, Gandhinagar<br>Indian Institute of Information Technology Vadodara<br>Gujarat - 382028 <br> <br><strong>Phone</strong> <br>+91-11-26591731 <br>+91-11-26591732 <br> <br><strong>Email</strong> <br>hodtnp@admin.iiitv.ac.in <br>placement@admin.iiitv.ac.in#}
-{#				</p>#}
-{#			</div>#}
-{#		</div>#}
-{#	</div>#}
-{#</div>#}
-{#</div>#}
-{#</body>#}
-{#</html>#}
-{##}
-{##}
-{##}
-{##}
-{#form code started#}
-{##}
-{##}
