@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Companies registered</title>
+</head>
+{% if user.is_authenticated and not user.is_staff %}
+<body>
+
+<div class="text-center col-lg-3 col-md-6 col-sm-12 col-xs-12" id="google_translate_element"></div>
+
+<div class="container">
+
+    <div class="row">
+
+        {% for company in recruiter_list %}
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" >
+            <div class="card">
+                <div class="card-block p-t-2">
+                    <h2>
+                        {{company.Organization_name}}
+                    </h2>
+                    <h6>{{company.CTC}}</h6>
+                    <h6 class="small text-wide p-b-2">{{company.Tentative_Date}}</h6>
+                </div>
+
+            </div>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+                function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+                }
+        </script>
+        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+</body>
+{% endif %}
+</html>

@@ -8,11 +8,12 @@ from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
 from django.shortcuts import render,redirect
 from django.views.decorators.csrf import csrf_protect
+from django.views.generic import ListView
 
 from MyWebsite.form import RecruiterForm, BeyondAcademicImagesForm, BeyondAcademicVideosForm, \
     BeyondAcademicHighlightForm, RecruiterInternshipIndustrialForm, RecruiterInternshipNGOForm, PastRecruiterForm
 from MyWebsite.models import BeyondAcademicImages, BeyondAcademicVideos, BeyondAcademicsHighlight, PastRecruiter, \
-    RecruiterInternshipIndustrial, RecruiterInternshipNGO
+    RecruiterInternshipIndustrial, RecruiterInternshipNGO, Recruiter
 
 
 def home(request):
@@ -178,5 +179,14 @@ def change_password(request):
 
 
 
+
+class RecruiterListView(ListView):
+
+    template_name = 'recruiter_list.html'
+
+    model = Recruiter
+
+    def get_queryset(self):
+        return Recruiter.objects.all()
 
 
