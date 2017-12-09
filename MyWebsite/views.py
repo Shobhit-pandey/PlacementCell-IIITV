@@ -12,9 +12,11 @@ from django.views.generic import ListView
 
 from MyWebsite.form import RecruiterForm, BeyondAcademicImagesForm, BeyondAcademicVideosForm, \
     BeyondAcademicHighlightForm, RecruiterInternshipIndustrialForm, RecruiterInternshipNGOForm, PastRecruiterForm, \
-    CompaniesAppliedByStudentsForm, AlumniForm, ResearchForm
+    CompaniesAppliedByStudentsForm, AlumniForm, ResearchForm, CollegeTeamImageForm, CollegeTeamFacultyForm, \
+    CollegeTeamStudentForm
 from MyWebsite.models import BeyondAcademicImages, BeyondAcademicVideos, BeyondAcademicsHighlight, PastRecruiter, \
-    RecruiterInternshipIndustrial, RecruiterInternshipNGO, Recruiter
+    RecruiterInternshipIndustrial, RecruiterInternshipNGO, Recruiter, CollegeTeamImage, CollegeTeamFaculty, \
+    CollegeTeamStudent
 
 
 def home(request):
@@ -37,8 +39,13 @@ def procedure(request):
 
 def academic(request):
     return render(request,'Academic.html')
+
 def college_team(request):
-    return render(request, 'college_team.html')
+    addteamimage = CollegeTeamImage.objects.all()
+    addfacultyimage = CollegeTeamFaculty.objects.all()
+    addstudentimage = CollegeTeamStudent.objects.all()
+
+    return render(request, 'college_team.html',{'addteamimage':addteamimage,'addfacultyimage':addfacultyimage,'addstudentimage':addstudentimage})
 
 def contact(request):
     return render(request,'Contact.html')
@@ -223,6 +230,52 @@ def addresearch(request):
     else:
         form = ResearchForm()
     return render(request,'Addresearch.html',{'form':form})
+
+
+
+def addteamimage(request):
+    form = CollegeTeamImageForm()
+    if request.method == 'POST':
+        form = CollegeTeamImageForm()
+        if form.is_valid():
+            form.save()
+            return redirect('mywebsite:about')
+    else:
+        form = CollegeTeamImageForm()
+    return render(request,'Addteamimage.html',{'form':form})
+
+
+
+def addfacultyimage(request):
+    form = CollegeTeamFacultyForm()
+    if request.method == 'POST':
+        form = CollegeTeamFacultyForm()
+        if form.is_valid():
+            form.save()
+            return redirect('mywebsite:about')
+    else:
+        form = CollegeTeamFacultyForm()
+    return render(request,'Addfacultyimage.html',{'form':form})
+
+
+
+
+def addstudentimage(request):
+    form = CollegeTeamStudentForm()
+    if request.method == 'POST':
+        form = CollegeTeamStudentForm()
+        if form.is_valid():
+            form.save()
+            return redirect('mywebsite:about')
+    else:
+        form = CollegeTeamStudentForm()
+    return render(request,'Addstudentimage.html',{'form':form})
+
+
+
+
+
+
 
 
 
