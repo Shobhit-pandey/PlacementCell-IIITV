@@ -76,7 +76,7 @@ class Recruiter(models.Model):
     Name = models.CharField(blank = False,null = False,max_length = 100)
     Designation = models.CharField(blank = False,null = False,max_length = 100)
     email = models.EmailField(max_length=50, null=False,blank = False)
-    Contact_Number = models.IntegerField(blank = False,null = False)
+    Contact_Number = models.CharField(max_length=100,blank = False,null = False)
 
 
     def get_absolute_url(self):

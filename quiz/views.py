@@ -398,6 +398,7 @@ def Createquiz(request):
         form = CreatequizForm(request.POST,initial={'user_id':request.user.id})
         if form.is_valid():
             form.save()
+            # TODO cookies addition
             return redirect('createquestion')
 
     else:
@@ -405,9 +406,11 @@ def Createquiz(request):
     return render(request,'quiz/createquiz.html',{'form':form})
 
 def AddMcq(request):
-    # quiz = Quiz.objects.filter('user_id'=request.user.id)
-    # print(quiz)
-    # quiz=Question_Quiz
+    quiz = Quiz.objects.filter(user_id=request.user.id)
+    quiz = list(quiz)
+    quiz = quiz[-1]
+    quiz=Quiz.objects.filter(user_id=request.user.id,title=quiz)
+    print(quiz)
     mcq_form = MCQuestionForm(initial={'user_id': request.user.id})
     answer__formset = MCQFormSet()
     if request.method == "POST":
@@ -415,6 +418,8 @@ def AddMcq(request):
         if mcq_form.is_valid():
             mcq_form.cleaned_data['user_id']=request.user.id
             new_mcq=mcq_form.save()
+            new_mcq.quiz=quiz
+            new_mcq.save()
             answer__formset=MCQFormSet(request.POST, request.FILES,instance=new_mcq)
             if answer__formset.is_valid():
                 answer__formset.save()
