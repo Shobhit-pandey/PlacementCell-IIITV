@@ -1,7 +1,7 @@
 from django import forms
 
 from MyWebsite.models import Recruiter, BeyondAcademicImages, BeyondAcademicVideos, BeyondAcademicsHighlight, \
-    RecruiterInternshipIndustrial, RecruiterInternshipNGO, PastRecruiter, CompaniesAppliedByStudents
+    RecruiterInternshipIndustrial, RecruiterInternshipNGO, PastRecruiter, CompaniesAppliedByStudents, Alumni, Research
 
 
 class RecruiterForm(forms.ModelForm):
@@ -60,6 +60,27 @@ class CompaniesAppliedByStudentsForm(forms.Form):
             company_name = self.cleaned_data.get('company_name'),
 
         )
+
+
+
+class AlumniForm(forms.ModelForm):
+    class Meta:
+        model = Alumni
+        exclude = []
+
+
+class ResearchForm(forms.ModelForm):
+    class Meta:
+        model = Research
+        exclude = []
+
+
+
+
+
+
+
+
 
 
 
