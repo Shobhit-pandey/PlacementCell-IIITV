@@ -168,9 +168,9 @@
 				</div>
 			</div>
         {% elif user.is_authenticated %}
-    <a href="{% url 'logout' %}">Logout</a>
-    <a href="{% url 'mywebsite:change_password' %}">Change Password</a>
-                <a href="{% url 'mywebsite:recruiterlist' %}">Recruiter List</a>
+    <a href="{% url 'logout' %}" style="color: #ff4226">Logout</a>
+    <a href="{% url 'mywebsite:change_password' %}" style="color: #13cc40">Change Password</a>
+                <a href="{% url 'mywebsite:recruiterlist' %}" style="color: #6a92e4">Recruiter List</a>
 
 {% endif %}
         </div>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
     <link rel="shortcut icon" type="image/png" href="http://iiitvadodara.ac.in/img/IIITV_Logo_1x1_small.png">
-
+    <link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
@@ -106,15 +106,24 @@
 	</div>
 </div>
 </div>
+<div style=" max-width: 800px;
+    padding: 5% 10% 10% 20%;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-left: 10%;">
  {% if user.is_superuser %}
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Add</button>
+    <p style="margin-top: 20px;"> <button type="submit">Add</button></p>
 </form>
     {% else %}
     <h1>Behave yourself you are not super user</h1>
 {% endif %}
+</div>
  <!-- Google Translate -->
         <script type="text/javascript">
                 function googleTranslateElementInit() {

@@ -13,5 +13,6 @@ mywebsite/migrations
 .idea/misc.xml
 .idea/modules.xml
 .idea/StudyMonk.iml
+.idea/*
 .idea/workspace.xml
 Placement-IIITV/__pycache__/

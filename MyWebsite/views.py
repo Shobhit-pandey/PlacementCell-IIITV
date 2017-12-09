@@ -217,7 +217,7 @@ def addalumni(request):
             return redirect('mywebsite:alumni')
     else:
         form = AlumniForm()
-    return render(request,'Addalumni.html',{'form':form})
+    return render(request,'AddAlumni.html',{'form':form})
 
 
 def addresearch(request):

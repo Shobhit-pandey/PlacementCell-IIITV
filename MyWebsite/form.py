@@ -2,7 +2,7 @@ from django import forms
 
 from MyWebsite.models import Recruiter, BeyondAcademicImages, BeyondAcademicVideos, BeyondAcademicsHighlight, \
     RecruiterInternshipIndustrial, RecruiterInternshipNGO, PastRecruiter, CompaniesAppliedByStudents, Alumni, Research, \
-    CollegeTeamImage, CollegeTeamStudent
+    CollegeTeamImage, CollegeTeamStudent, CollegeTeamFaculty
 
 
 class RecruiterForm(forms.ModelForm):
@@ -85,7 +85,7 @@ class CollegeTeamImageForm(forms.ModelForm):
 
 class CollegeTeamFacultyForm(forms.ModelForm):
     class Meta:
-        model = CollegeTeamFacultyForm
+        model = CollegeTeamFaculty
         exclude = []
 
 
