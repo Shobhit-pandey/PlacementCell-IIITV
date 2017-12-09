@@ -440,4 +440,3 @@ def AddEssay(request):
     else:
         essay_form=EssayForm()
     return render(request,'quiz/addessay.html',{'essay_form':essay_form,})
-

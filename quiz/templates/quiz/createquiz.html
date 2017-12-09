@@ -94,12 +94,12 @@
     <div><h1 style="font-size: 250%; text-align: center;">Create Quiz</h1></div>
 
     <h5 style="color: red; margin-left: 20px;">*Required</h5>
-<form method="POST" style="padding:50px;">
+<form method="post" style="padding:50px;">
                     {% csrf_token %}
 {#                    {{ form.as_p }}#}
 
 {#    #}
-
+        {{ form.user_id }}
     <label for="title">Title*</label>
         <br>{{ form.title }}
 
