@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^department/$', views.department, name='department'),
     url(r'^recruiter/form$', views.recruiter_form, name='recruiter_form'),
     url(r'^beyond-academic$', views.beyond_academic, name='beyond_academic'),
+    url(r'^college_team$', views.college_team, name='college_team'),
     url(r'^addBeyondAcademicimage/$',views.AddBeyondAcademicimages,name='addBeyondAcademicimages'),
     url(r'^addPastRecruiterimage/$',views.addPastRecruiterimage,name='addPastRecruiterimage'),
     url(r'^addBeyondAcademicvideos/$',views.AddBeyondAcademicvideos,name='addBeyondAcademicvideos'),

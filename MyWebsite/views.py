@@ -35,6 +35,8 @@ def procedure(request):
 
 def academic(request):
     return render(request,'Academic.html')
+def college_team(request):
+    return render(request, 'college_team.html')
 
 def contact(request):
     return render(request,'Contact.html')
