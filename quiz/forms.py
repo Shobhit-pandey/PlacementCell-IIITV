@@ -82,7 +82,7 @@ class CreatequizForm(forms.Form):
 class MCQuestionForm(forms.ModelForm):
     class Meta:
         model=MCQuestion
-        fields=('category','figure','content','explanation','answer_order')
+        fields=('sub_category','figure','content','explanation','answer_order')
         exclude = []
 
 class AnswerForm(forms.ModelForm):
@@ -95,10 +95,10 @@ MCQFormSet = inlineformset_factory(MCQuestion,Answer,form=AnswerForm,can_delete=
 class TFForm(forms.ModelForm):
     class Meta:
         model=TF_Question
-        fields = ('category', 'figure', 'content', 'explanation', 'correct')
+        fields = ('sub_category', 'figure', 'content', 'explanation', 'correct')
         exclude=[]
 class EssayForm(forms.ModelForm):
     class Meta:
         model=Essay_Question
-        fields = ('category', 'figure', 'content', 'explanation',)
+        fields = ('sub_category', 'figure', 'content', 'explanation',)
         exclude=[]

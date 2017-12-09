@@ -1,15 +1,176 @@
 {% extends 'base.html' %}
+{%load staticfiles%}
 {% load i18n %}
 {% block title %}{% trans "Create Quiz" %}{% endblock %}
 
 {% block content %}
-<form method="POST">
-{% csrf_token %}
-{{ form.as_p }}
-<div class="row" style="padding-top: 30px">
+    <div class="page-container">
+
+<!-- bloc-0 -->
+<div class="bloc bg-repeat bgc-white l-bloc" id="bloc-0">
+	<div class="container bloc-sm">
+		<div class="row">
+			<div class="col-sm-6">
+				<a href="{% url 'mywebsite:home' %}"><img src="{% static 'images/iiitv_logo.png' %}" class="head-logo" height="80"></a>
+				<h4 class=" tc-black mg-sm">
+					<a class="ltc-black"  href="{% url 'mywebsite:home' %}">Training &amp; Placement Cell</a><br>
+				</h4>
+				<h6 class=" mg-clear tc-1">
+
+					 <a class="pull-left" href="http://iiitvadodara.ac.in/" target="_blank">Indian Institute of Information Technology Vadodara</a><br>
+				</h6>
+			</div>
+				<div class="col-sm-6 right-align">
+				<ul class="list-unstyled list-horizontal-layout">
+
+					<li>
+						<a href="{% url 'quiz_category_list_all' %}" class="btn btn-d btn-sq btn-sm nav-button">Quiz</a>
+					</li>
+					<li>
+						<a href="{% url 'mywebsite:student' %}" class="btn btn-d btn-sq btn-sm nav-button">Students</a>
+					</li>
+					<li>
+						<a href="{% url 'mywebsite:recruiter' %}" class="btn btn-d btn-sq btn-sm nav-button">Recruiters</a>
+					</li>
+					<li>
+						<div class="btn-group btn-dropdown">
+							<a href="#" class="btn btn-d btn-sq btn-sm nav-button dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Achievements<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
 
 
-        <button type="submit">Add Quiz</button>
-    </div>
+								<li>
+									<a href="{% url 'mywebsite:academic' %}" class="a-btn a-block">Academics</a>
+								</li>
+								<li>
+									<a href="{% url 'mywebsite:beyond_academic' %}" class="a-btn a-block">Beyond Academics</a>
+								</li>
+
+							</ul>
+						</div>
+					</li>
+					<li>
+						<a  href="{% url 'mywebsite:department' %}" class="btn btn-d btn-sq btn-sm nav-button">Departments</a>
+					</li>
+					<li>
+						<div class="btn-group btn-dropdown">
+							<a href="#" class="btn btn-d btn-sq btn-sm nav-button dropdown-toggle" data-toggle="dropdown" aria-expanded="false">About<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+
+
+								<li>
+									<a href="{% url 'mywebsite:about' %}" class="a-btn a-block">About US</a>
+								</li>
+								<li>
+									<a href="{% url 'mywebsite:contact' %}" class="a-btn a-block">Contact Us</a>
+								</li>
+                                <li>
+									<a href="http://iiitvadodara.ac.in/gallery.php" class="a-btn a-block">Gallery</a>
+								</li>
+								<li>
+									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">College Team</a>
+								</li>
+								<li>
+									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Alumni</a>
+								</li>
+								<li>
+									<a href="http://iiitvadodara.ac.in/" class="a-btn a-block">Reseach &amp; Development</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+
+
+
+
+				</ul>
+			</div>
+
+		</div>
+	</div>
+</div>
+<div style="height: 40px;"></div>
+<div class="container" style="font-size: 18px; max_width:800px;background: rgba(119,180,255,0.26)">
+    <div style="height: 10px;"></div>
+    <div><h1 style="font-size: 250%; text-align: center;">Create Quiz</h1></div>
+
+    <h5 style="color: red; margin-left: 20px;">*Required</h5>
+<form method="POST" style="padding:50px;">
+                    {% csrf_token %}
+{#                    {{ form.as_p }}#}
+
+{#    #}
+
+    <label for="title">Title*</label>
+        <br>{{ form.title }}
+
+        <!--  <input style="margin-left:20px;" type="text" name="firstname" value=""> -->
+
+    <br><br>
+    <label for="description">Description*</label><br>
+    {{ form.description }}
+    <br><br>
+
+
+
+    <label for="start_time">Start Time*</label><br>
+    {{ form.start_time }}
+        <br><br>
+
+    <label for="end_time">End Time*</label><br>
+{{ form.end_time}}
+        <br><br>
+
+    <label for="url">User Friendly tag(eg. /quiz/tag)*</label><br>
+ {{ form.url }}
+        <br><br>
+
+    <label for="catagory">Category*</label><br>
+{{ form.category }}
+        <br><br>
+
+    <label for="random_order">Random Order</label>
+{{ form.random_order }}
+        <br><br>
+
+    <label for="max_question">Maximum No. of Questions</label><br>
+{{ form.max_questions }}
+        <br><br>
+
+
+    <label for="answer_at_end">Answer at end</label>
+    {{ form.answers_at_end}}
+
+
+            <br><br>
+    <label for="exam_paper">Exam Paper</label>
+    {{ form.exam_paper }}<p>*If yes, the result of each attempt by a user will be stored. Necessary for marking.</p>
+            <br><br>
+     <label for="single_attempt">Single Attempt</label>
+    {{ form.single_attempt }}<p>*If yes, user can give only one attempt.</p>
+            <br><br>
+     <label for="pass_mark">Passing Mark</label><br>
+    {{ form.pass_mark }}<p>*Percentage required to pass exam. Leave blank if not required.</p>
+            <br><br>
+     <label for="success_text">Success Text</label><br>
+    {{ form.success_text}}
+            <br><br>
+     <label for="fail_text">Fail Text</label><br>
+    {{ form.fail_text }}
+            <br><br>
+     <label for="draft">Draft</label>
+    {{ form.draft }}
+            <br><br>
+
+
+
+
+
+
+{#    #}
+                    <div class="row" style="padding-top: 30px;margin-left: 25%;">
+                        <button type="submit"><a>Add Quiz</a></button></div>
 </form>
+</div>
+</div>
+<div style="height: 50px;"></div>
 {% endblock %}

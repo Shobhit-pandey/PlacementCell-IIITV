@@ -5,13 +5,14 @@
     <title></title>
 </head>
 <body>
-{% if user.is_authenciated %}
+{% if user.is_authenticated %}
 {% if user.is_staff or user.is_superuser %}
-<a href="{% url 'addmcq' %}" style="text-align: center;margin-left: 700px;font-size: 50px;">Add MC Question</a><br><br><br>
-<a href="{% url 'addtf' %}" style="text-align: center;margin-left: 700px;font-size: 50px;">Add T/F Question</a><br><br><br>
-<a href="{% url 'addessay' %}" style="text-align: center;margin-left: 700px;font-size: 50px">Add Essay Question</a><br><br><br>
+<p  style="text-align: center;font-size: 50px;"><a href="{% url 'addmcq' %}">Add MC Question</a></p>
+    <p  style="text-align: center;font-size: 50px;"><a href="{% url 'addtf' %}">Add T/F Question</a></p>
+    <p  style="text-align: center;font-size: 50px;"><a href="{% url 'addessay' %}">Add Essay Question</a></p>
 
-<p style="text-align: center;margin-right: -100px;font-size: 50px">Adding completed ? click
+
+<p style="text-align: center;font-size: 50px">Adding completed ? click
 <a href="{% url 'mywebsite:home' %}">here</a> to go out
 </p>
     {% else %}
