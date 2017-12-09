@@ -5,6 +5,7 @@
     <title></title>
 </head>
 <body>
+<div class="text-center col-lg-3 col-md-6 col-sm-12 col-xs-12" id="google_translate_element"></div>
 {% if user.is_authenticated %}
 {% if user.is_staff or user.is_superuser %}
 <p  style="text-align: center;font-size: 50px;"><a href="{% url 'addmcq' %}">Add MC Question</a></p>
@@ -23,5 +24,20 @@
     <h1>For Recruiter ,log in from <a href="{% url 'mywebsite:recruiter' %}">here</a></h1>
     <h1>For Student ,log in from <a href="{% url 'mywebsite:student' %}">here</a></h1>
 {% endif %}
+
+
+
+        <!-- Google Translate -->
+        <script type="text/javascript">
+                function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+                }
+        </script>
+        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+
+
+
 </body>
 </html>
