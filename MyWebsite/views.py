@@ -197,3 +197,9 @@ def studentapply(request,pk):
         form = CompaniesAppliedByStudentsForm(initial={'user_id': request.user.id, 'company_name': pk})
 
     return render(request,'studentapply.html',{'form':form})
+
+
+
+
+
+

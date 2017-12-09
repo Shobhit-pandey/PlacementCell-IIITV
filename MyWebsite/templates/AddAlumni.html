@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Alumni</title>
+</head>
+<body>
+
+  <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+    <button type="submit" class="save btn btn-default">Add Alumni</button>
+  </form>
+
+
+</body>
+</html>

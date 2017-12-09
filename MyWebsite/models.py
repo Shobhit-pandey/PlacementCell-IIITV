@@ -150,3 +150,23 @@ class CompaniesAppliedByStudents(models.Model):
 
     def get_absolute_url(self):
         return reverse("contact")
+
+
+class Alumni(models.Model):
+    alumni_image = models.ImageField(blank=False,null=False)
+    alumni_description = models.CharField(max_length=250,blank=False,null=False)
+
+
+    def get_absolute_url(self):
+        return reverse("contact")
+
+
+
+
+
+
+
+
+
+
+
