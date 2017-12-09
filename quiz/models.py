@@ -560,7 +560,7 @@ class Question(models.Model):
     Base class for all question types.
     Shared properties placed here.
     """
-    user_id = models.CharField(default='0', max_length=100, null=False, blank=False, editable=False)
+    user_id = models.CharField(max_length=100,default="we")
 
     quiz = models.ManyToManyField(Quiz,
                                   verbose_name=_("Quiz"),

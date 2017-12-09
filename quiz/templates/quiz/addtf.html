@@ -117,6 +117,7 @@
 <form method="POST" style="padding:50px;" enctype="multipart/form-data">
     {% csrf_token %}
 {#    {{ tf_form.as_p }}#}
+    {{ tf_form.user_id }}
     <label for="content">Question</label><br>
     {{ tf_form.content }}
     <br><br>

@@ -119,6 +119,7 @@
 <form method="POST" style="padding: 50px;" enctype="multipart/form-data">
     {% csrf_token %}
 {#    {{ essay_form.as_p }}#}
+    {{ essay_form.user_id }}
      <label for="content">Question</label><br>
     {{ essay_form.content }}
 <br><br>

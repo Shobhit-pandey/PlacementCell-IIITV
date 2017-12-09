@@ -407,9 +407,13 @@ def Createquiz(request):
 def AddMcq(request):
     # quiz = Quiz.objects.filter('user_id'=request.user.id)
     # print(quiz)
+    # quiz=Question_Quiz
+    mcq_form = MCQuestionForm(initial={'user_id': request.user.id})
+    answer__formset = MCQFormSet()
     if request.method == "POST":
-        mcq_form=MCQuestionForm(request.POST,request.FILES)
+        mcq_form=MCQuestionForm(request.POST,request.FILES,initial={'user_id': request.user.id})
         if mcq_form.is_valid():
+            mcq_form.cleaned_data['user_id']=request.user.id
             new_mcq=mcq_form.save()
             answer__formset=MCQFormSet(request.POST, request.FILES,instance=new_mcq)
             if answer__formset.is_valid():
@@ -417,26 +421,28 @@ def AddMcq(request):
                 return redirect('createquestion')
 
     else:
-        mcq_form=MCQuestionForm()
+        mcq_form=MCQuestionForm(initial={'user_id':request.user.id})
         answer__formset=MCQFormSet()
     return render(request,'quiz/addmcq.html',{'mcq_form':mcq_form,'answer_formset':answer__formset})
 def AddTF(request):
+    tf_form = TFForm(initial={'user_id': request.user.id})
     if request.method == "POST":
-        tf_form=TFForm(request.POST,request.FILES)
+        tf_form=TFForm(request.POST,request.FILES,initial={'user_id': request.user.id})
         if tf_form.is_valid():
             tf_form.save()
             return redirect('createquestion')
 
     else:
-        tf_form=TFForm()
+        tf_form=TFForm(initial={'user_id':request.user.id})
     return render(request,'quiz/addtf.html',{'tf_form':tf_form,})
 def AddEssay(request):
+    essay_form = EssayForm(initial={'user_id': request.user.id})
     if request.method == "POST":
-        essay_form=EssayForm(request.POST,request.FILES)
+        essay_form=EssayForm(request.POST,request.FILES,initial={'user_id': request.user.id})
         if essay_form.is_valid():
             essay_form.save()
             return redirect('createquestion')
 
     else:
-        essay_form=EssayForm()
+        essay_form=EssayForm(initial={'user_id':request.user.id})
     return render(request,'quiz/addessay.html',{'essay_form':essay_form,})

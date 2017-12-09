@@ -9,7 +9,7 @@ from true_false.models import TF_Question
 
 from multichoice.models import MCQuestion, Answer
 
-from quiz.models import Quiz, Category
+from quiz.models import Quiz, Category, SubCategory
 
 ANSWER_ORDER_OPTIONS = (
     ('content', ('Content')),
@@ -71,19 +71,33 @@ class CreatequizForm(forms.Form):
         u.save()
         return u
 
-# class CreateMCQForm(forms.Form):
-#     user_id = forms.CharField(max_length=100, required=True, widget=forms.HiddenInput())
-#     category = forms.ModelChoiceField(queryset=Category.objects.all(), required=True)
-#     figure = forms.ImageField(required=False)
-#     content = forms.CharField(max_length=1000,required=True)
-#     explanation = forms.CharField(max_length=2000,required=False)
-#     answer_order=forms.ChoiceField(ANSWER_ORDER_OPTIONS,required=True)
+class MCQuestionForm(forms.Form):
+    user_id = forms.CharField(max_length=100, required=True,widget=forms.HiddenInput())
+    sub_category = forms.ModelChoiceField(queryset=SubCategory.objects.all(),required=False)
+    figure = forms.ImageField(required=False)
+    content = forms.CharField(max_length=1000,required=True)
+    explanation = forms.CharField(max_length=2000,required=False)
+    answer_order=forms.ChoiceField(ANSWER_ORDER_OPTIONS,required=True)
 
-class MCQuestionForm(forms.ModelForm):
-    class Meta:
-        model=MCQuestion
-        fields=('sub_category','figure','content','explanation','answer_order')
-        exclude = []
+    def save(self):
+        u=MCQuestion.objects.create(
+            sub_category=self.cleaned_data.get('sub_category'),
+            user_id=self.cleaned_data.get('user_id'),
+            figure=self.cleaned_data.get('figure'),
+            content=self.cleaned_data.get('content'),
+            explanation=self.cleaned_data.get('explanation'),
+            answer_order=self.cleaned_data.get('answer_order')
+        )
+        u.save()
+        return u
+
+
+
+# class MCQuestionForm(forms.ModelForm):
+#     class Meta:
+#         model=MCQuestion
+#         fields=('sub_category','user_id','figure','content','explanation','answer_order')
+#         exclude = []
 
 class AnswerForm(forms.ModelForm):
     class Meta:
@@ -92,13 +106,41 @@ class AnswerForm(forms.ModelForm):
         exclude = []
 MCQFormSet = inlineformset_factory(MCQuestion,Answer,form=AnswerForm,can_delete=False)
 
-class TFForm(forms.ModelForm):
-    class Meta:
-        model=TF_Question
-        fields = ('sub_category', 'figure', 'content', 'explanation', 'correct')
-        exclude=[]
-class EssayForm(forms.ModelForm):
-    class Meta:
-        model=Essay_Question
-        fields = ('sub_category', 'figure', 'content', 'explanation',)
-        exclude=[]
+class TFForm(forms.Form):
+    user_id = forms.CharField(max_length=100, required=True,widget=forms.HiddenInput())
+    sub_category = forms.ModelChoiceField(queryset=SubCategory.objects.all(),required=False)
+    figure = forms.ImageField(required=False)
+    content = forms.CharField(max_length=1000,required=True)
+    explanation = forms.CharField(max_length=2000,required=False)
+    correct=forms.BooleanField(required=False)
+
+    def save(self):
+        u=TF_Question.objects.create(
+            sub_category=self.cleaned_data.get('sub_category'),
+            user_id=self.cleaned_data.get('user_id'),
+            figure=self.cleaned_data.get('figure'),
+            content=self.cleaned_data.get('content'),
+            explanation=self.cleaned_data.get('explanation'),
+            correct=self.cleaned_data.get('correct')
+        )
+        u.save()
+        return u
+
+class EssayForm(forms.Form):
+    user_id = forms.CharField(max_length=100, required=True,widget=forms.HiddenInput())
+    sub_category = forms.ModelChoiceField(queryset=SubCategory.objects.all(),required=False)
+    figure = forms.ImageField(required=False)
+    content = forms.CharField(max_length=1000,required=True)
+    explanation = forms.CharField(max_length=2000,required=False)
+    # correct=forms.BooleanField()
+
+    def save(self):
+        u=Essay_Question.objects.create(
+            sub_category=self.cleaned_data.get('sub_category'),
+            user_id=self.cleaned_data.get('user_id'),
+            figure=self.cleaned_data.get('figure'),
+            content=self.cleaned_data.get('content'),
+            explanation=self.cleaned_data.get('explanation'),
+        )
+        u.save()
+        return u

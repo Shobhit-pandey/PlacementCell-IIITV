@@ -137,6 +137,8 @@
     {% csrf_token %}
 {#    {{ mcq_form.as_p }}#}
 {#    {{ answer_formset.as_table }}#}
+    {{ mcq_form.user_id }}
+<br>
 <label for="content">Question</label><br>
     {{ mcq_form.content }}
 <br><br>
@@ -166,8 +168,8 @@
         <tbody>
             {% for form in answer_formset.forms %}
     	    <tr id="{{ form.prefix }}-row" class="dynamic-form">
-    	        <td>Answer {{ form.content }}</td>
-    	        <td>Correct {{ form.correct }} Tick if this is correct answer </td>
+    	        <td>Answer {{ form.content }} </td>
+    	        <td> Correct {{ form.correct }} Tick if this is correct answer </td>
             </tr>
     	    {% endfor %}
             <tr>
