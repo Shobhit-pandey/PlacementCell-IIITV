@@ -137,12 +137,19 @@
 
 		<div class="row">
 
-			<div class="col-sm-4">
+			<div style="margin-bottom: 50px">
                 <h1> Alumni </h1>
                 <p> IIIT Vadodara is offering an undergraduate Program with two departments, a postgraduate degree in Computer Science Engineering.
                 We also provide Doctor of Philosophy.</p>
 
 		</div>
+            {% for alumni in alumnis %}
+                <div class="col-sm-4">
+				<img style="width: 80%; height: 290px" src="{{ alumni.alumni_image.url }}" class="img-responsive mg-md">
+                    <div style="max-width: 300px"><h3 >{{ alumni.alumni_description }}</h3></div>
+			</div>
+
+            {% endfor %}
 	</div>
 </div>
 <!-- bloc-45 END -->

@@ -16,7 +16,7 @@ from MyWebsite.form import RecruiterForm, BeyondAcademicImagesForm, BeyondAcadem
     CollegeTeamStudentForm
 from MyWebsite.models import BeyondAcademicImages, BeyondAcademicVideos, BeyondAcademicsHighlight, PastRecruiter, \
     RecruiterInternshipIndustrial, RecruiterInternshipNGO, Recruiter, CollegeTeamImage, CollegeTeamFaculty, \
-    CollegeTeamStudent
+    CollegeTeamStudent, Alumni, Research
 
 
 def home(request):
@@ -52,9 +52,11 @@ def contact(request):
 def department(request):
     return render(request,'departments.html')
 def alumni(request):
-    return render(request,'alumni.html')
+    alumnis = Alumni.objects.all()
+    return render(request,'alumni.html',{'alumnis':alumnis})
 def research_development(request):
-    return render(request,'research_development.html')
+    researchs = Research.objects.all()
+    return render(request,'research_development.html',{'researchs':researchs})
 
 @csrf_protect
 def recruiter_form(request):

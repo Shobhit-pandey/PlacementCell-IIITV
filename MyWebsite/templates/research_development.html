@@ -146,7 +146,15 @@
                 We also provide Doctor of Philosophy.</p>
 
 		</div>
+          {% for research in researchs %}
+                <div class="col-sm-10">
+				<img src="{{ research.research_image.url }}" class="img-responsive mg-md">
+                    <div style="max-width: 700px"><h3 >{{ research.research_description }}</h3></div>
+			</div>
+
+            {% endfor %}
 	</div>
+
 </div>
 <!-- bloc-45 END -->
 
