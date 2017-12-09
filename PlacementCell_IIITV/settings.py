@@ -28,7 +28,8 @@ SECRET_KEY = 'm!c%@83&t#@dvq2va=4(i))9^=g0rudk%efc543hd^r$pocens'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+SESSION_COOKIE_HTTPONLY = True
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'studymonk.se@gmail.com'
