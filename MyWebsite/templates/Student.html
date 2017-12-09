@@ -168,10 +168,14 @@
 				</div>
 			</div>
         {% elif user.is_authenticated %}
-    <a href="{% url 'logout' %}" style="color: #ff4226">Logout</a>
-    <a href="{% url 'mywebsite:change_password' %}" style="color: #13cc40">Change Password</a>
-                <a href="{% url 'mywebsite:recruiterlist' %}" style="color: #6a92e4">Recruiter List</a>
-
+                <div class="bloc bg-repeat bgc-ghost-white l-bloc" style="margin-bottom: 40px;">
+                <h3 style="text-align: center;">
+    <a href="{% url 'logout' %}" style="color: #ff4226">Logout</a> <br>
+    <a href="{% url 'mywebsite:change_password' %}" style="color: #13cc40">Change Password</a><br>
+                <a href="#" style="color: #d7182b">Your Short Listed Company</a><br>
+                <a href="{% url 'mywebsite:recruiterlist' %}" style="color: #6a92e4">Company List</a><br>
+</h3>
+                </div>
 {% endif %}
         </div>
 	</div>
