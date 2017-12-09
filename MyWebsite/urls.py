@@ -22,3 +22,5 @@ urlpatterns = [
     url(r'^change_password/$',views.change_password,name='change_password'),
     url(r'^studentapply/(?P<pk>[\w\-]+)/$',views.studentapply,name='studentapply'),
     ]
+
+

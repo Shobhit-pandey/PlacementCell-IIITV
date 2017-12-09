@@ -11,7 +11,8 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.generic import ListView
 
 from MyWebsite.form import RecruiterForm, BeyondAcademicImagesForm, BeyondAcademicVideosForm, \
-    BeyondAcademicHighlightForm, RecruiterInternshipIndustrialForm, RecruiterInternshipNGOForm, PastRecruiterForm
+    BeyondAcademicHighlightForm, RecruiterInternshipIndustrialForm, RecruiterInternshipNGOForm, PastRecruiterForm, \
+    CompaniesAppliedByStudentsForm
 from MyWebsite.models import BeyondAcademicImages, BeyondAcademicVideos, BeyondAcademicsHighlight, PastRecruiter, \
     RecruiterInternshipIndustrial, RecruiterInternshipNGO, Recruiter
 
@@ -200,3 +201,9 @@ def studentapply(request,pk):
         form = CompaniesAppliedByStudentsForm(initial={'user_id': request.user.id, 'company_name': pk})
 
     return render(request,'studentapply.html',{'form':form})
+
+
+
+
+
+
