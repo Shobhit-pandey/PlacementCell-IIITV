@@ -11,7 +11,8 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.generic import ListView
 
 from MyWebsite.form import RecruiterForm, BeyondAcademicImagesForm, BeyondAcademicVideosForm, \
-    BeyondAcademicHighlightForm, RecruiterInternshipIndustrialForm, RecruiterInternshipNGOForm, PastRecruiterForm
+    BeyondAcademicHighlightForm, RecruiterInternshipIndustrialForm, RecruiterInternshipNGOForm, PastRecruiterForm, \
+    CompaniesAppliedByStudentsForm
 from MyWebsite.models import BeyondAcademicImages, BeyondAcademicVideos, BeyondAcademicsHighlight, PastRecruiter, \
     RecruiterInternshipIndustrial, RecruiterInternshipNGO, Recruiter
 
@@ -181,14 +182,10 @@ def change_password(request):
 
         return render(request,'change_password.html',{'form':form})
 
-class RecruiterListView(ListView):
-
-    template_name = 'recruiter_list.html'
-
-    model = Recruiter
-
-    def get_queryset(self):
-        return Recruiter.objects.all()
+def RecruiterListView(request):
+    recruiter_list = Recruiter.objects.all()
+    print(recruiter_list)
+    return render(request,'recruiter_list.html',{'recruiter_list':recruiter_list})
 
 def studentapply(request,pk):
     if request.method == 'POST':

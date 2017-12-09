@@ -38,7 +38,6 @@ class SittingFilterTitleMixin(object):
 class QuizListView(ListView):
     model = Quiz
 
-
     def get_queryset(self):
         queryset = super(QuizListView, self).get_queryset()
         return queryset.filter(draft=False)
@@ -73,11 +72,11 @@ class ViewQuizListByCategory(ListView):
             category=self.kwargs['category_name']
         )
 
-        return super(ViewQuizListByCategory, self).\
+        return super(ViewQuizListByCategory, self). \
             dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super(ViewQuizListByCategory, self)\
+        context = super(ViewQuizListByCategory, self) \
             .get_context_data(**kwargs)
 
         context['category'] = self.category
@@ -94,7 +93,7 @@ class QuizUserProgressView(TemplateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
-        return super(QuizUserProgressView, self)\
+        return super(QuizUserProgressView, self) \
             .dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -109,8 +108,8 @@ class QuizMarkingList(QuizMarkerMixin, SittingFilterTitleMixin, ListView):
     model = Sitting
 
     def get_queryset(self):
-        queryset = super(QuizMarkingList, self).get_queryset()\
-                                               .filter(complete=True)
+        queryset = super(QuizMarkingList, self).get_queryset() \
+            .filter(complete=True)
 
         user_filter = self.request.GET.get('user_filter')
         if user_filter:
@@ -137,7 +136,7 @@ class QuizMarkingDetail(QuizMarkerMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(QuizMarkingDetail, self).get_context_data(**kwargs)
-        context['questions'] =\
+        context['questions'] = \
             context['sitting'].get_questions(with_answers=True)
         return context
 
@@ -224,7 +223,7 @@ class QuizTake(FormView):
                              'previous_question': self.question,
                              'answers': self.question.get_answers(),
                              'question_type': {self.question
-                                               .__class__.__name__: True}}
+                                                   .__class__.__name__: True}}
         else:
             self.previous = {}
 
@@ -244,9 +243,9 @@ class QuizTake(FormView):
         self.sitting.mark_quiz_complete()
 
         if self.quiz.answers_at_end:
-            results['questions'] =\
+            results['questions'] = \
                 self.sitting.get_questions(with_answers=True)
-            results['incorrect_questions'] =\
+            results['incorrect_questions'] = \
                 self.sitting.get_incorrect_questions
 
         if self.quiz.exam_paper is False:
@@ -311,8 +310,8 @@ class QuizTake(FormView):
             anon_session_score(self.request.session, 1, 1)
         else:
             anon_session_score(self.request.session, 0, 1)
-            self.request\
-                .session[self.quiz.anon_q_data()]['incorrect_questions']\
+            self.request \
+                .session[self.quiz.anon_q_data()]['incorrect_questions'] \
                 .append(self.question.id)
 
         self.previous = {}
@@ -322,9 +321,9 @@ class QuizTake(FormView):
                              'previous_question': self.question,
                              'answers': self.question.get_answers(),
                              'question_type': {self.question
-                                               .__class__.__name__: True}}
+                                                   .__class__.__name__: True}}
 
-        self.request.session[self.quiz.anon_q_list()] =\
+        self.request.session[self.quiz.anon_q_list()] = \
             self.request.session[self.quiz.anon_q_list()][1:]
 
     def final_result_anon(self):
@@ -349,7 +348,7 @@ class QuizTake(FormView):
         if self.quiz.answers_at_end:
             results['questions'] = sorted(
                 self.quiz.question_set.filter(id__in=q_order)
-                                      .select_subclasses(),
+                    .select_subclasses(),
                 key=lambda q: q_order.index(q.id))
 
             results['incorrect_questions'] = (
@@ -393,61 +392,66 @@ def Createquestion(request):
 
 
 def Createquiz(request):
-    form=CreatequizForm(initial={'user_id':request.user.id})
+    form = CreatequizForm(initial={'user_id': request.user.id})
     if request.method == 'POST':
-        form = CreatequizForm(request.POST,initial={'user_id':request.user.id})
+        form = CreatequizForm(request.POST, initial={'user_id': request.user.id})
         if form.is_valid():
             form.save()
             # TODO cookies addition
             return redirect('createquestion')
 
     else:
-        form = CreatequizForm(initial={'user_id':request.user.id})
-    return render(request,'quiz/createquiz.html',{'form':form})
+        form = CreatequizForm(initial={'user_id': request.user.id})
+    return render(request, 'quiz/createquiz.html', {'form': form})
+
 
 def AddMcq(request):
     quiz = Quiz.objects.filter(user_id=request.user.id)
     quiz = list(quiz)
     quiz = quiz[-1]
-    quiz=Quiz.objects.filter(user_id=request.user.id,title=quiz)
+    quiz = Quiz.objects.filter(user_id=request.user.id, title=quiz)
     print(quiz)
     mcq_form = MCQuestionForm(initial={'user_id': request.user.id})
     answer__formset = MCQFormSet()
     if request.method == "POST":
-        mcq_form=MCQuestionForm(request.POST,request.FILES,initial={'user_id': request.user.id})
+        mcq_form = MCQuestionForm(request.POST, request.FILES, initial={'user_id': request.user.id})
         if mcq_form.is_valid():
-            mcq_form.cleaned_data['user_id']=request.user.id
-            new_mcq=mcq_form.save()
-            new_mcq.quiz=quiz
+            mcq_form.cleaned_data['user_id'] = request.user.id
+            new_mcq = mcq_form.save()
+            new_mcq.quiz = quiz
             new_mcq.save()
-            answer__formset=MCQFormSet(request.POST, request.FILES,instance=new_mcq)
+            answer__formset = MCQFormSet(request.POST, request.FILES, instance=new_mcq)
             if answer__formset.is_valid():
                 answer__formset.save()
                 return redirect('createquestion')
 
     else:
-        mcq_form=MCQuestionForm(initial={'user_id':request.user.id})
-        answer__formset=MCQFormSet()
-    return render(request,'quiz/addmcq.html',{'mcq_form':mcq_form,'answer_formset':answer__formset})
+        mcq_form = MCQuestionForm(initial={'user_id': request.user.id})
+        answer__formset = MCQFormSet()
+    return render(request, 'quiz/addmcq.html', {'mcq_form': mcq_form, 'answer_formset': answer__formset})
+
+
 def AddTF(request):
     tf_form = TFForm(initial={'user_id': request.user.id})
     if request.method == "POST":
-        tf_form=TFForm(request.POST,request.FILES,initial={'user_id': request.user.id})
+        tf_form = TFForm(request.POST, request.FILES, initial={'user_id': request.user.id})
         if tf_form.is_valid():
             tf_form.save()
             return redirect('createquestion')
 
     else:
-        tf_form=TFForm(initial={'user_id':request.user.id})
-    return render(request,'quiz/addtf.html',{'tf_form':tf_form,})
+        tf_form = TFForm(initial={'user_id': request.user.id})
+    return render(request, 'quiz/addtf.html', {'tf_form': tf_form, })
+
+
 def AddEssay(request):
     essay_form = EssayForm(initial={'user_id': request.user.id})
     if request.method == "POST":
-        essay_form=EssayForm(request.POST,request.FILES,initial={'user_id': request.user.id})
+        essay_form = EssayForm(request.POST, request.FILES, initial={'user_id': request.user.id})
         if essay_form.is_valid():
             essay_form.save()
             return redirect('createquestion')
 
     else:
-        essay_form=EssayForm(initial={'user_id':request.user.id})
-    return render(request,'quiz/addessay.html',{'essay_form':essay_form,})
+        essay_form = EssayForm(initial={'user_id': request.user.id})
+    return render(request, 'quiz/addessay.html', {'essay_form': essay_form, })

@@ -1,6 +1,7 @@
 from django.conf.urls import url
 
 from MyWebsite import views
+from MyWebsite.views import RecruiterListView
 
 urlpatterns = [
     url(r'^$',views.home,name='home'),
@@ -20,5 +21,9 @@ urlpatterns = [
     url(r'^addinterndescrip/$',views.Addinterndescrip,name='addinterndescrip'),
     url(r'^addngodescrip/$',views.Addngodescrip,name='addngodescip'),
     url(r'^change_password/$',views.change_password,name='change_password'),
+    url(r'^college-team/$',views.college_team,name='college_team'),
+    url(r'^alumni/$',views.alumni,name='alumni'),
+    url(r'^research-development/$',views.research_development,name='research_development'),
     url(r'^studentapply/(?P<pk>[\w\-]+)/$',views.studentapply,name='studentapply'),
+    url(r'^recruiter-list/$',views.RecruiterListView,name='recruiterlist'),
     ]
