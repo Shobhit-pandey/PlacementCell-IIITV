@@ -164,6 +164,7 @@
 
 </div> -->
 <!-- bloc-1 END -->
+<div class="bloc b-divider bgc-ghost-white l-bloc ">
 {% if user.is_superuser %}
     <h1 style="text-align: center"><a href="{% url 'mywebsite:addBeyondAcademicimages' %}" style="color: #ff4226">Add Image</a>  <a href="{% url 'mywebsite:addBeyondAcademicvideos' %}" style="color: #6a92e4">Add Video</a> <a href="{% url 'mywebsite:addBeyondAcademichighlight' %}" style="color: #13cc40">Add Highlight</a></h1>
 {% endif %}
@@ -191,6 +192,7 @@
             </div>
       {% endif %}
 {% endfor %}
+</div>
 </div>
 </div>
 {#<div class="bloc bg-repeat bgc-ghost-white l-bloc" id="bloc-45" >#}
