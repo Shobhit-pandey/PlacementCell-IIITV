@@ -182,14 +182,10 @@ def change_password(request):
 
         return render(request,'change_password.html',{'form':form})
 
-class RecruiterListView(ListView):
-
-    template_name = 'recruiter_list.html'
-
-    model = Recruiter
-
-    def get_queryset(self):
-        return Recruiter.objects.all()
+def RecruiterListView(request):
+    recruiter_list = Recruiter.objects.all()
+    print(recruiter_list)
+    return render(request,'recruiter_list.html',{'recruiter_list':recruiter_list})
 
 def studentapply(request,pk):
     if request.method == 'POST':
