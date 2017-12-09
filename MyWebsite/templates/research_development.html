@@ -127,6 +127,9 @@
 	</div>
 </div>
   bloc-44 END  -->
+ {% if user.is_superuser %}
+<a href="{% url 'mywebsite:addresearch' %}">Add Research</a>
+{% endif %}
 
 <!-- bloc-45 -->
 <div class="bloc bg-repeat bgc-ghost-white l-bloc" id="bloc-45">

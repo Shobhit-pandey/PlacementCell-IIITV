@@ -12,7 +12,7 @@ from django.views.generic import ListView
 
 from MyWebsite.form import RecruiterForm, BeyondAcademicImagesForm, BeyondAcademicVideosForm, \
     BeyondAcademicHighlightForm, RecruiterInternshipIndustrialForm, RecruiterInternshipNGOForm, PastRecruiterForm, \
-    CompaniesAppliedByStudentsForm
+    CompaniesAppliedByStudentsForm, AlumniForm, ResearchForm
 from MyWebsite.models import BeyondAcademicImages, BeyondAcademicVideos, BeyondAcademicsHighlight, PastRecruiter, \
     RecruiterInternshipIndustrial, RecruiterInternshipNGO, Recruiter
 
@@ -197,6 +197,32 @@ def studentapply(request,pk):
         form = CompaniesAppliedByStudentsForm(initial={'user_id': request.user.id, 'company_name': pk})
 
     return render(request,'studentapply.html',{'form':form})
+
+
+
+
+def addalumni(request):
+    form = AlumniForm()
+    if request.method == 'POST':
+        form = AlumniForm()
+        if form.is_valid():
+            form.save()
+            return redirect('mywebsite:alumni')
+    else:
+        form = AlumniForm()
+    return render(request,'Addalumni.html',{'form':form})
+
+
+def addresearch(request):
+    form = ResearchForm()
+    if request.method == 'POST':
+        form = ResearchForm()
+        if form.is_valid():
+            form.save()
+            return redirect('mywebsite:research_development')
+    else:
+        form = ResearchForm()
+    return render(request,'Addresearch.html',{'form':form})
 
 
 

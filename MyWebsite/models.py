@@ -161,6 +161,15 @@ class Alumni(models.Model):
         return reverse("contact")
 
 
+class Research(models.Model):
+    research_image = models.ImageField(blank=False,null=False)
+    research_description = models.CharField(max_length=250,blank=False,null=False)
+
+
+    def get_absolute_url(self):
+        return reverse("contact")
+
+
 
 
 
