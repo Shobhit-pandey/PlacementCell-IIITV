@@ -127,13 +127,17 @@
 	</div>
 </div>
   bloc-44 END  -->
- {% if user.is_superuser %}
-<a href="{% url 'mywebsite:addresearch' %}">Add Research</a>
-{% endif %}
+{# {% if user.is_superuser %}#}
+{#<a href="{% url 'mywebsite:addresearch' %}">Add Research</a>#}
+{#{% endif %}#}
 
 <!-- bloc-45 -->
 <div class="bloc bg-repeat bgc-ghost-white l-bloc" id="bloc-45">
+     {% if user.is_superuser %}
+        <h2 style="text-align: center;color: #6a92e4"><a href="{% url 'mywebsite:addresearch' %}" style="text-align: center;color: #6a92e4">Add Research</a> </h2>
+        {% endif %}
 	<div class="container bloc-md">
+
 		<div class="row">
 
 			<div class="col-sm-9">

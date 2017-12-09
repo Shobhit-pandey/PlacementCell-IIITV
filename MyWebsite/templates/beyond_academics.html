@@ -17,7 +17,7 @@
 	<script src="{% static 'javascript/jquery-2.1.0.min.js.download' %}"></script>
 	<script src="{% static 'javascript/bootstrap.min.js.download' %}"></script>
 	<script src="{% static 'javascript/blocs.min.js.download' %}"></script>
-    <title>Home - T&amp;P IIIT Vadodara</title>
+    <title>Achievements- T&amp;P IIIT Vadodara</title>
 
 
 <!-- Google Analytics -->
@@ -165,7 +165,7 @@
 </div> -->
 <!-- bloc-1 END -->
 {% if user.is_superuser %}
-    <h1 style="text-align: center"><a href="{% url 'mywebsite:addBeyondAcademicimages' %}">Add Image</a>  <a href="{% url 'mywebsite:addBeyondAcademicvideos' %}">Add Video</a> <a href="{% url 'mywebsite:addBeyondAcademichighlight' %}">Add Highlight</a></h1>
+    <h1 style="text-align: center"><a href="{% url 'mywebsite:addBeyondAcademicimages' %}" style="color: #ff4226">Add Image</a>  <a href="{% url 'mywebsite:addBeyondAcademicvideos' %}" style="color: #6a92e4">Add Video</a> <a href="{% url 'mywebsite:addBeyondAcademichighlight' %}" style="color: #13cc40">Add Highlight</a></h1>
 {% endif %}
 <h1 style="text-align: center">Beyond Academic</h1>
 <div class="card" style="margin-top: 60px;width:100%;height: auto;margin-left: 0px;background-color:white">

@@ -105,11 +105,19 @@
 	</div>
 </div>
 </div>
+<div style=" max-width: 800px;
+    padding: 5% 10% 10% 20%;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-left: 10%;">
 {% if user.is_superuser %}
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Add</button>
+   <p style="margin-top: 20px;"> <button type="submit">Add</button></p>
 </form>
     {% else %}
     <h1>Behave yourself you are not super user</h1>
@@ -121,5 +129,6 @@
                 }
         </script>
         <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-</body>
+
+</div></body>
 </html>

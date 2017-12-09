@@ -17,7 +17,7 @@
 	<script src="{% static 'javascript/blocs.min.js' %}"></script>
 	<script src="{% static 'javascript/jqBootstrapValidation.js' %}"></script>
 	<script src="{% static 'javascript/formHandler.js' %}"></script>
-    <title>Recruiter Login - T&amp;P IIIT Vadodara</title>
+    <title>Alumini - T&amp;P IIIT Vadodara</title>
 
 
 <!-- Google Analytics -->
@@ -127,12 +127,14 @@
 	</div>
 </div>
   bloc-44 END  -->
-    {% if user.is_superuser %}
-<a href="{% url 'mywebsite:addalumni' %}">Add alumni</a>
-{% endif %}
+
 <!-- bloc-45 -->
 <div class="bloc bg-repeat bgc-ghost-white l-bloc" id="bloc-45">
+ {% if user.is_superuser %}
+        <h2 style="text-align: center;color: #6a92e4"><a href="{% url 'mywebsite:addalumni' %}" style="text-align: center;color: #6a92e4">Add alumni</a> </h2>
+        {% endif %}
 	<div class="container bloc-md">
+
 		<div class="row">
 
 			<div class="col-sm-4">
