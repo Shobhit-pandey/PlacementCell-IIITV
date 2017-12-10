@@ -170,7 +170,8 @@
 					</div>
 				</div>
 			</div>
-        {% elif user.is_authenticated or user.is_superuser and not user.is_staff %}
+        {% else  %}
+                {% if not user.is_staff %}
                 <div class="bloc bg-repeat bgc-ghost-white l-bloc" style="margin-bottom: 40px;">
                 <h3 style="text-align: center;">
     <a href="{% url 'logout' %}" style="color: #ff4226">Logout</a> <br>
@@ -179,6 +180,7 @@
                 <a href="{% url 'mywebsite:recruiterlist' %}" style="color: #6a92e4">Company List</a><br>
 </h3>
                 </div>
+                    {% endif %}
 {% endif %}
         </div>
 	</div>

@@ -172,7 +172,9 @@
              <div id="slide">
   <div class="slideshow-container">
       <div style="text-align: center">
+      {% if user.is_superuser %}
       <h3><a href="{% url 'mywebsite:teamimage' %}">Add Team Image</a></h3>
+      {% endif %}
     {% for team in addteamimage %}
       <div class="mySlides fade"> <img src="{{ team.team_image.url }}" style="width:50%"> </div>
     {% endfor %}
@@ -214,7 +216,10 @@
 		</div>
 
 		<div class="row voffset">
-           <h3><a href="{% url 'mywebsite:facultyimage' %}">Add Faculty Image</a></h3>
+        {% if user.is_superuser %}
+      <h3><a href="{% url 'mywebsite:facultyimage' %}">Add Faculty Image</a></h3>
+      {% endif %}
+
             {% for faculty in addfacultyimage %}
                 <div class="col-sm-4">
 				<img style="width: 80%; height: 290px" src="{{ faculty.faculty_image.url }}" class="img-responsive mg-md">
@@ -258,7 +263,10 @@
 
 
         <div class="row voffset">
-         <h3><a href="{% url 'mywebsite:studentimage' %}">Add Student Image</a></h3>
+        {% if user.is_superuser %}
+      <h3><a href="{% url 'mywebsite:studentimage' %}">Add Student Image</a></h3>
+      {% endif %}
+
 			{% for student in addstudentimage %}
                 <div class="col-sm-3">
 				<img style="width: 80%; height: 190px" src="{{ student.student_image.url }}" class="img-responsive mg-md">

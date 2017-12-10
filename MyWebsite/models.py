@@ -67,7 +67,7 @@ class Recruiter(models.Model):
     Group_Discussion = models.BooleanField()
     Personal_Interview = models.BooleanField()
     Written_Test_Technical = models.BooleanField()
-    Other = models.CharField(max_length=400,default="",null=False,blank=False)
+    Other = models.CharField(max_length=400,default="",null=True,blank=True)
     Offers_intend = models.IntegerField(blank = True,null=True)
     Officials_Visit = models.IntegerField(blank=True,null=True)
     Rooms_required = models.IntegerField(blank = True,null=True)
