@@ -2,7 +2,7 @@ from django import forms
 
 from MyWebsite.models import Recruiter, BeyondAcademicImages, BeyondAcademicVideos, BeyondAcademicsHighlight, \
     RecruiterInternshipIndustrial, RecruiterInternshipNGO, PastRecruiter, CompaniesAppliedByStudents, Alumni, Research, \
-    CollegeTeamImage, CollegeTeamStudent, CollegeTeamFaculty
+    CollegeTeamImage, CollegeTeamStudent, CollegeTeamFaculty, AcademicImage, AcademicVideo, AcademicHighlight
 
 
 class RecruiterForm(forms.ModelForm):
@@ -96,6 +96,21 @@ class CollegeTeamStudentForm(forms.ModelForm):
 
 
 
+class AcademicImageForm(forms.ModelForm):
+    class Meta:
+        model = AcademicImage
+        exclude = []
+
+
+class AcademicVideoForm(forms.ModelForm):
+    class Meta:
+        model = AcademicVideo
+        exclude = []
+
+class  AcademicHighlightForm(forms.ModelForm):
+    class Meta:
+        model =  AcademicHighlight
+        exclude = []
 
 
 

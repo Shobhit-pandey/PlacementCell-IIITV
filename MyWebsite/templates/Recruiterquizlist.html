@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recruiter Quiz list</title>
+</head>
+<body>
+{% for quiz in quizlist %}
+
+    <a href="{% url '' %}"> <h1>{{ quiz.title }}</h1></a>
+    <h2>{{ quiz.description }}</h2>
+
+{% endfor %}
+
+</body>
+</html>
