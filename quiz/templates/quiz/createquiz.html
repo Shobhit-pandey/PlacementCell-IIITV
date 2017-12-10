@@ -8,7 +8,8 @@
 
 <!-- bloc-0 -->
 
-<div style="height: 40px;"></div>
+{% if user.is_superuser or user.is_staff %}
+    <div style="height: 40px;"></div>
 <div class="container" style="font-size: 18px; max_width:800px;background: rgba(119,180,255,0.26)">
     <div style="height: 10px;"></div>
     <div><h1 style="font-size: 250%; text-align: center;">Create Quiz</h1></div>
@@ -89,6 +90,9 @@
                         <button type="submit"><a>Add Quiz</a></button></div>
 </form>
 </div>
+    {% else %}
+    <h1>Url not found... though you can go to home page from <a href="{% url 'mywebsite:home' %}">here</a></h1>
+    {% endif %}
 </div>
 <div style="height: 50px;"></div>
 {% endblock %}

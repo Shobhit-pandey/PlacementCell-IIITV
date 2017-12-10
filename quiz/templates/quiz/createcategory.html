@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+{% if user.is_superuser or user.is_staff %}
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
@@ -13,5 +14,8 @@
         <button type="submit"><a>Create Category</a></button>
     </div>
     </form>
+    {% else %}
+    <h1>Url not found... though you can go to home page from <a href="{% url 'mywebsite:home' %}">here</a></h1>
+{% endif %}
 </body>
 </html>

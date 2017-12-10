@@ -3,7 +3,7 @@
 {% block title %}{% trans "All Quizzes" %}{% endblock %}
 
 {% block content %}
-    {% if user.is_superuser %}
+    {% if user.is_superuser or user.is_staff %}
     <a href="{% url 'createcategory' %}" style="text-align: center"><h2>{% trans "Create Category for Quiz" %}</h2></a>
     {% endif %}
     {% if user.is_authenticated %}
