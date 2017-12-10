@@ -11,10 +11,10 @@
     {% if quizzes %}
         <ul>
         {% for quiz in quizzes %}
-            {% if quiz.end_time > current_datetime %}
+            {% if quiz.end_time >= current_datetime %}
             <div style="background-color:rgba(0,0,0,0.15);border: 1px solid; width: 1000px;padding-bottom: 10px ;padding-left: 10px;padding-top: 10px;margin-right: 10px;margin-top: 40px ">
-            {% if quiz.start_time > current_datetime %}
-                <h1 style="color: #1E8EFF;font-size:70px ">{{ quiz.title }}(Not Live)</h1>
+            {% if quiz.start_time >= current_datetime %}
+                <p><h1 style="color: #1E8EFF;font-size:70px ">{{ quiz.title }}(Not Live)</h1> Current time {{ current_datetime }} </p>
                 {% else %}
 			  <a href="{% url 'quiz_question' quiz_name=quiz.url %}" style="font-size: 70px;text-align: center;font-feature-settings: normal">
 				{{ quiz.title }}

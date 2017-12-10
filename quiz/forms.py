@@ -17,6 +17,7 @@ ANSWER_ORDER_OPTIONS = (
     ('none', ('None'))
 )
 
+
 class QuestionForm(forms.Form):
     def __init__(self, question, *args, **kwargs):
         super(QuestionForm, self).__init__(*args, **kwargs)
@@ -33,25 +34,25 @@ class EssayForm(forms.Form):
 
 
 class CreatequizForm(forms.Form):
-    user_id=forms.CharField(max_length=100,required=True,widget=forms.HiddenInput())
-    title = forms.CharField(max_length=100,required=True)
-    description=forms.CharField(max_length=1000,required=True)
-    start_time=forms.DateTimeField(required=True,initial=timezone.now())
-    end_time=forms.DateTimeField(required=True,initial=timezone.now())
-    url=forms.CharField(max_length=100,required=True)
-    category=forms.ModelChoiceField(queryset=Category.objects.all(),required=True)
-    random_order=forms.BooleanField(required=False)
-    max_questions=forms.IntegerField(required=False)
-    answers_at_end=forms.BooleanField(required=False)
-    exam_paper=forms.BooleanField(required=False)
-    single_attempt=forms.BooleanField(required=False)
-    pass_mark=forms.IntegerField(required=False,initial=0)
-    success_text=forms.CharField(max_length=100,required=False)
-    fail_text=forms.CharField(max_length=100,required=False)
-    draft=forms.BooleanField(required=False)
+    user_id = forms.CharField(max_length=100, required=True, widget=forms.HiddenInput())
+    title = forms.CharField(max_length=100, required=True)
+    description = forms.CharField(max_length=1000, required=True)
+    start_time = forms.DateTimeField(required=True, initial=timezone.now())
+    end_time = forms.DateTimeField(required=True, initial=timezone.now())
+    url = forms.CharField(max_length=100, required=True)
+    category = forms.ModelChoiceField(queryset=Category.objects.all(), required=True)
+    random_order = forms.BooleanField(required=False)
+    max_questions = forms.IntegerField(required=False)
+    answers_at_end = forms.BooleanField(required=False)
+    exam_paper = forms.BooleanField(required=False)
+    single_attempt = forms.BooleanField(required=False)
+    pass_mark = forms.IntegerField(required=False, initial=0)
+    success_text = forms.CharField(max_length=100, required=False)
+    fail_text = forms.CharField(max_length=100, required=False)
+    draft = forms.BooleanField(required=False)
 
-    def save(self,kwargs=None):
-        u=Quiz.objects.create(
+    def save(self, kwargs=None):
+        u = Quiz.objects.create(
             user_id=self.cleaned_data.get('user_id'),
             title=self.cleaned_data.get('title'),
             description=self.cleaned_data.get('description'),
@@ -71,16 +72,17 @@ class CreatequizForm(forms.Form):
         u.save()
         return u
 
+
 class MCQuestionForm(forms.Form):
-    user_id = forms.CharField(max_length=100, required=True,widget=forms.HiddenInput())
-    sub_category = forms.ModelChoiceField(queryset=SubCategory.objects.all(),required=False)
+    user_id = forms.CharField(max_length=100, required=True, widget=forms.HiddenInput())
+    sub_category = forms.ModelChoiceField(queryset=SubCategory.objects.all(), required=False)
     figure = forms.ImageField(required=False)
-    content = forms.CharField(max_length=1000,required=True)
-    explanation = forms.CharField(max_length=2000,required=False)
-    answer_order=forms.ChoiceField(ANSWER_ORDER_OPTIONS,required=True)
+    content = forms.CharField(max_length=1000, required=True)
+    explanation = forms.CharField(max_length=2000, required=False)
+    answer_order = forms.ChoiceField(ANSWER_ORDER_OPTIONS, required=True)
 
     def save(self):
-        u=MCQuestion.objects.create(
+        u = MCQuestion.objects.create(
             sub_category=self.cleaned_data.get('sub_category'),
             user_id=self.cleaned_data.get('user_id'),
             figure=self.cleaned_data.get('figure'),
@@ -92,7 +94,6 @@ class MCQuestionForm(forms.Form):
         return u
 
 
-
 # class MCQuestionForm(forms.ModelForm):
 #     class Meta:
 #         model=MCQuestion
@@ -102,20 +103,23 @@ class MCQuestionForm(forms.Form):
 class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
-        fields=('content','correct')
+        fields = ('content', 'correct')
         exclude = []
-MCQFormSet = inlineformset_factory(MCQuestion,Answer,form=AnswerForm,can_delete=False)
+
+
+MCQFormSet = inlineformset_factory(MCQuestion, Answer, form=AnswerForm, can_delete=False)
+
 
 class TFForm(forms.Form):
-    user_id = forms.CharField(max_length=100, required=True,widget=forms.HiddenInput())
-    sub_category = forms.ModelChoiceField(queryset=SubCategory.objects.all(),required=False)
+    user_id = forms.CharField(max_length=100, required=True, widget=forms.HiddenInput())
+    sub_category = forms.ModelChoiceField(queryset=SubCategory.objects.all(), required=False)
     figure = forms.ImageField(required=False)
-    content = forms.CharField(max_length=1000,required=True)
-    explanation = forms.CharField(max_length=2000,required=False)
-    correct=forms.BooleanField(required=False)
+    content = forms.CharField(max_length=1000, required=True)
+    explanation = forms.CharField(max_length=2000, required=False)
+    correct = forms.BooleanField(required=False)
 
     def save(self):
-        u=TF_Question.objects.create(
+        u = TF_Question.objects.create(
             sub_category=self.cleaned_data.get('sub_category'),
             user_id=self.cleaned_data.get('user_id'),
             figure=self.cleaned_data.get('figure'),
@@ -126,16 +130,18 @@ class TFForm(forms.Form):
         u.save()
         return u
 
-class EssayForm(forms.Form):
-    user_id = forms.CharField(max_length=100, required=True,widget=forms.HiddenInput())
-    sub_category = forms.ModelChoiceField(queryset=SubCategory.objects.all(),required=False)
+
+class EssayEForm(forms.Form):
+    user_id = forms.CharField(max_length=100, required=True, widget=forms.HiddenInput())
+    sub_category = forms.ModelChoiceField(queryset=SubCategory.objects.all(), required=False)
     figure = forms.ImageField(required=False)
-    content = forms.CharField(max_length=1000,required=True)
-    explanation = forms.CharField(max_length=2000,required=False)
+    content = forms.CharField(max_length=1000, required=True)
+    explanation = forms.CharField(max_length=2000, required=False)
+
     # correct=forms.BooleanField()
 
     def save(self):
-        u=Essay_Question.objects.create(
+        u = Essay_Question.objects.create(
             sub_category=self.cleaned_data.get('sub_category'),
             user_id=self.cleaned_data.get('user_id'),
             figure=self.cleaned_data.get('figure'),

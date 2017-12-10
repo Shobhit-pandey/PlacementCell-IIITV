@@ -13,7 +13,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, TemplateView, FormView, CreateView
 from multichoice.models import Answer, MCQuestion
 
-from .forms import QuestionForm, EssayForm, CreatequizForm, MCQuestionForm, AnswerForm, MCQFormSet, TFForm
+from .forms import QuestionForm, EssayForm, CreatequizForm, MCQuestionForm, AnswerForm, MCQFormSet, TFForm, EssayEForm
 from .models import Quiz, Category, Progress, Sitting, Question
 from essay.models import Essay_Question
 
@@ -471,13 +471,13 @@ def AddEssay(request):
     referer = request.META.get('HTTP_REFERER')
     if referer == None:
         return render(request, 'quiz/wrongurl.html')
-    essay_form = EssayForm(initial={'user_id': request.user.id})
+    essay_form = EssayEForm(initial={'user_id': request.user.id})
     quiz = Quiz.objects.filter(user_id=request.user.id)
     quiz = list(quiz)
     quiz = quiz[-1]
     quiz = Quiz.objects.filter(user_id=request.user.id, title=quiz)
     if request.method == "POST":
-        essay_form = EssayForm(request.POST, request.FILES, initial={'user_id': request.user.id})
+        essay_form = EssayEForm(request.POST, request.FILES, initial={'user_id': request.user.id})
         if essay_form.is_valid():
             new_essay=essay_form.save()
             new_essay.quiz=quiz
@@ -485,5 +485,5 @@ def AddEssay(request):
             return redirect('createquestion')
 
     else:
-        essay_form = EssayForm(initial={'user_id': request.user.id})
+        essay_form = EssayEForm(initial={'user_id': request.user.id})
     return render(request, 'quiz/addessay.html', {'essay_form': essay_form, })
