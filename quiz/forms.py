@@ -40,7 +40,6 @@ class CreatequizForm(forms.Form):
     start_time = forms.DateTimeField(required=True, initial=timezone.now())
     end_time = forms.DateTimeField(required=True, initial=timezone.now())
     time_of_quiz=forms.IntegerField(required=True,initial=1)
-    url = forms.CharField(max_length=100, required=True)
     category = forms.ModelChoiceField(queryset=Category.objects.all(), required=True)
     random_order = forms.BooleanField(required=False)
     max_questions = forms.IntegerField(required=False)
@@ -59,7 +58,6 @@ class CreatequizForm(forms.Form):
             description=self.cleaned_data.get('description'),
             start_time=self.cleaned_data.get('start_time'),
             end_time=self.cleaned_data.get('end_time'),
-            url=self.cleaned_data.get('url'),
             category=self.cleaned_data.get('category'),
             random_order=self.cleaned_data.get('random_order'),
             max_questions=self.cleaned_data.get('max_questions'),
@@ -152,3 +150,8 @@ class EssayEForm(forms.Form):
         )
         u.save()
         return u
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        exclude=[]

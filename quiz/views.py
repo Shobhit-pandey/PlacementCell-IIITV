@@ -13,7 +13,8 @@ from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, TemplateView, FormView, CreateView
 from multichoice.models import Answer, MCQuestion
 
-from .forms import QuestionForm, EssayForm, CreatequizForm, MCQuestionForm, AnswerForm, MCQFormSet, TFForm, EssayEForm
+from .forms import QuestionForm, EssayForm, CreatequizForm, MCQuestionForm, AnswerForm, MCQFormSet, TFForm, EssayEForm, \
+    CategoryForm
 from .models import Quiz, Category, Progress, Sitting, Question
 from essay.models import Essay_Question
 
@@ -45,7 +46,7 @@ class QuizListView(ListView):
 
 class QuizDetailView(DetailView):
     model = Quiz
-    slug_field = 'url'
+    slug_field = 'id'
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -486,3 +487,17 @@ def AddEssay(request):
     else:
         essay_form = EssayEForm(initial={'user_id': request.user.id})
     return render(request, 'quiz/addessay.html', {'essay_form': essay_form, })
+
+def CreateCategory(request):
+    form = CategoryForm()
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('quiz_category_list_all')
+
+    else:
+        form = CategoryForm()
+    return render(request,'quiz/createcategory.html',{'form':form})
+    pass
+

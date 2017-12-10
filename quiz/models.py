@@ -93,10 +93,6 @@ class Quiz(models.Model):
         verbose_name=_("Time of Quiz"),
         blank=False,help_text=_("Maximum Time in minute"),default=1,
     )
-    url = models.SlugField(
-        max_length=60, blank=False,
-        help_text=_("a user friendly url"),
-        verbose_name=_("user friendly url"))
 
     category = models.ForeignKey(
         Category, null=True, blank=True,
@@ -156,10 +152,6 @@ class Quiz(models.Model):
                     " quizzes."))
 
     def save(self, force_insert=False, force_update=False, *args, **kwargs):
-        self.url = re.sub('\s+', '-', self.url).lower()
-
-        self.url = ''.join(letter for letter in self.url if
-                           letter.isalnum() or letter == '-')
 
         if self.single_attempt is True:
             self.exam_paper = True

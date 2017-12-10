@@ -3,12 +3,12 @@
 {% block title %}{% trans "All Quizzes" %}{% endblock %}
 
 {% block content %}
-<h2>{% trans "Category list" %}</h2>
+<h1 style="margin-left: 40px">{% trans "Category list" %}</h1>
 
 <ul>
   {% for cat in category_list %}
-  <li>
-	<a href="{% url 'quiz_category_list_matching' category_name=cat.category %}">
+  <li style="margin-left: 40px">
+	<a href="{% url 'quiz_category_list_matching' category_name=cat.category %}" style="font-size: 30px;">
 	  {{ cat.category }}
 	</a>
   </li>

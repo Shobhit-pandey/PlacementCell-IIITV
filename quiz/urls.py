@@ -45,5 +45,6 @@ urlpatterns = patterns('',
                        url(r'^add/mcq/$',views.AddMcq,name='addmcq'),
                        url(r'^add/tf/$',views.AddTF,name='addtf'),
                        url(r'^add/essay/$',views.AddEssay,name='addessay'),
+                       url(r'^create/category$',views.CreateCategory,name='createcategory'),
 
 )
