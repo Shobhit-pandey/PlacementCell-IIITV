@@ -449,11 +449,17 @@ def AddTF(request):
     referer = request.META.get('HTTP_REFERER')
     if referer == None:
         return render(request, 'quiz/wrongurl.html')
+    quiz = Quiz.objects.filter(user_id=request.user.id)
+    quiz = list(quiz)
+    quiz = quiz[-1]
+    quiz = Quiz.objects.filter(user_id=request.user.id, title=quiz)
     tf_form = TFForm(initial={'user_id': request.user.id})
     if request.method == "POST":
         tf_form = TFForm(request.POST, request.FILES, initial={'user_id': request.user.id})
         if tf_form.is_valid():
-            tf_form.save()
+            new_tf=tf_form.save()
+            new_tf.quiz=quiz
+            new_tf.save()
             return redirect('createquestion')
 
     else:
@@ -466,10 +472,16 @@ def AddEssay(request):
     if referer == None:
         return render(request, 'quiz/wrongurl.html')
     essay_form = EssayForm(initial={'user_id': request.user.id})
+    quiz = Quiz.objects.filter(user_id=request.user.id)
+    quiz = list(quiz)
+    quiz = quiz[-1]
+    quiz = Quiz.objects.filter(user_id=request.user.id, title=quiz)
     if request.method == "POST":
         essay_form = EssayForm(request.POST, request.FILES, initial={'user_id': request.user.id})
         if essay_form.is_valid():
-            essay_form.save()
+            new_essay=essay_form.save()
+            new_essay.quiz=quiz
+            new_essay.save()
             return redirect('createquestion')
 
     else:
