@@ -388,10 +388,17 @@ def anon_session_score(session, to_add=0, possible=0):
 
 
 def Createquestion(request):
-    return render(request, 'quiz/addquestion.html')
+    referer = request.META.get('HTTP_REFERER')
+    if referer == None:
+        return render(request, 'quiz/wrongurl.html')
+    else:
+        return render(request, 'quiz/addquestion.html')
 
 
 def Createquiz(request):
+    referer = request.META.get('HTTP_REFERER')
+    if referer == None:
+        return render(request, 'quiz/wrongurl.html')
     form = CreatequizForm(initial={'user_id': request.user.id})
     if request.method == 'POST':
         form = CreatequizForm(request.POST, initial={'user_id': request.user.id})
@@ -407,12 +414,14 @@ def Createquiz(request):
 
 
 def AddMcq(request):
-    # request.session.set_expiry()
+    referer = request.META.get('HTTP_REFERER')
+    if referer == None:
+        return render(request, 'quiz/wrongurl.html')
     quiz = Quiz.objects.filter(user_id=request.user.id)
     quiz = list(quiz)
     quiz = quiz[-1]
     quiz = Quiz.objects.filter(user_id=request.user.id, title=quiz)
-    print(quiz)
+    # print(quiz)
     mcq_form = MCQuestionForm(initial={'user_id': request.user.id})
     answer__formset = MCQFormSet()
     if request.session:
@@ -437,6 +446,9 @@ def AddMcq(request):
 
 
 def AddTF(request):
+    referer = request.META.get('HTTP_REFERER')
+    if referer == None:
+        return render(request, 'quiz/wrongurl.html')
     tf_form = TFForm(initial={'user_id': request.user.id})
     if request.method == "POST":
         tf_form = TFForm(request.POST, request.FILES, initial={'user_id': request.user.id})
@@ -450,6 +462,9 @@ def AddTF(request):
 
 
 def AddEssay(request):
+    referer = request.META.get('HTTP_REFERER')
+    if referer == None:
+        return render(request, 'quiz/wrongurl.html')
     essay_form = EssayForm(initial={'user_id': request.user.id})
     if request.method == "POST":
         essay_form = EssayForm(request.POST, request.FILES, initial={'user_id': request.user.id})
