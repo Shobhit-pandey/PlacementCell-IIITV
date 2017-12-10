@@ -233,60 +233,100 @@
 
 <!-- Footer - bloc-63 -->
 
-<div style="border-top: 5px solid black;" class="bloc b-divider bgc-ghost-white l-bloc " id="bloc-63"><center><img style="background: white; margin-top: -48px; padding: 2px; border-radius: 50%;border-style: solid;border-width: 5px; align-content: center;" src="{% static 'images/iiitv_logo.png' %}" alt="iiitv" width="90" height="90"></center>
+<div style="border-top: 5px solid rgba(0,0,0,0.49);" class="bloc b-divider bgc-ghost-white l-bloc " id="bloc-63"><center><img style="background: white; margin-top: -48px; padding: 2px; border-radius: 50%;border-style: solid;border-width: 5px; align-content: center;" src="{% static 'images/iiitv_logo.png' %}" alt="iiitv" width="90" height="90"></center>
 	<div class="container bloc-md">
 		<div class="row">
-			<div class="col-sm-3">
-				<img src="{% static 'images/iiitv_logo.png' %}" class="head-logo" height="48">
-				<h5 class="mg-md">
-					<a class="ltc-black" href="{% url 'mywebsite:home' %}">Training &amp; Placement Cell, IIIT Vadodara</a><br>
 
-				</h5>
-			</div>
-			<div class="col-sm-3">
-
-
-					<h4 class="ltc-black mg-clear" >Faculty Incharge, Training &amp; Placement Section</h4>
-					<br>
-
-					<a style="font-weight: bold" class="ltc-black mg-lg"  href="http://iiitvadodara.ac.in/">Prof.Ashish Phapolia</a>
-					<br>
-
-
-					<h5  class="ltc-black ">IIIT Vadodara</h5>
-
-					<h5 class="ltc-black	">+91 9000000000</h5>
-
-
-
-
-			</div>
-
-			<div class="col-sm-4">
-
-
-					<h4 class="ltc-black mg-mdr" >Office:</h4>
-					<br>
-					<h4  class="ltc-black mg-clear " style="display: inline;" >Phone:
-					</h4>
-
-					<a  class="ltc-black mg-lg" >0870-0001112 <br>
-												0870-1231231 (Direct)<br>
-												0870-1231231 (Fax)
-					</a>
-					<br>
-
-
-					<h5>  Email : <a href=" mailto:placementcell@iiitvadodara">placementcell@iiitvadodara.ac.in </a></h5>
-
-
-
-
-
-
-			</div>
-
-
+				<p style="text-align: center;">
+                    <strong>Address : </strong>c/o Block No.9, Government Engineering College,
+                    Sector-28, Gandhinagar, Gujarat - 382028
+				</p>
+                <!--</div>-->
+                <!--<div class="col-sm-4 links">-->
+                    <p style="text-align: center;">
+                        <a href="{% url 'mywebsite:academic' %}" style="color: #3b6db4">Achievements</a>
+                        <i style="text-align: center; line-height: 18px; font-style: normal;color: #000000"  >| </i>
+                        <a href="{% url 'mywebsite:procedure' %}" style="color: #3b6db4">Procedure</a>
+                        <i style="text-align: center; line-height: 20px; font-style: normal;color: #000000"  >| </i>
+                        <a href="{% url 'mywebsite:student' %}" style="color: #3b6db4">Students</a>
+                        <i style="text-align: center; line-height: 20px; font-style: normal;color: #000000"  >| </i>
+                        <a href="{% url 'mywebsite:recruiter' %}" style="color: #3b6db4">Recruiter</a>
+                    	<i style="text-align: center; line-height: 20px; font-style: normal;color: #000000"  >| </i>
+                        <a href="{% url 'mywebsite:home' %}" style="color: #3b6db4">Home</a>
+                        <i style="text-align: center; line-height: 20px; font-style: normal;color: #000000"  >| </i>
+                        <a href="{% url 'mywebsite:department' %}" style="color: #3b6db4">Departments</a>
+                        <i style="text-align: center; line-height: 20px; font-style: normal;color: #000000"  >| </i>
+                        <a href="{% url 'mywebsite:about' %}" style="color: #3b6db4">About Us</a>
+                    	<i style="text-align: center; line-height: 20px; font-style: normal;color: #000000"  >| </i>
+                        <a href="{% url 'mywebsite:contact' %}" style="color: #3b6db4">Contact Us</a>
+                        <i style="text-align: center; line-height: 20px; font-style: normal;color: #000000"  >| </i>
+                        <a href="{% url 'mywebsite:college_team' %}" style="color: #3b6db4">College Team</a>
+                        <i style="text-align: center; line-height: 20px; font-style: normal;color: #000000"  >| </i>
+                        <a href="http://iiitvadodara.ac.in/gallery.php" style="color: #3b6db4">Gallery</a>
+                        <i style="text-align: center; line-height: 20px; font-style: normal;color: #000000"  >| </i>
+                        <a href="{% url 'mywebsite:alumni' %}" style="color: #3b6db4">Alumni</a>
+                        <i style="text-align: center; line-height: 20px; font-style: normal;color: #000000"  >| </i>
+                        <a href="{% url 'mywebsite:research_development' %}" style="color: #3b6db4">R&D</a>
+                    	&nbsp;&nbsp;&nbsp;
+               <!-- </div>-->
+               <!-- <div class="col-sm-4 footer-social">-->
+{#                    <a href="#!"><i class="fa fa-facebook" aria-hidden="true" title="Official Facebook Page"></i><span class="sr-only">Official Facebook Page</span></a>#}
+                    <!--<a href="https://github.com/iiitv"><i class="fa fa-github" aria-hidden="true"
+                                                          title="Github Group"></i></a>-->
+{#                    <a href="#!"><i class="fa fa-linkedin" aria-hidden="true" title="LinkedIn Profile"></i><span class="sr-only">LinkedIn Profile</span></a>#}
+{#                    <a href="#!" title=""><i class="fa fa-twitter" aria-hidden="true" title="Official Twitter Account"></i><span class="sr-only">Official Twitter Account</span></a>#}
+				</p>
+{#			<div class="col-sm-3">#}
+{#				<img src="{% static 'images/iiitv_logo.png' %}" class="head-logo" height="48">#}
+{#				<h5 class="mg-md">#}
+{#					<a class="ltc-black" href="{% url 'mywebsite:home' %}">Training &amp; Placement Cell, IIIT Vadodara</a><br>#}
+{##}
+{#				</h5>#}
+{#			</div>#}
+{#			<div class="col-sm-3">#}
+{##}
+{##}
+{#					<h4 class="ltc-black mg-clear" >Faculty Incharge, Training &amp; Placement Section</h4>#}
+{#					<br>#}
+{##}
+{#					<a style="font-weight: bold" class="ltc-black mg-lg"  href="http://iiitvadodara.ac.in/">Prof.Ashish Phapolia</a>#}
+{#					<br>#}
+{##}
+{##}
+{#					<h5  class="ltc-black ">IIIT Vadodara</h5>#}
+{##}
+{#					<h5 class="ltc-black	">+91 9000000000</h5>#}
+{##}
+{##}
+{##}
+{##}
+{#			</div>#}
+{##}
+{#			<div class="col-sm-4">#}
+{##}
+{##}
+{#					<h4 class="ltc-black mg-mdr" >Office:</h4>#}
+{#					<br>#}
+{#					<h4  class="ltc-black mg-clear " style="display: inline;" >Phone:#}
+{#					</h4>#}
+{##}
+{#					<a  class="ltc-black mg-lg" >0870-0001112 <br>#}
+{#												0870-1231231 (Direct)<br>#}
+{#												0870-1231231 (Fax)#}
+{#					</a>#}
+{#					<br>#}
+{##}
+{##}
+{#					<h5>  Email : <a href=" mailto:placementcell@iiitvadodara">placementcell@iiitvadodara.ac.in </a></h5>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#			</div>#}
+{##}
+{##}
 
 
 
