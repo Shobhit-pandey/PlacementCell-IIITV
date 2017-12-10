@@ -89,7 +89,10 @@ class Quiz(models.Model):
         verbose_name=_("End Time"),
         blank=False,help_text=_("End time of the quiz"),default=timezone.now(),
     )
-
+    time_of_quiz = models.IntegerField(
+        verbose_name=_("Time of Quiz"),
+        blank=False,help_text=_("Maximum Time in minute"),default=1,
+    )
     url = models.SlugField(
         max_length=60, blank=False,
         help_text=_("a user friendly url"),
@@ -169,6 +172,9 @@ class Quiz(models.Model):
 
         if self.end_time <= self.start_time:
             raise ValidationError("End time must be after Start time")
+
+        if self.time_of_quiz<=0:
+            raise ValidationError("Time must be in positive")
 
         super(Quiz, self).save(force_insert, force_update, *args, **kwargs)
 

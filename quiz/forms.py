@@ -39,6 +39,7 @@ class CreatequizForm(forms.Form):
     description = forms.CharField(max_length=1000, required=True)
     start_time = forms.DateTimeField(required=True, initial=timezone.now())
     end_time = forms.DateTimeField(required=True, initial=timezone.now())
+    time_of_quiz=forms.IntegerField(required=True,initial=1)
     url = forms.CharField(max_length=100, required=True)
     category = forms.ModelChoiceField(queryset=Category.objects.all(), required=True)
     random_order = forms.BooleanField(required=False)
@@ -68,7 +69,8 @@ class CreatequizForm(forms.Form):
             pass_mark=self.cleaned_data.get('pass_mark'),
             success_text=self.cleaned_data.get('success_text'),
             fail_text=self.cleaned_data.get('fail_text'),
-            draft=self.cleaned_data.get('draft'))
+            draft=self.cleaned_data.get('draft'),
+            time_of_quiz=self.cleaned_data.get('time_of_quiz'))
         u.save()
         return u
 

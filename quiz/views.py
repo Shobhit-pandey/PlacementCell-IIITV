@@ -466,7 +466,6 @@ def AddTF(request):
         tf_form = TFForm(initial={'user_id': request.user.id})
     return render(request, 'quiz/addtf.html', {'tf_form': tf_form, })
 
-
 def AddEssay(request):
     referer = request.META.get('HTTP_REFERER')
     if referer == None:
