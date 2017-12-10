@@ -3,6 +3,14 @@
 {% block title %}{% trans "All Quizzes" %}{% endblock %}
 
 {% block content %}
+    {% if user.is_superuser %}
+    <a href="{% url 'createcategory' %}" style="text-align: center"><h2>{% trans "Create Category for Quiz" %}</h2></a>
+    {% endif %}
+    {% if user.is_authenticated %}
+        {% if user.is_superuser or not user.is_staff %}
+        <a href="{% url 'quiz_progress' %}" style="text-align: center"><h2>{% trans "See your Progress Till Now" %}</h2></a>
+    {% endif %}
+    {% endif %}
 <h1 style="margin-left: 40px">{% trans "Category list" %}</h1>
 
 <ul>

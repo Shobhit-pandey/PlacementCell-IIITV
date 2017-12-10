@@ -6,7 +6,6 @@
 <h1 style="text-align: center">{% trans "Quizzes in the" %} <strong>{{ category.category }} </strong>{% trans "category" %}</h1>
     {% if user.is_staff %}
 <a href="{% url 'createquiz' %}" style="text-align: center"><h2>{% trans "Create Quiz" %}</h2></a>
-        <a href="{% url 'createcategory' %}" style="text-align: center"><h2>{% trans "Create Category for Quiz" %}</h2></a>
     {% endif %}
   {% with object_list as quizzes %}
     {% if quizzes %}

@@ -178,6 +178,9 @@
 		<div class="row">
             {% if not user.is_authenticated %}
 			<div class="col-sm-4">
+            {% if user.is_superuser %}
+            <a href="#" style="font-size: 30px;text-align: center;margin-bottom: 30px">Add recruiter</a>
+                {% endif %}
 				<div class="panel">
 					<div class="panel-heading">
 						<h3 class="mg-clear  tc-paynes-grey">
