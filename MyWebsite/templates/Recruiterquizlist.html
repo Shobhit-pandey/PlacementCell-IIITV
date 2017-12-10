@@ -1,16 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Recruiter Quiz list</title>
-</head>
-<body>
-{% for quiz in quizlist %}
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Wrong Attempt" %}{% endblock %}
 
-    <a href="{% url '' %}"> <h1>{{ quiz.title }}</h1></a>
-    <h2>{{ quiz.description }}</h2>
+{% block content %}
+{% if quizlist %}
+		<table class="table table-bordered table-striped">
 
-{% endfor %}
+		  <thead>
+			<tr>
+			  <th>{% trans "Title" %}</th>
+			  <th>{% trans "Description" %}</th>
+			</tr>
+		  </thead>
 
-</body>
-</html>
+		  <tbody>
+
+        {% for quiz in quizlist %}
+
+  			<tr>
+			  <td><a href="{% url 'recruitermarkinglist' quiz_name=quiz.id %}"> <h1>{{ quiz.title }}</h1></a></td>
+			  <td><h2>{{ quiz.description }}</h2></td>
+
+        {% endfor %}
+		  </tbody>
+
+		</table>
+
+	{% else %}
+        <p>{% trans "There are no available quizzes" %}.</p>
+    {% endif %}
+{% endblock %}

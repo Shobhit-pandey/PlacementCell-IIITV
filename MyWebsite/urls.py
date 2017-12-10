@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^add/team/image/$',views.addteamimage,name='teamimage'),
     url(r'^add/faculty/image/$',views.addfacultyimage,name='facultyimage'),
     url(r'^add/student/image/$',views.addstudentimage,name='studentimage'),
+    url(r'^recruiter/quiz/list$',views.recruiter_quizlist,name='recruiter_quizlist'),
     url(r'^add/academic/image/$',views.addacademicimage,name='academicimage'),
     url(r'^add/academic/video/$',views.addacademicvideo,name='academicvideo'),
     url(r'^add/academic/highlight/$',views.addacademichighlight,name='academichighlight')

@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% block title %}{% trans "Quizzes related to" %} {{ category.category }}{% endblock %}
-
 {% block content %}
 <h1 style="text-align: center">{% trans "Quizzes in the" %} <strong>{{ category.category }} </strong>{% trans "category" %}</h1>
     {% if user.is_staff %}
@@ -9,23 +8,40 @@
     {% endif %}
   {% with object_list as quizzes %}
     {% if quizzes %}
-        <ul>
+      <table class="table table-bordered table-striped">
+
+		  <thead>
+			<tr>
+			  <th>{% trans "Title" %}</th>
+			  <th>{% trans "Start Time" %}</th>
+			  <th>{% trans "End Time" %}</th>
+			  <th>{% trans "Description" %}</th>
+              <th>{% trans "Maximum Time" %}</th>
+			</tr>
+		  </thead>
+
+		  <tbody>
+
         {% for quiz in quizzes %}
-            {% if quiz.end_time >= current_datetime %}
-            <div style="background-color:rgba(0,0,0,0.15);border: 1px solid; width: 1000px;padding-bottom: 10px ;padding-left: 10px;padding-top: 10px;margin-right: 10px;margin-top: 40px ">
-            {% if quiz.start_time >= current_datetime %}
-                <p><h1 style="color: #1E8EFF;font-size:70px ">{{ quiz.title }}(Not Live)</h1> Current time {{ current_datetime }} </p>
-                {% else %}
-			  <a href="{% url 'quiz_question' quiz_name=quiz.id %}" style="font-size: 70px;text-align: center;font-feature-settings: normal">
-				{{ quiz.title }}
-			  </a>
-                {% endif %}
-                <p style="color: rgba(23,184,76,0.72)"> {{ quiz.start_time }}   TO    {{ quiz.end_time }}</p>
-                <p style="font-size: 30px">{{ quiz.description }}</p>
-			</div>
+        {% if quiz.end_time >= current_datetime %}
+  			<tr>
+			  <td>{% if quiz.start_time >= current_datetime %}
+                        <h1>{{ quiz.title }}(Not Live)</h1>
+                    {% else %}
+                  <h1><a href="{% url 'quiz_question' quiz_name=quiz.id %}">{{ quiz.title }}</a></h1>
+                  {% endif %}
+              </td>
+			  <td>{{ quiz.start_time }}</td>
+			  <td>{{ quiz.end_time }}</td>
+			  <td>{{ quiz.description }}</td>
+            <td>{{ quiz.time_of_quiz }} minute</td>
+
+			</tr>
             {% endif %}
         {% endfor %}
-        </ul>
+		  </tbody>
+
+		</table>
     {% else %}
         <p>{% trans "There are no quizzes" %}</p>
     {% endif %}

@@ -18,7 +18,6 @@ from .forms import QuestionForm, EssayForm, CreatequizForm, MCQuestionForm, Answ
 from .models import Quiz, Category, Progress, Sitting, Question
 from essay.models import Essay_Question
 
-
 class QuizMarkerMixin(object):
     @method_decorator(login_required)
     @method_decorator(permission_required('quiz.view_sittings'))
@@ -499,31 +498,18 @@ def CreateCategory(request):
     else:
         form = CategoryForm()
     return render(request,'quiz/createcategory.html',{'form':form})
-    pass
-
 
 class QuizRecruiterMarkingList(QuizMarkerMixin, SittingFilterTitleMixin, ListView):
     model = Sitting
 
-    def dispatch(self, request, *args, **kwargs):
-        self.quiz_id = get_object_or_404(
-            Quiz,
-            quiz_id=self.kwargs['quiz_name']
-        )
-
-        return super(QuizRecruiterMarkingList, self). \
-            dispatch(request, *args, **kwargs)
-
     def get_queryset(self):
+        self.quiz = get_object_or_404(Quiz, id=self.kwargs['quiz_name'])
+        k =self.kwargs['quiz_name']
+        print(k)
         queryset = super(QuizRecruiterMarkingList, self).get_queryset() \
-            .filter(complete=True)
-
+            .filter(quiz_id=k)
         user_filter = self.request.GET.get('user_filter')
         if user_filter:
             queryset = queryset.filter(user__username__icontains=user_filter)
 
         return queryset
-
-
-
-

@@ -317,7 +317,7 @@ def addacademichighlight(request):
             return redirect('mywebsite:academic')
     else:
         form = AcademicHighlightForm()
-    return redirect(request,'Addacademichighlight.html',{'form':form})
+    return render(request,'Addacademichighlight.html',{'form':form})
 
 
 

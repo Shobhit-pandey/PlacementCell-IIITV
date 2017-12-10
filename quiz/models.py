@@ -30,7 +30,6 @@ class CategoryManager(models.Manager):
 
 @python_2_unicode_compatible
 class Category(models.Model):
-
     category = models.CharField(
         verbose_name=_("Category"),
         max_length=250, blank=True,
@@ -48,7 +47,6 @@ class Category(models.Model):
 
 @python_2_unicode_compatible
 class SubCategory(models.Model):
-
     sub_category = models.CharField(
         verbose_name=_("Sub-Category"),
         max_length=250, blank=True, null=True)
@@ -69,8 +67,7 @@ class SubCategory(models.Model):
 
 @python_2_unicode_compatible
 class Quiz(models.Model):
-
-    user_id = models.CharField(default='0',max_length=100,null=False,blank=False,editable=False)
+    user_id = models.CharField(default='0', max_length=100, null=False, blank=False, editable=False)
 
     title = models.CharField(
         verbose_name=_("Title"),
@@ -82,16 +79,16 @@ class Quiz(models.Model):
 
     start_time = models.DateTimeField(
         verbose_name=_("Start Time"),
-        blank=False,help_text=_("Start time of quiz"),default=timezone.now(),
+        blank=False, help_text=_("Start time of quiz"), default=timezone.now(),
     )
 
     end_time = models.DateTimeField(
         verbose_name=_("End Time"),
-        blank=False,help_text=_("End time of the quiz"),default=timezone.now(),
+        blank=False, help_text=_("End time of the quiz"), default=timezone.now(),
     )
     time_of_quiz = models.IntegerField(
         verbose_name=_("Time of Quiz"),
-        blank=False,help_text=_("Maximum Time in minute"),default=1,
+        blank=False, help_text=_("Maximum Time in minute"), default=1,
     )
 
     category = models.ForeignKey(
@@ -165,7 +162,7 @@ class Quiz(models.Model):
         if self.end_time <= self.start_time:
             raise ValidationError("End time must be after Start time")
 
-        if self.time_of_quiz<=0:
+        if self.time_of_quiz <= 0:
             raise ValidationError("Time must be in positive")
 
         super(Quiz, self).save(force_insert, force_update, *args, **kwargs)
@@ -222,6 +219,9 @@ class Progress(models.Model):
         verbose_name = _("User Progress")
         verbose_name_plural = _("User progress records")
 
+    def __str__(self):
+        return str(self.user)
+
     @property
     def list_all_cat_scores(self):
         """
@@ -272,8 +272,8 @@ class Progress(models.Model):
 
         Does not return anything.
         """
-        category_test = Category.objects.filter(category=question.category)\
-                                        .exists()
+        category_test = Category.objects.filter(category=question.category) \
+            .exists()
 
         if any([item is False for item in [category_test,
                                            score_to_add,
@@ -282,15 +282,15 @@ class Progress(models.Model):
                                            isinstance(possible_to_add, int)]]):
             return _("error"), _("category does not exist or invalid score")
 
-        to_find = re.escape(str(question.category)) +\
-            r",(?P<score>\d+),(?P<possible>\d+),"
+        to_find = re.escape(str(question.category)) + \
+                  r",(?P<score>\d+),(?P<possible>\d+),"
 
         match = re.search(to_find, self.score, re.IGNORECASE)
 
         if match:
             updated_score = int(match.group('score')) + abs(score_to_add)
-            updated_possible = int(match.group('possible')) +\
-                abs(possible_to_add)
+            updated_possible = int(match.group('possible')) + \
+                               abs(possible_to_add)
 
             new_score = ",".join(
                 [
@@ -327,11 +327,11 @@ class SittingManager(models.Manager):
     def new_sitting(self, user, quiz):
         if quiz.random_order is True:
             question_set = quiz.question_set.all() \
-                                            .select_subclasses() \
-                                            .order_by('?')
+                .select_subclasses() \
+                .order_by('?')
         else:
             question_set = quiz.question_set.all() \
-                                            .select_subclasses()
+                .select_subclasses()
 
         question_set = [item.id for item in question_set]
 
@@ -357,8 +357,8 @@ class SittingManager(models.Manager):
     def user_sitting(self, user, quiz):
         if quiz.single_attempt is True and self.filter(user=user,
                                                        quiz=quiz,
-                                                       complete=True)\
-                                               .exists():
+                                                       complete=True) \
+                .exists():
             return False
 
         try:
@@ -457,7 +457,7 @@ class Sitting(models.Model):
         dividend = float(self.current_score)
         divisor = len(self._question_ids())
         if divisor < 1:
-            return 0            # prevent divide by zero error
+            return 0  # prevent divide by zero error
 
         if dividend > divisor:
             return 100
@@ -522,7 +522,7 @@ class Sitting(models.Model):
         question_ids = self._question_ids()
         questions = sorted(
             self.quiz.question_set.filter(id__in=question_ids)
-                                  .select_subclasses(),
+                .select_subclasses(),
             key=lambda q: question_ids.index(q.id))
 
         if with_answers:
@@ -558,7 +558,7 @@ class Question(models.Model):
     Base class for all question types.
     Shared properties placed here.
     """
-    user_id = models.CharField(max_length=100,default="null")
+    user_id = models.CharField(max_length=100, default="null")
 
     quiz = models.ManyToManyField(Quiz,
                                   verbose_name=_("Quiz"),

@@ -127,14 +127,20 @@
 
                 <div class="container">
                   <div class="row">
-                    <div class="col-sm-4" style=" margin: 20px;">
-                    <img src="https://lh6.googleusercontent.com/s-uuodxLHVfSrt4VZyExnulwaLolpuBZ9QVuazwYc9qaWPrHHD6WJk-6I6WgQ7mlSO3zXyc=w572" alt="HTML5 Icon" width="120%" height="250">
-                      <p style=" margin: 20px;">Prof Jignesh Bhatt got second position in best oral presentation at <a href="https://www.google.com/url?q=http%3A%2F%2Fiiitvadodara.ac.in%2Fpdf%2FEBDTS16AbstractsBook.pdf&sa=D&sntz=1&usg=AFQjCNHbHsFeBY8jeDLpUc37zEDGOGXfpw">EBDTS '16</a> Melbourne, Australia.</p>
+                      {% for image in addacademicimage %}
+                           <div class="col-sm-4" style=" margin: 20px;margin-left: 40px;margin-right: 40px">
+                        <img src="{{ image.academic_image.url }}" alt="HTML5 Icon" width="120%" height="250">
+                        <p style=" margin: 20px;">{{ image.academic_description }}</p>
                     </div>
-                    <div class="col-sm-4" style=" margin: 20px;">
-                    <img src="https://lh6.googleusercontent.com/S2R45cH2_QcHtmBmPRFY09QWtPNeMm1_LSx3eF67rNU1FAyu9NVl7ukvmGSF-wMp4TUNRDij-CkstacCGrNGPfT6Iku1fwMgkb5GSPrtPpVG9nMDbLw=w572" alt="HTML5 Icon" width="120%" height="250">
-                        <p style=" margin: 20px;">A book named "Cradle Song a Compendium of Indian Science Fiction Stories" was published by Sara Publications which is a compilation of short science fiction stories by 3rd and 4th year students and edited by Dr. Barnali Chetia.</p>
-                    </div>
+                      {% endfor %}
+{#                    <div class="col-sm-4" style=" margin: 20px;">#}
+{#                    <img src="https://lh6.googleusercontent.com/s-uuodxLHVfSrt4VZyExnulwaLolpuBZ9QVuazwYc9qaWPrHHD6WJk-6I6WgQ7mlSO3zXyc=w572" alt="HTML5 Icon" width="120%" height="250">#}
+{#                      <p style=" margin: 20px;">Prof Jignesh Bhatt got second position in best oral presentation at <a href="https://www.google.com/url?q=http%3A%2F%2Fiiitvadodara.ac.in%2Fpdf%2FEBDTS16AbstractsBook.pdf&sa=D&sntz=1&usg=AFQjCNHbHsFeBY8jeDLpUc37zEDGOGXfpw">EBDTS '16</a> Melbourne, Australia.</p>#}
+{#                    </div>#}
+{#                    <div class="col-sm-4" style=" margin: 20px;">#}
+{#                    <img src="https://lh6.googleusercontent.com/S2R45cH2_QcHtmBmPRFY09QWtPNeMm1_LSx3eF67rNU1FAyu9NVl7ukvmGSF-wMp4TUNRDij-CkstacCGrNGPfT6Iku1fwMgkb5GSPrtPpVG9nMDbLw=w572" alt="HTML5 Icon" width="120%" height="250">#}
+{#                        <p style=" margin: 20px;">A book named "Cradle Song a Compendium of Indian Science Fiction Stories" was published by Sara Publications which is a compilation of short science fiction stories by 3rd and 4th year students and edited by Dr. Barnali Chetia.</p>#}
+{#                    </div>#}
                   </div>
                 </div>
 
@@ -143,13 +149,17 @@
                 <div class="content">
 
                 <div class="container">
-                  <div class="row">
+                    {% for video in addacademicvideo %}
+                        <div class="row">
                     <div class="col-sm-4" style=" margin: 20px;">
-                      <iframe width="150%" height="300" src="https://www.youtube.com/embed/1-W9ZI7gAl8?ecver=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
-                        <p style=" margin-top: 20px;">Avi Aryan (3rd year B.Tech. CS student) has been invited to deliver an expert talk at FOSSASIA, Singapore in March 2017.</p>
+                      <iframe width="150%" height="300" src="{{ video.academic_video.url }}" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+{#                        <p style=" margin-top: 20px;">Avi Aryan (3rd year B.Tech. CS student) has been invited to deliver an expert talk at FOSSASIA, Singapore in March 2017.</p>#}
+                    <p style=" margin-top: 20px;">{{ video.video_description }}</p>
                     </div>
 
                   </div>
+                    {% endfor %}
+
                 </div>
 
             </div>
@@ -168,10 +178,14 @@
             <!-- Contents starts here -->
             <div class="content">
                 <p><strong>Some other Highlights</strong></p>
-                <ul><li>Prof. Bhargab Chattopadhyay awarded a travel support from ITS-SERB for attending the International Statistical Institute Regional Statistics Conference held in Bali, Indonesia from 20/3/2017 to 24/3/2017.</li>
-                    <li>Sagrika Rastogi (201451071) is amongst top 10 national finalists of Lady Ada Programming Contest organised by ACM-W at UPES, Dehradun, 2016.</li>
-                    <li>Avi Aryan (201451070) selected in Google Summer of Code (GSoC) 2016.</li>
-                    <li>Sunil Yedla (201451033) received  <a href="https://www.f-secure.com/en/web/labs_global/vrp-hall-of-fame">Honourable Mentions</a> from F-Secure for finding the security vulnerabilities in site and software.</li>
+                <ul>
+                    {% for highlight in addacademichighlight %}
+                        <li>{{ highlight }}</li>
+                    {% endfor %}
+{#                    <li>Prof. Bhargab Chattopadhyay awarded a travel support from ITS-SERB for attending the International Statistical Institute Regional Statistics Conference held in Bali, Indonesia from 20/3/2017 to 24/3/2017.</li>#}
+{#                    <li>Sagrika Rastogi (201451071) is amongst top 10 national finalists of Lady Ada Programming Contest organised by ACM-W at UPES, Dehradun, 2016.</li>#}
+{#                    <li>Avi Aryan (201451070) selected in Google Summer of Code (GSoC) 2016.</li>#}
+{#                    <li>Sunil Yedla (201451033) received  <a href="https://www.f-secure.com/en/web/labs_global/vrp-hall-of-fame">Honourable Mentions</a> from F-Secure for finding the security vulnerabilities in site and software.</li>#}
                 </ul>
             </div>
         </div>

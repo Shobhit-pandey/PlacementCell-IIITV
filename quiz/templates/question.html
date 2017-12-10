@@ -2,7 +2,9 @@
 {% load i18n%}
 
 {% load quiz_tags %}
-
+{% block heade %}
+{#    <meta http-equiv="refresh" content="5;url=https://www.google.com">#}
+{% endblock %}
 {% block title %} {{ quiz.title }} {% endblock %}
 {% block description %} {{ quiz.title }} - {{ quiz.description }} {% endblock %}
 
@@ -15,9 +17,21 @@
 {#<div class="container">#}
 <script language ="javascript" >
         var tim;
-        var min = '${sessionScope.min}';
-        var sec = '${sessionScope.sec}';
+        var min = '5';
+        var sec = '5';
         var f = new Date();
+
+        var data="<h1 style='text-alignment:center;'";
+        data = data + sec;
+        data = data + "</h1>";
+
+        var e = "#s";
+        $(e).append(data);
+
+        window.onload=function () {
+            window.setTimeout(examTimer(),sec);
+
+
 
         function customSubmit(someValue){
         	 document.questionForm.minute.value = min;
@@ -30,7 +44,7 @@
 
 			    document.getElementById("showtime").innerHTML = "Time Remaining :"+min+" Minutes ," + sec+" Seconds";
                 sec = parseInt(sec) - 1;
-                tim = setTimeout("examTimer()", 1000);
+                tim = setTimeout(examTimer(), sec);
             }
             else {
 
@@ -47,10 +61,11 @@
 				    document.getElementById("showtime").innerHTML = "Time Remaining :"+min+" Minutes ," + sec+" Seconds";
                     min = parseInt(min) - 1;
 					sec=59;
-                    tim = setTimeout("examTimer()", 1000);
+                    tim = setTimeout(examTimer(), sec);
                 }
 
             }
+        }
         }
     </script>
 
@@ -105,7 +120,7 @@
     <img src="{{ question.figure.url }}" alt="{{ question.content }}" />
 {% endif %}
 
-<form action="" method="POST">{% csrf_token %}
+<form action="" method="POST" name="cartCheckout" id="cartCheckout">{% csrf_token %}
   <input type=hidden name="question_id" value="{{ question.id }}">
 
   <ul class="list-group">
@@ -117,6 +132,23 @@
 	{% endfor %}
 
   </ul>
+{#<div id="words" class="gothbold"></div>#}
+
+{#<a class="redirect" href="{% url 'quiz_progress' %}" onClick="document.cartCheckout.submit();">Final Submit</a><br />#}
+{#<script type="text/javascript">#}
+{#    window.onload=function(){#}
+{#        var counter = 5;#}
+{#    var interval = setInterval(function() {#}
+{#        counter--;#}
+{#        $("#seconds").text(counter);#}
+{#        if (counter == 0) {#}
+{#            redirect();#}
+{#            clearInterval(interval);#}
+{#        }#}
+{#    }, 1000);#}
+{#         window.setTimeout(document.cartCheckout.submit.bind(document.cartCheckout), 5000);#}
+{#    };#}
+{#</script>#}
   <input type="submit" value="{% trans "Check" %}" class="btn btn-large btn-block btn-warning" >
 </form>
 
