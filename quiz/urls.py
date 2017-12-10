@@ -1,10 +1,9 @@
 from django.conf.urls import patterns, url
 
 from quiz import views
-from .views import QuizListView, CategoriesListView,\
-    ViewQuizListByCategory, QuizUserProgressView, QuizMarkingList,\
-    QuizMarkingDetail, QuizDetailView, QuizTake
-
+from .views import QuizListView, CategoriesListView, \
+    ViewQuizListByCategory, QuizUserProgressView, QuizMarkingList, \
+    QuizMarkingDetail, QuizDetailView, QuizTake, QuizRecruiterMarkingList
 
 urlpatterns = patterns('',
                        url(regex=r'^$',
@@ -46,5 +45,6 @@ urlpatterns = patterns('',
                        url(r'^add/tf/$',views.AddTF,name='addtf'),
                        url(r'^add/essay/$',views.AddEssay,name='addessay'),
                        url(r'^create/category$',views.CreateCategory,name='createcategory'),
+                       url(r'^recruiter/quiz/cateogerylist/(?P<quiz_name>[\w|\W-]+)/$', QuizRecruiterMarkingList.as_view, name='recruitermarkinglist'),
 
 )

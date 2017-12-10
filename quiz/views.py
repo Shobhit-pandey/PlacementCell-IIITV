@@ -501,3 +501,29 @@ def CreateCategory(request):
     return render(request,'quiz/createcategory.html',{'form':form})
     pass
 
+
+class QuizRecruiterMarkingList(QuizMarkerMixin, SittingFilterTitleMixin, ListView):
+    model = Sitting
+
+    def dispatch(self, request, *args, **kwargs):
+        self.quiz_id = get_object_or_404(
+            Quiz,
+            quiz_id=self.kwargs['quiz_name']
+        )
+
+        return super(QuizRecruiterMarkingList, self). \
+            dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        queryset = super(QuizRecruiterMarkingList, self).get_queryset() \
+            .filter(complete=True)
+
+        user_filter = self.request.GET.get('user_filter')
+        if user_filter:
+            queryset = queryset.filter(user__username__icontains=user_filter)
+
+        return queryset
+
+
+
+

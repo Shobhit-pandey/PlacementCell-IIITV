@@ -104,8 +104,6 @@
 					</li>
 
 
-
-
 				</ul>
 			</div>
 
@@ -113,9 +111,11 @@
 	</div>
 </div>
 <!-- bloc-0 END -->
-<!-- bloc-1 END -->
 
-
+    <!-- bloc-1 END -->
+{% if user.is_superuser %}
+    <h1 style="text-align: center"><a href="{% url 'mywebsite:academicimage' %}" style="color: #ff4226">Add Image</a>  <a href="{% url 'mywebsite:academicvideo' %}" style="color: #6a92e4">Add Video</a> <a href="{% url 'mywebsite:academichighlight' %}" style="color: #13cc40">Add Highlight</a></h1>
+{% endif %}
 
 
 <div class="bloc bg-repeat bgc-ghost-white l-bloc" id="bloc-45" >

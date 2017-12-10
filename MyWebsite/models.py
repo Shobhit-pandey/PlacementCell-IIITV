@@ -198,7 +198,28 @@ class CollegeTeamStudent(models.Model):
 
 
 
+class AcademicImage(models.Model):
+    academic_image = models.ImageField(blank=False,null=False)
+    academic_description = models.CharField(max_length=250,blank=False,null=False)
 
+    def get_absolute_url(self):
+        return reverse("contact")
+
+
+class AcademicVideo(models.Model):
+    academic_video = models.FileField()
+    video_description = models.CharField(max_length=250,blank=False,null=False)
+
+    def get_absolute_url(self):
+        return reverse("contact")
+
+
+
+class AcademicHighlight(models.Model):
+    academic_highlight = models.CharField(max_length=250,blank=False,null=False)
+
+    def get_absolute_url(self):
+        return reverse("contact")
 
 
 

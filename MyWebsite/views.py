@@ -13,10 +13,11 @@ from django.views.generic import ListView
 from MyWebsite.form import RecruiterForm, BeyondAcademicImagesForm, BeyondAcademicVideosForm, \
     BeyondAcademicHighlightForm, RecruiterInternshipIndustrialForm, RecruiterInternshipNGOForm, PastRecruiterForm, \
     CompaniesAppliedByStudentsForm, AlumniForm, ResearchForm, CollegeTeamImageForm, CollegeTeamFacultyForm, \
-    CollegeTeamStudentForm
+    CollegeTeamStudentForm, AcademicImageForm, AcademicVideoForm, AcademicHighlightForm
 from MyWebsite.models import BeyondAcademicImages, BeyondAcademicVideos, BeyondAcademicsHighlight, PastRecruiter, \
     RecruiterInternshipIndustrial, RecruiterInternshipNGO, Recruiter, CollegeTeamImage, CollegeTeamFaculty, \
-    CollegeTeamStudent, Alumni, Research
+    CollegeTeamStudent, Alumni, Research, AcademicImage, AcademicVideo, AcademicHighlight
+from quiz.models import Quiz
 
 
 def home(request):
@@ -38,7 +39,10 @@ def procedure(request):
     return render(request,'Procedure.html')
 
 def academic(request):
-    return render(request,'Academic.html')
+    addacademicimage = AcademicImage.objects.all()
+    addacademicvideo = AcademicVideo.objects.all()
+    addacademichighlight = AcademicHighlight.objects.all()
+    return render(request,'Academic.html',{'addacademicimage':addacademicimage,'addacademicvideo':addacademicvideo,'addacademichighlight':addacademichighlight})
 
 def college_team(request):
     addteamimage = CollegeTeamImage.objects.all()
@@ -276,11 +280,51 @@ def addstudentimage(request):
 
 
 
+def addacademicimage(request):
+    form =  AcademicImageForm()
+    if request.method == 'POST':
+        form =  AcademicImageForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('mywebsite:academic')
+    else:
+        form =  AcademicImageForm()
+    return render(request,'Addacademicimage.html',{'form':form})
 
 
 
 
+def addacademicvideo(request):
+    form = AcademicVideoForm()
+    if request.method == 'POST':
+        form = AcademicVideoForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('mywebsite:academic')
+    else:
+        form = AcademicVideoForm()
+    return render(request,'Addacademicvideo.html',{'form':form})
 
+
+
+
+def addacademichighlight(request):
+    form = AcademicHighlightForm()
+    if request.method == 'POST':
+        form = AcademicHighlightForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('mywebsite:academic')
+    else:
+        form = AcademicHighlightForm()
+    return redirect(request,'Addacademichighlight.html',{'form':form})
+
+
+
+
+def recruiter_quizlist(request):
+    quizlist = Quiz.objects.filter(user_id = request.user.id)
+    return render(request,'Recruiterquizlist.html',{'quizlist':quizlist})
 
 
 
