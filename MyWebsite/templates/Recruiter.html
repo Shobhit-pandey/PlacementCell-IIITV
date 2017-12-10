@@ -218,6 +218,7 @@
                 {% elif user.is_authenticated and user.is_staff %}
     <a href="{% url 'logout' %}" style="color: #ff4226;font-size: 30px">Logout</a> <br>
     <a href="{% url 'mywebsite:change_password' %}" style="color: #13cc40;font-size: 30px">Change Password</a><br>
+                <a href="#" style="color: #ff4226;font-size: 30px">Quiz List</a> <br>
         {% endif %}
 			<div class="col-sm-4" style="  align-self: center; float: right;">
 				<h3 style="  text-align: center; width: 100%;">

@@ -170,7 +170,7 @@
 					</div>
 				</div>
 			</div>
-        {% elif user.is_authenticated %}
+        {% elif user.is_authenticated or user.is_superuser and not user.is_staff %}
                 <div class="bloc bg-repeat bgc-ghost-white l-bloc" style="margin-bottom: 40px;">
                 <h3 style="text-align: center;">
     <a href="{% url 'logout' %}" style="color: #ff4226">Logout</a> <br>

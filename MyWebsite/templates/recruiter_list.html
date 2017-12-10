@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Companies registered</title>
 </head>
-{% if user.is_authenticated and not user.is_staff or user.is_staff%}
+{% if user.is_authenticated or user.is_superstaff and not user.is_staff%}
 <body>
 
 <div class="text-center col-lg-3 col-md-6 col-sm-12 col-xs-12" id="google_translate_element"></div>
