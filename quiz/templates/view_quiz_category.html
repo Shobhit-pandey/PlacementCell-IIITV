@@ -17,7 +17,7 @@
             {% if quiz.start_time >= current_datetime %}
                 <p><h1 style="color: #1E8EFF;font-size:70px ">{{ quiz.title }}(Not Live)</h1> Current time {{ current_datetime }} </p>
                 {% else %}
-			  <a href="{% url 'quiz_question' quiz_name=quiz.url %}" style="font-size: 70px;text-align: center;font-feature-settings: normal">
+			  <a href="{% url 'quiz_question' quiz_name=quiz.id %}" style="font-size: 70px;text-align: center;font-feature-settings: normal">
 				{{ quiz.title }}
 			  </a>
                 {% endif %}
