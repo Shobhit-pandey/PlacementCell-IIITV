@@ -16,7 +16,7 @@ from MyWebsite.form import RecruiterForm, BeyondAcademicImagesForm, BeyondAcadem
     CollegeTeamStudentForm, AcademicImageForm, AcademicVideoForm, AcademicHighlightForm
 from MyWebsite.models import BeyondAcademicImages, BeyondAcademicVideos, BeyondAcademicsHighlight, PastRecruiter, \
     RecruiterInternshipIndustrial, RecruiterInternshipNGO, Recruiter, CollegeTeamImage, CollegeTeamFaculty, \
-    CollegeTeamStudent, Alumni, Research, AcademicImage, AcademicVideo, AcademicHighlight
+    CollegeTeamStudent, Alumni, Research, AcademicImage, AcademicVideo, AcademicHighlight, CompaniesAppliedByStudents
 from quiz.models import Quiz
 
 
@@ -196,18 +196,24 @@ def change_password(request):
         return render(request,'change_password.html',{'form':form})
 
 def RecruiterListView(request):
+    list = CompaniesAppliedByStudents.objects.filter(user_id=request.user.id).values_list('company_name')
+    lists=[]
+    for x in range(0,len(list)):
+        lists.append(int(list[x][0]))
+
+    print(lists)
     recruiter_list = Recruiter.objects.all()
     print(recruiter_list)
-    return render(request,'recruiter_list.html',{'recruiter_list':recruiter_list})
+    return render(request,'recruiter_list.html',{'recruiter_list':recruiter_list,'lists':lists})
 
 def studentapply(request,pk):
     if request.method == 'POST':
-        form = CompaniesAppliedByStudentsForm(request.POST,initial={'user_id':request.user.id,'company_name':pk})
+        form = CompaniesAppliedByStudentsForm(request.POST,initial={'user_id':request.user.id,'company_name':pk,'roll_number':request.user.username})
         if form.is_valid():
             form.save()
             return redirect('mywebsite:student')
     else:
-        form = CompaniesAppliedByStudentsForm(initial={'user_id': request.user.id, 'company_name': pk})
+        form = CompaniesAppliedByStudentsForm(initial={'user_id': request.user.id, 'company_name': pk,'roll_number':request.user.username})
 
     return render(request,'studentapply.html',{'form':form})
 
@@ -325,6 +331,12 @@ def addacademichighlight(request):
 def recruiter_quizlist(request):
     quizlist = Quiz.objects.filter(user_id = request.user.id)
     return render(request,'Recruiterquizlist.html',{'quizlist':quizlist})
+
+def student_shortlisted_recruiter(request):
+    list = CompaniesAppliedByStudents.objects.filter(user_id=request.user.id)
+    recruiter_list = Recruiter.objects.all()
+    return render(request,'student_recruiter_list.html',{'lists':list,'recruiter_list':recruiter_list})
+
 
 
 

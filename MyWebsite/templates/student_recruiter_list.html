@@ -5,7 +5,7 @@
     {% if user.is_authenticated or user.is_superstaff and not user.is_staff%}
     {% endif %}
 <h1 style="text-align: center">{% trans "List of upcoming Company" %} </h1>
-    {% if recruiter_list %}
+    {% if lists %}
       <table class="table table-bordered table-striped">
 
 		  <thead>
@@ -24,8 +24,9 @@
 		  </thead>
 
 		  <tbody>
-
+        {% for list in lists %}
         {% for company in recruiter_list %}
+            {% if list.company_name == company.id %}
   			<tr>
 			  <td>{{ company.Organization_name }}</td>
 			  <td><a href="{{ company.Organization_website }}">Link</a></td>
@@ -50,20 +51,16 @@
                     {% if company.Written_Test_Technical %} Finance {% if not company.Other == "" %} , {% endif %}{% endif %}
                     {% if not company.Other == "" %},{{ company.Other }}{% endif %}
             </td>
-            <td> {% if not company.id in lists %}
-                <a href="{% url 'mywebsite:studentapply' pk=company.id %}">Apply</a>
-                {% else %}
-                Applied
-                {% endif %}
-            </td>
+            <td>Applied</td>
 
 			</tr>
-
+        {% endif %}
         {% endfor %}
+          {% endfor %}
 		  </tbody>
 
 		</table>
     {% else %}
-        <p>{% trans "There are no company listed till now" %}</p>
+        <p>{% trans "There are no company sortlisted by you." %}</p>
     {% endif %}
 {% endblock %}

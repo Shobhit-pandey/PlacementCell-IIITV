@@ -50,9 +50,9 @@ class RecruiterInternshipNGOForm(forms.ModelForm):
 
 
 class CompaniesAppliedByStudentsForm(forms.Form):
-    user_id = forms.CharField(max_length=50,required=True,widget=forms.HiddenInput())
-    roll_number = forms.CharField(max_length=20,required=True)
-    company_name = forms.CharField(max_length=250,required=True,widget=forms.HiddenInput())
+    user_id = forms.IntegerField(required=True,widget=forms.HiddenInput())
+    roll_number = forms.CharField(max_length=20,required=True,widget=forms.HiddenInput(),initial="rollnumber")
+    company_name = forms.IntegerField(required=True,widget=forms.HiddenInput())
 
     def save(self):
         u = CompaniesAppliedByStudents.objects.create(
@@ -61,6 +61,8 @@ class CompaniesAppliedByStudentsForm(forms.Form):
             company_name = self.cleaned_data.get('company_name'),
 
         )
+        u.save()
+        return u;
 
 
 
