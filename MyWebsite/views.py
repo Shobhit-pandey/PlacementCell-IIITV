@@ -200,13 +200,11 @@ def RecruiterListView(request):
     lists=[]
     for x in range(0,len(list)):
         lists.append(int(list[x][0]))
-
-    print(lists)
     recruiter_list = Recruiter.objects.all()
-    print(recruiter_list)
     return render(request,'recruiter_list.html',{'recruiter_list':recruiter_list,'lists':lists})
 
 def studentapply(request,pk):
+    recruiters = Recruiter.objects.filter(id=pk)
     if request.method == 'POST':
         form = CompaniesAppliedByStudentsForm(request.POST,initial={'user_id':request.user.id,'company_name':pk,'roll_number':request.user.username})
         if form.is_valid():
@@ -215,7 +213,7 @@ def studentapply(request,pk):
     else:
         form = CompaniesAppliedByStudentsForm(initial={'user_id': request.user.id, 'company_name': pk,'roll_number':request.user.username})
 
-    return render(request,'studentapply.html',{'form':form})
+    return render(request,'studentapply.html',{'form':form,'recruiters':recruiters})
 
 
 

@@ -34,8 +34,6 @@ Offer_Choices = (
          ('INTERNSHIP ONLY ', 'INTERNSHIP ONLY'),
          ('JOB+INTERNSHIP', 'JOB+INTERNSHIP'),
     )
-# class SelectionProcess(models.Model):
-#     choices = models.CharField(max_length=100,null=False,blank=False)
 
 class Recruiter(models.Model):
     Organization_name = models.CharField(max_length=100,blank=False,null=False)

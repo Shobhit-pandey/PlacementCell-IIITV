@@ -1,15 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Student application</title>
-</head>
-<body>
- <form method="POST">
-      {% csrf_token %}
-     {{ form.as_p }}
-     <button type="submit"  name="submit" >Apply</button>
- </form>
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Student Apply" %}{% endblock %}
+{% block content %}
+    {% if user.is_authenticated or user.is_superstaff and not user.is_staff%}
+    {% endif %}
+<h1 style="text-align: center">{% trans "Apply for company" %} </h1>
+    {% if recruiters %}
+        <h1>Are you sure to apply to below company?</h1>
+      <table class="table table-bordered table-striped">
 
-</body>
-</html>
+		  <thead>
+			<tr>
+			  <th>{% trans "Organisation Name" %}</th>
+			  <th>{% trans "Organisation Website" %}</th>
+			  <th>{% trans "Organisation Sector" %}</th>
+			  <th>{% trans "Offer" %}</th>
+              <th>{% trans "CTC" %}</th>
+                <th>{% trans "Service" %}</th>
+                <th>{% trans "Tentative Date" %}</th>
+                <th>{% trans "Criteria" %}</th>
+                <th>{% trans "Selective Process" %}</th>
+                <th></th>
+			</tr>
+		  </thead>
+
+		  <tbody>
+
+        {% for company in recruiters %}
+  			<tr>
+			  <td>{{ company.Organization_name }}</td>
+			  <td><a href="{{ company.Organization_website }}" style="font-size: 20px">Link</a></td>
+			  <td>
+                  {% if company.Information_Technology %} <strong>Information Technology ,</strong> {% endif %}
+                  {% if company.Analytics %}<strong> Analytics ,</strong>{% endif %}
+                    {% if company.E_Commerce %}<strong> E Commerce ,</strong>{% endif %}
+                    {% if company.Telecom %}<strong> Telecom ,</strong>{% endif %}
+                    {% if company.Finance %}<strong> Finance ,</strong>{% endif %}
+                    {% if company.Consulting %}<strong> Consulting ,</strong>{% endif %}
+                    {% if not company.Other_field == "" %}<strong> {{ company.Other_field }} </strong>{% endif %}
+              </td>
+			  <td>{{ company.offer }}</td>
+            <td>{{ company.CTC }} </td>
+            <td>{{ company.service }} </td>
+            <td>{{ company.Tentative_Date }} </td>
+            <td>{{ company.Criteria }} </td>
+            <td>
+                {% if company.Shortlisting_From_Resumes %}<strong> Resume ,</strong>{% endif %}
+                  {% if company.Written_Test_Apptitute %} <strong> Aptitude Test ,</strong> {% endif %}
+                    {% if company.Group_Discussion %} <strong> GD ,</strong> {% endif %}
+                    {% if company.Personal_Interview %} <strong> PI ,</strong>{% endif %}
+                    {% if company.Written_Test_Technical %} <strong> Technical Test  ,</strong>{% endif %}
+                    {% if not company.Other == "" %} <strong> {{ company.Other }} </strong>{% endif %}
+            </td>
+            <td> {% if not company.id in lists %}
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit"  name="submit" style="background-color: #8c9aff">Apply</button>
+                </form>
+                {% else %}
+                Applied
+                {% endif %}
+            </td>
+
+			</tr>
+
+        {% endfor %}
+		  </tbody>
+
+		</table>
+    {% else %}
+        <p>{% trans "There are no company listed till now" %}</p>
+    {% endif %}
+{% endblock %}

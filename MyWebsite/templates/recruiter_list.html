@@ -17,7 +17,7 @@
               <th>{% trans "CTC" %}</th>
                 <th>{% trans "Service" %}</th>
                 <th>{% trans "Tentative Date" %}</th>
-                <th>{% trans "Crieria" %}</th>
+                <th>{% trans "Criteria" %}</th>
                 <th>{% trans "Selective Process" %}</th>
                 <th></th>
 			</tr>
@@ -29,13 +29,14 @@
   			<tr>
 			  <td>{{ company.Organization_name }}</td>
 			  <td><a href="{{ company.Organization_website }}">Link</a></td>
-			  <td>{% if company.Information_Technology %}Information Technology , {% endif %}
-                  {% if company.Analytics %}Analytics , {% endif %}
-                    {% if company.E_Commerce %}E Commerece , {% endif %}
-                    {% if company.Telecom %}Telecom , {% endif %}
-                    {% if company.Finance %}Finance , {% endif %}
-                    {% if company.Consulting %}Consulting {% if not company.Other_field == "" %} ,{% endif %}{% endif %}
-                    {% if not company.Other_field == "" %}{{ company.Other_field }}{% endif %}
+			  <td>
+                  {% if company.Information_Technology %} <strong> Information Technology , </strong> {% endif %}
+                  {% if company.Analytics %}<strong> Analytics , </strong>{% endif %}
+                    {% if company.E_Commerce %}<strong> E Commerce , </strong>{% endif %}
+                    {% if company.Telecom %}<strong> Telecom , </strong>{% endif %}
+                    {% if company.Finance %}<strong> Finance , </strong>{% endif %}
+                    {% if company.Consulting %}<strong> Consulting ,</strong>{% endif %}
+                    {% if not company.Other_field == "" %}<strong> {{ company.Other_field }} </strong>{% endif %}
               </td>
 			  <td>{{ company.offer }}</td>
             <td>{{ company.CTC }} </td>
@@ -43,12 +44,12 @@
             <td>{{ company.Tentative_Date }} </td>
             <td>{{ company.Criteria }} </td>
             <td>
-                {% if company.Shortlisting_From_Resumes %} Resume {% if company.Written_Test_Apptitute %} , {% endif %}{% endif %}
-                  {% if company.Written_Test_Apptitute %} Apptitute Test {% if company.Group_Discussion %} , {% endif %}{% endif %}
-                    {% if company.Group_Discussion %} GD {% if company.Personal_Interview %} , {% endif %}{% endif %}
-                    {% if company.Personal_Interview %} PI {% if company.Written_Test_Technical %} , {% endif %}{% endif %}
-                    {% if company.Written_Test_Technical %} Finance {% if not company.Other == "" %} , {% endif %}{% endif %}
-                    {% if not company.Other == "" %},{{ company.Other }}{% endif %}
+                {% if company.Shortlisting_From_Resumes %}<strong> Resume , </strong>{% endif %}
+                  {% if company.Written_Test_Apptitute %} <strong> Aptitude Test ,</strong> {% endif %}
+                    {% if company.Group_Discussion %} <strong> GD ,</strong> {% endif %}
+                    {% if company.Personal_Interview %} <strong> PI ,</strong>{% endif %}
+                    {% if company.Written_Test_Technical %} <strong> Technical Test  ,</strong>{% endif %}
+                    {% if not company.Other == "" %} <strong> {{ company.Other }} </strong>{% endif %}
             </td>
             <td> {% if not company.id in lists %}
                 <a href="{% url 'mywebsite:studentapply' pk=company.id %}">Apply</a>
