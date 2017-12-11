@@ -1,21 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% if user.is_superuser or user.is_staff %}
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% block title %}{% trans "Create Category" %}{% endblock %}
+{% block content %}
+    <style>
+    .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.1s; /* Safari */
+    transition-duration: 0.1s;
+    cursor: pointer;
+        margin-left: 125px;
+}
+
+.button1 {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+    </style>
+    {% if user.is_superuser or user.is_staff %}
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <div class="row" style="padding-top: 30px;margin-left: 25%;">
 
-        <button type="submit"><a>Create Category</a></button>
+    <div class="row" style="padding-top: 30px;margin-left: 25%;">
+        <div style="font-size: 30px">
+        {{ form.as_p }}
+            </div>
+        <button type="submit" class="button button1">Create Category</button>
     </div>
     </form>
     {% else %}
     <h1>Url not found... though you can go to home page from <a href="{% url 'mywebsite:home' %}">here</a></h1>
 {% endif %}
-</body>
-</html>
+{% endblock %}

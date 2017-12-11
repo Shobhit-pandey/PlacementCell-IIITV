@@ -5,3 +5,14 @@
 {% block content %}
     <h1>Url not found... though you can go to home page from <a href="{% url 'mywebsite:home' %}">here</a></h1>
 {% endblock %}
+
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% block head %}
+
+{% endblock %}
+{% block title %}{% trans "Add title" %}{% endblock %}
+{% block content %}
+
+{% endblock %}

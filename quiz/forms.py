@@ -107,7 +107,7 @@ class AnswerForm(forms.ModelForm):
         exclude = []
 
 
-MCQFormSet = inlineformset_factory(MCQuestion, Answer, form=AnswerForm, can_delete=False)
+MCQFormSet = inlineformset_factory(MCQuestion, Answer, form=AnswerForm, can_delete=False,extra=8)
 
 
 class TFForm(forms.Form):
