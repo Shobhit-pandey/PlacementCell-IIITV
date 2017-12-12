@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}{% trans "Done Quiz" %}{% endblock %}
+{% block title %}{% trans "Student List" %}{% endblock %}
 
 {% block content %}
-<h2>{% trans "List of complete quizzes" %}</h2>
+<h2>{% trans "List of Student who have given Quiz" %}</h2>
     {% if sitting_list %}
 
 		<table class="table table-bordered table-striped">
@@ -49,6 +49,6 @@
 
 		</table>
     {% else %}
-        <p>{% trans "There are no matching quizzes" %}.</p>
+        <p>{% trans "There are no matching student" %}.</p>
     {% endif %}
 {% endblock %}
