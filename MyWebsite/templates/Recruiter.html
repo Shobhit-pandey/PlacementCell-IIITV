@@ -133,14 +133,15 @@
 </style>
     {% if user.is_authenticated and user.is_staff %}
                 <h1>
-                    <a href="{% url 'logout' %}" >
-                        <button class="button" style="vertical-align:middle"><span> Logout</span></button>
+                    <a href="{% url 'mywebsite:recruiter_quizlist' %}" >
+                        <button class="button" style="vertical-align:middle"><span> Quiz List </span></button>
                     </a>
                     <a href="{% url 'mywebsite:change_password' %}" >
                         <button class="button" style="vertical-align:middle"><span> Change Password </span></button>
                     </a>
-                    <a href="{% url 'mywebsite:recruiter_quizlist' %}" >
-                        <button class="button" style="vertical-align:middle"><span> Quiz List </span></button>
+
+                    <a href="{% url 'logout' %}" >
+                        <button class="button" style="vertical-align:middle"><span> Logout</span></button>
                     </a>
                 </h1>
     {% endif %}
