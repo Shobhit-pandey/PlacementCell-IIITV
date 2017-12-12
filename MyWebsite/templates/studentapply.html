@@ -28,9 +28,65 @@
     background-color: #4CAF50;
     color: white;
 }
+    .button2 {
+  display: inline-block;
+  border-radius: 0px;
+  background-color: #2493f4;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 15px;
+  width: 420px;
+  transition: all 0.2s;
+  cursor: pointer;
+  float: left;
+}
+
+.button2 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button2 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button2:hover span {
+  padding-right: 25px;
+}
+
+.button2:hover span:after {
+  opacity: 1;
+  right: 0;
+}
 
     </style>
-    {% if user.is_authenticated or user.is_superstaff and not user.is_staff%}
+    {% if user.is_authenticated %}
+        {% if not user.is_superuser and user.is_staff %}
+            {% else %}
+        <h1>
+        <a href="{% url 'mywebsite:student_shortlisted_recruiter' %}" >
+                        <button class="button2" style="vertical-align:middle"><span> Your Short Listed Company </span></button>
+                    </a>
+        <a href="{% url 'mywebsite:recruiterlist' %}" >
+                        <button class="button2" style="vertical-align:middle"><span> Company List </span></button>
+                    </a>
+        <a href="{% url 'mywebsite:change_password' %}" >
+                        <button class="button2" style="vertical-align:middle"><span> Change Password </span></button>
+                    </a>
+        <a href="{% url 'logout' %}" >
+                        <button class="button2" style="vertical-align:middle"><span> Logout</span></button>
+                    </a>
+        </h1>
+            {% endif %}
     {% endif %}
 <h1 style="text-align: center">{% trans "Apply for company" %} </h1>
     {% if recruiters %}
