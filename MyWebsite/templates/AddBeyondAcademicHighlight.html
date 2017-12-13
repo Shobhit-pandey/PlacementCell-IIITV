@@ -7,49 +7,60 @@
 {% block title %}{% trans "Add Highlight" %}{% endblock %}
 {% block content %}
     <style>
-    .button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    -webkit-transition-duration: 0.1s; /* Safari */
-    transition-duration: 0.1s;
-    cursor: pointer;
-        margin-left: 200px;
-}
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            -webkit-transition-duration: 0.1s; /* Safari */
+            transition-duration: 0.1s;
+            cursor: pointer;
+            margin-left: 200px;
+        }
 
-.button1 {
-    background-color: white;
-    color: black;
-    border: 2px solid #4CAF50;
-}
+        .button1 {
+            background-color: white;
+            color: black;
+            border: 2px solid #4CAF50;
+        }
 
-.button1:hover {
-    background-color: #4CAF50;
-    color: white;
-}
+        .button1:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
 
     </style>
-{% if user.is_superuser %}
-    <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-
-    <div class="row" style="padding-top: 30px;margin-left: 25%;">
-        <div style="font-size: 30px">
-        {{ form.as_p }}
-            </div>
-        <button type="submit" class="button button1">Add Highlight</button>
+    <div class="container-fluid">
+        {% if user.is_superuser %}
+            <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="id_academic_highlight"><strong>Academic Highlight</strong></label>
+                        <div class="col-md-4">
+{#                            <input id="id_academic_highlight" name="id_academic_highlight" {% if form.value %}value="{{ form.academic_highlight.value }}"{% endif %} type="text" placeholder="Highlight" class="form-control input-md" required="">#}
+{#                                <input id="id_academic_highlight" maxlength="250" name="academic_highlight" type="text" >#}
+                                <input id="id_highlight" maxlength="2500" name="highlight" type="text" {% if form.value %}value="{{ form.highlight.value }}"{% endif %} placeholder="Highlight" class="form-control input-md">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="button button1">ADD</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        {% else %}
+            <h1>you are not allowed to be here goto home page from <a href="{% url 'mywebsite:home' %}">here</a></h1>
+        {% endif %}
     </div>
-    </form>
-{% else %}
-    <h1>you are not allowed to be here goto home page from <a href="{% url 'mywebsite:home' %}">here</a></h1>
-{% endif %}
-</div>
 {% endblock %}
 {##}
 {#<!DOCTYPE html>#}

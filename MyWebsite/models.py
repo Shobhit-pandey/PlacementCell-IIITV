@@ -1,3 +1,4 @@
+from datetime import date
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.core.validators import URLValidator
@@ -57,7 +58,7 @@ class Recruiter(models.Model):
     # Selection_Process = models.ManyToManyField(SelectionProcess)
     service = models.CharField(max_length=100,blank=False,choices = Service_Choices,default='0')
     Bond_Conditions = models.CharField(max_length = 200,blank=True,null=True)
-    Tentative_Date = models.DateTimeField(blank = False, null = False,default = timezone.now())
+    Tentative_Date = models.DateField(blank = False, null = False,default = date.today())
     Other_details = models.CharField(max_length=1000,blank= True,null=True)
     Criteria = models.CharField(max_length=100, blank=False, null=False, choices=Criteria_Choices)
     Shortlisting_From_Resumes = models.BooleanField()

@@ -3,325 +3,387 @@
 {% load i18n %}
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/recruiter.css' %}">
-<script src="{% static 'javascript/jqBootstrapValidation.js' %}"></script>
-	<script src="{% static 'javascript/formHandler.js' %}"></script>
+    <script src="{% static 'javascript/jqBootstrapValidation.js' %}"></script>
+    <script src="{% static 'javascript/formHandler.js' %}"></script>
 {% endblock %}
 {% block title %}{% trans "Recruiter - T&amp;P IIIT Vadodara" %}{% endblock %}
 {% block content %}
-<style>
-     .card {
-    font-size: 1em;
-    padding: 0;
-    border: none;
-    border-radius: .28571429rem;
-}
-.card-block {
-    font-size: 1em;
-    position: relative;
-    margin: 0;
-    padding: 1em;
-    border: none;
-    border-top: 1px solid rgba(34, 36, 38, .1);
-    box-shadow: none;
-}
+    <style>
+        .card {
+            font-size: 1em;
+            padding: 0;
+            border: none;
+            border-radius: .28571429rem;
+        }
 
- .card:hover {
-     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        .card-block {
+            font-size: 1em;
+            position: relative;
+            margin: 0;
+            padding: 1em;
+            border: none;
+            border-top: 1px solid rgba(34, 36, 38, .1);
+            box-shadow: none;
+        }
 
- }
-.card-img-top {
-    display: block;
-    width: 100%;
-    height: 100px;
-}
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+
+        }
+
+        .card-img-top {
+            display: block;
+            width: 100%;
+            height: 100px;
+        }
+
         .text-bold {
-    font-weight: 700;
-}
+            font-weight: 700;
+        }
 
-.meta {
-    font-size: 1em;
-    color: rgba(0, 0, 0, .4);
-}
+        .meta {
+            font-size: 1em;
+            color: rgba(0, 0, 0, .4);
+        }
 
-.meta a {
-    text-decoration: none;
-    color: rgba(0, 0, 0, .4);
-}
+        .meta a {
+            text-decoration: none;
+            color: rgba(0, 0, 0, .4);
+        }
 
-.meta a:hover {
-    color: rgba(0, 0, 0, .87);
-}
-.button {
-  display: inline-block;
-  border-radius: 0px;
-  background-color: #2493f4;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 20px;
-  padding: 15px;
-  width: 560px;
-  transition: all 0.2s;
-  cursor: pointer;
-  float: left;
-}
+        .meta a:hover {
+            color: rgba(0, 0, 0, .87);
+        }
 
-.button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
+        .button {
+            display: inline-block;
+            border-radius: 0px;
+            background-color: #2493f4;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 20px;
+            padding: 15px;
+            padding-right: 10px;
+            width: 560px;
+            transition: all 0.2s;
+            cursor: pointer;
+            float: left;
+            height: auto;
+        }
 
-.button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
+        .button span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
 
-.button:hover span {
-  padding-right: 25px;
-}
+        .button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
 
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
+        .button:hover span {
+            padding-right: 25px;
+        }
 
-.button1 {
-  display: inline-block;
-  border-radius: 0px;
-  background-color: #2493f4;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 20px;
-  padding: 15px;
-  width: 420px;
-  transition: all 0.2s;
-  cursor: pointer;
-  float: left;
-}
+        .button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
 
-.button1 span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
+        .button1 {
+            display: inline-block;
+            border-radius: 0px;
+            background-color: #2493f4;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 20px;
+            padding: 15px;
+            width: 420px;
+            transition: all 0.2s;
+            cursor: pointer;
+            float: left;
+        }
 
-.button1 span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
+        .button1 span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
 
-.button1:hover span {
-  padding-right: 25px;
-}
+        .button1 span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
 
-.button1:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-</style>
-    {% if user.is_authenticated and user.is_staff %}
-                <h1>
-                    <a href="{% url 'mywebsite:recruiter_quizlist' %}" >
-                        <button class="button" style="vertical-align:middle"><span> Quiz List </span></button>
-                    </a>
-                    <a href="{% url 'mywebsite:change_password' %}" >
-                        <button class="button" style="vertical-align:middle"><span> Change Password </span></button>
-                    </a>
+        .button1:hover span {
+            padding-right: 25px;
+        }
 
-                    <a href="{% url 'logout' %}" >
-                        <button class="button" style="vertical-align:middle"><span> Logout</span></button>
-                    </a>
-                </h1>
-    {% endif %}
-    <div class="page-container">
+        .button1:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+    </style>
+
+    <div class="container-fluid">
+        <div class="row">
+            {% if user.is_authenticated and user.is_staff %}
+
+                <div class="col-md-4 col-lg-4">
+                    <h1>
+                        <a href="{% url 'mywebsite:recruiter_quizlist' %}">
+                            <button class="button" ><span> Quiz List </span></button>
+                        </a>
+                    </h1>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                    <h1>
+                        <a href="{% url 'mywebsite:change_password' %}">
+                            <button class="button" ><span> Change Password </span></button>
+                        </a>
+                    </h1>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                    <h1>
+                        <a href="{% url 'logout' %}">
+                            <button class="button"><span> Logout</span></button>
+                        </a>
+                    </h1>
+                </div>
 
 
-    {% if user.is_superuser %}
-        <h1 style="text-align: center;">
-            <a href="#">
-                <button class="button1" style="vertical-align:middle"><span> Add Recruiter</span></button>
-            </a>
-            <a href="{% url 'mywebsite:addPastRecruiterimage' %}" style="color: #ff4226">
-                <button class="button1" style="vertical-align:middle"><span> Add Past Recruiter Images</span></button>
 
-            </a>
-            <a href="{% url 'mywebsite:addinterndescrip' %}" style="color: #6a92e4">
-                <button class="button1" style="vertical-align:middle"><span> Add Internship (Academic/Industry)</span></button>
 
-            </a>
-            <a href="{% url 'mywebsite:addngodescip' %}" style="color: #398439">
-                <button class="button1" style="vertical-align:middle"><span> Add Rural Internship with NGOs</span></button>
-            </a>
-        </h1>
-    {% endif %}
-    {% if not user.is_authenticated %}
-        <div class="bloc bg-repeat bgc-ghost-white l-bloc" id="bloc-45">
-	<div class="container bloc-md">
-		<div class="row">
+            {% endif %}
 
-			<div class="col-sm-4">
-				<div class="panel">
-					<div class="panel-heading">
-						<h3 class="mg-clear  tc-paynes-grey">
-							Login
-						</h3>
-					</div>
-					<div class="panel-body">
-                        {% if form.errors %}
-                    <p>your username and password didnot match</p>
-                         {% endif %}
-
-                        <form id="form_1666" novalidate="" action="{% url 'recruiterlogin' %}" method="POST" >
-                           {% csrf_token %}
-							<div class="form-group">
-								<label>
-									Username
-								</label>
-								<input id="name_1666" name="username" placeholder="username" class="form-control" required="">
-							<div class="help-block"></div></div>
-							<div class="form-group">
-								<label>
-									Password
-								</label>
-								<input id="email_1666" class="form-control"  name="password" placeholder="password" type="password" required="">
-                                <div class="help-block"></div></div><a href="{% url 'reset_password' %}" class="btn btn-clean btn-dim-gray">Forget Password?</a>
-							<button id="comp-login-btn" class="bloc-button btn btn-glossy pull-left btn-dodger-green" type="submit" value="login">
-								Login
-							</button>
-                                <input type="hidden" name="next" value="{{next}}">
-                        </form>
-
-                    </div>
-				</div>
-			</div>
-
-			<div class="col-sm-4" style="  align-self: center; float: right;">
-				<h3 style="text-align: center; width: 100%;">
-				<a href="{% url 'mywebsite:procedure' %}">Click here to view the instruction for registration</a>
-				</h3>
-				<h3 style="margin-top: 50px;text-align: center; width: 100%;">
-				<a href="{% url 'mywebsite:recruiter_form' %}">Click here for new registration</a>
-				</h3>
-			</div>
-
-		</div>
-	</div>
         </div>
-    {% endif %}
-<!-- bloc-45 END -->
-    <div class="bloc bg-repeat bgc-ghost-white l-bloc" id="bloc-45" >
-    <h1 style="text-align: center">Past Recruiters</h1>
-    <div class="container">
-{% for image in images %}
-    {% if forloop.counter|divisibleby:"4" or forloop.counter == 1 %}
-            <div class="row" style="margin-top:20px;">
-     {% endif %}
+    {% if user.is_superuser %}
+    <div class="row" id="hub">
 
-<div class="col-sm-6 col-md-4 col-lg-3 col-mt-4" style="margin-top: 80px;margin-left: 80px;margin-bottom: 40px;">
-    <div class="card" style="background-color: white">
-                    <div class="hn" style="background-size: cover; background-position: center; height:50%;">
-                    <img class="card-img-top"  src="{{ image.image.url }}" style="background-size: 100%;  min-width: 100%;  min-height: 100%;">
+            <div class="col-md-3 col-lg-3">
+                <h1 style="text-align: center;">
+                <a href="#">
+                    <button class="button1" ><span> Add Recruiter</span></button>
+                </a>
+                </h1>
+            </div>
+        <div class="col-md-3 col-lg-3">
+            <h1>
+                <a href="{% url 'mywebsite:addPastRecruiterimage' %}" style="color: #ff4226">
+                    <button class="button1" ><span> Add Past Recruiter Images</span>
+                    </button>
+
+                </a>
+            </h1>
+            </div>
+        <div class="col-md-3 col-lg-3">
+                <h1>
+                    <a href="{% url 'mywebsite:addinterndescrip' %}" style="color: #6a92e4">
+                    <button class="button1" >
+                        <span> Add Internship (Academic/Industry)</span></button>
+
+                </a>
+                </h1>
+            </div>
+        <div class="col-md-3 col-lg-3">
+                <h1>
+                    <a href="{% url 'mywebsite:addngodescip' %}" style="color: #398439">
+                    <button class="button1"><span> Add Rural Internship with NGOs</span>
+                    </button>
+                </a>
+                </h1>
+            </div>
+
+
+        </div>
+ {% endif %}
+
+        {% if not user.is_authenticated %}
+            <div class="bloc bg-repeat bgc-ghost-white l-bloc" id="bloc-45">
+                <div class="container bloc-md">
+                    <div class="row">
+
+                        <div class="col-sm-4">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="mg-clear  tc-paynes-grey">
+                                        Login
+                                    </h3>
+                                </div>
+                                <div class="panel-body">
+                                    {% if form.errors %}
+                                        <p>your username and password didnot match</p>
+                                    {% endif %}
+
+                                    <form id="form_1666" novalidate="" action="{% url 'recruiterlogin' %}"
+                                          method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label>
+                                                Username
+                                            </label>
+                                            <input id="name_1666" name="username" placeholder="username"
+                                                   class="form-control" required="">
+                                            <div class="help-block"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>
+                                                Password
+                                            </label>
+                                            <input id="email_1666" class="form-control" name="password"
+                                                   placeholder="password" type="password" required="">
+                                            <div class="help-block"></div>
+                                        </div>
+                                        <a href="{% url 'reset_password' %}" class="btn btn-clean btn-dim-gray">Forget
+                                            Password?</a>
+                                        <button id="comp-login-btn"
+                                                class="bloc-button btn btn-glossy pull-left btn-dodger-green"
+                                                type="submit" value="login">
+                                            Login
+                                        </button>
+                                        <input type="hidden" name="next" value="{{ next }}">
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4" style="  align-self: center; float: right;">
+                            <h3 style="text-align: center; width: 100%;">
+                                <a href="{% url 'mywebsite:procedure' %}">Click here to view the instruction for
+                                    registration</a>
+                            </h3>
+                            <h3 style="margin-top: 50px;text-align: center; width: 100%;">
+                                <a href="{% url 'mywebsite:recruiter_form' %}">Click here for new registration</a>
+                            </h3>
+                        </div>
+
                     </div>
                 </div>
             </div>
+        {% endif %}
+        <!-- bloc-45 END -->
+        <div class="bloc bg-repeat bgc-ghost-white l-bloc" id="bloc-45">
+            <h1 style="text-align: center">Past Recruiters</h1>
+            <div class="container">
+                {% for image in images %}
+                    {% if forloop.counter|divisibleby:"4" or forloop.counter == 1 %}
+                        <div class="row" style="margin-top:20px;">
+                    {% endif %}
 
-{% if forloop.counter|divisibleby:"3" or forloop.last == true %}
+                <div class="col-sm-6 col-md-4 col-lg-3 col-mt-4"
+                     style="margin-top: 80px;margin-left: 80px;margin-bottom: 40px;">
+                    <div class="card" style="background-color: white">
+                        <div class="hn" style="background-size: cover; background-position: center; height:50%;">
+                            <img class="card-img-top" src="{{ image.image.url }}"
+                                 style="background-size: 100%;  min-width: 100%;  min-height: 100%;">
+                        </div>
+                    </div>
+                </div>
+
+                {% if forloop.counter|divisibleby:"3" or forloop.last == true %}
+                    </div>
+                {% endif %}
+                {% endfor %}
             </div>
-      {% endif %}
-{% endfor %}
-</div>
-	<div class="container bloc-md" >
-		<div class="row">
-            <div class="contents-wrapper">
-            <!-- Contents starts here -->
-            <div class="content">
-                <p><strong>Some of the Past Internship (Academic/Industry) Organisations</strong></p>
-                <ul>
-                    {% for industrial in industrials %}
-                        <li>{{ industrial.description }}</li>
-                    {% endfor %}
-                </ul>
+            <div class="container bloc-md">
+                <div class="row">
+                    <div class="contents-wrapper">
+                        <!-- Contents starts here -->
+                        <div class="content">
+                            <p><strong>Some of the Past Internship (Academic/Industry) Organisations</strong></p>
+                            <ul>
+                                {% for industrial in industrials %}
+                                    <li>{{ industrial.description }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="contents-wrapper">
+                        <!-- Contents starts here -->
+                        <div class="content">
+                            <p><strong>Rural Internship with NGOs</strong></p>
+                            <ul>
+
+                                {% for ngo in ngos %}
+                                    <li>{{ ngo.description }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
 
-        <div class="row">
-            <div class="contents-wrapper">
-            <!-- Contents starts here -->
-            <div class="content">
-                <p><strong>Rural Internship with NGOs</strong></p>
-                <ul>
-
-                    {% for ngo in ngos %}
-                        <li>{{ ngo.description }}</li>
-                    {% endfor %}
-                </ul>
+        <!-- comp-hotels -->
+        <div class="bloc bgc-white l-bloc" id="comp-hotels">
+            <div class="container bloc-md">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3 class="mg-md tc-paynes-grey">
+                            Hotels near IIIT Vadodara
+                        </h3>
+                    </div>
+                </div>
+                <div class="row voffset">
+                    <div class="col-sm-6">
+                        <h4 class="mg-md">
+                            <a href="https://www.fortunehotels.in/gandhinagar-fortune-inn-haveli.dh.6"><strong>Fortune
+                                Inn Haveli</strong></a>
+                        </h4>
+                        <p>
+                            Plot 235, Sector 11 <br>Gandhinagar - 382011, Gujarat, India <br> <br>Phone: <br>+917939884422,
+                            1-800-102-2333
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <h4 class="mg-md">
+                            <a href="https://www.cambayhotels.com/cambay-sapphire-gandhinagar.htm"><strong>Cambay
+                                Sapphire</strong></a>
+                        </h4>
+                        <p>
+                            Gandhinagar, Gujarat, India<br> <br>Tel: 1800 233 6655 <br>Email: info@cambayhotels.com
+                        </p>
+                    </div>
+                </div>
+                <div class="row voffset">
+                    <div class="col-sm-6">
+                        <h4 class="mg-md">
+                            <a href="http://hotelmiddletown.com/"><strong>Hotel MiddleTown</strong></a>
+                        </h4>
+                        <p>
+                            Pramukh Arcade, Reliance Cross road<br>Near Infocity, Kudasan, Gandhinagar.<br>Phone: <br>
+                            +91 94082 88883, 079 - 232 – 13887 <br>Email: enquiry@hotelmiddletown.com
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <h4 class="mg-md">
+                            <a href="https://www.tripadvisor.in/Hotel_Review-g297609-d3354530-Reviews-Hotel_Pathikashram-Gandhinagar_Gandhinagar_District_Gujarat.html"><strong>Hotel
+                                Pathikashram</strong></a>
+                        </h4>
+                        <p>
+                            Near Mahatma Madnir <br> S.T.Depo, Gandhinagar 382010<br>Gujarat, India
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-	</div>
-</div>
-
-<!-- comp-hotels -->
-<div class="bloc bgc-white l-bloc" id="comp-hotels">
-	<div class="container bloc-md">
-		<div class="row">
-			<div class="col-sm-12">
-				<h3 class="mg-md tc-paynes-grey">
-				Hotels near IIIT Vadodara
-				</h3>
-			</div>
-		</div>
-		<div class="row voffset">
-			<div class="col-sm-6">
-				<h4 class="mg-md">
-				<a href="https://www.fortunehotels.in/gandhinagar-fortune-inn-haveli.dh.6"><strong>Fortune Inn Haveli</strong></a>
-				</h4>
-				<p>
-					 Plot 235, Sector 11 <br>Gandhinagar - 382011, Gujarat, India <br> <br>Phone: <br>+917939884422, 1-800-102-2333
-				</p>
-			</div>
-			<div class="col-sm-6">
-				<h4 class="mg-md">
-				<a href="https://www.cambayhotels.com/cambay-sapphire-gandhinagar.htm"><strong>Cambay Sapphire</strong></a>
-				</h4>
-				<p>
-					Gandhinagar, Gujarat, India<br> <br>Tel: 1800 233 6655  <br>Email: info@cambayhotels.com
-				</p>
-			</div>
-		</div>
-		<div class="row voffset">
-			<div class="col-sm-6">
-				<h4 class="mg-md">
-				<a href="http://hotelmiddletown.com/"><strong>Hotel MiddleTown</strong></a>
-				</h4>
-				<p>
-					Pramukh Arcade, Reliance Cross road<br>Near Infocity, Kudasan, Gandhinagar.<br>Phone: <br> +91 94082 88883, 079 - 232 – 13887 <br>Email: enquiry@hotelmiddletown.com
-				</p>
-			</div>
-			<div class="col-sm-6">
-				<h4 class="mg-md">
-				<a href="https://www.tripadvisor.in/Hotel_Review-g297609-d3354530-Reviews-Hotel_Pathikashram-Gandhinagar_Gandhinagar_District_Gujarat.html"><strong>Hotel Pathikashram</strong></a>
-				</h4>
-				<p>
-					Near Mahatma Madnir <br> S.T.Depo, Gandhinagar 382010<br>Gujarat, India
-				</p>
-			</div>
-		</div>
-	</div>
-</div>
     </div>
 {% endblock %}
 {##}
