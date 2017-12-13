@@ -1,65 +1,150 @@
-{#<!DOCTYPE html>#}
-{#{% load staticfiles %}#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#<meta charset="utf-8">#}
-{##}
-{#<title>ADD Question</title>#}
-{#<meta name="description" content="">#}
-{##}
-{#<!-- styles -->#}
-{#<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">#}
-{#<meta name="keywords" content="">#}
-{##}
-{#<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">#}
-{#<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">#}
-{#<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>#}
-{#<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
-{#<link rel="shortcut icon" type="image/png" href="http://iiitvadodara.ac.in/img/IIITV_Logo_1x1_small.png">#}
-{##}
-{#<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">#}
-{#<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">#}
-{#<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">#}
-{#<link href="{% static 'css/css' %}" rel="stylesheet" type="text/css">#}
-{#<link href="{% static 'css/css(1)' %}" rel="stylesheet" type="text/css">#}
-{##}
-{#<script src="{% static 'javascript/jquery-2.1.0.min.js.download' %}"></script>#}
-{#<script src="{% static 'javascript/bootstrap.min.js.download' %}"></script>#}
-{#<script src="{% static 'javascript/blocs.min.js.download' %}"></script>#}
-{#</head>#}
-{#<body>#}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{#</body>#}
-{#</html>#}
-
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% load i18n %}
 {% block title %}{% trans "Add Question" %} {% endblock %}
 {% block content %}
-{% if user.is_authenticated %}
-{% if user.is_staff or user.is_superuser %}
-<p  style="text-align: center;font-size: 50px;"><a href="{% url 'addmcq' %}">Add MC Question</a></p>
-    <p  style="text-align: center;font-size: 50px;"><a href="{% url 'addtf' %}">Add T/F Question</a></p>
-    <p  style="text-align: center;font-size: 50px;"><a href="{% url 'addessay' %}">Add Essay Question</a></p>
+
+     <style>
+    .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.1s; /* Safari */
+    transition-duration: 0.1s;
+    cursor: pointer;
+}
+
+.button1 {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+.button3 {
+    background-color: white;
+    color: black;
+    border: 2px solid #607eff;
+}
+
+.button3:hover {
+    background-color: #607eff;
+    color: white;
+}
+.button4 {
+    background-color: white;
+    color: black;
+    border: 2px solid #1d7cb8;
+}
+
+.button4:hover {
+    background-color: #1d7cb8;
+    color: white;
+}
+    .button2 {
+  display: inline-block;
+  border-radius: 5px;
+  background-color: #2493f4;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  width: 100px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.button2 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button2 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button2:hover span {
+  padding-right: 25px;
+}
+
+.button2:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+    </style>
+    {% if user.is_authenticated %}
+        {% if user.is_staff or user.is_superuser %}
+            <div class="row">
+                <div class="col-md-12">
+                    <p style="text-align: center;font-size: 40px;"><a href="{% url 'addmcq' %}">
+                        <button class="button button1" style="vertical-align:middle">
+                            <span> Add MC Question</span>
+                        </button>
+                    </a>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p style="text-align: center;font-size: 40px;">
+                        <a href="{% url 'addtf' %}">
+                            <button class="button button3" style="vertical-align:middle">
+                            <span> Add T/F Question</span>
+                        </button>
+
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p style="text-align: center;font-size: 40px;">
+                        <a href="{% url 'addessay' %}">
+                            <button class="button button4" style="vertical-align:middle">
+                            <span> Add Essay Question</span>
+                        </button>
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <p style="text-align: center;font-size: 50px">Adding completed ? click
+                        <a href="{% url 'mywebsite:home' %}">
+                            <button class="button2" style="vertical-align:middle"><span> here</span></button>
+                        </a>to go out
+                    </p>
+                </div>
+            </div>
 
 
-<p style="text-align: center;font-size: 50px">Adding completed ? click
-<a href="{% url 'mywebsite:home' %}">here</a> to go out
-</p>
+        {% else %}
+            <h1>This page is for Recruiter or Admin Not for Students.Go to home from <a
+                    href="{% url 'mywebsite:home' %}">here</a></h1>
+        {% endif %}
     {% else %}
-    <h1>This page is for Recruiter or Admin Not for Students.Go to home from <a href="{% url 'mywebsite:home' %}">here</a></h1>
-{% endif %}
-    {% else %}
-    <h1>You are not logged in !!! </h1>
-    <h1>For Recruiter ,log in from <a href="{% url 'mywebsite:recruiter' %}">here</a></h1>
-    <h1>For Student ,log in from <a href="{% url 'mywebsite:student' %}">here</a></h1>
-{% endif %}
+        <h1>You are not logged in !!! </h1>
+        <h1>For Recruiter ,log in from <a href="{% url 'mywebsite:recruiter' %}">here</a></h1>
+        <h1>For Student ,log in from <a href="{% url 'mywebsite:student' %}">here</a></h1>
+    {% endif %}
 
 {% endblock %}

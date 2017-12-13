@@ -3,6 +3,32 @@
 {% load i18n %}
 {% block title %}{% trans "Add Essay" %}{% endblock %}
 {% block content %}
+    <style>
+     .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.1s; /* Safari */
+    transition-duration: 0.1s;
+    cursor: pointer;
+}
+    .button4 {
+    background-color: white;
+    color: black;
+    border: 2px solid #1d7cb8;
+}
+
+.button4:hover {
+    background-color: #1d7cb8;
+    color: white;
+}
+    </style>
        <div class="page-container">
 <!-- bloc-0 -->
 <div style="height: 40px;"></div>
@@ -26,7 +52,9 @@
     {{ essay_form.explanation }}<p>*Explanation to be shown after the question has been answered.</p>
 <br><br>
     <div class="row" style="padding-top: 30px;margin-left: 25%;">
-        <button type="submit"><a>Add Essay</a></button>
+        <button type="submit" class="button button4" style="vertical-align:middle">
+            <span> Add Essay</span>
+        </button>
     </div>
 </form>
 </div>

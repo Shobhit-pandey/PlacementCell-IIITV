@@ -91,9 +91,9 @@
 </style>
     <div class="page-container">
     {% if user.is_superuser %}
-    <h1 style="text-align: center">
+    <h1 >
         <a href="{% url 'mywebsite:teamimage' %}" style="color: #ff4226">
-            <button class="button" style="vertical-align:middle"><span> Add Team Image</span></button>
+            <button class="button" style="vertical-align:middle"><span style="alignment: center"> Add Team Image</span></button>
         </a>
         <a href="{% url 'mywebsite:facultyimage' %}" style="color: #6a92e4">
             <button class="button" style="vertical-align:middle"><span> Add Faculty Image</span></button>
@@ -117,9 +117,6 @@
              <div id="slide">
   <div class="slideshow-container">
       <div style="text-align: center">
-{#      {% if user.is_superuser %}#}
-{#      <h3><a href="{% url 'mywebsite:teamimage' %}">Add Team Image</a></h3>#}
-{#      {% endif %}#}
     {% for team in addteamimage %}
       <div class="mySlides fade"> <img src="{{ team.team_image.url }}" style="width:50%"> </div>
     {% endfor %}

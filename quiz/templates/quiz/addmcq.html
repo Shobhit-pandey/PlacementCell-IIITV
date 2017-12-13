@@ -1,34 +1,3 @@
-{#<!DOCTYPE html>#}
-{#{% load staticfiles %}#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">#}
-{#<meta name="keywords" content="">#}
-{#<meta name="description" content="">#}
-{#<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">#}
-{#<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">#}
-{#<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>#}
-{#<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
-{#<link rel="shortcut icon" type="image/png" href="http://iiitvadodara.ac.in/img/IIITV_Logo_1x1_small.png">#}
-{##}
-{#<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">#}
-{#<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">#}
-{#<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">#}
-{#<link href="{% static 'css/css' %}" rel="stylesheet" type="text/css">#}
-{#<link href="{% static 'css/css(1)' %}" rel="stylesheet" type="text/css">#}
-{##}
-{#<script src="{% static 'javascript/jquery-2.1.0.min.js.download' %}"></script>#}
-{#<script src="{% static 'javascript/bootstrap.min.js.download' %}"></script>#}
-{#<script src="{% static 'javascript/blocs.min.js.download' %}"></script>#}
-{##}
-{#    <script src="{% static 'javascript/dynamic-formset.js' %}"></script>#}
-{#    <title>Add MCQ</title>#}
-{#</head>#}
-{#<body>#}
-{#    </body>#}
-{#</html>#}
-
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% load i18n %}
@@ -39,7 +8,34 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 {% endblock %}
 {% block content %}
+<style>
 
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.1s; /* Safari */
+    transition-duration: 0.1s;
+    cursor: pointer;
+}
+
+.button1 {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
    <div class="page-container">
 <!-- bloc-0 -->
 <div style="height: 40px;"></div>
@@ -107,8 +103,9 @@
     </table>
     {{ answer_formset.management_form }}
     <div class="row" style="padding-top: 30px;margin-left: 25%;">
-
-        <button type="submit"><a>Add MCQ</a></button>
+            <button type="submit" class="button button1" style="vertical-align:middle">
+                            <span> Add MC Question</span>
+                        </button>
     </div>
 </form>
 
