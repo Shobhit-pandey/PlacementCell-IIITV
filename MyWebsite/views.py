@@ -13,7 +13,7 @@ from django.views.generic import ListView
 from MyWebsite.form import RecruiterForm, BeyondAcademicImagesForm, BeyondAcademicVideosForm, \
     BeyondAcademicHighlightForm, RecruiterInternshipIndustrialForm, RecruiterInternshipNGOForm, PastRecruiterForm, \
     CompaniesAppliedByStudentsForm, AlumniForm, ResearchForm, CollegeTeamImageForm, CollegeTeamFacultyForm, \
-    CollegeTeamStudentForm, AcademicImageForm, AcademicVideoForm, AcademicHighlightForm
+    CollegeTeamStudentForm, AcademicImageForm, AcademicVideoForm, AcademicHighlightForm, AddStudent, AddRecruiter
 from MyWebsite.models import BeyondAcademicImages, BeyondAcademicVideos, BeyondAcademicsHighlight, PastRecruiter, \
     RecruiterInternshipIndustrial, RecruiterInternshipNGO, Recruiter, CollegeTeamImage, CollegeTeamFaculty, \
     CollegeTeamStudent, Alumni, Research, AcademicImage, AcademicVideo, AcademicHighlight, CompaniesAppliedByStudents
@@ -23,8 +23,10 @@ from quiz.models import Quiz
 def home(request):
     return render(request, 'home.html')
 
+
 def student(request):
     return render(request, 'Student.html')
+
 
 def recruiter(request):
     images = PastRecruiter.objects.all()
@@ -32,11 +34,14 @@ def recruiter(request):
     ngos = RecruiterInternshipNGO.objects.all()
     return render(request, 'Recruiter.html', {'images': images, 'industrials': industrials, 'ngos': ngos})
 
+
 def about(request):
     return render(request, 'About.html')
 
+
 def procedure(request):
     return render(request, 'Procedure.html')
+
 
 def academic(request):
     addacademicimage = AcademicImage.objects.all()
@@ -75,22 +80,15 @@ def research_development(request):
 
 @csrf_protect
 def recruiter_form(request):
-    print("1")
     if request.method == 'POST':
-        print("2")
         form = RecruiterForm(request.POST)
-        print("3")
         if form.is_valid():
-            print("3")
             value = form.save()
-            print("4")
             email = form.cleaned_data['email']
-            print("5")
             contact = form.cleaned_data['Contact_Number']
 
             name = form.cleaned_data['Name']
             value.save()
-            print("6")
             email = EmailMessage('Regarding recruitment',
                                  "Received mail from" + str(email) + "\n\n" + "name:" +
                                  str(name) + "\n" + "contact:" + str(contact), to=['', ])
@@ -342,3 +340,35 @@ def student_shortlisted_recruiter(request):
     list = CompaniesAppliedByStudents.objects.filter(user_id=request.user.id)
     recruiter_list = Recruiter.objects.all()
     return render(request, 'student_recruiter_list.html', {'lists': list, 'recruiter_list': recruiter_list})
+
+
+def addstudent(request):
+    form = AddStudent()
+    if request.method == 'POST':
+        form = AddStudent(request.POST,initial={'is_staff':False})
+        if form.is_valid():
+            user=form.save()
+            user.is_staff=False
+            user.is_superuser=False
+            user.save()
+            return redirect('mywebsite:home')
+
+    else:
+        form = AddStudent()
+    return render(request, 'addstudent.html', {'form': form})
+
+
+def addrecruiter(request):
+    form = AddRecruiter()
+    if request.method == 'POST':
+        form = AddRecruiter(request.POST,initial={'is_staff':True})
+        if form.is_valid():
+            user=form.save()
+            user.is_staff = True
+            user.is_superuser = False
+            user.save()
+            return redirect('mywebsite:home')
+
+    else:
+        form = AddRecruiter()
+    return render(request, 'addrecruiter.html', {'form': form})

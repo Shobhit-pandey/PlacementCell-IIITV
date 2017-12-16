@@ -110,7 +110,7 @@
 <div class="page-container">
 {% if user.is_superuser %}
     <h1 style="text-align: center;">
-            <a href="#">
+            <a href="{% url 'mywebsite:addstudent' %}">
                 <button class="button" style="vertical-align:middle"><span> Add Student</span></button>
             </a>
     </h1>
