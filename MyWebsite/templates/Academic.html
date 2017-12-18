@@ -56,17 +56,25 @@
     </style>
     <div class="page-container">
     {% if user.is_superuser %}
+        <div class="row">
     <h1 style="text-align: center">
+        <div class="col-sm-4">
         <a href="{% url 'mywebsite:academicimage' %}" style="color: #ff4226">
             <button class="button" style="vertical-align:middle"><span> Add Image</span></button>
         </a>
+        </div>
+        <div class="col-sm-4">
         <a href="{% url 'mywebsite:academicvideo' %}" style="color: #6a92e4">
             <button class="button" style="vertical-align:middle"><span> Add Video</span></button>
         </a>
+        </div>
+        <div class="col-sm-4">
         <a href="{% url 'mywebsite:academichighlight' %}" style="color: #13cc40">
             <button class="button" style="vertical-align:middle"><span> Add Highlight</span></button>
         </a>
+            </div>
     </h1>
+        </div>
     <br>
 {% endif %}
 {#    {% if user.is_superuser %}#}

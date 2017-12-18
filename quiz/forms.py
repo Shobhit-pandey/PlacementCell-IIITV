@@ -36,7 +36,7 @@ class EssayForm(forms.Form):
 class CreatequizForm(forms.Form):
     user_id = forms.CharField(max_length=100, required=True, widget=forms.HiddenInput())
     title = forms.CharField(max_length=100, required=True)
-    description = forms.CharField(max_length=1000, required=True)
+    description = forms.CharField(max_length=1000, required=True,widget=forms.Textarea())
     start_time = forms.DateTimeField(required=True, initial=timezone.now())
     end_time = forms.DateTimeField(required=True, initial=timezone.now())
     time_of_quiz=forms.IntegerField(required=True,initial=1)
@@ -78,7 +78,7 @@ class MCQuestionForm(forms.Form):
     sub_category = forms.ModelChoiceField(queryset=SubCategory.objects.all(), required=False)
     figure = forms.ImageField(required=False)
     content = forms.CharField(max_length=1000, required=True)
-    explanation = forms.CharField(max_length=2000, required=False)
+    explanation = forms.CharField(max_length=2000, required=False,widget=forms.Textarea())
     answer_order = forms.ChoiceField(ANSWER_ORDER_OPTIONS, required=True)
 
     def save(self):
@@ -115,7 +115,7 @@ class TFForm(forms.Form):
     sub_category = forms.ModelChoiceField(queryset=SubCategory.objects.all(), required=False)
     figure = forms.ImageField(required=False)
     content = forms.CharField(max_length=1000, required=True)
-    explanation = forms.CharField(max_length=2000, required=False)
+    explanation = forms.CharField(max_length=2000, required=False,widget=forms.Textarea())
     correct = forms.BooleanField(required=False)
 
     def save(self):
@@ -136,7 +136,7 @@ class EssayEForm(forms.Form):
     sub_category = forms.ModelChoiceField(queryset=SubCategory.objects.all(), required=False)
     figure = forms.ImageField(required=False)
     content = forms.CharField(max_length=1000, required=True)
-    explanation = forms.CharField(max_length=2000, required=False)
+    explanation = forms.CharField(max_length=2000, required=False,widget=forms.Textarea())
 
     # correct=forms.BooleanField()
 
