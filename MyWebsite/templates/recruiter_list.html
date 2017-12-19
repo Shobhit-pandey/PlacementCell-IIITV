@@ -1,49 +1,172 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Companies registered</title>
-</head>
-{% if user.is_authenticated or user.is_superstaff and not user.is_staff%}
-<body>
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Company list" %}{% endblock %}
+{% block content %}
+    <style>
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #2493f4;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 5px;
+  width: 100px;
+  transition: all 0.2s;
+  cursor: pointer;
+  margin: 5px;
+}
 
-<div class="text-center col-lg-3 col-md-6 col-sm-12 col-xs-12" id="google_translate_element"></div>
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
 
-<div class="container">
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
 
-    <div class="row">
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+    .disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+    .button1 {
+  display: inline-block;
+  border-radius: 0px;
+  background-color: #2493f4;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 15px;
+  width: 420px;
+  transition: all 0.2s;
+  cursor: pointer;
+  float: left;
+}
+
+.button1 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button1 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button1:hover span {
+  padding-right: 25px;
+}
+
+.button1:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
+    {% if user.is_authenticated %}
+        {% if not user.is_superuser and user.is_staff %}
+            {% else %}
+        <h1>
+        <a href="{% url 'mywebsite:student_shortlisted_recruiter' %}" >
+                        <button class="button1" style="vertical-align:middle"><span> Your Short Listed Company </span></button>
+                    </a>
+        <a href="{% url 'mywebsite:recruiterlist' %}" >
+                        <button class="button1" style="vertical-align:middle"><span> Company List </span></button>
+                    </a>
+        <a href="{% url 'mywebsite:change_password' %}" >
+                        <button class="button1" style="vertical-align:middle"><span> Change Password </span></button>
+                    </a>
+        <a href="{% url 'logout' %}" >
+                        <button class="button1" style="vertical-align:middle"><span> Logout</span></button>
+                    </a>
+        </h1>
+            {% endif %}
+    {% endif %}
+<h1 style="text-align: center">{% trans "List of upcoming Company" %} </h1>
+    {% if recruiter_list %}
+      <table class="table table-bordered table-striped">
+
+		  <thead>
+			<tr>
+			  <th>{% trans "Organisation Name" %}</th>
+			  <th>{% trans "Organisation Website" %}</th>
+			  <th>{% trans "Organisation Sector" %}</th>
+			  <th>{% trans "Offer" %}</th>
+              <th>{% trans "CTC" %}</th>
+                <th>{% trans "Service" %}</th>
+                <th>{% trans "Tentative Date" %}</th>
+                <th>{% trans "Criteria" %}</th>
+                <th>{% trans "Selective Process" %}</th>
+                <th></th>
+			</tr>
+		  </thead>
+
+		  <tbody>
 
         {% for company in recruiter_list %}
+  			<tr>
+			  <td>{{ company.Organization_name }}</td>
+			  <td><a href="{{ company.Organization_website }}">Link</a></td>
+			  <td>
+                  {% if company.Information_Technology %} <strong> Information Technology , </strong> {% endif %}
+                  {% if company.Analytics %}<strong> Analytics , </strong>{% endif %}
+                    {% if company.E_Commerce %}<strong> E Commerce , </strong>{% endif %}
+                    {% if company.Telecom %}<strong> Telecom , </strong>{% endif %}
+                    {% if company.Finance %}<strong> Finance , </strong>{% endif %}
+                    {% if company.Consulting %}<strong> Consulting ,</strong>{% endif %}
+                    {% if not company.Other_field == "" %}<strong> {{ company.Other_field }} </strong>{% endif %}
+              </td>
+			  <td>{{ company.offer }}</td>
+            <td>{{ company.CTC }} </td>
+            <td>{{ company.service }} </td>
+            <td>{{ company.Tentative_Date }} </td>
+            <td>{{ company.Criteria }} </td>
+            <td>
+                {% if company.Shortlisting_From_Resumes %}<strong> Resume , </strong>{% endif %}
+                  {% if company.Written_Test_Apptitute %} <strong> Aptitude Test ,</strong> {% endif %}
+                    {% if company.Group_Discussion %} <strong> GD ,</strong> {% endif %}
+                    {% if company.Personal_Interview %} <strong> PI ,</strong>{% endif %}
+                    {% if company.Written_Test_Technical %} <strong> Technical Test  ,</strong>{% endif %}
+                    {% if not company.Other == "" %} <strong> {{ company.Other }} </strong>{% endif %}
+            </td>
+            <td> {% if not company.id in lists %}
+                <a href="{% url 'mywebsite:studentapply' pk=company.id %}"><button class="button" style="vertical-align:middle"><span> Apply</span></button></a>
 
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" >
-            <div class="card">
-                <div class="card-block p-t-2">
-                    <h2>
-                        {{company.Organization_name}}
-                    </h2>
-                    <h6>{{company.CTC}}</h6>
-                    <h6 class="small text-wide p-b-2">{{company.Tentative_Date}}</h6>
-                </div>
+                {% else %}
+                <button class="button disabled">Applied</button>
+                {% endif %}
+            </td>
 
-            </div>
-
-            </div>
-        <button><a href="{% url 'mywebsite:studentapply' pk=company.id %}">Apply</a></button>
+			</tr>
 
         {% endfor %}
+		  </tbody>
 
-    </div>
-
-</div>
-
-<script type="text/javascript">
-                function googleTranslateElementInit() {
-                new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-                }
-        </script>
-        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-
-</body>
-{% endif %}
-</html>
+		</table>
+    {% else %}
+        <p>{% trans "There are no company listed till now" %}</p>
+    {% endif %}
+{% endblock %}

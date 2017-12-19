@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% load i18n%}
 
 {% load quiz_tags %}
@@ -149,6 +150,7 @@
 {#         window.setTimeout(document.cartCheckout.submit.bind(document.cartCheckout), 5000);#}
 {#    };#}
 {#</script>#}
+
   <input type="submit" value="{% trans "Check" %}" class="btn btn-large btn-block btn-warning" >
 </form>
 

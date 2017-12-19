@@ -4,11 +4,38 @@
 {% block title %}{% trans "Create Quiz" %}{% endblock %}
 
 {% block content %}
+    <style>
+     .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.1s; /* Safari */
+    transition-duration: 0.1s;
+    cursor: pointer;
+}
+    .button4 {
+    background-color: white;
+    color: black;
+    border: 2px solid #1d7cb8;
+}
+
+.button4:hover {
+    background-color: #1d7cb8;
+    color: white;
+}
+    </style>
     <div class="page-container">
 
 <!-- bloc-0 -->
 
-<div style="height: 40px;"></div>
+{% if user.is_superuser or user.is_staff %}
+    <div style="height: 40px;"></div>
 <div class="container" style="font-size: 18px; max_width:800px;background: rgba(119,180,255,0.26)">
     <div style="height: 10px;"></div>
     <div><h1 style="font-size: 250%; text-align: center;">Create Quiz</h1></div>
@@ -86,9 +113,14 @@
 
 {#    #}
                     <div class="row" style="padding-top: 30px;margin-left: 25%;">
-                        <button type="submit"><a>Add Quiz</a></button></div>
+                        <button type="submit" class="button button4" style="vertical-align:middle">
+            <span> Add Quiz</span>
+        </button>
 </form>
 </div>
+    {% else %}
+    <h1>Url not found... though you can go to home page from <a href="{% url 'mywebsite:home' %}">here</a></h1>
+    {% endif %}
 </div>
 <div style="height: 50px;"></div>
 {% endblock %}

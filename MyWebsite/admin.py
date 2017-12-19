@@ -5,7 +5,7 @@ from django.contrib import admin
 
 from MyWebsite.models import Recruiter, Gallery, PastRecruiter, BeyondAcademicImages, BeyondAcademicVideos, \
     BeyondAcademicsHighlight, RecruiterInternshipIndustrial, RecruiterInternshipNGO, CompaniesAppliedByStudents, Alumni, \
-    Research, AcademicImage, AcademicVideo, AcademicHighlight
+    Research, AcademicImage, AcademicVideo, AcademicHighlight, CollegeTeamImage, CollegeTeamFaculty, CollegeTeamStudent
 from true_false.models import TF_Question
 
 from quiz.models import CategoryManager, Category, Question, Sitting, SittingManager, Progress, ProgressManager, Quiz, \
@@ -32,3 +32,6 @@ admin.site.register(Research)
 admin.site.register(AcademicImage)
 admin.site.register(AcademicVideo)
 admin.site.register(AcademicHighlight)
+admin.site.register(CollegeTeamImage)
+admin.site.register(CollegeTeamFaculty)
+admin.site.register(CollegeTeamStudent)

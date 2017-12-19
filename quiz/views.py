@@ -18,6 +18,7 @@ from .forms import QuestionForm, EssayForm, CreatequizForm, MCQuestionForm, Answ
 from .models import Quiz, Category, Progress, Sitting, Question
 from essay.models import Essay_Question
 
+
 class QuizMarkerMixin(object):
     @method_decorator(login_required)
     @method_decorator(permission_required('quiz.view_sittings'))
@@ -457,14 +458,15 @@ def AddTF(request):
     if request.method == "POST":
         tf_form = TFForm(request.POST, request.FILES, initial={'user_id': request.user.id})
         if tf_form.is_valid():
-            new_tf=tf_form.save()
-            new_tf.quiz=quiz
+            new_tf = tf_form.save()
+            new_tf.quiz = quiz
             new_tf.save()
             return redirect('createquestion')
 
     else:
         tf_form = TFForm(initial={'user_id': request.user.id})
     return render(request, 'quiz/addtf.html', {'tf_form': tf_form, })
+
 
 def AddEssay(request):
     referer = request.META.get('HTTP_REFERER')
@@ -478,14 +480,15 @@ def AddEssay(request):
     if request.method == "POST":
         essay_form = EssayEForm(request.POST, request.FILES, initial={'user_id': request.user.id})
         if essay_form.is_valid():
-            new_essay=essay_form.save()
-            new_essay.quiz=quiz
+            new_essay = essay_form.save()
+            new_essay.quiz = quiz
             new_essay.save()
             return redirect('createquestion')
 
     else:
         essay_form = EssayEForm(initial={'user_id': request.user.id})
     return render(request, 'quiz/addessay.html', {'essay_form': essay_form, })
+
 
 def CreateCategory(request):
     form = CategoryForm()
@@ -497,14 +500,15 @@ def CreateCategory(request):
 
     else:
         form = CategoryForm()
-    return render(request,'quiz/createcategory.html',{'form':form})
+    return render(request, 'quiz/createcategory.html', {'form': form})
+
 
 class QuizRecruiterMarkingList(QuizMarkerMixin, SittingFilterTitleMixin, ListView):
     model = Sitting
 
     def get_queryset(self):
         self.quiz = get_object_or_404(Quiz, id=self.kwargs['quiz_name'])
-        k =self.kwargs['quiz_name']
+        k = self.kwargs['quiz_name']
         print(k)
         queryset = super(QuizRecruiterMarkingList, self).get_queryset() \
             .filter(quiz_id=k)
@@ -513,3 +517,9 @@ class QuizRecruiterMarkingList(QuizMarkerMixin, SittingFilterTitleMixin, ListVie
             queryset = queryset.filter(user__username__icontains=user_filter)
 
         return queryset
+
+
+# def QuizRecruiterMarkingList(request, quiz_name):
+#     quiz = get_object_or_404(Quiz, pk=quiz_name)
+#     sitting_list = Sitting.objects.filter(quiz_id=quiz_name)
+#     return render(request, 'quiz/sitting_list.html', {'sitting_list': sitting_list})

@@ -1,329 +1,200 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load staticfiles %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add Student Image</title>
-</head>
-<body>
-<div class="page-container">
-
-<!-- bloc-0 -->
-<div class="bloc bg-repeat bgc-white l-bloc" id="bloc-0">
-	<div class="container bloc-sm">
-		<div class="row">
-			<div class="col-sm-6">
-				<a href="{% url 'mywebsite:home' %}"><img src="{% static 'images/iiitv_logo.png' %}" class="head-logo" height="80"></a>
-				<h4 class=" tc-black mg-sm">
-					<a class="ltc-black"  href="{% url 'mywebsite:home' %}">Training &amp; Placement Cell</a><br>
-				</h4>
-				<h6 class=" mg-clear tc-1">
-
-					 <a class="pull-left" href="http://iiitvadodara.ac.in/" target="_blank">Indian Institute of Information Technology Vadodara</a><br>
-				</h6>
-			</div>
-				<div class="col-sm-6 right-align">
-				<ul class="list-unstyled list-horizontal-layout">
-
-					<li>
-						<a href="{% url 'quiz_category_list_all' %}" class="btn btn-d btn-sq btn-sm nav-button">Quiz</a>
-					</li>
-					<li>
-						<a href="{% url 'mywebsite:student' %}" class="btn btn-d btn-sq btn-sm nav-button">Students</a>
-					</li>
-					<li>
-						<a href="{% url 'mywebsite:recruiter' %}" class="btn btn-d btn-sq btn-sm nav-button">Recruiters</a>
-					</li>
-					<li>
-						<div class="btn-group btn-dropdown">
-							<a href="#" class="btn btn-d btn-sq btn-sm nav-button dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Achievements<span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-
-
-								<li>
-									<a href="{% url 'mywebsite:academic' %}" class="a-btn a-block">Academics</a>
-								</li>
-								<li>
-									<a href="{% url 'mywebsite:beyond_academic' %}" class="a-btn a-block">Beyond Academics</a>
-								</li>
-
-							</ul>
-						</div>
-					</li>
-					<li>
-						<a  href="{% url 'mywebsite:department' %}" class="btn btn-d btn-sq btn-sm nav-button">Departments</a>
-					</li>
-					<li>
-						<div class="btn-group btn-dropdown">
-							<a href="#" class="btn btn-d btn-sq btn-sm nav-button dropdown-toggle" data-toggle="dropdown" aria-expanded="false">About<span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-
-
-								<li>
-									<a href="{% url 'mywebsite:about' %}" class="a-btn a-block">About US</a>
-								</li>
-								<li>
-									<a href="{% url 'mywebsite:contact' %}" class="a-btn a-block">Contact Us</a>
-								</li>
-                                <li>
-									<a href="http://iiitvadodara.ac.in/gallery.php" class="a-btn a-block">Gallery</a>
-								</li>
-								<li>
-									<a href="{% url 'mywebsite:college_team' %}" class="a-btn a-block">College Team</a>
-								</li>
-								<li>
-									<a href="{%  url 'mywebsite:alumni' %}" class="a-btn a-block">Alumni</a>
-								</li>
-								<li>
-									<a href="{% url 'mywebsite:research_development' %}" class="a-btn a-block">Research &amp; Development</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-
-
-
-
-				</ul>
-			</div>
-
-		</div>
-	</div>
-</div>
-<!-- bloc-0 END -->
-
-<!-- bloc-1 -->
-<!-- <div class="bloc b-divider l-bloc bgc-white" id="bloc-1">
-
-</div> -->
-<!-- bloc-1 END -->
-
-<!-- bloc-2 -->
-<div class="bloc bg-Home-Hero-3 bg-tr-edge bgc-united-nations-blue d-bloc " id="bloc-2">
-	<div class="container scroll">
-		<div class="row ">
-			<div class="col-sm-12 " >
-				<h3 class=" hero-h mg-clear tc-ghost-white  ">
-
-					The placement session for IIIT Vadodara begins this December. <a class="hero-link ltc-white" href="rules-and-procedures.html">Register Now →</a>
-				</h3>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- bloc-2 END -->
-
-<!-- bloc-3 -->
-<div class="bloc b-divider bg-center tc-dim-gray bgc-ghost-white l-bloc" id="bloc-3">
-	<div class="container bloc-md">
-		<div class="row">
-
-			<div class="col-sm-6 ">
-				<h3 class="mg-md  tc-dim-gray-2">
-					IIIT Vadodara gives you an edge over the rest.
-				</h3>
-				<p class=" mg-md text-left">
-				IIIT Vadodara is still in its early stages . students here carve thier w
-                    ay on your own . It’s in line with some of the top NITs and IITs right now. We are expecting even faster growth in the future.The Institute aims at evolving strong research programmes in a plethora of areas where IT shall provide a common link with profound emphasis on development of technology and its application.<br>
-				</p>
-				<h4 class="mg-sm">
-				<font size="-1">	<a class="dot-link ltc-celestial-blue" href="http://iiitvadodara.ac.in/about.php">Learn more →</a> <font></font><br>
-				</h4>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- bloc-3 END -->
-
-<!-- bloc-4 -->
-<div class="bloc tc-dim-gray bgc-white l-bloc" id="bloc-4">
-	<div class="container bloc-md">
-		<div class="row">
-			<div class="col-sm-12">
-				<h3 class="mg-sm  tc-dim-gray-2">
-					Our Students ,Programs and Departments
-				</h3>
-			</div>
-		</div>
-		<div class="row voffset">
-			<div class="col-sm-4">
-				<a href="http://iiitvadodara.ac.in/"><img src="{% static 'images/Students.jpg' %}" class="img-responsive win-hover mg-md"></a>
-				<p class=" mg-md">
-					IIIT Vadodara draws on a reserve of extraordinary talent as a by-product of its selective, stringent and consequently, amazingly successful Joint Entrance Exam (JEE) for admissions to all the UG programmes.
-				</p>
-				<h4 class="mg-md tc-dim-gray-2">
-					<font size="-1"><a class="dot-link ltc-celestial-blue" href="http://iiitvadodara.ac.in/mtech_cse.php">Learn more about our Students → </a><font ><br>
-				</h4>
-			</div>
-			<div class="col-sm-4">
-				<a href="http://iiitvadodara.ac.in/"><img src="{% static 'images/Depts.jpg' %}" class="img-responsive mg-md win-hover"></a>
-				<p class=" mg-md">
-					IIIT Vadodara is home to 2 degree programs .
-				</p>
-				<h4 class="mg-md tc-dim-gray-2">
-					<font size="-1"><a class="dot-link ltc-celestial-blue" href="http://iiitvadodara.ac.in/mtech_cse.php#">Explore Degree Programs at IIIT Vadodara →</a></font><br>
-				</h4>
-			</div>
-			<div class="col-sm-4">
-				<a href="http://iiitvadodara.ac.in/"><img src="{% static 'images/Depts.jpg' %}" class="img-responsive mg-md win-hover"></a>
-				<p class=" mg-md">
-					The Degree programs are spread over two departments.
-				</p>
-				<h4 class="mg-md tc-dim-gray-2">
-					<font size="-1"><a class="dot-link ltc-celestial-blue" href="http://iiitvadodara.ac.in/btech_cse.php">Explore Departments at IIIT Vadodara →</a></font><br>
-				</h4>
-			</div>
-
-		</div>
-	</div>
-</div>
-<!-- bloc-4 END -->
-
-<!-- bloc-5 -->
-<div class="bloc b-divider tc-dim-gray bgc-ghost-white l-bloc" id="bloc-5">
-	<div class="container bloc-md">
-		<div class="row">
-			<div class="col-sm-6">
-				<img src="{% static 'images/Companies-1.png' %}" class="img-responsive win-panel mg-sm">
-				<h6 class="mg-sm">
-					<i>Some of IIIT Vadodara’s recruiters.</i>
-				</h6>
-			</div>
-			<div class="col-sm-6">
-				<h3 class="mg-md tc-dim-gray-2">
-					Past Recruiters
-				</h3>
-				<p class=" mg-md">
-					Recruiters from some of the best companies in India and in the world have trusted the departments and students of IIIT Vadodara to bring them to great heights. <br>
-				</p>
-				<h4 class="mg-lg tc-dim-gray-2">
-					<a class="dot-link ltc-celestial-blue" href="{% url 'mywebsite:recruiter' %}">Who else has been recruiting →</a><br>
-				</h4>
-
-			</div>
-		</div>
-	</div>
-</div>
-<!-- bloc-5 END -->
-
-<!-- bloc-6 -->
-<div class="bloc bg-Sky-Gradient tc-ghost-white bgc-tigers-eye l-bloc" id="bloc-6">
-	<div class="container bloc-md b-divider">
-		<div class="row">
-			<div class="col-sm-6">
-				<h3 class="mg-md tc-splashed-white">
-					Register
-				</h3>
-				<p>
-					IIITians have excelled and acquired positions of eminence in every field imaginable-From engineering to finance to management to even arts. Start recruiting from the best!<br>
-				</p>
-				<h4 class="mg-md">
-					<a class="dot-link ltc-white" href="http://iiitvadodara.ac.in/">Register for training and placements →</a><br>
-				</h4>
-			</div>
-			<div class="col-sm-6">
-				 <h3 style ="padding-left: 20px;" class="mg-md tc-splashed-white">
-					      Downloads
-
-				</h3>
-
-			<ul>
-				<li><a style="color: white" href="http://iiitvadodara.ac.in/">Information Brochure</a></li>
-				<li><a style="color: white" href="http://iiitvadodara.ac.in/">Job Announcement Form (JAF) -2015-16</a></li>
-			</ul>
-			</div>
-
-		</div>
-	</div>
-</div>
-<!-- bloc-6 END -->
-
-<!-- ScrollToTop Button
-<a class="bloc-button btn btn-d scrollToTop" onclick="scrollToTarget(&#39;1&#39;)"><span class="fa fa-chevron-up"></span></a>
-<!-- ScrollToTop Button END-->
-
-
-<!-- Footer - bloc-63 -->
-
-<div style="border-top: 5px solid black;" class="bloc b-divider bgc-ghost-white l-bloc " id="bloc-63"><center><img style="background: white; margin-top: -48px; padding: 2px; border-radius: 50%;border-style: solid;border-width: 5px; align-content: center;" src="{% static 'images/iiitv_logo.png' %}" alt="iiitv" width="90" height="90"></center>
-	<div class="container bloc-md">
-		<div class="row">
-			<div class="col-sm-3">
-				<img src="{% static 'images/iiitv_logo.png' %}" class="head-logo" height="48">
-				<h5 class="mg-md">
-					<a class="ltc-black" href="{% url 'mywebsite:home' %}">Training &amp; Placement Cell, IIIT Vadodara</a><br>
-
-				</h5>
-			</div>
-			<div class="col-sm-3">
-
-
-					<h4 class="ltc-black mg-clear" >Faculty Incharge, Training &amp; Placement Section</h4>
-					<br>
-
-					<a style="font-weight: bold" class="ltc-black mg-lg"  href="http://iiitvadodara.ac.in/">Prof.Ashish Phapolia</a>
-					<br>
-
-
-					<h5  class="ltc-black ">IIIT Vadodara</h5>
-
-					<h5 class="ltc-black	">+91 9000000000</h5>
-
-
-
-
-			</div>
-
-			<div class="col-sm-4">
-
-
-					<h4 class="ltc-black mg-mdr" >Office:</h4>
-					<br>
-					<h4  class="ltc-black mg-clear " style="display: inline;" >Phone:
-					</h4>
-
-					<a  class="ltc-black mg-lg" >0870-0001112 <br>
-												0870-1231231 (Direct)<br>
-												0870-1231231 (Fax)
-					</a>
-					<br>
-
-
-					<h5>  Email : <a href=" mailto:placementcell@iiitvadodara">placementcell@iiitvadodara.ac.in </a></h5>
-
-
-
-
-
-
-			</div>
-
-
-
-
-
-
-					</div>
-	</div>
-</div>
-<!-- Footer - bloc-63 END -->
-
-<!-- Footer - bloc-64 -->
-
-
-<!-- Footer - bloc-64 END -->
-
-
-</div>
-{% if user.is_superuser %}
-  <form method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ form.as_p }}
-    <button type="submit" class="save btn btn-default">Add Student</button>
-  </form>
-{% else %}
-    <h1>you are not allowed to be here goto home page from <a href="{% url 'mywebsite:home' %}">here</a></h1>
-{% endif %}
-
-</body>
-</html>
+{% load i18n %}
+{% block head %}
+
+{% endblock %}
+{% block title %}{% trans "Add Student Image" %}{% endblock %}
+{% block content %}
+    <style>
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            -webkit-transition-duration: 0.1s; /* Safari */
+            transition-duration: 0.1s;
+            cursor: pointer;
+            margin-left: 200px;
+        }
+
+        .button1 {
+            background-color: white;
+            color: black;
+            border: 2px solid #4CAF50;
+        }
+
+        .button1:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    </style>
+    <div class="container-fluid">
+        {% if user.is_superuser %}
+            <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="id_academic_highlight"><strong>Student Image </strong></label>
+                        <div class="col-md-4">
+                        <input id="id_student_image" name="student_image" type="file" {% if form.value %}value="{{ form.student_image.url.value }}"{% endif %} placeholder="Add Student Image " class="form-control input-md">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="id_academic_highlight"><strong>Student Name </strong></label>
+                        <div class="col-md-4">
+                        <input id="id_name" maxlength="50" name="name" type="text" {% if form.value %}value="{{ form.name.value }}"{% endif %} placeholder="Student Name" class="form-control input-md">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="id_academic_highlight"><strong>Student Description </strong></label>
+                        <div class="col-md-4">
+                        <input id="id_description" maxlength="250" name="description" type="text" {% if form.value %}value="{{ form.description.value }}"{% endif %} placeholder="Student Description" class="form-control input-md">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="button button1">Add</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        {% else %}
+            <h1>you are not allowed to be here goto home page from <a href="{% url 'mywebsite:home' %}">here</a></h1>
+        {% endif %}
+    </div>
+{% endblock %}
+{##}
+{#<!DOCTYPE html>#}
+{#{% load staticfiles %}#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Add Student Image</title>#}
+{#    <meta name="keywords" content="">#}
+{#    <meta name="description" content="">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">#}
+{#    <link rel="shortcut icon" type="image/png" href="http://iiitvadodara.ac.in/img/IIITV_Logo_1x1_small.png">#}
+{##}
+{#	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">#}
+{#	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">#}
+{#	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">#}
+{#	<link href="{% static 'css/css' %}" rel="stylesheet" type="text/css">#}
+{#	<link href="{% static 'css/css(1)' %}" rel="stylesheet" type="text/css">#}
+{##}
+{#	<script src="{% static 'javascript/jquery-2.1.0.min.js.download' %}"></script>#}
+{#	<script src="{% static 'javascript/bootstrap.min.js.download' %}"></script>#}
+{#	<script src="{% static 'javascript/blocs.min.js.download' %}"></script>#}
+{##}
+{#</head>#}
+{#<body>#}
+{#<div class="page-container">#}
+{##}
+{#<!-- bloc-0 -->#}
+{#<div class="bloc bg-repeat bgc-white l-bloc" id="bloc-0">#}
+{#	<div class="container bloc-sm">#}
+{#		<div class="row">#}
+{#			<div class="col-sm-6">#}
+{#				<a href="{% url 'mywebsite:home' %}"><img src="{% static 'images/iiitv_logo.png' %}" class="head-logo" height="80"></a>#}
+{#				<h4 class=" tc-black mg-sm">#}
+{#					<a class="ltc-black"  href="{% url 'mywebsite:home' %}">Training &amp; Placement Cell</a><br>#}
+{#				</h4>#}
+{#				<h6 class=" mg-clear tc-1">#}
+{##}
+{#					 <a class="pull-left" href="http://iiitvadodara.ac.in/" target="_blank">Indian Institute of Information Technology Vadodara</a><br>#}
+{#				</h6>#}
+{#			</div>#}
+{#				<div class="col-sm-6 right-align">#}
+{#				<ul class="list-unstyled list-horizontal-layout">#}
+{##}
+{#					<li>#}
+{#						<a href="{% url 'quiz_category_list_all' %}" class="btn btn-d btn-sq btn-sm nav-button">Quiz</a>#}
+{#					</li>#}
+{#					<li>#}
+{#						<a href="{% url 'mywebsite:student' %}" class="btn btn-d btn-sq btn-sm nav-button">Students</a>#}
+{#					</li>#}
+{#					<li>#}
+{#						<a href="{% url 'mywebsite:recruiter' %}" class="btn btn-d btn-sq btn-sm nav-button">Recruiters</a>#}
+{#					</li>#}
+{#					<li>#}
+{#						<div class="btn-group btn-dropdown">#}
+{#							<a href="#" class="btn btn-d btn-sq btn-sm nav-button dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Achievements<span class="caret"></span></a>#}
+{#							<ul class="dropdown-menu" role="menu">#}
+{##}
+{##}
+{#								<li>#}
+{#									<a href="{% url 'mywebsite:academic' %}" class="a-btn a-block">Academics</a>#}
+{#								</li>#}
+{#								<li>#}
+{#									<a href="{% url 'mywebsite:beyond_academic' %}" class="a-btn a-block">Beyond Academics</a>#}
+{#								</li>#}
+{##}
+{#							</ul>#}
+{#						</div>#}
+{#					</li>#}
+{#					<li>#}
+{#						<a  href="{% url 'mywebsite:department' %}" class="btn btn-d btn-sq btn-sm nav-button">Departments</a>#}
+{#					</li>#}
+{#					<li>#}
+{#						<div class="btn-group btn-dropdown">#}
+{#							<a href="#" class="btn btn-d btn-sq btn-sm nav-button dropdown-toggle" data-toggle="dropdown" aria-expanded="false">About<span class="caret"></span></a>#}
+{#							<ul class="dropdown-menu" role="menu">#}
+{##}
+{##}
+{#								<li>#}
+{#									<a href="{% url 'mywebsite:about' %}" class="a-btn a-block">About US</a>#}
+{#								</li>#}
+{#								<li>#}
+{#									<a href="{% url 'mywebsite:contact' %}" class="a-btn a-block">Contact Us</a>#}
+{#								</li>#}
+{#                                <li>#}
+{#									<a href="http://iiitvadodara.ac.in/gallery.php" class="a-btn a-block">Gallery</a>#}
+{#								</li>#}
+{#								<li>#}
+{#									<a href="{% url 'mywebsite:college_team' %}" class="a-btn a-block">College Team</a>#}
+{#								</li>#}
+{#								<li>#}
+{#									<a href="{%  url 'mywebsite:alumni' %}" class="a-btn a-block">Alumni</a>#}
+{#								</li>#}
+{#								<li>#}
+{#									<a href="{% url 'mywebsite:research_development' %}" class="a-btn a-block">Research &amp; Development</a>#}
+{#								</li>#}
+{#							</ul>#}
+{#						</div>#}
+{#					</li>#}
+{##}
+{##}
+{##}
+{##}
+{#				</ul>#}
+{#			</div>#}
+{##}
+{#		</div>#}
+{#	</div>#}
+{#</div>#}
+{#<!-- bloc-0 END -->#}
+{##}
+{##}
+{#{% if user.is_superuser %}#}
+{#  <form method="POST" enctype="multipart/form-data">#}
+{#      {% csrf_token %}#}
+{#      {{ form.as_p }}#}
+{#    <button type="submit" class="save btn btn-default">Add Student</button>#}
+{#  </form>#}
+{#{% else %}#}
+{#    <h1>you are not allowed to be here goto home page from <a href="{% url 'mywebsite:home' %}">here</a></h1>#}
+{#{% endif %}#}
+{#</div>#}
+{#</body>#}
+{#</html>#}

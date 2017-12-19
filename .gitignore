@@ -16,3 +16,4 @@ mywebsite/migrations
 .idea/*
 .idea/workspace.xml
 Placement-IIITV/__pycache__/
+./manage.py syncdb

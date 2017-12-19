@@ -2,24 +2,147 @@
 {% load i18n %}
 {% block title %}{% trans "Quizzes related to" %} {{ category.category }}{% endblock %}
 {% block content %}
+    <style>
+    .button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #c31010;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  width: auto;
+  transition: all 0.2s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+    .disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+    .button1 {
+   display: inline-block;
+  border-radius: 4px;
+  background-color: #1d7cb8;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  width: auto;
+  transition: all 0.2s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button1 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button1 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.3s;
+}
+
+.button1:hover span {
+  padding-right: 25px;
+}
+
+.button1:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+    .button3 {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.1s; /* Safari */
+    transition-duration: 0.1s;
+    cursor: pointer;
+}
+
+.button4 {
+    background-color: white;
+    color: black;
+    border: 2px solid #1d7cb8;
+}
+
+.button4:hover {
+    background-color: #1d7cb8;
+    color: white;
+}
+    </style>
 <h1 style="text-align: center">{% trans "Quizzes in the" %} <strong>{{ category.category }} </strong>{% trans "category" %}</h1>
-    <h1>{{ current_datetime }}</h1>
+    <h2>{{ current_datetime }}</h2>
     {% if user.is_staff %}
-<a href="{% url 'createquiz' %}" style="text-align: center"><h2>{% trans "Create Quiz" %}</h2></a>
+        <div class="row">
+        <div class="col-md-12">
+            <p style="text-align: center;font-size: 40px;">
+            <a href="{% url 'createquiz' %}" style="text-align: center">
+                <button class="button3 button4" style="vertical-align:middle">
+                    <span> <h2>{% trans "Create Quiz" %}</h2></span>
+                </button>
+            </a>
+            </p>
+        </div>
+        </div>
     {% endif %}
   {% with object_list as quizzes %}
     {% if quizzes %}
-      <table class="table table-bordered table-striped">
 
-		  <thead>
-			<tr>
-			  <th>{% trans "Title" %}</th>
-			  <th>{% trans "Start Time" %}</th>
-			  <th>{% trans "End Time" %}</th>
-			  <th>{% trans "Description" %}</th>
-              <th>{% trans "Maximum Time" %}</th>
-			</tr>
-		  </thead>
+        <div class="container-fluid">
+      <table class="table table-bordered table-striped">
+            <div class="row">
+                    <thead>
+            			<tr>
+			              <th>{% trans "Title" %}</th></div>
+            			  <th>{% trans "Start Time" %}</th>
+			              <th>{% trans "End Time" %}</th>
+            			  <th>{% trans "Description" %}</th>
+                          <th>{% trans "Maximum Time" %}</th>
+                          </tr>
+             		</thead>
+
+        <div class="row">
 
 		  <tbody>
 
@@ -27,9 +150,10 @@
         {% if quiz.end_time >= current_datetime %}
   			<tr>
 			  <td>{% if quiz.start_time >= current_datetime %}
-                        <h1>{{ quiz.title }}(Not Live)</h1>
+                        <button class="button disabled">{{ quiz.title }}(Not Live)</button>
+                        <h1></h1>
                     {% else %}
-                  <h1><a href="{% url 'quiz_question' quiz_name=quiz.id %}">{{ quiz.title }}</a></h1>
+                  <h1><a href="{% url 'quiz_question' quiz_name=quiz.id %}"><button class="button1" style="vertical-align:middle"><span> {{ quiz.title }}</span></button></a></h1>
                   {% endif %}
               </td>
 			  <td>{{ quiz.start_time }}</td>
@@ -41,10 +165,12 @@
             {% endif %}
         {% endfor %}
 		  </tbody>
+                </div>
 
 		</table>
     {% else %}
         <p>{% trans "There are no quizzes" %}</p>
+        </div>
     {% endif %}
   {% endwith %}
 {% endblock %}

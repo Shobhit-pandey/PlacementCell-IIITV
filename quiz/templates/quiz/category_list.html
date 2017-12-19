@@ -1,14 +1,120 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}{% trans "All Quizzes" %}{% endblock %}
+{% block title %}{% trans "Category list" %}{% endblock %}
 
 {% block content %}
-    {% if user.is_superuser %}
-    <a href="{% url 'createcategory' %}" style="text-align: center"><h2>{% trans "Create Category for Quiz" %}</h2></a>
+     <style>
+    .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.1s; /* Safari */
+    transition-duration: 0.1s;
+    cursor: pointer;
+}
+
+.button1 {
+    background-color: white;
+    color: black;
+    border: 0px solid #f7b014;
+}
+
+.button1:hover {
+    background-color: #17b84c;
+    color: white;
+}
+.button3 {
+    background-color: white;
+    color: black;
+    border: 2px solid #607eff;
+}
+
+.button3:hover {
+    background-color: #607eff;
+    color: white;
+}
+.button4 {
+    background-color: white;
+    color: black;
+    border: 2px solid #1d7cb8;
+}
+
+.button4:hover {
+    background-color: #1d7cb8;
+    color: white;
+}
+    .button2 {
+  display: inline-block;
+  border-radius: 5px;
+  background-color: #2493f4;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  width: 100px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.button2 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button2 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button2:hover span {
+  padding-right: 25px;
+}
+
+.button2:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+    </style>
+    {% if user.is_superuser or user.is_staff %}
+        <div class="row">
+        <div class="col-md-12">
+            <p style="text-align: center;font-size: 40px;">
+            <a href="{% url 'createcategory' %}" style="text-align: center">
+                <button class="button button3" style="vertical-align:middle">
+                    <span> <h2>{% trans "Create Category for Quiz" %}</h2></span>
+                </button>
+            </a>
+            </p>
+        </div>
+        </div>
     {% endif %}
     {% if user.is_authenticated %}
         {% if user.is_superuser or not user.is_staff %}
-        <a href="{% url 'quiz_progress' %}" style="text-align: center"><h2>{% trans "See your Progress Till Now" %}</h2></a>
+            <div class="row">
+            <div class="col-md-12">
+                <p style="text-align: center;font-size: 40px;">
+        <a href="{% url 'quiz_progress' %}" style="text-align: center">
+            <button class="button button4" style="vertical-align:middle">
+                    <span> <h2 style="text-align: center">{% trans "See your Progress Till Now" %}</h2></span>
+                </button>
+            </a>
+                </p>
+            </div>
+            </div>
     {% endif %}
     {% endif %}
 <h1 style="margin-left: 40px">{% trans "Category list" %}</h1>
@@ -16,9 +122,12 @@
 <ul>
   {% for cat in category_list %}
   <li style="margin-left: 40px">
-	<a href="{% url 'quiz_category_list_matching' category_name=cat.category %}" style="font-size: 30px;">
-	  {{ cat.category }}
-	</a>
+
+            <a href="{% url 'quiz_category_list_matching' category_name=cat.category %}" style="font-size: 30px;">
+                <button class="button button1" style="vertical-align:middle">
+                    <span> <h2>{{ cat.category }}</h2></span>
+                </button>
+            </a>
   </li>
   {% endfor %}
 </ul>

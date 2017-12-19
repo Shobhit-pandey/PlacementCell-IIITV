@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.models import User
 
 from MyWebsite.models import Recruiter, BeyondAcademicImages, BeyondAcademicVideos, BeyondAcademicsHighlight, \
     RecruiterInternshipIndustrial, RecruiterInternshipNGO, PastRecruiter, CompaniesAppliedByStudents, Alumni, Research, \
@@ -8,32 +9,31 @@ from MyWebsite.models import Recruiter, BeyondAcademicImages, BeyondAcademicVide
 class RecruiterForm(forms.ModelForm):
     class Meta:
         model = Recruiter
-        exclude=[]
+        exclude = []
+
+
 class PastRecruiterForm(forms.ModelForm):
     class Meta:
         model = PastRecruiter
-        exclude=[]
+        exclude = []
 
 
 class BeyondAcademicImagesForm(forms.ModelForm):
     class Meta:
         model = BeyondAcademicImages
-        exclude=[]
-
+        exclude = []
 
 
 class BeyondAcademicVideosForm(forms.ModelForm):
     class Meta:
         model = BeyondAcademicVideos
-        exclude=[]
-
+        exclude = []
 
 
 class BeyondAcademicHighlightForm(forms.ModelForm):
     class Meta:
         model = BeyondAcademicsHighlight
         exclude = []
-
 
 
 class RecruiterInternshipIndustrialForm(forms.ModelForm):
@@ -48,20 +48,20 @@ class RecruiterInternshipNGOForm(forms.ModelForm):
         exclude = []
 
 
-
 class CompaniesAppliedByStudentsForm(forms.Form):
-    user_id = forms.CharField(max_length=50,required=True,widget=forms.HiddenInput())
-    roll_number = forms.CharField(max_length=20,required=True)
-    company_name = forms.CharField(max_length=250,required=True,widget=forms.HiddenInput())
+    user_id = forms.IntegerField(required=True, widget=forms.HiddenInput())
+    roll_number = forms.CharField(max_length=20, required=True, widget=forms.HiddenInput(), initial="rollnumber")
+    company_name = forms.IntegerField(required=True, widget=forms.HiddenInput())
 
     def save(self):
         u = CompaniesAppliedByStudents.objects.create(
-            user_id = self.cleaned_data.get('user_id'),
-            roll_number = self.cleaned_data.get('roll_number'),
-            company_name = self.cleaned_data.get('company_name'),
+            user_id=self.cleaned_data.get('user_id'),
+            roll_number=self.cleaned_data.get('roll_number'),
+            company_name=self.cleaned_data.get('company_name'),
 
         )
-
+        u.save()
+        return u;
 
 
 class AlumniForm(forms.ModelForm):
@@ -74,7 +74,6 @@ class ResearchForm(forms.ModelForm):
     class Meta:
         model = Research
         exclude = []
-
 
 
 class CollegeTeamImageForm(forms.ModelForm):
@@ -95,7 +94,6 @@ class CollegeTeamStudentForm(forms.ModelForm):
         exclude = []
 
 
-
 class AcademicImageForm(forms.ModelForm):
     class Meta:
         model = AcademicImage
@@ -107,22 +105,36 @@ class AcademicVideoForm(forms.ModelForm):
         model = AcademicVideo
         exclude = []
 
-class  AcademicHighlightForm(forms.ModelForm):
+
+class AcademicHighlightForm(forms.ModelForm):
     class Meta:
-        model =  AcademicHighlight
+        model = AcademicHighlight
         exclude = []
 
 
+class AddRecruiter(forms.Form):
+    username = forms.CharField(max_length=100, required=True)
+    password = forms.CharField(max_length=100, required=True, widget=forms.PasswordInput())
+    email = forms.EmailField(required=True)
+
+    def save(self):
+        u = User.objects.create_user(username=self.cleaned_data.get('username'),
+                                     password=self.cleaned_data.get('password'),
+                                     email=self.cleaned_data.get('email'),
+                                     )
+        u.save()
+        return u
 
 
+class AddStudent(forms.Form):
+    username = forms.CharField(max_length=100, required=True)
+    password = forms.CharField(max_length=100, required=True, widget=forms.PasswordInput())
+    email = forms.EmailField(required=True)
 
-
-
-
-
-
-
-
-
-
-
+    def save(self):
+        u = User.objects.create_user(username=self.cleaned_data.get('username'),
+                                     password=self.cleaned_data.get('password'),
+                                     email=self.cleaned_data.get('email'),
+                                     )
+        u.save()
+        return u

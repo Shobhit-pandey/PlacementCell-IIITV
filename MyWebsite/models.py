@@ -1,3 +1,4 @@
+from datetime import date
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.core.validators import URLValidator
@@ -34,8 +35,6 @@ Offer_Choices = (
          ('INTERNSHIP ONLY ', 'INTERNSHIP ONLY'),
          ('JOB+INTERNSHIP', 'JOB+INTERNSHIP'),
     )
-# class SelectionProcess(models.Model):
-#     choices = models.CharField(max_length=100,null=False,blank=False)
 
 class Recruiter(models.Model):
     Organization_name = models.CharField(max_length=100,blank=False,null=False)
@@ -59,7 +58,7 @@ class Recruiter(models.Model):
     # Selection_Process = models.ManyToManyField(SelectionProcess)
     service = models.CharField(max_length=100,blank=False,choices = Service_Choices,default='0')
     Bond_Conditions = models.CharField(max_length = 200,blank=True,null=True)
-    Tentative_Date = models.DateTimeField(blank = False, null = False,default = timezone.now())
+    Tentative_Date = models.DateField(blank = False, null = False,default = date.today())
     Other_details = models.CharField(max_length=1000,blank= True,null=True)
     Criteria = models.CharField(max_length=100, blank=False, null=False, choices=Criteria_Choices)
     Shortlisting_From_Resumes = models.BooleanField()
@@ -144,9 +143,9 @@ class RecruiterInternshipNGO(models.Model):
         return reverse("contact")
 
 class CompaniesAppliedByStudents(models.Model):
-    user_id = models.CharField(max_length=50,default='null')
-    roll_number = models.CharField(max_length=20,default='0',null=False,blank=False)
-    company_name = models.CharField(max_length=250,null=False,blank=False)
+    user_id = models.IntegerField(default='null')
+    roll_number = models.CharField(max_length=20,default='0')
+    company_name = models.IntegerField(null=False,blank=False)
 
     def get_absolute_url(self):
         return reverse("contact")
@@ -220,11 +219,3 @@ class AcademicHighlight(models.Model):
 
     def get_absolute_url(self):
         return reverse("contact")
-
-
-
-
-
-
-
-

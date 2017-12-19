@@ -1,20 +1,91 @@
-<!DOCTYPE html>
-{% load staticfiles%}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add Research</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-</head>
-<body>
-{% if user.is_superuser %}
-  <form method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ form.as_p }}
-    <p style="margin-top: 20px;"><button type="submit" class="save btn btn-default">Add Research</button></p>
-  </form>
-{% else %}
-    <h1>you are not allowed to be here goto home page from <a href="{% url 'mywebsite:home' %}">here</a></h1>
-{% endif %}
-</body>
-</html>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% block head %}
+
+{% endblock %}
+{% block title %}{% trans "Add Research" %}{% endblock %}
+{% block content %}
+    <style>
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            -webkit-transition-duration: 0.1s; /* Safari */
+            transition-duration: 0.1s;
+            cursor: pointer;
+            margin-left: 200px;
+        }
+
+        .button1 {
+            background-color: white;
+            color: black;
+            border: 2px solid #4CAF50;
+        }
+
+        .button1:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    </style>
+    <div class="container-fluid">
+        {% if user.is_superuser %}
+            <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="id_academic_highlight"><strong>Research Image </strong></label>
+                        <div class="col-md-4">
+                        <input id="id_research_image" name="research_image" type="file" {% if form.value %}value="{{ form.research_image.url.value }}"{% endif %} placeholder="Add research Image " class="form-control input-md">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="id_academic_highlight"><strong>Description </strong></label>
+                        <div class="col-md-4">
+                        <input id="id_research_description" maxlength="250" name="research_description" type="text" {% if form.value %}value="{{ form.research_description.value }}"{% endif %} placeholder="Research description" class="form-control input-md">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="button button1">Add</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        {% else %}
+            <h1>you are not allowed to be here goto home page from <a href="{% url 'mywebsite:home' %}">here</a></h1>
+        {% endif %}
+    </div>
+{% endblock %}
+{##}
+{#<!DOCTYPE html>#}
+{#{% load staticfiles%}#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Add Research</title>#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">#}
+{#</head>#}
+{#<body>#}
+{#{% if user.is_superuser %}#}
+{#  <form method="POST" enctype="multipart/form-data">#}
+{#      {% csrf_token %}#}
+{#      {{ form.as_p }}#}
+{#    <p style="margin-top: 20px;"><button type="submit" class="save btn btn-default">Add Research</button></p>#}
+{#  </form>#}
+{#{% else %}#}
+{#    <h1>you are not allowed to be here goto home page from <a href="{% url 'mywebsite:home' %}">here</a></h1>#}
+{#{% endif %}#}
+{#</body>#}
+{#</html>#}

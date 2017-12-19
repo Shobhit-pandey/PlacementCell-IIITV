@@ -1,34 +1,28 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}{% trans "Student Apply" %}{% endblock %}
+{% block title %}{% trans "Company list" %}{% endblock %}
 {% block content %}
     <style>
     .button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 5px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    -webkit-transition-duration: 0.1s; /* Safari */
-    transition-duration: 0.1s;
-    cursor: pointer;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #2493f4;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 1px;
+  width: 100px;
+  transition: all 0.2s;
+  cursor: pointer;
+  margin: 5px;
 }
 
-.button1 {
-    background-color: white;
-    color: black;
-    border: 2px solid #4CAF50;
+    .disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
-
-.button1:hover {
-    background-color: #4CAF50;
-    color: white;
-}
-    .button2 {
+    .button1 {
   display: inline-block;
   border-radius: 0px;
   background-color: #2493f4;
@@ -43,14 +37,14 @@
   float: left;
 }
 
-.button2 span {
+.button1 span {
   cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
 
-.button2 span:after {
+.button1 span:after {
   content: '\00bb';
   position: absolute;
   opacity: 0;
@@ -59,38 +53,36 @@
   transition: 0.5s;
 }
 
-.button2:hover span {
+.button1:hover span {
   padding-right: 25px;
 }
 
-.button2:hover span:after {
+.button1:hover span:after {
   opacity: 1;
   right: 0;
 }
-
     </style>
-    {% if user.is_authenticated %}
+        {% if user.is_authenticated %}
         {% if not user.is_superuser and user.is_staff %}
             {% else %}
         <h1>
         <a href="{% url 'mywebsite:student_shortlisted_recruiter' %}" >
-                        <button class="button2" style="vertical-align:middle"><span> Your Short Listed Company </span></button>
+                        <button class="button1" style="vertical-align:middle"><span> Your Short Listed Company </span></button>
                     </a>
         <a href="{% url 'mywebsite:recruiterlist' %}" >
-                        <button class="button2" style="vertical-align:middle"><span> Company List </span></button>
+                        <button class="button1" style="vertical-align:middle"><span> Company List </span></button>
                     </a>
         <a href="{% url 'mywebsite:change_password' %}" >
-                        <button class="button2" style="vertical-align:middle"><span> Change Password </span></button>
+                        <button class="button1" style="vertical-align:middle"><span> Change Password </span></button>
                     </a>
         <a href="{% url 'logout' %}" >
-                        <button class="button2" style="vertical-align:middle"><span> Logout</span></button>
+                        <button class="button1" style="vertical-align:middle"><span> Logout</span></button>
                     </a>
         </h1>
             {% endif %}
     {% endif %}
-<h1 style="text-align: center">{% trans "Apply for company" %} </h1>
-    {% if recruiters %}
-        <h1>Are you sure to apply to below company?</h1>
+<h1 style="text-align: center">{% trans "List of upcoming Company" %} </h1>
+    {% if lists %}
       <table class="table table-bordered table-striped">
 
 		  <thead>
@@ -109,11 +101,12 @@
 		  </thead>
 
 		  <tbody>
-
-        {% for company in recruiters %}
+        {% for list in lists %}
+        {% for company in recruiter_list %}
+            {% if list.company_name == company.id %}
   			<tr>
 			  <td>{{ company.Organization_name }}</td>
-			  <td><a href="{{ company.Organization_website }}" style="font-size: 20px">Link</a></td>
+			  <td><a href="{{ company.Organization_website }}">Link</a></td>
 			  <td>
                   {% if company.Information_Technology %} <strong>Information Technology ,</strong> {% endif %}
                   {% if company.Analytics %}<strong> Analytics ,</strong>{% endif %}
@@ -136,24 +129,16 @@
                     {% if company.Written_Test_Technical %} <strong> Technical Test  ,</strong>{% endif %}
                     {% if not company.Other == "" %} <strong> {{ company.Other }} </strong>{% endif %}
             </td>
-            <td> {% if not company.id in lists %}
-                <form method="POST">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit"  name="submit" class="button button1">Apply</button>
-                </form>
-                {% else %}
-                Applied
-                {% endif %}
-            </td>
+            <td><button class="button disabled">Applied</button></td>
 
 			</tr>
-
+        {% endif %}
         {% endfor %}
+          {% endfor %}
 		  </tbody>
 
 		</table>
     {% else %}
-        <p>{% trans "There are no company listed till now" %}</p>
+        <p>{% trans "There are no company sortlisted by you." %}</p>
     {% endif %}
 {% endblock %}
