@@ -3,6 +3,7 @@
 {% block title %}{% trans "Quizzes related to" %} {{ category.category }}{% endblock %}
 {% block content %}
 <h1 style="text-align: center">{% trans "Quizzes in the" %} <strong>{{ category.category }} </strong>{% trans "category" %}</h1>
+    <h1>{{ current_datetime }}</h1>
     {% if user.is_staff %}
 <a href="{% url 'createquiz' %}" style="text-align: center"><h2>{% trans "Create Quiz" %}</h2></a>
     {% endif %}
