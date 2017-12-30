@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>{% trans "IIITV Quiz" %} | {% block title %}{% endblock %}</title>
+<title>{% trans "IIITV" %} | {% block title %}{% endblock %}</title>
 <meta name="description" content="{% block description %}{% endblock %}">
 
 <!-- styles -->
@@ -54,10 +54,11 @@
 			</div>
 				<div class="col-sm-6 right-align">
 				<ul class="list-unstyled list-horizontal-layout">
-
+                    {% if user.is_authenticated %}
 					<li>
 						<a href="{% url 'quiz_category_list_all' %}" class="btn btn-d btn-sq btn-sm nav-button">Quiz</a>
 					</li>
+                    {% endif %}
 					<li>
 						<a href="{% url 'mywebsite:student' %}" class="btn btn-d btn-sq btn-sm nav-button">Students</a>
 					</li>
