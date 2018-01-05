@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Student list" %}{% endblock %}
+{% block content %}
+    {% for recruiter in recruiter_list %}
+        {% if user.username == recruiter.Organization_name %}
+        {% for list in lists %}
+            <ul>
+            {% if list.company_name == recruiter.id %}
+                <li>
+                {{ list.roll_number }}
+                </li>
+            {% endif %}
+            </ul>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+{% endblock %}

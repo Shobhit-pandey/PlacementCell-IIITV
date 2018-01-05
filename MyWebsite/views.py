@@ -336,20 +336,28 @@ def recruiter_quizlist(request):
     return render(request, 'Recruiterquizlist.html', {'quizlist': quizlist})
 
 
+# recruiter shortlised by student
 def student_shortlisted_recruiter(request):
     list = CompaniesAppliedByStudents.objects.filter(user_id=request.user.id)
     recruiter_list = Recruiter.objects.all()
     return render(request, 'student_recruiter_list.html', {'lists': list, 'recruiter_list': recruiter_list})
 
 
+# student applied list in recruiter form
+def recruiter_shortlisted_student(request):
+    list = CompaniesAppliedByStudents.objects.all()
+    recruiter_list = Recruiter.objects.filter()
+    return render(request, 'recruiter_shortlisted_student.html', {'lists': list, 'recruiter_list': recruiter_list})
+
+
 def addstudent(request):
     form = AddStudent()
     if request.method == 'POST':
-        form = AddStudent(request.POST,initial={'is_staff':False})
+        form = AddStudent(request.POST, initial={'is_staff': False})
         if form.is_valid():
-            user=form.save()
-            user.is_staff=False
-            user.is_superuser=False
+            user = form.save()
+            user.is_staff = False
+            user.is_superuser = False
             user.save()
             return redirect('mywebsite:home')
 
@@ -361,9 +369,9 @@ def addstudent(request):
 def addrecruiter(request):
     form = AddRecruiter()
     if request.method == 'POST':
-        form = AddRecruiter(request.POST,initial={'is_staff':True})
+        form = AddRecruiter(request.POST, initial={'is_staff': True})
         if form.is_valid():
-            user=form.save()
+            user = form.save()
             user.is_staff = True
             user.is_superuser = False
             user.save()

@@ -142,21 +142,28 @@
         <div class="row">
             {% if user.is_authenticated and user.is_staff %}
 
-                <div class="col-md-4 col-lg-4">
+                <div class="col-md-3 col-lg-3">
                     <h1>
                         <a href="{% url 'mywebsite:recruiter_quizlist' %}">
                             <button class="button" ><span> Quiz List </span></button>
                         </a>
                     </h1>
                 </div>
-                <div class="col-md-4 col-lg-4">
+                <div class="col-md-3 col-lg-3">
+                    <h1>
+                        <a href="{% url 'mywebsite:recruiter_shortlisted_student' %}">
+                            <button class="button" ><span> Student Applied List </span></button>
+                        </a>
+                    </h1>
+                </div>
+                <div class="col-md-3 col-lg-3">
                     <h1>
                         <a href="{% url 'mywebsite:change_password' %}">
                             <button class="button" ><span> Change Password </span></button>
                         </a>
                     </h1>
                 </div>
-                <div class="col-md-4 col-lg-4">
+                <div class="col-md-3 col-lg-3">
                     <h1>
                         <a href="{% url 'logout' %}">
                             <button class="button"><span> Logout</span></button>
