@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
@@ -375,3 +376,7 @@ def addrecruiter(request):
     else:
         form = AddRecruiter()
     return render(request, 'addrecruiter.html', {'form': form})
+
+def resume(request,pk2):
+    users = User.objects.filter(username=pk2)
+    return render(request, 'student_resume.html', {'users': users})

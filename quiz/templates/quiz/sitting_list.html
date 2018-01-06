@@ -33,7 +33,7 @@
         {% for sitting in sitting_list %}
 
 			<tr>
-			  <td>{{ sitting.user }}</td>
+			  <td><a href="{% url 'mywebsite:resume' pk2=sitting.user %}">{{ sitting.user }} </a></td>
 			  <td>{{ sitting.quiz }}</td>
 			  <td>{{ sitting.end|date }}</td>
 			  <td>{{ sitting.get_percent_correct }}</td>

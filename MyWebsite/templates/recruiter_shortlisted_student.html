@@ -8,7 +8,7 @@
             <ul>
             {% if list.company_name == recruiter.id %}
                 <li>
-                {{ list.roll_number }}
+                <a href="{% url 'mywebsite:resume' pk2=list.roll_number %}">{{ list.roll_number }} </a>
                 </li>
             {% endif %}
             </ul>
