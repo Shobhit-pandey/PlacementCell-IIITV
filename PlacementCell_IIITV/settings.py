@@ -42,6 +42,7 @@ PHONENUMBER_DEFAULT_REGION = 'IN'
 # Application definition
 
 INSTALLED_APPS = [
+    'resume',
     'quiz',
     'multichoice',
     'true_false',
