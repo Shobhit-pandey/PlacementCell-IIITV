@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Student list" %}{% endblock %}
+{% block content %}
+    <ul>
+        {% for student in students %}
+            <li>
+                {{ student.roll_number }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -152,12 +152,17 @@
                     {% if company.Written_Test_Technical %} <strong> Technical Test  ,</strong>{% endif %}
                     {% if not company.Other == "" %} <strong> {{ company.Other }} </strong>{% endif %}
             </td>
-            <td> {% if not company.id in lists %}
+            <td>
+                {% if user.is_superuser %}
+                    <a href="{% url 'mywebsite:recruiter_shortlisted_student_superuser' pk1=company.id %}"><button class="button" style="vertical-align:middle"><span style="font-size: 13px">Student List</span></button></a>
+                    {% elif user.is_authenticated %}
+                {% if not company.id in lists %}
                 <a href="{% url 'mywebsite:studentapply' pk=company.id %}"><button class="button" style="vertical-align:middle"><span> Apply</span></button></a>
 
                 {% else %}
                 <button class="button disabled">Applied</button>
                 {% endif %}
+            {% endif %}
             </td>
 
 			</tr>

@@ -350,6 +350,11 @@ def recruiter_shortlisted_student(request):
     return render(request, 'recruiter_shortlisted_student.html', {'lists': list, 'recruiter_list': recruiter_list})
 
 
+def recruiter_shortlisted_student_superuser(request, pk1):
+    students = CompaniesAppliedByStudents.objects.filter(company_name=pk1)
+    return render(request, 'recruiter_shortlisted_student_superuser.html', {'students': students})
+
+
 def addstudent(request):
     form = AddStudent()
     if request.method == 'POST':
