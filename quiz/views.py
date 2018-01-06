@@ -2,6 +2,7 @@ import random
 
 from datetime import datetime
 from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.db import transaction
@@ -11,6 +12,8 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, TemplateView, FormView, CreateView
+
+from MyWebsite.models import CompaniesAppliedByStudents, Recruiter
 from multichoice.models import Answer, MCQuestion
 
 from .forms import QuestionForm, EssayForm, CreatequizForm, MCQuestionForm, AnswerForm, MCQFormSet, TFForm, EssayEForm, \
@@ -66,6 +69,9 @@ class ViewQuizListByCategory(ListView):
     model = Quiz
     template_name = 'view_quiz_category.html'
     curent_datetime = timezone.now()
+    users = User.objects.all()
+    students = CompaniesAppliedByStudents.objects.all()
+    recruiters = Recruiter.objects.all()
 
     def dispatch(self, request, *args, **kwargs):
         self.category = get_object_or_404(
@@ -82,6 +88,9 @@ class ViewQuizListByCategory(ListView):
 
         context['category'] = self.category
         context['current_datetime'] = self.curent_datetime
+        context['users'] = self.users
+        context['students'] = self.students
+        context['recruiters'] = self.recruiters
         return context
 
     def get_queryset(self):

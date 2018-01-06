@@ -145,8 +145,12 @@
         <div class="row">
 
 		  <tbody>
-
+        <h1>Quiz by Administration</h1>
         {% for quiz in quizzes %}
+            {% for use in users %}
+            {% if quiz.user_id == use.id|slugify %}
+            {% if use.is_superuser %}
+
         {% if quiz.end_time >= current_datetime %}
   			<tr>
 			  <td>{% if quiz.start_time >= current_datetime %}
@@ -163,6 +167,65 @@
 
 			</tr>
             {% endif %}
+            {% endif %}
+            {% endif %}
+                {% endfor %}
+        {% endfor %}
+		  </tbody>
+                </div>
+
+		</table>
+         <table class="table table-bordered table-striped">
+            <div class="row">
+                    <thead>
+            			<tr>
+			              <th>{% trans "Title" %}</th></div>
+            			  <th>{% trans "Start Time" %}</th>
+			              <th>{% trans "End Time" %}</th>
+            			  <th>{% trans "Description" %}</th>
+                          <th>{% trans "Maximum Time" %}</th>
+                          </tr>
+             		</thead>
+
+        <div class="row">
+
+		  <tbody>
+        <h1>Quiz by Recruiter</h1>
+        {% for quiz in quizzes %}
+            {% for use in users %}
+            {% if quiz.user_id == use.id|slugify %}
+            {% if not use.is_superuser %}
+                {% for student in students  %}
+                    {% if student.roll_number == user.username %}
+                    {% for recruiter in recruiters %}
+
+                        {% if student.company_name == recruiter.id %}
+                            {% if use.username == recruiter.Organization_name %}
+
+        {% if quiz.end_time >= current_datetime %}
+  			<tr>
+			  <td>{% if quiz.start_time >= current_datetime %}
+                        <button class="button disabled">{{ quiz.title }}(Not Live)</button>
+                        <h1></h1>
+                    {% else %}
+                  <h1><a href="{% url 'quiz_question' quiz_name=quiz.id %}"><button class="button1" style="vertical-align:middle"><span> {{ quiz.title }}</span></button></a></h1>
+                  {% endif %}
+              </td>
+			  <td>{{ quiz.start_time }}</td>
+			  <td>{{ quiz.end_time }}</td>
+			  <td>{{ quiz.description }}</td>
+            <td>{{ quiz.time_of_quiz }} minute</td>
+
+			</tr>
+            {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            {% endif %}
+                {% endfor %}
         {% endfor %}
 		  </tbody>
                 </div>
