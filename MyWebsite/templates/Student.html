@@ -1,166 +1,198 @@
-
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% load i18n %}
 {% block head %}
-	<script src="{% static 'javascript/jqBootstrapValidation.js' %}"></script>
-	<script src="{% static 'javascript/formHandler.js' %}"></script>
+    <script src="{% static 'javascript/jqBootstrapValidation.js' %}"></script>
+    <script src="{% static 'javascript/formHandler.js' %}"></script>
 {% endblock %}
 {% block title %}{% trans "Student" %}{% endblock %}
 {% block content %}
     <style>
-.button {
-  display: inline-block;
-  border-radius: 0px;
-  background-color: #2493f4;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 20px;
-  padding: 15px;
-  width: 560px;
-  transition: all 0.2s;
-  cursor: pointer;
-}
+        .button {
+            display: inline-block;
+            border-radius: 0px;
+            background-color: #2493f4;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 20px;
+            padding: 15px;
+            width: 560px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
 
-.button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
+        .button span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
 
-.button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
+        .button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
 
-.button:hover span {
-  padding-right: 25px;
-}
+        .button:hover span {
+            padding-right: 25px;
+        }
 
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
+        .button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
 
-.button1 {
-  display: inline-block;
-  border-radius: 0px;
-  background-color: #2493f4;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 20px;
-  padding: 15px;
-  width: 420px;
-  transition: all 0.2s;
-  cursor: pointer;
-  float: left;
-}
+        .button1 {
+            display: inline-block;
+            border-radius: 0px;
+            background-color: #2493f4;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 20px;
+            padding: 15px;
+            width: 420px;
+            transition: all 0.2s;
+            cursor: pointer;
+            float: left;
+        }
 
-.button1 span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
+        .button1 span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
 
-.button1 span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
+        .button1 span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
 
-.button1:hover span {
-  padding-right: 25px;
-}
+        .button1:hover span {
+            padding-right: 25px;
+        }
 
-.button1:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-</style>
+        .button1:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+    </style>
+    <div class="page-container">
+    <div class="row">
     {% if user.is_authenticated %}
         {% if not user.is_superuser and user.is_staff %}
-            {% else %}
-        <h1>
-        <a href="{% url 'mywebsite:student_shortlisted_recruiter' %}" >
-                        <button class="button1" style="vertical-align:middle"><span> Your Short Listed Company </span></button>
-                    </a>
-        <a href="{% url 'mywebsite:recruiterlist' %}" >
-                        <button class="button1" style="vertical-align:middle"><span> Company List </span></button>
-                    </a>
-        <a href="{% url 'mywebsite:change_password' %}" >
-                        <button class="button1" style="vertical-align:middle"><span> Change Password </span></button>
-                    </a>
-        <a href="{% url 'logout' %}" >
-                        <button class="button1" style="vertical-align:middle"><span> Logout</span></button>
-                    </a>
-        </h1>
-            {% endif %}
+        {% else %}
+            <h1>
+                <div class="col-md-2 col-lg-2">
+                <a href="#">
+                    <button class="button1" style="vertical-align:middle"><span> Create/Update CV </span>
+                    </button>
+                </a>
+                </div>
+                <div class="col-md-2 col-lg-2">
+                <a href="#">
+                    <button class="button1" style="vertical-align:middle"><span> Your CV </span>
+                    </button>
+                </a>
+                </div>
+                <div class="col-md-2 col-lg-2">
+                <a href="{% url 'mywebsite:student_shortlisted_recruiter' %}">
+                    <button class="button1"><span >Applied Company</span>
+                    </button>
+                </a>
+                </div>
+                <div class="col-md-2 col-lg-2">
+                <a href="{% url 'mywebsite:recruiterlist' %}">
+                    <button class="button1" style="vertical-align:middle"><span > Company List </span></button>
+                </a>
+                </div>
+                <div class="col-md-2 col-lg-2">
+                <a href="{% url 'mywebsite:change_password' %}">
+                    <button class="button1" style="vertical-align:middle"><span > Change Password </span></button>
+                </a>
+                </div>
+                <div class="col-md-2 col-lg-2">
+                <a href="{% url 'logout' %}">
+                    <button class="button1" style="vertical-align:middle"><span> Logout</span></button>
+                </a>
+                </div>
+            </h1>
+        {% endif %}
     {% endif %}
-<div class="page-container">
-{% if user.is_superuser %}
-    <h1 style="text-align: center;">
-            <a href="{% url 'mywebsite:addstudent' %}">
-                <button class="button" style="vertical-align:middle"><span> Add Student</span></button>
-            </a>
-    </h1>
-{% endif %}
-{% if not user.is_authenticated %}
-<div class="bloc tc-dim-gray bgc-white l-bloc" id="bloc-45" >
-	<div class="container bloc-md" >
-		<div class="row">
+    </div>
+    <div class="row">
+        {% if user.is_superuser %}
+            <h1 style="text-align: center;">
+                <a href="{% url 'mywebsite:addstudent' %}">
+                    <button class="button" style="vertical-align:middle"><span> Add Student</span></button>
+                </a>
+            </h1>
+        {% endif %}
+    </div>
+        {% if not user.is_authenticated %}
+            <div class="bloc tc-dim-gray bgc-white l-bloc" id="bloc-45">
+                <div class="container bloc-md">
+                    <div class="row">
 
-			<div class="col-sm-4" >
+                        <div class="col-sm-4">
 
-				<div class="panel">
-					<div class="panel-heading">
-						<h3 class="mg-clear  tc-paynes-grey">
-							Login
-						</h3>
-					</div>
-					<div class="panel-body">
-                        {% if form.errors %}
-                      <p>your username and password didnot match</p>
-                        {% endif %}
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="mg-clear  tc-paynes-grey">
+                                        Login
+                                    </h3>
+                                </div>
+                                <div class="panel-body">
+                                    {% if form.errors %}
+                                        <p>your username and password didnot match</p>
+                                    {% endif %}
 
-                        <form id="form_1666" novalidate="" action="{% url 'studentlogin' %}" method="POST">
-                            {% csrf_token %}
-							<div class="form-group">
-								<label>
-									Username
-								</label>
-								<input id="name_1666" name="username" placeholder="username" class="form-control" required="">
-							<div class="help-block"></div></div>
-							<div class="form-group">
-								<label>
-									Password
-								</label>
-                                    <input id="email_1666" name="password" placeholder="Password" class="form-control" type="password" required="">
-							<div class="help-block"></div></div><a href="{% url 'reset_password' %}" class="btn btn-clean btn-dim-gray">Forget Password?</a>
-                            <button id="comp-login-btn" class="bloc-button btn btn-glossy pull-left btn-dodger-green" type="submit" value="login">
-								Login
-							</button>
-                            <input type="hidden" name="next" value="{{next}}">
-						</form>
-					</div>
-				</div>
-			</div>
+                                    <form id="form_1666" novalidate="" action="{% url 'studentlogin' %}" method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label>
+                                                Username
+                                            </label>
+                                            <input id="name_1666" name="username" placeholder="username"
+                                                   class="form-control" required="">
+                                            <div class="help-block"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>
+                                                Password
+                                            </label>
+                                            <input id="email_1666" name="password" placeholder="Password"
+                                                   class="form-control" type="password" required="">
+                                            <div class="help-block"></div>
+                                        </div>
+                                        <a href="{% url 'reset_password' %}" class="btn btn-clean btn-dim-gray">Forget
+                                            Password?</a>
+                                        <button id="comp-login-btn"
+                                                class="bloc-button btn btn-glossy pull-left btn-dodger-green"
+                                                type="submit" value="login">
+                                            Login
+                                        </button>
+                                        <input type="hidden" name="next" value="{{ next }}">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
 
-        </div>
-	</div>
-</div>
-{% endif %}
-</div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}
 {##}
 {#<!DOCTYPE html>#}

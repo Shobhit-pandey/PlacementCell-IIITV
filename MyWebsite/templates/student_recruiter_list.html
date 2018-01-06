@@ -62,25 +62,48 @@
   right: 0;
 }
     </style>
-        {% if user.is_authenticated %}
+        <div class="row">
+    {% if user.is_authenticated %}
         {% if not user.is_superuser and user.is_staff %}
-            {% else %}
-        <h1>
-        <a href="{% url 'mywebsite:student_shortlisted_recruiter' %}" >
-                        <button class="button1" style="vertical-align:middle"><span> Your Short Listed Company </span></button>
-                    </a>
-        <a href="{% url 'mywebsite:recruiterlist' %}" >
-                        <button class="button1" style="vertical-align:middle"><span> Company List </span></button>
-                    </a>
-        <a href="{% url 'mywebsite:change_password' %}" >
-                        <button class="button1" style="vertical-align:middle"><span> Change Password </span></button>
-                    </a>
-        <a href="{% url 'logout' %}" >
-                        <button class="button1" style="vertical-align:middle"><span> Logout</span></button>
-                    </a>
-        </h1>
-            {% endif %}
+        {% else %}
+            <h1>
+                <div class="col-md-2 col-lg-2">
+                <a href="#">
+                    <button class="button1" style="vertical-align:middle"><span> Create/Update CV </span>
+                    </button>
+                </a>
+                </div>
+                <div class="col-md-2 col-lg-2">
+                <a href="#">
+                    <button class="button1" style="vertical-align:middle"><span> Your CV </span>
+                    </button>
+                </a>
+                </div>
+                <div class="col-md-2 col-lg-2">
+                <a href="{% url 'mywebsite:student_shortlisted_recruiter' %}">
+                    <button class="button1"><span >Applied Company</span>
+                    </button>
+                </a>
+                </div>
+                <div class="col-md-2 col-lg-2">
+                <a href="{% url 'mywebsite:recruiterlist' %}">
+                    <button class="button1" style="vertical-align:middle"><span > Company List </span></button>
+                </a>
+                </div>
+                <div class="col-md-2 col-lg-2">
+                <a href="{% url 'mywebsite:change_password' %}">
+                    <button class="button1" style="vertical-align:middle"><span > Change Password </span></button>
+                </a>
+                </div>
+                <div class="col-md-2 col-lg-2">
+                <a href="{% url 'logout' %}">
+                    <button class="button1" style="vertical-align:middle"><span> Logout</span></button>
+                </a>
+                </div>
+            </h1>
+        {% endif %}
     {% endif %}
+    </div>
 <h1 style="text-align: center">{% trans "List of upcoming Company" %} </h1>
     {% if lists %}
       <table class="table table-bordered table-striped">
