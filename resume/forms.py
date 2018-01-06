@@ -8,7 +8,7 @@ from resume.models import Resume, Education, Skill, Project, Participation, Posi
 
 
 class ResumeForm(forms.Form):
-    user_id = forms.CharField(max_length=100, required=True, widget=forms.HiddenInput())
+    user_id = forms.CharField(max_length=100, required=True,initial="0")
     fullname = forms.CharField(max_length=100, required=True)
     email = forms.EmailField(required=True)
     dob = forms.DateField(required=True)
@@ -35,7 +35,7 @@ class EducationForm(forms.ModelForm):
         exclude = []
 
 
-EducationFormset = inlineformset_factory(Resume, Education, form=EducationForm, can_delete=True, extra=3)
+EducationFormset = inlineformset_factory(Resume, Education, form=EducationForm, can_delete=True, extra=1)
 
 
 class SkillForm(forms.ModelForm):
@@ -47,7 +47,7 @@ class SkillForm(forms.ModelForm):
         exclude = []
 
 
-SkillFormset = inlineformset_factory(Resume, Skill, form=SkillForm, can_delete=True, extra=3)
+SkillFormset = inlineformset_factory(Resume, Skill, form=SkillForm, can_delete=True, extra=1)
 
 
 class ProjectForm(forms.ModelForm):
@@ -59,46 +59,46 @@ class ProjectForm(forms.ModelForm):
         exclude = []
 
 
-ProjectFormset = inlineformset_factory(Resume, Project, form=ProjectForm, can_delete=True, extra=3)
+ProjectFormset = inlineformset_factory(Resume, Project, form=ProjectForm, can_delete=True, extra=1)
 
 
 class ParticipationForm(forms.ModelForm):
     class Meta:
         model = Participation
-        fields = ('topic')
+        fields = ('topic',)
         exclude = []
 
 
-ParticipationFormset = inlineformset_factory(Resume, Participation, form=ParticipationForm, can_delete=True, extra=3)
+ParticipationFormset = inlineformset_factory(Resume, Participation, form=ParticipationForm, can_delete=True, extra=1)
 
 
 class PositionOfResponsibityForm(forms.ModelForm):
     class Meta:
         model = PositionOfResponsibity
-        fields = ('topic')
+        fields = ('topic',)
         exclude = []
 
 
 PositionOfResponsibityFormset = inlineformset_factory(Resume, PositionOfResponsibity, form=PositionOfResponsibityForm,
-                                                      can_delete=True, extra=3)
+                                                      can_delete=True, extra=1)
 
 
 class AwardAchievementForm(forms.ModelForm):
     class Meta:
         model = AwardAchievement
-        fields = ('topic')
+        fields = ('topic',)
         exclude = []
 
 
 AwardAchievementFormset = inlineformset_factory(Resume, AwardAchievement, form=AwardAchievementForm, can_delete=True,
-                                                extra=3)
+                                                extra=1)
 
 
 class InterestForm(forms.ModelForm):
     class Meta:
         model = Interest
-        fields = ('topic')
+        fields = ('topic',)
         exclude = []
 
 
-InterestFormset = inlineformset_factory(Resume, Interest, form=InterestForm, can_delete=True, extra=3)
+InterestFormset = inlineformset_factory(Resume, Interest, form=InterestForm, can_delete=True, extra=2)

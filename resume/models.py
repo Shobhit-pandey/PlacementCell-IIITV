@@ -17,13 +17,15 @@ class Resume(models.Model):
     github = models.URLField()
     linkedin = models.URLField()
 
+    def __str__(self):
+        return self.user_id
+
     class Meta:
         verbose_name = ("Resume")
         verbose_name_plural = ("Resumes")
         ordering = ['fullname']
 
-    def __str__(self):
-        return self.user_id
+
 
 
 @python_2_unicode_compatible
