@@ -40,20 +40,35 @@
         <!-- bloc-0 -->
         <div style="height: 40px;"></div>
         <div class="container" style="font-size: 18px; max_width:800px;background: rgba(119,180,255,0.26)">
-
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-            <script src="{% static 'javascript/dynamic-formset.js' %}"></script>
             <script type="text/javascript">
-                <!--
+                // Define this so we don't have to bother with the admin jsi18n stuff:
+                function gettext(msgid) {
+                    return msgid;
+                }
+            </script>
+
+            <script type="text/javascript">
                 $(function () {
-                    $('.add-row').click(function () {
-                        return addForm(this, '{{ education_formset.prefix }}');
+                    $('#id_contact_info_table').find('tbody tr').formset({
+                        formCssClass: 'dynamic-contact-form',
+                        prefix: "{{ other_formset.prefix }}"
+
                     });
-                    $('.delete-row').click(function () {
-                        return deleteForm(this, '{{ education_formset.prefix }}');
-                    })
-                })
-                //-->
+
+                    $('table.form-container').formset({
+                        formCssClass: 'dynamic-event-form',
+                        prefix: "{{ project_formset.prefix }}",
+                        added: function (row) {
+                            // Find the fields with the calendar widget
+                            $(row).find('.vDateField').each(function (i) {
+                                // Remove the cloned spam element: it links to an incorrect calendar
+                                $(this).parent().find('span').remove();
+                                // DateTimeShortcuts is defined in DateTimeShortcuts.js in the Django admin media
+                                DateTimeShortcuts.addCalendar(this);
+                            });
+                        }
+                    });
+                });
             </script>
             {% if user.is_superuser or user.is_staff %}
                 <div style="height: 10px;"></div>
@@ -62,36 +77,145 @@
                 <h5 style="color: red; margin-left: 20px;">*Required</h5>
                 <form method="POST" style="padding:50px;" enctype="multipart/form-data">
                     {% csrf_token %}
+                    <input id="id_user_id" maxlength="100" name="user_id" type="text"
+                           value="{{ resume_form.user_id.value }}" hidden default={{ user.username }}>
+                    {#                {{ resume_form.user_id }}#}
+                    <br>
+                    <label for="content">Full Name</label><br>
+                    {{ resume_form.fullname }}
+                    <br><br>
+                    <label for="figure">Email</label><br>
+                    {{ resume_form.email }}
+                    <br><br>
+                    <label for="exam_paper">Date of Birth</label><br>
+                    {{ resume_form.dob }}
+                    <br><br>
+                    <label for="exam_paper">Github Link</label><br>
+                    {{ resume_form.github }}
+                    <br><br>
+                    <label for="exam_paper">LinkedIn Link</label><br>
+                    {{ resume_form.linkedin }}
+                    <br><br>
+                    <h3>Class 10 details</h3>
+                    <label for="exam_paper">class 10 School Name</label><br>
+                    {{ resume_form.class_ten_institute }}
+                    <br><br>
+                    <label for="exam_paper">class 10 passing year</label><br>
+                    {{ resume_form.class_ten_passing_year }}
+                    <br><br>
+                <label for="exam_paper">class 10 CGPA/Percentage</label><br>
+                    {{ resume_form.class_ten_cgpa }}
+                    <br><br>
+                <h3>Class 12 details</h3>
+                <label for="exam_paper">class 12 School Name</label><br>
+                    {{ resume_form.class_twelve_institute }}
+                    <br><br>
+                <label for="exam_paper">class 12 Passing Year</label><br>
+                    {{ resume_form.class_twelve_passing_year }}
+                    <br><br>
+                <label for="exam_paper">class 12 Percentage</label><br>
+                    {{ resume_form.class_twelve_percentage }}
+                    <br><br>
+                <h3>Btech details</h3>
+                <label for="exam_paper">Btech College Name</label><br>
+                    {{ resume_form.btech_institute }}
+                    <br><br>
+                <label for="exam_paper">Btech Cpi</label><br>
+                    {{ resume_form.btech_cpi }}
+                    <br><br>
+                <label for="exam_paper">Batch Year</label><br>
+                    {{ resume_form.btech_batch }}
+                    <br><br>
+                <h3>Mtech details</h3>
+                <label for="exam_paper">Mtech College Name</label><br>
+                    {{ resume_form.mtech_institute }}
+                    <br><br>
+                <label for="exam_paper">Mtech Cpi</label><br>
+                    {{ resume_form.mtech_cpi }}
+                    <br><br>
+                <label for="exam_paper">Mtech Batch</label><br>
+                    {{ resume_form.mtech_batch }}
+                    <br><br>
+                <h3>Skill Details</h3>
+                <label for="exam_paper">Area of Interest</label><br>
+                    {{ resume_form.area_of_interest }}
+                    <br><br>
+                <label for="exam_paper">Programming Language</label><br>
+                    {{ resume_form.programming_language }}
+                    <br><br>
+                <label for="exam_paper">technical Elective</label><br>
+                    {{ resume_form.technical_elective }}
+                    <br><br>
+                <label for="exam_paper">Markup Language</label><br>
+                    {{ resume_form.markup_language }}
+                    <br><br>
+                <label for="exam_paper">Tool Technology</label><br>
+                    {{ resume_form.tool_techonology }}
+                    <br><br>
+                <label for="exam_paper">Database</label><br>
+                    {{ resume_form.database }}
+                    <br><br>
 
-                    <table id="id_forms_table" border="0" cellpadding="0" cellspacing="5">
-                        <thead>
-                        <tr>
-                            <th scope="col">(Answer List(put any no. of option ,</th>
-                            <th scope="col"> but only one correct answer)</th>
-                            <th scope="col">&nbsp;</th>
-                            <th scope="col">&nbsp;</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for form in education_formset.forms %}
-                            <tr id="{{ form.prefix }}-row" class="dynamic-form">
-                                 <td> Degree {{ form.degree }}</td>
-                            <td>Institute {{ form.institute }}</td>
-                        <td>Year {{ form.year }}</td>
-                        <td>Cpi {{ form.cpi_aggreate }}</td>
-                            </tr>
-                        {% endfor %}
-                        <tr>
-                            <td colspan="4"><a href="javascript:void(0)" class="add-row">Add Answer</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    {{ education_formset.management_form }}
-                    <div class="row" style="padding-top: 30px;margin-left: 25%;">
-                        <button type="submit" class="button button1" style="vertical-align:middle">
-                            <span> Add MC Question</span>
-                        </button>
-                    </div>
+                <h2>Project Detail</h2>
+            {% for form in project_formset.forms %}
+            <table id="{{ form.prefix }}-row" class="form-container" border="0" cellpadding="0" cellspacing="5">
+                <tbody>
+                    <tr>
+                        <th scope="row">Topic</th>
+                        <td>{{ form.topic }}</td>
+                    </tr>
+                    <br>
+                    <tr>
+                        <th scope="row">Time</th>
+                        <td>{{ form.time }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Team Size</th>
+                        <td>{{ form.team_size }}</td>
+                    </tr>
+                <tr>
+                        <th scope="row">Guide</th>
+                        <td>{{ form.guide }}</td>
+                    </tr>
+                <tr>
+                        <th scope="row">Description</th>
+                        <td>{{ form.description }}</td>
+                    </tr>
+                <tr>
+                        <th scope="row">Project Link</th>
+                        <td>{{ form.project_link }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            {% endfor %}
+                <br>
+                    <h2>Other Details</h2>
+            <table id="id_contact_info_table" border="0" cellpadding="0" cellspacing="5">
+                <thead>
+                    <tr>
+                        <th scope="col">&nbsp;</th>
+                            <th scope="col">Other</th>
+                            <th scope="col">&nbsp;&nbsp;</th>
+                            <th scope="col">&nbsp;&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for form in other_formset.forms %}
+                    <tr id="{{ form.prefix }}-row" class="form-container">
+                        <td style="text-align:center;">{{ form.preferred }}</td>
+                        <td> Choice {{ form.choice }}</td>
+                        <td> Topic {{ form.topic }}</td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+               <br>
+            <p>
+                {{ project_formset.management_form }}
+                {{ other_formset.management_form }}
+                <input type="submit" value="Submit" />
+            </p>
                 </form>
 
             {% else %}

@@ -75,30 +75,7 @@
                 <label for="exam_paper">LinkedIn Link</label><br>
                 {{ resume_form.linkedin }}
                 <br><br>
-                <table id="id_forms_table" border="0" cellpadding="0" cellspacing="5">
-                        <thead>
-                        <tr>
-                            <th scope="col">(Answer List(put any no. of option ,</th>
-                            <th scope="col"> but only one correct answer)</th>
-                            <th scope="col">&nbsp;</th>
-                            <th scope="col">&nbsp;</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for form in education_formset.forms %}
-                            <tr id="{{ form.prefix }}-row" class="dynamic-form">
-                                <td> Degree {{ form.degree }}</td>
-                            <td>Institute {{ form.institute }}</td>
-                        <td>Year {{ form.year }}</td>
-                        <td>Cpi {{ form.cpi_aggreate }}</td>
-                            </tr>
-                        {% endfor %}
-                        <tr>
-                            <td colspan="4"><a href="javascript:void(0)" class="add-row">Add Answer</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                {{ education_formset.management_form }}
+
                 {% for form in education_formset.forms %}
                     <div id="{{ form.prefix }}-row" class="dynamic-form">
                         <label for="exam_paper"> Degree</label><br>
