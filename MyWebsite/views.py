@@ -89,22 +89,12 @@ def recruiter_form(request):
 
             name = form.cleaned_data['Name']
             value.save()
-            email = EmailMessage('Regarding recruitment',
-                                 "Received mail from" + str(email) + "\n\n" + "name:" +
-                                 str(name) + "\n" + "contact:" + str(contact), to=['', ])
-            email.send()
-            email = EmailMessage('Regarding recruitment',
-                                 "Hey " + str(
-                                     name) + ",\n\n" + "We have "
-                                                       "recieved "
-                                                       "your request "
-                                                       "for recruitmrnt "
-                                                       "we wiill process\n" +
-                                 "We will contact you shortly on " +
-                                 str(contact),
-                                 to=[email,
-                                     'anjansrivathsav1997@gmail.com'],
-                                 reply_to=[email, ])
+            email = EmailMessage('Regarding Admission',
+                                     "Hey "+"we have received your mail we will contact you on"+str(contact)+
+                                     str(email),
+                                     to=[email,
+                                         'studymonk.se@gmail.com'],
+                                     reply_to=["studymonk.se@gmail.com",])
             email.send()
             print("reached")
             return redirect('mywebsite:home')
