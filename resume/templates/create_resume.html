@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% load i18n %}
-{% block title %}{% trans "Add MCQ" %}{% endblock %}
+{% block title %}{% trans "Add or Update Resume" %}{% endblock %}
 {% block head %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -70,9 +70,9 @@
                     });
                 });
             </script>
-            {% if user.is_superuser or user.is_staff %}
+            {% if user.is_authenticated %}
                 <div style="height: 10px;"></div>
-                <div><h1 style="font-size: 250%; text-align: center;">Create Multiple Choice Question</h1></div>
+                <div><h1 style="font-size: 250%; text-align: center;">Add or Update Resume</h1></div>
 
                 <h5 style="color: red; margin-left: 20px;">*Required</h5>
                 <form method="POST" style="padding:50px;" enctype="multipart/form-data">
@@ -81,13 +81,13 @@
                            value="{{ resume_form.user_id.value }}" hidden default={{ user.username }}>
                     {#                {{ resume_form.user_id }}#}
                     <br>
-                    <label for="content">Full Name</label><br>
+                    <label for="content">Full Name*</label><br>
                     {{ resume_form.fullname }}
                     <br><br>
-                    <label for="figure">Email</label><br>
+                    <label for="figure">Email*</label><br>
                     {{ resume_form.email }}
                     <br><br>
-                    <label for="exam_paper">Date of Birth</label><br>
+                    <label for="exam_paper">Date of Birth*</label><br>
                     {{ resume_form.dob }}
                     <br><br>
                     <label for="exam_paper">Github Link</label><br>
@@ -97,33 +97,33 @@
                     {{ resume_form.linkedin }}
                     <br><br>
                     <h3>Class 10 details</h3>
-                    <label for="exam_paper">class 10 School Name</label><br>
+                    <label for="exam_paper">class 10 School Name*</label><br>
                     {{ resume_form.class_ten_institute }}
                     <br><br>
-                    <label for="exam_paper">class 10 passing year</label><br>
+                    <label for="exam_paper">class 10 passing year*</label><br>
                     {{ resume_form.class_ten_passing_year }}
                     <br><br>
-                <label for="exam_paper">class 10 CGPA/Percentage</label><br>
+                <label for="exam_paper">class 10 CGPA/Percentage*</label><br>
                     {{ resume_form.class_ten_cgpa }}
                     <br><br>
                 <h3>Class 12 details</h3>
-                <label for="exam_paper">class 12 School Name</label><br>
+                <label for="exam_paper">class 12 School Name*</label><br>
                     {{ resume_form.class_twelve_institute }}
                     <br><br>
-                <label for="exam_paper">class 12 Passing Year</label><br>
+                <label for="exam_paper">class 12 Passing Year*</label><br>
                     {{ resume_form.class_twelve_passing_year }}
                     <br><br>
-                <label for="exam_paper">class 12 Percentage</label><br>
+                <label for="exam_paper">class 12 Percentage*</label><br>
                     {{ resume_form.class_twelve_percentage }}
                     <br><br>
                 <h3>Btech details</h3>
-                <label for="exam_paper">Btech College Name</label><br>
+                <label for="exam_paper">Btech College Name*</label><br>
                     {{ resume_form.btech_institute }}
                     <br><br>
-                <label for="exam_paper">Btech Cpi</label><br>
+                <label for="exam_paper">Btech Cpi*</label><br>
                     {{ resume_form.btech_cpi }}
                     <br><br>
-                <label for="exam_paper">Batch Year</label><br>
+                <label for="exam_paper">Batch Year*</label><br>
                     {{ resume_form.btech_batch }}
                     <br><br>
                 <h3>Mtech details</h3>
@@ -137,22 +137,22 @@
                     {{ resume_form.mtech_batch }}
                     <br><br>
                 <h3>Skill Details</h3>
-                <label for="exam_paper">Area of Interest</label><br>
+                <label for="exam_paper">Area of Interest*</label><br>
                     {{ resume_form.area_of_interest }}
                     <br><br>
-                <label for="exam_paper">Programming Language</label><br>
+                <label for="exam_paper">Programming Language*</label><br>
                     {{ resume_form.programming_language }}
                     <br><br>
-                <label for="exam_paper">technical Elective</label><br>
+                <label for="exam_paper">technical Elective*</label><br>
                     {{ resume_form.technical_elective }}
                     <br><br>
-                <label for="exam_paper">Markup Language</label><br>
+                <label for="exam_paper">Markup Language*</label><br>
                     {{ resume_form.markup_language }}
                     <br><br>
-                <label for="exam_paper">Tool Technology</label><br>
+                <label for="exam_paper">Tool Technology*</label><br>
                     {{ resume_form.tool_techonology }}
                     <br><br>
-                <label for="exam_paper">Database</label><br>
+                <label for="exam_paper">Database*</label><br>
                     {{ resume_form.database }}
                     <br><br>
 
@@ -161,28 +161,28 @@
             <table id="{{ form.prefix }}-row" class="form-container" border="0" cellpadding="0" cellspacing="5">
                 <tbody>
                     <tr>
-                        <th scope="row">Topic</th>
+                        <th scope="row">Topic*</th>
                         <td>{{ form.topic }}</td>
                     </tr>
                     <br>
                     <tr>
-                        <th scope="row">Time</th>
+                        <th scope="row">Time*</th>
                         <td>{{ form.time }}</td>
                     </tr>
                     <tr>
-                        <th scope="row">Team Size</th>
+                        <th scope="row">Team Size*</th>
                         <td>{{ form.team_size }}</td>
                     </tr>
                 <tr>
-                        <th scope="row">Guide</th>
+                        <th scope="row">Guide*</th>
                         <td>{{ form.guide }}</td>
                     </tr>
                 <tr>
-                        <th scope="row">Description</th>
+                        <th scope="row">Description*</th>
                         <td>{{ form.description }}</td>
                     </tr>
                 <tr>
-                        <th scope="row">Project Link</th>
+                        <th scope="row">Project Link*</th>
                         <td>{{ form.project_link }}</td>
                     </tr>
                 </tbody>
@@ -203,8 +203,8 @@
                     {% for form in other_formset.forms %}
                     <tr id="{{ form.prefix }}-row" class="form-container">
                         <td style="text-align:center;">{{ form.preferred }}</td>
-                        <td> Choice {{ form.choice }}</td>
-                        <td> Topic {{ form.topic }}</td>
+                        <td> Choice* {{ form.choice }}</td>
+                        <td> Description* {{ form.topic }}</td>
 
                     </tr>
                     {% endfor %}
