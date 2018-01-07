@@ -13,6 +13,9 @@ from django.views.generic import ListView
 
 from resume.forms import ProjectFormset, ResumeForm, OtherFormset
 
+def resume(request,pk2):
+    users = User.objects.filter(username=pk2)
+    return render(request, 'student_resume.html', {'users': users})
 
 def createresume(request, pk):
     referer = request.META.get('HTTP_REFERER')

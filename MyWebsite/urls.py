@@ -27,7 +27,6 @@ urlpatterns = [
     url(r'^alumni/$',views.alumni,name='alumni'),
     url(r'^research-development/$',views.research_development,name='research_development'),
     url(r'^studentapply/(?P<pk>[\w\-]+)/$',views.studentapply,name='studentapply'),
-    url(r'^resume/(?P<pk2>[\w\-]+)/$',views.resume,name='resume'),
     url(r'^recruiter-list/$',views.RecruiterListView,name='recruiterlist'),
     url(r'^student/shortlisted/recruiter/$',views.student_shortlisted_recruiter,name='student_shortlisted_recruiter'),
     url(r'^recruiter/shortlisted/student/$',views.recruiter_shortlisted_student,name='recruiter_shortlisted_student'),

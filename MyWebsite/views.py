@@ -376,7 +376,3 @@ def addrecruiter(request):
     else:
         form = AddRecruiter()
     return render(request, 'addrecruiter.html', {'form': form})
-
-def resume(request,pk2):
-    users = User.objects.filter(username=pk2)
-    return render(request, 'student_resume.html', {'users': users})

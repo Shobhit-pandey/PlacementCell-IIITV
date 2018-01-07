@@ -5,7 +5,7 @@
     <ul>
         {% for student in students %}
             <li>
-            <a href="{% url 'mywebsite:resume' pk2=student.roll_number %}">{{ student.roll_number }} </a>
+            <a href="{% url 'resumes:resume' pk2=student.roll_number %}">{{ student.roll_number }} </a>
 
             </li>
         {% endfor %}
