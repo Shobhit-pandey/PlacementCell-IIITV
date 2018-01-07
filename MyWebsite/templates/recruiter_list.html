@@ -92,13 +92,13 @@
         {% else %}
             <h1>
                 <div class="col-md-2 col-lg-2">
-                <a href="#">
+                <a href="{% url 'resumes:createresume' pk=user.username %}">
                     <button class="button1" style="vertical-align:middle"><span> Create/Update CV </span>
                     </button>
                 </a>
                 </div>
                 <div class="col-md-2 col-lg-2">
-                <a href="#">
+                <a href="{% url 'resumes:resume' pk2=user.username %}">
                     <button class="button1" style="vertical-align:middle"><span> Your CV </span>
                     </button>
                 </a>

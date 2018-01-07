@@ -36,6 +36,11 @@
             color: white;
         }
     </style>
+    {% if resumes %}
+
+        <h1>Already Created</h1>
+        <h2>Updtae Form will Available Soon!!!</h2>
+    {% else %}
     <div class="page-container">
         <!-- bloc-0 -->
         <div style="height: 40px;"></div>
@@ -72,7 +77,7 @@
             </script>
             {% if user.is_authenticated %}
                 <div style="height: 10px;"></div>
-                <div><h1 style="font-size: 250%; text-align: center;">Add or Update Resume</h1></div>
+                <div><h1 style="font-size: 250%; text-align: center;">Add or Update Resume{{ forloop.revcounter }}</h1></div>
 
                 <h5 style="color: red; margin-left: 20px;">*Required</h5>
                 <form method="POST" style="padding:50px;" enctype="multipart/form-data">
@@ -226,4 +231,5 @@
         </div>
     </div>
     <div style="height: 50px;"></div>
+    {% endif %}
 {% endblock %}
