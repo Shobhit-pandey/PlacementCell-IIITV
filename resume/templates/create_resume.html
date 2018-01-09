@@ -8,6 +8,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 {% endblock %}
 {% block content %}
+    <script>
+function clicked(e)
+{
+    if(!confirm('Are you sure?'))e.preventDefault();
+}
+</script>
     <style>
 
         .button {
@@ -40,7 +46,7 @@
 
         <h1>Look Like You have already Created your Resume</h1>
         <h2>View Your Resume <a href="{% url 'resumes:resume' pk2=user.username %}">here</a></h2>
-        <h2>Want New Resume? Click  <a href="{% url 'resumes:delete_resume' %}">here</a> to delete old one</h2>
+        <h2>Want New Resume? Click  <a href="{% url 'resumes:delete_resume' %}" onclick="clicked(event)">here</a> to delete old one</h2>
     {% else %}
     <div class="page-container">
         <!-- bloc-0 -->
