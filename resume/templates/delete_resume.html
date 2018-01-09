@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Wrong Attempt" %}{% endblock %}
+
+{% block content %}
+    <h1>Old Resume Deleted !!!</h1>
+    <h1>Want New One Click <a href="{% url 'resumes:createresume' pk=user.username %}">here</a></h1>
+{% endblock %}
