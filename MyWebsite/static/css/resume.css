@@ -29,18 +29,30 @@
 	}
 	.div2h3{
 		font-size: 1.5vw;
+        font-family: "Georgia";
 		clear: both;
 	}
+    .div2hx{
+		font-size: 2.2vw;
+        font-family: "Georgia";
+        font-weight:normal;
+		clear: both;
+	}
+    h3::first-letter{
+        font-size: 3.0vw;
+    }
 	.div1{
 		float: left;
 		font-size: 1.1vw;
 
 	}
 	#div1h1{
+        font-family: "SansSerif";
 		font-size: 2.5vw;
 
 	}
 	#div1h4{
+        font-family: "SansSerif";
 		font-size: 1.5vw;
 
 	}
@@ -51,9 +63,10 @@
 		margin-right: 10vw;
 	}
 	#table{
-    border: 1px solid black;
+    border: 0px solid black;
     border-collapse: collapse;
     font-size: 1.5vw;
+        font-family: "SansSerif";
 	}
 	th, td {
 	    padding: 5px;
@@ -79,14 +92,25 @@
 	}
 	.div2h3{
 		font-size: 1.5vw;
+        font-family: "Georgia";
 	}
+    .div2hx{
+        font-family: "Georgia";
+        font-weight:normal;
+		font-size: 2.2vw;
+	}
+    h3::first-letter{
+        font-size: 3.0vw;
+    }
 	.div1{
 		font-size: 1.3vw;
 	}
 	#div1h1{
+        font-family: "SansSerif";
 		font-size: 3vw;
 	}
 	#div1h4{
+        font-family: "SansSerif";
 		font-size: 1.5vw;
 
 	}
@@ -103,9 +127,10 @@
 		margin-right: 10vw;
 	}
 	#table{
-    border: 1px solid black;
+    border: 0px solid black;
     border-collapse: collapse;
     font-size: 1.5vw;
+    font-family: "SansSerif";
 	}
 	th, td {
 	    padding: 5px;
@@ -113,6 +138,7 @@
 	}
 	.list{
 		margin-left: -30px;
+        font-family: "SansSerif";
 	}
 
 	}
