@@ -17,7 +17,7 @@ from resume.models import Resume
 
 def resume(request, pk2):
     users = User.objects.filter(username=pk2)
-    return render(request, 'student_resume.html', {'users': users})
+    return render(request, 'Resume.html', {'users': users})
 
 
 def createresume(request, pk):

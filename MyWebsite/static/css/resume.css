@@ -1,0 +1,101 @@
+
+	body{
+        background-color: black;
+	}
+	.container{
+		color: #000000;
+		background-color: white;
+		font-family: 'Oxygen', sans-serif;
+		margin:7%;
+		padding: 3%;
+	}
+	.logo{
+		float: left;
+	}
+	.div4{
+		font-size: 1.3vw;
+	}
+	.div4h2{
+		font-size: 1.5vw;
+	}
+	.div4h4{
+		font-size: 1.5vw;
+	}
+	.div2h3{
+		font-size: 1.5vw;
+	}
+	.div1{
+		font-size: 1.1vw;
+	}
+	#div1h1{
+		font-size: 2.5vw;
+		padding-top: 1vw;
+	}
+	#div1h4{
+		font-size: 1.5vw;
+
+	}
+	#image{
+		width: 18vw;
+		height: 18vw;
+		margin-right: 10vw;
+	}
+	#table{
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-size: 1.5vw;
+	}
+	th, td {
+	    padding: 5px;
+	    text-align: left;
+	}
+	@media (max-width: 767px){
+	body{
+		background-color: white;
+	}
+	.container{
+		color: #000000;
+		background-color: white;
+		font-family: 'Oxygen', sans-serif;
+	}
+	.div4{
+		font-size: 1.3vw;
+	}
+	.div4h2{
+		font-size: 1.5vw;
+	}
+	.div4h4{
+		font-size: 1.5vw;
+	}
+	.div2h3{
+		font-size: 1.5vw;
+	}
+	.div1{
+		font-size: 1.3vw;
+	}
+	#div1h1{
+		font-size: 3vw;
+		padding-top: 3vw;
+	}
+	#div1h4{
+		font-size: 1.5vw;
+
+	}
+	#image{
+		width: 18vw;
+		height: 18vw;
+		margin-right: 10vw;
+	}
+	#table{
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-size: 1.5vw;
+	}
+	th, td {
+	    padding: 5px;
+	    text-align: left;
+	}
+	.list{
+		margin-left: -30px;
+	}
+	}
