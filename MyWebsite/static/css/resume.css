@@ -1,13 +1,12 @@
 
 	body{
-		background-color: rgba(206, 206, 206, 0.68);
+		background-color: rgba(194, 194, 194, 0.64);
 	}
 	.container{
 		color: #000000;
 		background-color: white;
 		font-family: 'Oxygen', sans-serif;
 		margin:7%;
-		margin-top: 50px;
 		padding: 3%;
 	}
 	#hr{
@@ -93,13 +92,14 @@
 	}
 	#hr{
 		color: black;
-	    margin-top: -0.3em;
+	    margin-top: -0.5em;
         border-style: solid;
     	border-width: 1px;
 	}
 	#image{
-		width: 30vw;
-		height: 30vw;
+		margin-top: 2em;
+		width: 14vw;
+		height: 14vw;
 		margin-right: 10vw;
 	}
 	#table{
