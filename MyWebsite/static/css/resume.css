@@ -1,12 +1,13 @@
 
 	body{
-		background-color: gray;
+		background-color: rgba(206, 206, 206, 0.68);
 	}
 	.container{
 		color: #000000;
 		background-color: white;
 		font-family: 'Oxygen', sans-serif;
 		margin:7%;
+		margin-top: 50px;
 		padding: 3%;
 	}
 	#hr{
