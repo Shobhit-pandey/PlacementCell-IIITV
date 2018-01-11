@@ -5,8 +5,22 @@
     <title>Student Resume</title>
 </head>
 <body>
+{% if not users %}
+    <h1>USER NOT FOUND</h1>
+{% endif %}
 {% for use in users %}
-<h1>{{ use.username }} Resume</h1>
+    {% if use %}
+    {% for resume in resumes %}
+        {% if resume.user_id|slugify == use.id|slugify %}
+
+<h1>{{ resume.fullname }} </h1>
+            {% else %}
+            <h1>Resume not found</h1>
+                {% endif %}
+{% endfor %}
+        {% else %}
+        <h1>USER NOT FOUND</h1>
+    {% endif %}
 {% endfor %}
 </body>
 </html>

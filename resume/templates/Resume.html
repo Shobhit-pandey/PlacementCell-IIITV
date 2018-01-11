@@ -2,108 +2,203 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/resume.css' %}">
-	<title>Resume</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/resume.css' %}">
+    <title>Resume</title>
 </head>
 <body>
-<div class="container">
-		<div class="logo">
-		<img id="image" src="{% static 'images/iiitv_resume.png' %}" alt="iiitv-logo">
-		</div>
-	<div class="div1">
-		<h1 id="div1h1">Shobhit pandey</h1>
-		<h4 id="div1h4">Indian institute of technology vadodara</h4>
-		<p><strong>Email:</strong>&nbsp2015510872iiitv.ac.in&nbsp&nbsp&nbsp&nbsp&nbsp<strong>DOB:</strong>&nbspNov,20,18</p>
-		<p><strong>Address:</strong>&nbsppethepur pethapur, gandhinagar, gujarat</p>
-		<p><strong> Github Profile:</strong>&nbsp<a href="#">http/github.com/</a></p>
-		<p><strong> LinkedIn:</strong>&nbsp<a href="#">http/linkedin.com/</a></p>
-	</div><br>
-	<div class="div2">
-		<h3 class="div2h3">Education</h3><hr id="hr">
-		<table id="table" style="width:100%">
-		  <tr id="table">
-		    <th id="table">Degree</th>
-		    <th id="table">Institue</th>
-		    <th id="table">Year</th>
-		    <th id="table">CPI/Aggregate</th>
-		  </tr>
-		  <tr id="table">
-		    <td id="table">Jill</td>
-		    <td id="table">Smith</td>
-		    <td id="table">Smith</td>
-		    <td id="table">50</td>
-		  </tr>
-		  <tr id="table">
-		    <td id="table" id="table">Eve</td>
-		    <td id="table">Jackson</td>
-		    <td id="table">Smith</td>
-		    <td id="table">94</td>
-		  </tr>
-		  <tr id="table">
-		    <td id="table">John</td>
-		    <td id="table">Doe</td>
-		    <td id="table">Smith</td>
-		    <td id="table">80</td>
-		  </tr>
-		</table>
-	</div><br>
-	<div>
-		<h3 class="div2h3">Skills</h3><hr id="hr">
-		<table style="width:100%">
-		  <tr>
-		    <th class="div2h3">Name:</th>
-		    <td class="div2h3">Bill Gates</td>
-		  </tr>
-		  <tr>
-		    <th class="div2h3">Telephone:</th>
-		    <td class="div2h3">55577854</td>
-		  </tr>
-		</table>
-	</div><br>
-	<div class="div4">
-		<h3 class="div2h3">Projects</h3><hr id="hr">
-		<p style="text-align: right;">(Feb-April 18)</p>
-		<h4 class="div2h3">bank management</h4><p style="text-align: right;">Team size=4</p>
-		<p></p>
-		<h4 class="div2h3">Guide : Prof. Ashish phophalia</h4>
-		<p>  this is a dummi data. this is a dummi data. this is a dummi data. this is a dummi data. v v this is a dummi data.  this is a dummi data. v this is a dummi data. this is a dummi data. this is a dummi data. v</p>
-	</div><br>
-	<div class="div4">
-		<h3 class="div2h3">Participatios</h3><hr id="hr">
-		<ul class="list">
-		  <li>Coffee</li>
-		  <li>Tea</li>
-		  <li>Milk</li>
-		</ul>
-	</div><br>
-	<div class="div4">
-		<h3 class="div2h3">Position of responsebility</h3><hr id="hr">
-		<ul class="list">
-		  <li>Coffee</li>
-		  <li>Tea</li>
-		  <li>Milk</li>
-		</ul>
-	</div><br>
-	<div class="div4">
-		<h3 class="div2h3">Awards and Achivements</h3><hr id="hr">
-		<ul class="list">
-		  <li>Coffee</li>
-		  <li>Tea</li>
-		  <li>Milk</li>
-		</ul>
-	</div><br>
-	<div class="div4">
-		<h3 class="div2h3">Interests and Activities</h3><hr id="hr">
-		<ul class="list">
-		  <li>Coffee</li>
-		  <li>Tea</li>
-		  <li>Milk</li>
-		</ul>
-	</div><br><br><br>
-	<p class="div2h3"><strong>Declaration :</strong>&nbspI hearby declares that this doc is good.</p><br><br>
-	<p class="div2h3"><strong>shobhit pandey</strong></p>
-	<p class="div2h3">Sept 19,18</p>
-</div>
+{% if not users %}
+    <h1>USER NOT FOUND</h1>
+{% else %}
+    {% for use in users %}
+        {% if use %}
+            {% for resume in resumes %}
+                {% if resume.user_id|slugify == use.id|slugify %}
+                    <div class="container">
+                        <div class="logo">
+                            <img id="image" src="{% static 'images/iiitv_resume.png' %}" alt="iiitv-logo">
+                        </div>
+                        <div class="div1">
+                            <h1 id="div1h1">{{ resume.fullname }}</h1>
+                            <h4 id="div1h4">Indian Institute of Information Technology, Vadodara</h4>
+                            <p>
+                                <strong>Email:</strong>&nbsp{{ resume.email }}&nbsp&nbsp&nbsp&nbsp&nbsp<strong>DOB:</strong>&nbsp{{ resume.dob }}
+                            </p>
+                            <p><strong>Address:</strong>&nbspBlock no. 9 ,GEC ,Sector 28,Gandhinagar (382028)</p>
+                            {% if resume.github %}
+                                <p><strong> Github Profile:</strong>&nbsp<a
+                                        href="{{ resume.github }}">{{ resume.github }}/</a></p>
+                            {% endif %}
+                            {% if resume.linkedin %}
+                                <p><strong> LinkedIn:</strong>&nbsp<a href="{{ resume.linkedin }}">{{ resume.linkedin }}/</a>
+                                </p>
+                            {% endif %}
+                        </div>
+                        <br>
+                        <div class="div2">
+                            <h3 class="div2h3">Education</h3>
+                            <hr id="hr">
+                            <table id="table" style="width:100%">
+                                <tr id="table">
+                                    <th id="table">Degree</th>
+                                    <th id="table">Institute</th>
+                                    <th id="table">Year</th>
+                                    <th id="table">CPI/Aggregate</th>
+                                </tr>
+                                {% if resume.mtech_institute %}
+                                    <tr id="table">
+                                        <td id="table">M.Tech.</td>
+                                        <td id="table">{{ resume.mtech_institute }}</td>
+                                        <td id="table">{{ resume.mtech_batch }}</td>
+                                        <td id="table">{{ resume.mtech_cpi }}</td>
+                                    </tr>
+                                {% endif %}
+                                <tr id="table">
+                                    <td id="table" id="table">B.Tech.</td>
+                                    <td id="table">{{ resume.btech_institute }}</td>
+                                    <td id="table">{{ resume.btech_batch }}</td>
+                                    <td id="table">{{ resume.btech_cpi }}</td>
+                                </tr>
+                                <tr id="table">
+                                    <td id="table" id="table">Intermediate/+2</td>
+                                    <td id="table">{{ resume.class_ten_institute }}</td>
+                                    <td id="table">{{ resume.class_ten_passing_year }}</td>
+                                    <td id="table">{{ resume.class_ten_cgpa }}</td>
+                                </tr>
+                                <tr id="table">
+                                    <td id="table">High School</td>
+                                    <td id="table">{{ resume.class_twelve_institute }}</td>
+                                    <td id="table">{{ resume.class_twelve_passing_year }}</td>
+                                    <td id="table">{{ resume.class_twelve_percentage }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br>
+                        <div>
+                            <h3 class="div2h3">Skills</h3>
+                            <hr id="hr">
+                            <table style="width:100%">
+                                <tr>
+                                    <th class="div2h3"><strong>Area of Interest</strong></th>
+                                    <td class="div2h3">{{ resume.area_of_interest }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="div2h3"><strong>Programming Language(s)</strong></th>
+                                    <td class="div2h3">{{ resume.programming_language }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="div2h3"><strong>Technical Electives</strong></th>
+                                    <td class="div2h3">{{ resume.technical_elective }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="div2h3"><strong>Markup Languages</strong></th>
+                                    <td class="div2h3">{{ resume.markup_language }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="div2h3"><strong>Tools and Technologies</strong></th>
+                                    <td class="div2h3">{{ resume.tool_techonology }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="div2h3"><strong>Database</strong></th>
+                                    <td class="div2h3">{{ resume.database }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br>
+                        {% for project in projects %}
+                            {% if project.resume_id|slugify == resume.id|slugify %}
+                                {% if forloop.counter == 1 %}
+                                <div class="div4">
+                                    <h1 class="div2h3">Projects</h1>
+                                    <hr id="hr">
+                                    {% endif %}
+                                    <p style="text-align: right;">{{ project.time }}</p>
+                                    <h4 class="div2h3">{{ project.topic }}</h4>
+                                    <p style="text-align: right;">Team Size - {{ project.time }}</p>
+                                    <p></p>
+                                    <h4 class="div2h3">Guide : {{ project.guide }}</h4>
+                                    <p>  {{ project.description }}</p>
+                                {% if forloop.revcounter == 1 %}
+                                </div><br>
+                                    {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        {% for participation in participations %}
+                            {% if participation.resume_id|slugify == resume.id|slugify %}
+                                {% if forloop.counter == 1 %}
+                                    <div class="div4">
+                                    <h3 class="div2h3">Participation</h3>
+                                    <hr id="hr">
+                                    <ul class="list">
+                                {% endif %}
+                            <li>{{ participation.topic }}</li>
+                            {% if forloop.revcounter == 1 %}
+                                </ul>
+                                </div>
+                            {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        <br>
+                    {% for position in position_of_responsibity %}
+                            {% if position.resume_id|slugify == resume.id|slugify %}
+                                {% if forloop.counter == 1 %}
+                                    <div class="div4">
+                                    <h3 class="div2h3">Position of Responsibity</h3>
+                                    <hr id="hr">
+                                    <ul class="list">
+                                {% endif %}
+                            <li>{{ position.topic }}</li>
+                            {% if forloop.revcounter == 1 %}
+                                </ul>
+                                </div>
+                            {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        <br>
+                    {% for award in awards %}
+                            {% if award.resume_id|slugify == resume.id|slugify %}
+                                {% if forloop.counter == 1 %}
+                                    <div class="div4">
+                                    <h3 class="div2h3">Awards and Achievements</h3>
+                                    <hr id="hr">
+                                    <ul class="list">
+                                {% endif %}
+                            <li>{{ award.topic }}</li>
+                            {% if forloop.revcounter == 1 %}
+                                </ul>
+                                </div>
+                            {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        <br>
+                     {% for interest in interests %}
+                            {% if interest.resume_id|slugify == resume.id|slugify %}
+                                {% if forloop.counter == 1 %}
+                                    <div class="div4">
+                                    <h3 class="div2h3">Interests and Activities</h3>
+                                    <hr id="hr">
+                                    <ul class="list">
+                                {% endif %}
+                            <li>{{ interest.topic }}</li>
+                            {% if forloop.revcounter == 1 %}
+                                </ul>
+                                </div>
+                            {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        <br><br><br>
+
+                        <p class="div2h3"><strong>Declaration :</strong>&nbspI hereby declare that all the details furnished above are true to the best of my knowledge and belief.
+                        </p><br><br>
+                        <p class="div2h3"><strong>{{ resume.fullname }}</strong></p>
+                        <p class="div2h3">{{ current }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <h1>USER NOT FOUND</h1>
+        {% endif %}
+    {% endfor %}
+{% endif %}
 </body>
 </html>

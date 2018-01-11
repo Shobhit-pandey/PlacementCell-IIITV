@@ -1,16 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
-from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
-from django.core.mail import EmailMessage
-from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from django.template import RequestContext
-from django.views.decorators.csrf import csrf_protect
-from django.views.generic import ListView
+from datetime import datetime
 
 from resume.forms import ProjectFormset, ResumeForm, OtherFormset
 from resume.models import Resume, Project, Other
@@ -18,7 +11,16 @@ from resume.models import Resume, Project, Other
 
 def resume(request, pk2):
     users = User.objects.filter(username=pk2)
-    return render(request, 'Resume.html', {'users': users})
+    resumes = Resume.objects.all()
+    projects = Project.objects.all()
+    current = datetime.now().date()
+    participations = Other.objects.filter(choice="Participation")
+    position_of_responsibity = Other.objects.filter(choice="Position of Responsibity")
+    awards = Other.objects.filter(choice="Award Achievement")
+    interests = Other.objects.filter(choice="Interest")
+    return render(request, 'Resume.html', {'users': users, 'resumes': resumes, 'projects': projects, 'current': current,
+                                           'participations': participations,
+                                           'position_of_responsibity': position_of_responsibity, 'awards': awards, 'interests' : interests})
 
 
 def delete_resume(request):
@@ -61,5 +63,5 @@ def createresume(request, pk):
         other_formset = OtherFormset()
     return render(request, 'create_resume.html',
                   {'resume_form': resume_form, 'project_formset': project_formset,
-                   'other_formset': other_formset, 'resumes': resumes,},
+                   'other_formset': other_formset, 'resumes': resumes, },
                   context_instance=RequestContext(request))

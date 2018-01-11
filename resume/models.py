@@ -69,7 +69,7 @@ class Project(models.Model):
     description = models.TextField(max_length=500,
                                    verbose_name=("Description"),
                                    blank=False)
-    project_link = models.URLField()
+    project_link = models.URLField(blank=True,null=True)
 
     def __str__(self):
         return self.topic
