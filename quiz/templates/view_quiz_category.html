@@ -112,7 +112,8 @@
 }
     </style>
 <h1 style="text-align: center">{% trans "Quizzes in the" %} <strong>{{ category.category }} </strong>{% trans "category" %}</h1>
-    <h2>{{ current_datetime }}</h2>
+{#    <h2>{{ current_datetime }}</h2>#}
+    <h2>datetime {{ datetime }}</h2>
     {% if user.is_staff %}
         <div class="row">
         <div class="col-md-12">

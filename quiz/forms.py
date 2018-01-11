@@ -1,10 +1,10 @@
 from django import forms
 from django.forms.widgets import RadioSelect, Textarea
-from django.utils import timezone
+
 from django.forms.models import inlineformset_factory
 
 from essay.models import Essay_Question
-
+from datetime import datetime
 from true_false.models import TF_Question
 
 from multichoice.models import MCQuestion, Answer
@@ -37,8 +37,8 @@ class CreatequizForm(forms.Form):
     user_id = forms.CharField(max_length=100, required=True, widget=forms.HiddenInput())
     title = forms.CharField(max_length=100, required=True)
     description = forms.CharField(max_length=1000, required=True,widget=forms.Textarea())
-    start_time = forms.DateTimeField(required=True, initial=timezone.now())
-    end_time = forms.DateTimeField(required=True, initial=timezone.now())
+    start_time = forms.DateTimeField(required=True, initial=datetime.now())
+    end_time = forms.DateTimeField(required=True, initial=datetime.now())
     time_of_quiz=forms.IntegerField(required=True,initial=1)
     category = forms.ModelChoiceField(queryset=Category.objects.all(), required=True)
     random_order = forms.BooleanField(required=False)
