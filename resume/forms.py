@@ -10,7 +10,7 @@ class ResumeForm(forms.Form):
     user_id = forms.CharField(max_length=100, required=True, initial="0")
     fullname = forms.CharField(max_length=100, required=True)
     email = forms.EmailField(required=True)
-    dob = forms.DateField(required=True)
+    dob = forms.DateField(required=True,help_text="YYYY-MM-DD")
     github = forms.URLField(required=False)
     linkedin = forms.URLField(required=False)
     class_ten_institute = forms.CharField(max_length=1000, required=True)
