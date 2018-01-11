@@ -80,7 +80,7 @@
 {#    {% if user.is_superuser %}#}
 {#    <h1 style="text-align: center"><a href="{% url 'mywebsite:academicimage' %}" style="color: #ff4226">Add Image</a>  <a href="{% url 'mywebsite:academicvideo' %}" style="color: #6a92e4">Add Video</a> <a href="{% url 'mywebsite:academichighlight' %}" style="color: #13cc40">Add Highlight</a></h1>#}
 {#{% endif %}#}
-<h1 style="text-align: center">Academic</h1>
+<h1 style="text-align: center;margin-left: 10%;margin-right: 10%;">Academic</h1>
 
 <div class="bloc bg-repeat bgc-ghost-white l-bloc" id="bloc-45" >
 	<div class="container bloc-md" >
@@ -110,7 +110,7 @@
 
             </div>
 
-                <div class="content">
+                <div class="content" style="margin-left: 5%;margin-right: 5%;">
 
                 <div class="container">
                     {% for video in addacademicvideo %}
@@ -140,7 +140,7 @@
 		<div class="row">
             <div class="contents-wrapper">
             <!-- Contents starts here -->
-            <div class="content">
+            <div class="content " style="margin-left: 5%;margin-right: 5%;">
                 <p><strong>Some other Highlights</strong></p>
                 <ul>
                     {% for highlight in addacademichighlight %}
