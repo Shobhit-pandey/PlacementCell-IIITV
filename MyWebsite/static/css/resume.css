@@ -1,6 +1,6 @@
 
 	body{
-        background-color: rgba(197, 197, 197, 0.45);
+		background-color: gray;
 	}
 	.container{
 		color: #000000;
@@ -8,6 +8,12 @@
 		font-family: 'Oxygen', sans-serif;
 		margin:7%;
 		padding: 3%;
+	}
+	#hr{
+		color: black;
+	    margin-top: -0.5em;
+        border-style: solid;
+    	border-width: 1px;
 	}
 	.logo{
 		float: left;
@@ -23,18 +29,22 @@
 	}
 	.div2h3{
 		font-size: 1.5vw;
+		clear: both;
 	}
 	.div1{
+		float: left;
 		font-size: 1.1vw;
+
 	}
 	#div1h1{
 		font-size: 2.5vw;
-		padding-top: 1vw;
+
 	}
 	#div1h4{
 		font-size: 1.5vw;
 
 	}
+
 	#image{
 		width: 18vw;
 		height: 18vw;
@@ -49,7 +59,7 @@
 	    padding: 5px;
 	    text-align: left;
 	}
-	@media (max-width: 767px){
+	@media (max-width: 980px){
 	body{
 		background-color: white;
 	}
@@ -75,15 +85,20 @@
 	}
 	#div1h1{
 		font-size: 3vw;
-		padding-top: 3vw;
 	}
 	#div1h4{
 		font-size: 1.5vw;
 
 	}
+	#hr{
+		color: black;
+	    margin-top: -0.3em;
+        border-style: solid;
+    	border-width: 1px;
+	}
 	#image{
-		width: 18vw;
-		height: 18vw;
+		width: 30vw;
+		height: 30vw;
 		margin-right: 10vw;
 	}
 	#table{
@@ -98,4 +113,5 @@
 	.list{
 		margin-left: -30px;
 	}
+
 	}
