@@ -18,7 +18,7 @@ from resume.models import Resume, Project, Other
 
 def resume(request, pk2):
     users = User.objects.filter(username=pk2)
-    return render(request, 'student_resume.html', {'users': users})
+    return render(request, 'Resume.html', {'users': users})
 
 
 def delete_resume(request):
