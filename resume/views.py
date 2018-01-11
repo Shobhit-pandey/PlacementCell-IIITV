@@ -11,13 +11,17 @@ from resume.models import Resume, Project, Other
 
 def resume(request, pk2):
     users = User.objects.filter(username=pk2)
-    resumes = Resume.objects.all()
-    projects = Project.objects.all()
+    u = User.objects.get(username=pk2)
+    resumes = Resume.objects.filter(user_id = u.id)
+    r= Resume.objects.get(user_id = u.id)
+    # resumes = Resume.objects.all()
+    projects = Project.objects.filter(resume_id = r.id)
+    # projects = Project.objects.all()
     current = datetime.now().date()
-    participations = Other.objects.filter(choice="Participation")
-    position_of_responsibity = Other.objects.filter(choice="Position of Responsibity")
-    awards = Other.objects.filter(choice="Award Achievement")
-    interests = Other.objects.filter(choice="Interest")
+    participations = Other.objects.filter(choice="Participation",resume_id = r.id)
+    position_of_responsibity = Other.objects.filter(choice="Position of Responsibity",resume_id = r.id)
+    awards = Other.objects.filter(choice="Award Achievement",resume_id = r.id)
+    interests = Other.objects.filter(choice="Interest",resume_id = r.id)
     return render(request, 'Resume.html', {'users': users, 'resumes': resumes, 'projects': projects, 'current': current,
                                            'participations': participations,
                                            'position_of_responsibity': position_of_responsibity, 'awards': awards, 'interests' : interests})
