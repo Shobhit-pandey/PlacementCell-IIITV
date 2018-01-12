@@ -10,21 +10,30 @@ from resume.models import Resume, Project, Other
 
 
 def resume(request, pk2):
-    users = User.objects.filter(username=pk2)
-    u = User.objects.get(username=pk2)
-    resumes = Resume.objects.filter(user_id = u.id)
-    r= Resume.objects.get(user_id = u.id)
+    wrong = "USER NOT FOUND"
+    try:
+        users = User.objects.filter(username=pk2)
+        u = User.objects.get(username=pk2)
+    except:
+        return render(request, 'wrong.html', {'wrong': wrong})
+    try:
+        resumes = Resume.objects.filter(user_id=u.id)
+        r = Resume.objects.get(user_id=u.id)
+    except:
+        wrong = "RESUME EITHER DELETED OR NOT CREATED"
+        return render(request, 'wrong.html', {'wrong': wrong})
     # resumes = Resume.objects.all()
-    projects = Project.objects.filter(resume_id = r.id)
+    projects = Project.objects.filter(resume_id=r.id)
     # projects = Project.objects.all()
     current = datetime.now().date()
-    participations = Other.objects.filter(choice="Participation",resume_id = r.id)
-    position_of_responsibity = Other.objects.filter(choice="Position of Responsibity",resume_id = r.id)
-    awards = Other.objects.filter(choice="Award Achievement",resume_id = r.id)
-    interests = Other.objects.filter(choice="Interest",resume_id = r.id)
+    participations = Other.objects.filter(choice="Participation", resume_id=r.id)
+    position_of_responsibity = Other.objects.filter(choice="Position of Responsibity", resume_id=r.id)
+    awards = Other.objects.filter(choice="Award Achievement", resume_id=r.id)
+    interests = Other.objects.filter(choice="Interest", resume_id=r.id)
     return render(request, 'Resume.html', {'users': users, 'resumes': resumes, 'projects': projects, 'current': current,
                                            'participations': participations,
-                                           'position_of_responsibity': position_of_responsibity, 'awards': awards, 'interests' : interests})
+                                           'position_of_responsibity': position_of_responsibity, 'awards': awards,
+                                           'interests': interests})
 
 
 def delete_resume(request):
