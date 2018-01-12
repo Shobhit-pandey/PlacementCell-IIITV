@@ -112,14 +112,13 @@
                                     <h3 class="div2hx">PROJECTS</h3>
                                     <hr id="hr">
                                     {% endif %}
-
-                                    <h4 class="div2h3">{{ project.topic }}</h4>
                                     <p style="text-align: right;">{{ project.time }}</p>
-
+                                    <h4 class="div2h3">{{ project.topic }}</h4>
+                                    <p style="text-align: right;font-family: SansSerif">Team Size - {{ project.team_size }}</p>
                                     <p></p>
                                     <h4 class="div2h3">Guide : {{ project.guide }}</h4>
-                                    <p style="text-align: right;font-family: SansSerif">Team Size - {{ project.team_size }}</p>
                                     <p style="font-family: SansSerif">  {{ project.description }}</p>
+                                    <hr>
                                 {% if forloop.revcounter == 1 %}
                                 </div><br>
                                     {% endif %}
