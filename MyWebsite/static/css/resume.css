@@ -15,6 +15,11 @@
         border-style: solid;
     	border-width: 1px;
 	}
+	#hrqq{
+		color: rgba(189, 189, 189, 0.21);
+	    margin-top: -0.5em;
+    	border-width: 0.7px;
+	}
 	.logo{
 		float: left;
 	}
@@ -119,6 +124,11 @@
 	    margin-top: -0.5em;
         border-style: solid;
     	border-width: 1px;
+	}
+		#hrqq{
+		color: rgba(189, 189, 189, 0.21);
+	    margin-top: -0.5em;
+    	border-width: 0.7px;
 	}
 	#image{
 		margin-top: 2em;
