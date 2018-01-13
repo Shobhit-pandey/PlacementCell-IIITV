@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% block title %}{% trans "Replies" %}{% endblock %}
+{% block heade %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript" src="js/jQuery.js"></script>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+
+    <style>
+
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            width: 80%;
+            height: auto;
+            margin-top: 100px;
+            margin-left: 10%;
+            margin-right: 10%;
+            border: 1px solid;
+            border-color: #708090;
+            padding: 25px;
+        }
+
+        .cmnt {
+
+            font-size: 20px;
+            margin-bottom: 20px;
+
+        }
+
+        .cmnt_username {
+
+            text-align: right;
+            font-size: 14px;
+            padding-right: 10px;
+            display: inline;
+            width: 100%;
+            color: #a9a9a9;
+        }
+
+        .cmnt_time {
+            color: #d3d3d3;
+            display: inline;
+
+            font-size: 14px;
+
+        }
+
+
+    </style>
+{% endblock %}
+{% block content %}
+    {% for question in questions %}
+        {% for use in user_u %}
+            {% if use.id|slugify == question.user_id|slugify %}
+            <div class="row">
+                    <div class="col-xm-12 col-sm-12 col-md-12">
+
+                        <div class="card ">
+                            <div id="view-div" data-actions-icnt="#">
+
+
+                                <div class="cmnt"
+                                     style="font-size:30px; font-family: Courier,sans-serif; color:rgba(36,147,244,0.96);">{{ question.question }}
+                                    <br>
+
+                                    <a href="{% url 'resumes:resume' pk2=use.username %}">
+                                        <div class="cmnt_username"
+                                             style="font-size:15px; color:#2f4f4f;padding-top:5px; margin-top:0px; ">{{ use.username }}</div>
+                                    </a>
+
+                                    <div class="cmnt_time"
+                                         style="font-size:15px; color:#a9a9a9;">{{ question.timestamp }}</div>
+                                </div>
+                                {% if question.user_id == user.id %}
+                                    <a href="{% url 'share:deleteshare' question.id %}">
+                                        <div class="cmnt_username"
+                                             style="font-size:15px; color:#c31010;padding-top:5px; margin-top:0px; ">Delete This share</div>
+                                    </a>
+                                    {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        {% endif %}
+
+            {% endfor %}
+    {% endfor %}
+    {% if lists %}
+    <h2 style="margin-left: 150px">Replies</h2>
+        {% else %}
+        <h2 style="margin-left: 150px">Be the first to reply</h2>
+    {% endif %}
+{#    <div id="view-answer" style="font-size:20px; color:#000000; margin-bottom:15px;">Replies</div>#}
+    {% for list in lists %}
+        {% for use in user_u %}
+            {% if use.id == list.user_id %}
+                <div class="row">
+                    <div class="col-xm-12 col-sm-12 col-md-12">
+
+                        <div class="card ">
+                            <div id="view-div" data-actions-icnt="#">
+
+
+                                <div class="cmnt"
+                                     style="font-size:30px; font-family: Courier,sans-serif; color:#13a73d;">{{ list.content }}
+                                    <br>
+
+                                    <a href="{% url 'resumes:resume' pk2=use.username %}">
+                                        <div class="cmnt_username"
+                                             style="font-size:15px; color:#2f4f4f;padding-top:5px; margin-top:0px; ">{{ use.username }}</div>
+                                    </a>
+
+                                    <div class="cmnt_time"
+                                         style="font-size:15px; color:#a9a9a9;">{{ list.timestamp }}</div>
+                                    {% if user.id == list.user_id %}
+                                    <a href="{% url 'share:deletereply' pk2=list.id %}">
+                                        <div class="cmnt_username"
+                                             style="font-size:15px; color:#c31010;padding-top:5px; margin-top:0px; ">Delete this Reply</div>
+                                    </a>
+                                    {% endif %}
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    {% for temp in questions %}
+        <div class="card" style="margin-bottom:40px; padding:25px;">
+    <div class="row">
+            <div class="col-xm-3 col-sm-3 col-md-3">
+
+                <form method="post">
+                    {% csrf_token %}
+                    {{ reply_form.as_p }}
+                    <div class="form-group">
+                            <button class="btn btn-default">Comment</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+        </div>
+    {% endfor %}
+{% endblock %}

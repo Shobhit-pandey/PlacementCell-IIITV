@@ -44,6 +44,7 @@ PHONENUMBER_DEFAULT_REGION = 'IN'
 INSTALLED_APPS = [
     'resume',
     'quiz',
+    'discussion',
     'multichoice',
     'true_false',
     'essay',

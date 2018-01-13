@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% block title %}{% trans "Share" %}{% endblock %}
+{% block heade %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript" src="js/jQuery.js"></script>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+       <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            width: 60%;
+            height: auto;
+            margin-left: 20%;
+            border: 1px solid;
+            border-color:#708090;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .cmnt{
+
+            font-size:20px;
+             margin-bottom:20px;
+
+        }
+        .cmnt_username{
+
+            text-align:right;
+          font-size:14px;
+    padding-right:10px;
+    display: inline;
+    width:100%;
+            color:#a9a9a9;
+        }
+
+        .cmnt_time{
+            color:#d3d3d3;
+            display:inline;
+         font-size:14px;
+        }
+    </style>
+<script type="text/javascript">
+
+
+
+    window.onload = function(){
+ $('.Test').hide();
+
+         //$('.Test').hide();
+
+         //$("#reply-div1").s.css('visibility', 'visible');
+        var nums =[];
+        var nums2= [];
+        {% for  topics in shares %}
+         var j = {{ topics.id }};
+            nums.push(j);
+        {% endfor %}
+
+        console.log(nums);
+        for (var i = 0; i < nums.length; i++) {
+
+        var element = "#reply-button"+nums[i];
+        var elem = $(element);
+        console.log(element);
+        console.log("hi");
+        (elem).click(function() {
+         console.log("hi in function");
+        var id = $(this).attr("id");
+        console.log(id);
+        docs(id);
+        });
+    }
+
+
+
+}
+
+function docs(numcopy)
+
+{
+     $('.Test').hide();
+// when actual data plz add one more div in next line
+    //var data  = "<div class = 'Test'>";
+    var topic_id=numcopy.slice(12);
+    var e1 = "#reply-div"+topic_id;
+    $(e1).show();
+
+}
+
+
+
+</script>
+{% endblock %}
+{% block content %}
+
+<div class="row" style="margin-top: 100px;">
+    <div class="col-xm-12 col-md-12" style="align-content: center">
+        <a href="{% url 'share:add_share' %}">
+            <button class="btn btn-primary" style="width: 150px;height: 50px;float: right">
+                <span style="font-size: 20px;">Ask question</span></button>
+        </a>
+    </div>
+</div>
+{% for temp in shares %}
+    <div class="card" style="margin-bottom:40px; padding:25px;">
+        <div class="row">
+            <div class="col-xm-12 col-md-12 col-sm-12">
+
+
+
+                <div class="cmnt" style="font-size:35px;">{{ temp.id }} . {{ temp.question }}
+                    <br>
+                    {% for use in user_u %}
+                        {% if use.id == temp.user_id %}
+                            <a href="{% url 'resumes:resume' pk2=use.username %}">
+                  <div class = "cmnt_username" style="font-size:25px; color:#2f4f4f;padding-top:5px; margin-top:0px; ">{{ use.username }}</div></a>
+                        {% endif %}
+                        {% endfor %}
+
+                                <div class = "cmnt_time" style="font-size:25px; color:#a9a9a9;">{{ temp.timestamp }}</div></div>
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xm-3 col-sm-3 col-md-3">
+                <div id="reply-button{{ temp.id }}" style="color: #87cefa;font-size:22px;">Reply</div>
+                <div id ="reply-div{{ temp.id }}" class = "Test">
+                    <form class="form-inline" action="{% url 'share:reply' %}" method="post" role="form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input class="form-control" id="{{ comment_form.pk }}" type="hidden" name="pk" value="{{ temp.pk }}"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" style="margin-top: 30px;padding-bottom:15px; padding-top:15px; margin-bottom:20px;" id="{{ comment_form.content }}" name="content"
+                                   type="text" placeholder="Your answer"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="{{ comment_form.share }}" name="share"
+                                   value="{{ temp.pk }}" type="hidden">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="{{ comment_form.user }}" name="user" value="{{ user.id }}"
+                                   type="hidden">
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-default">Comment</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-xm-3 col-sm-3 col-md-3" style="color: blue;font-size:22px;">
+                <a href="{% url 'share:replies' pk=temp.pk %}">View answers</a>
+            </div>
+            {% if temp.user_id|slugify == user.id|slugify %}
+                <div class="col-xm-3 col-sm-3 col-md-3" style="color: #c31010;font-size:22px;">
+                <a href="{% url 'share:deleteshare' pk1=temp.id %}" style="color: #c31010;font-size:22px;">Delete this Share</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}

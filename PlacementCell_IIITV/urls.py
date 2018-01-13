@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^quiz/', include('quiz.urls')),
     url(r'^', include('MyWebsite.urls', namespace="mywebsite")),
+    url(r'^share/', include('discussion.urls', namespace="share")),
     url(r'^resume/', include('resume.urls', namespace="resumes")),
     url(r'^student/login/$',views.login,{'template_name':'Student.html'},name='studentlogin'),
     url(r'^recruiter/login/$',views.login,{'template_name':'Recruiter.html'},name='recruiterlogin'),
