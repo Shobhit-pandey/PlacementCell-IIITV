@@ -4,8 +4,11 @@ from django.db import models
 from datetime import datetime
 
 # Create your models here.
+from froala_editor.fields import FroalaField
+
+
 class Share(models.Model):
-    question = models.CharField(max_length=500)
+    question = FroalaField(theme='dark')
     timestamp = models.DateTimeField(default=datetime.now())
     user = models.ForeignKey(User,default="0")
 
@@ -18,7 +21,7 @@ class Share(models.Model):
 
 
 class ShareReply(models.Model):
-    content = models.CharField(max_length=1000)
+    content = FroalaField(theme='dark')
     timestamp = models.DateTimeField(default=datetime.now())
     share = models.ForeignKey(Share,default="ss")
     user = models.ForeignKey(User,default="0")

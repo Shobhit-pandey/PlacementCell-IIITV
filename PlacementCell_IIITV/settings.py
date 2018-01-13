@@ -43,6 +43,7 @@ PHONENUMBER_DEFAULT_REGION = 'IN'
 
 INSTALLED_APPS = [
     'resume',
+    'froala_editor',
     'quiz',
     'discussion',
     'multichoice',
@@ -139,11 +140,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
+FROALA_INCLUDE_JQUERY = True
 
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
+FROALA_UPLOAD_PATH = '/media/'
 LOGIN_REDIRECT_URL = 'mywebsite:home'
 
 LOGOUT_REDIRECT_URL = 'mywebsite:home'

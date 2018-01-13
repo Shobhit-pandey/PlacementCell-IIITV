@@ -11,14 +11,18 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" media="all" rel="stylesheet" />
+<link href="{% static 'froala_editor/css/froala_editor.min.css' %} " type="text/css" media="all" rel="stylesheet" />
+<link href="{% static 'froala_editor/css/froala_style.min.css' %}" type="text/css" media="all" rel="stylesheet" />
     <script type="text/javascript" src="js/jQuery.js"></script>
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src=" {% static 'froala_editor/js/froala_editor.min.js' %}"></script>
+
 
     <meta charset="UTF-8">
-    <title>ADD QUESTION</title>
+    <title>Post Experience</title>
     <style>
         .form-control{
             width: 600px;
@@ -32,11 +36,13 @@
 {% block content %}
 <form  method="post" role="form">
     {% csrf_token %}
-        <div class="form-group" >
+        <div class="form-group">
+            {{ q_form.media }}
             {{ q_form.as_p }}
     <div class="form-group">
     <button type="submit" class="btn btn-default" style="width: 10%;height: 30%;margin-left: 350px; font-size: 20px;">
         Submit</button>
     </div>
+        </div>
 </form>
 {% endblock %}

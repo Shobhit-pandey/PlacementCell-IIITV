@@ -18,6 +18,8 @@ def share(request):
 @login_required()
 def deleteshare(request,pk1):
     shares = Share.objects.filter(id=pk1)
+    sharereply = ShareReply.objects.filter(share_id=pk1)
+    sharereply.delete()
     shares.delete()
     return redirect('share:share')
 

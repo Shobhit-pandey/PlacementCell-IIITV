@@ -9,11 +9,14 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" media="all" rel="stylesheet" />
+<link href="{% static 'froala_editor/css/froala_editor.min.css' %} " type="text/css" media="all" rel="stylesheet" />
+<link href="{% static 'froala_editor/css/froala_style.min.css' %}" type="text/css" media="all" rel="stylesheet" />
     <script type="text/javascript" src="js/jQuery.js"></script>
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
+
        <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -108,25 +111,23 @@ function docs(numcopy)
 
 
 </script>
+    <script type="text/javascript" src=" {% static 'froala_editor/js/froala_editor.min.js' %}"></script>
 {% endblock %}
 {% block content %}
 
 <div class="row" style="margin-top: 100px;">
-    <div class="col-xm-12 col-md-12" style="align-content: center">
+    <div class="col-xm-12 col-md-12" style="align-content: center;position: fixed">
         <a href="{% url 'share:add_share' %}">
-            <button class="btn btn-primary" style="width: 150px;height: 50px;float: right">
-                <span style="font-size: 20px;">Ask question</span></button>
+            <button class="btn btn-primary" style="width: 250px;height: 70px;float: right">
+                <span style="font-size: 25px;">Post Experience</span></button>
         </a>
     </div>
 </div>
-{% for temp in shares %}
+{% for temp in shares reversed %}
     <div class="card" style="margin-bottom:40px; padding:25px;">
         <div class="row">
             <div class="col-xm-12 col-md-12 col-sm-12">
-
-
-
-                <div class="cmnt" style="font-size:35px;">{{ temp.id }} . {{ temp.question }}
+                <div class="cmnt" style="font-size:35px;">{{ forloop.counter|safe }} {{ temp.question|safe }}
                     <br>
                     {% for use in user_u %}
                         {% if use.id == temp.user_id %}
@@ -141,17 +142,19 @@ function docs(numcopy)
             </div>
         </div>
         <div class="row">
+
             <div class="col-xm-3 col-sm-3 col-md-3">
                 <div id="reply-button{{ temp.id }}" style="color: #87cefa;font-size:22px;">Reply</div>
                 <div id ="reply-div{{ temp.id }}" class = "Test">
                     <form class="form-inline" action="{% url 'share:reply' %}" method="post" role="form">
                         {% csrf_token %}
+                        {{ comment_form.media }}
                         <div class="form-group">
                             <input class="form-control" id="{{ comment_form.pk }}" type="hidden" name="pk" value="{{ temp.pk }}"/>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" style="margin-top: 30px;padding-bottom:15px; padding-top:15px; margin-bottom:20px;" id="{{ comment_form.content }}" name="content"
-                                   type="text" placeholder="Your answer"/>
+                            <input class="form-control" style="margin-top: 30px;padding-bottom:15px; padding-top:15px; margin-bottom:20px;" id="{{ comment_form.content|safe }}" name="content"
+                                   type="text" placeholder="Your Reply" size="150"/>
                         </div>
                         <div class="form-group">
                             <input class="form-control" id="{{ comment_form.share }}" name="share"
@@ -169,11 +172,11 @@ function docs(numcopy)
                 </div>
             </div>
             <div class="col-xm-3 col-sm-3 col-md-3" style="color: blue;font-size:22px;">
-                <a href="{% url 'share:replies' pk=temp.pk %}">View answers</a>
+                <a href="{% url 'share:replies' pk=temp.pk %}">View all Replies</a>
             </div>
             {% if temp.user_id|slugify == user.id|slugify %}
                 <div class="col-xm-3 col-sm-3 col-md-3" style="color: #c31010;font-size:22px;">
-                <a href="{% url 'share:deleteshare' pk1=temp.id %}" style="color: #c31010;font-size:22px;">Delete this Share</a>
+                <a href="{% url 'share:deleteshare' pk1=temp.id %}" style="color: #c31010;font-size:22px;">Delete this Post</a>
             </div>
             {% endif %}
         </div>
