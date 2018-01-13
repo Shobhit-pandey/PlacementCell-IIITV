@@ -85,6 +85,18 @@
 					<li>
 						<a  href="{% url 'mywebsite:department' %}" class="btn btn-d btn-sq btn-sm nav-button">Departments</a>
 					</li>
+                {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                        <li>
+						<a  href="{% url 'share:share' %}" class="btn btn-d btn-sq btn-sm nav-button">Discussion</a>
+					</li>
+                        {% elif not user.is_staff %}
+                        <li>
+						<a  href="{% url 'share:share' %}" class="btn btn-d btn-sq btn-sm nav-button">Discussion</a>
+					</li>
+                        {% endif %}
+                {% endif %}
+
 					<li>
 						<div class="btn-group btn-dropdown">
 							<a href="#" class="btn btn-d btn-sq btn-sm nav-button dropdown-toggle" data-toggle="dropdown" aria-expanded="false">About<span class="caret"></span></a>
