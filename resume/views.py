@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import RequestContext
 from datetime import datetime
 
+from django.template.loader import get_template
+from django.views.generic import View
+
 from resume.forms import ProjectFormset, ResumeForm, OtherFormset
 from resume.models import Resume, Project, Other
+from resume.utils import render_to_pdf
 
 
 def resume(request, pk2):
@@ -30,10 +35,11 @@ def resume(request, pk2):
     position_of_responsibity = Other.objects.filter(choice="Position of Responsibity", resume_id=r.id)
     awards = Other.objects.filter(choice="Award Achievement", resume_id=r.id)
     interests = Other.objects.filter(choice="Interest", resume_id=r.id)
+    resume_name = pk2
     return render(request, 'Resume.html', {'users': users, 'resumes': resumes, 'projects': projects, 'current': current,
                                            'participations': participations,
                                            'position_of_responsibity': position_of_responsibity, 'awards': awards,
-                                           'interests': interests})
+                                           'interests': interests,'resume_name':resume_name})
 
 
 def delete_resume(request):
@@ -78,3 +84,71 @@ def createresume(request, pk):
                   {'resume_form': resume_form, 'project_formset': project_formset,
                    'other_formset': other_formset, 'resumes': resumes, },
                   context_instance=RequestContext(request))
+
+
+# class GeneratePdf(View):
+#     def get(self, request, *args, **kwargs):
+#         data = {
+#
+#         }
+#         pdf = render_to_pdf('pdf/Resume.html', data)
+#         return HttpResponse(pdf, content_type='application/pdf')
+
+def generate_pdf(request,pk3):
+    users = User.objects.filter(username=pk3)
+    u = User.objects.get(username=pk3)
+    resumes = Resume.objects.filter(user_id=u.id)
+    r = Resume.objects.get(user_id=u.id)
+    projects = Project.objects.filter(resume_id=r.id)
+    # projects = Project.objects.all()
+    current = datetime.now().date()
+    participations = Other.objects.filter(choice="Participation", resume_id=r.id)
+    position_of_responsibity = Other.objects.filter(choice="Position of Responsibity", resume_id=r.id)
+    awards = Other.objects.filter(choice="Award Achievement", resume_id=r.id)
+    interests = Other.objects.filter(choice="Interest", resume_id=r.id)
+    template = get_template('pdf/Resume.html')
+    context = {
+        "users": users,
+        "resumes": resumes,
+        "projects": projects,
+        "current": current,
+        "participations": participations,
+        "position_of_responsibity": position_of_responsibity,
+        "awards": awards,
+        "interests": interests,
+    }
+    html = template.render(context)
+    pdf = render_to_pdf('pdf/Resume.html', context)
+    if pdf:
+        response = HttpResponse(pdf, content_type='application/pdf')
+        filename = "Resume_%s.pdf" % ("12341231")
+        content = "inline; filename='%s'" % (filename)
+        download = request.GET.get("download")
+        if download:
+            content = "attachment; filename='%s'" % (filename)
+        response['Content-Disposition'] = content
+        return response
+    return HttpResponse("Not found")
+
+
+# class GeneratePDF(View):
+#     def get(self, request, *args, **kwargs):
+#         template = get_template('Resume.html')
+#         context = {
+#             "invoice_id": 123,
+#             "customer_name": "John Cooper",
+#             "amount": 1399.99,
+#             "today": "Today",
+#         }
+#         html = template.render(context)
+#         pdf = render_to_pdf('Resume.html', context)
+#         if pdf:
+#             response = HttpResponse(pdf, content_type='application/pdf')
+#             filename = "Resume_%s.pdf" % ("12341231")
+#             content = "inline; filename='%s'" % (filename)
+#             download = request.GET.get("download")
+#             if download:
+#                 content = "attachment; filename='%s'" % (filename)
+#             response['Content-Disposition'] = content
+#             return response
+#         return HttpResponse("Not found")

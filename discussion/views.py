@@ -1,12 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 
-# Create your views here.
+
 from discussion.forms import ShareForm, ShareReplyForm, ShareRepliesForm
 from discussion.models import Share, ShareReply
+
 
 @login_required()
 def share(request):

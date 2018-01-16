@@ -8,7 +8,7 @@ from froala_editor.fields import FroalaField
 
 
 class Share(models.Model):
-    question = FroalaField(theme='dark')
+    question = FroalaField(theme='dark',)
     timestamp = models.DateTimeField(default=datetime.now())
     user = models.ForeignKey(User,default="0")
 

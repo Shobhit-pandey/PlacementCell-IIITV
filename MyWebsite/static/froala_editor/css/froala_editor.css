@@ -167,7 +167,7 @@ iframe.fr-iframe {
   overflow: hidden;
 }
 .fr-wrapper.show-placeholder .fr-placeholder {
-  display: block;
+  display: none;
 }
 .fr-wrapper ::-moz-selection {
   background: #b5d6fd;
