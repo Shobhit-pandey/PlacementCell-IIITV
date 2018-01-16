@@ -68,7 +68,7 @@ class CategoriesListView(ListView):
 class ViewQuizListByCategory(ListView):
     model = Quiz
     template_name = 'view_quiz_category.html'
-    curent_datetime = datetime.now()
+    curent_datetime = timezone.now()
     datetim = datetime.now()
     users = User.objects.all()
     students = CompaniesAppliedByStudents.objects.all()

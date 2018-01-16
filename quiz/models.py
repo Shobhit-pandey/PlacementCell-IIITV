@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.core.exceptions import ValidationError, ImproperlyConfigured
 from django.core.validators import MaxValueValidator
+from django.utils import timezone
 from django.utils.translation import ugettext as _
 from django.utils.timezone import now
 from django.utils.encoding import python_2_unicode_compatible
@@ -78,12 +79,12 @@ class Quiz(models.Model):
 
     start_time = models.DateTimeField(
         verbose_name=_("Start Time"),
-        blank=False, help_text=_("Start time of quiz"), default=datetime.now(),
+        blank=False, help_text=_("Start time of quiz"), default=timezone.now(),
     )
 
     end_time = models.DateTimeField(
         verbose_name=_("End Time"),
-        blank=False, help_text=_("End time of the quiz"), default=datetime.now(),
+        blank=False, help_text=_("End time of the quiz"), default=timezone.now(),
     )
     time_of_quiz = models.IntegerField(
         verbose_name=_("Time of Quiz"),
@@ -155,7 +156,7 @@ class Quiz(models.Model):
         if self.pass_mark > 100:
             raise ValidationError('%s is above 100' % self.pass_mark)
 
-        if self.start_time <= datetime.now():
+        if self.start_time <= timezone.now():
             raise ValidationError("Start time must be in future not in Past")
 
         if self.end_time <= self.start_time:
