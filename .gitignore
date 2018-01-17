@@ -3,8 +3,6 @@ __pycache__
 myvenv
 db.sqlite3
 .DS_Store
-Placement_IIITV/migrations/*
-mywebsite/migrations
 .idea/dataSources
 .idea/vcs.xml
 .idea/dataSources.xml
