@@ -41,7 +41,7 @@ class Resume(models.Model):
     markup_language = models.CharField(max_length=1000, blank=False)
     tool_techonology = models.CharField(max_length=1000, blank=False)
     database = models.CharField(max_length=1000, blank=False)
-    resume_created=models.DateField(null=False, blank=False,default=datetime.now())
+    resume_created=models.DateField(null=True, blank=True,default=datetime.now())
 
     def __str__(self):
         return self.user_id

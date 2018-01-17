@@ -62,16 +62,18 @@ def delete_resume(request):
 
 def createresume(request, pk):
     resumes = Resume.objects.filter(user_id=request.user.id)
+    current = datetime.now()
     referer = request.META.get('HTTP_REFERER')
     if referer == None:
         return render(request, 'quiz/wrongurl.html')
     project_formset = ProjectFormset()
     other_formset = OtherFormset()
-    resume_form = ResumeForm(initial={'user_id': request.user.id})
+    resume_form = ResumeForm(initial={'user_id': request.user.id,'resume_created':datetime.now()})
     if request.method == "POST":
-        resume_form = ResumeForm(request.POST, initial={'user_id': request.user.id})
+        resume_form = ResumeForm(request.POST, initial={'user_id': request.user.id,'resume_created':datetime.now()})
         if resume_form.is_valid():
             resume_form.cleaned_data['user_id'] = request.user.id
+            resume_form.cleaned_data['resume_created'] = datetime.now()
             new_resume = resume_form.save()
             new_resume.save()
             project_formset = ProjectFormset(request.POST, instance=new_resume)
@@ -81,12 +83,12 @@ def createresume(request, pk):
                 other_formset.save()
                 return redirect('mywebsite:student')
     else:
-        resume_form = ResumeForm(request.POST, initial={'user_id': request.user.id})
+        resume_form = ResumeForm(request.POST, initial={'user_id': request.user.id,'resume_created':datetime.now()})
         project_formset = ProjectFormset()
         other_formset = OtherFormset()
     return render(request, 'create_resume.html',
                   {'resume_form': resume_form, 'project_formset': project_formset,
-                   'other_formset': other_formset, 'resumes': resumes, },
+                   'other_formset': other_formset, 'resumes': resumes,'current':current },
                   context_instance=RequestContext(request))
 
 
