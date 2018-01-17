@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+
+import copy
+from wkhtmltopdf.views import PDFTemplateResponse, PDFTemplateView
+
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -8,6 +12,7 @@ from datetime import datetime
 
 from django.template.loader import get_template
 from django.views.generic import View
+from django.views.generic.base import TemplateResponseMixin, ContextMixin
 
 from resume.forms import ProjectFormset, ResumeForm, OtherFormset
 from resume.models import Resume, Project, Other
@@ -39,7 +44,7 @@ def resume(request, pk2):
     return render(request, 'Resume.html', {'users': users, 'resumes': resumes, 'projects': projects, 'current': current,
                                            'participations': participations,
                                            'position_of_responsibity': position_of_responsibity, 'awards': awards,
-                                           'interests': interests,'resume_name':resume_name})
+                                           'interests': interests, 'resume_name': resume_name})
 
 
 def delete_resume(request):
@@ -94,7 +99,7 @@ def createresume(request, pk):
 #         pdf = render_to_pdf('pdf/Resume.html', data)
 #         return HttpResponse(pdf, content_type='application/pdf')
 
-def generate_pdf(request,pk3):
+def generate_pdf(request, pk3):
     users = User.objects.filter(username=pk3)
     u = User.objects.get(username=pk3)
     resumes = Resume.objects.filter(user_id=u.id)
@@ -131,24 +136,30 @@ def generate_pdf(request,pk3):
     return HttpResponse("Not found")
 
 
-# class GeneratePDF(View):
-#     def get(self, request, *args, **kwargs):
-#         template = get_template('Resume.html')
-#         context = {
-#             "invoice_id": 123,
-#             "customer_name": "John Cooper",
-#             "amount": 1399.99,
-#             "today": "Today",
-#         }
-#         html = template.render(context)
-#         pdf = render_to_pdf('Resume.html', context)
-#         if pdf:
-#             response = HttpResponse(pdf, content_type='application/pdf')
-#             filename = "Resume_%s.pdf" % ("12341231")
-#             content = "inline; filename='%s'" % (filename)
-#             download = request.GET.get("download")
-#             if download:
-#                 content = "attachment; filename='%s'" % (filename)
-#             response['Content-Disposition'] = content
-#             return response
-#         return HttpResponse("Not found")
+def pdf(request, pk4):
+    users = User.objects.filter(username=pk4)
+    u = User.objects.get(username=pk4)
+    resumes = Resume.objects.filter(user_id=u.id)
+    r = Resume.objects.get(user_id=u.id)
+    projects = Project.objects.filter(resume_id=r.id)
+    # projects = Project.objects.all()
+    current = datetime.now().date()
+    participations = Other.objects.filter(choice="Participation", resume_id=r.id)
+    position_of_responsibity = Other.objects.filter(choice="Position of Responsibity", resume_id=r.id)
+    awards = Other.objects.filter(choice="Award Achievement", resume_id=r.id)
+    interests = Other.objects.filter(choice="Interest", resume_id=r.id)
+    context = RequestContext(request)
+    template = 'pdf/Resume.html'
+
+    context = {
+        "users": users,
+        "resumes": resumes,
+        "projects": projects,
+        "current": current,
+        "participations": participations,
+        "position_of_responsibity": position_of_responsibity,
+        "awards": awards,
+        "interests": interests,
+    }
+    return PDFTemplateResponse(request=request, cmd_options={'disable-javascript': True}, template=template,filename=(str)(pk4)+"_resume.pdf",
+                           context=context)

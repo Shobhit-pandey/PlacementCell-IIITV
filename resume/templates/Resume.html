@@ -27,10 +27,10 @@
                             <p style="font-family:SansSerif"><strong>Address:</strong>&nbspBlock no. 9 ,GEC ,Sector 28,Gandhinagar (382028)</p>
                             {% if resume.github %}
                                 <p style="font-family:SansSerif"><strong> Github Profile:</strong>&nbsp<a
-                                        href="{{ resume.github }}" style="color: rgba(32,104,185,0.79);text-decoration: none">{{ resume.github }}/</a></p>
+                                        href="{{ resume.github }}" style="color: #2068B9;text-decoration: none">{{ resume.github }}/</a></p>
                             {% endif %}
                             {% if resume.linkedin %}
-                                <p style="font-family:SansSerif"><strong> LinkedIn:</strong>&nbsp<a style="color: rgba(32,104,185,0.79);text-decoration: none" href="{{ resume.linkedin }}">{{ resume.linkedin }}/</a>
+                                <p style="font-family:SansSerif"><strong> LinkedIn:</strong>&nbsp<a style="color: #2068B9;text-decoration: none" href="{{ resume.linkedin }}">{{ resume.linkedin }}/</a>
                                 </p>
                             {% endif %}
                         </div>
@@ -194,6 +194,7 @@
                         <p class="div2h3"><strong>{{ resume.fullname }}</strong></p>
                         <p style="font-family: SansSerif;font-size: 1.5vw">{{ current }}</p>
                     </div>
+                    <button id="button1"><a href="{% url 'resumes:pdf' pk4=use.username %}"><span>Download as PDF</span></a></button>
                 {% endif %}
             {% endfor %}
         {% else %}

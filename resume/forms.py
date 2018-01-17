@@ -2,6 +2,7 @@ from django import forms
 from django.forms.widgets import RadioSelect, Textarea
 from django.utils import timezone
 from django.forms.models import inlineformset_factory
+from datetime import datetime
 
 from resume.models import Resume, Project, Other
 
@@ -31,6 +32,7 @@ class ResumeForm(forms.Form):
     markup_language = forms.CharField(max_length=1000, required=True)
     tool_techonology = forms.CharField(max_length=1000, required=True)
     database = forms.CharField(max_length=1000, required=True)
+    resume_created = forms.DateField(initial=datetime.now(),required=False)
 
     def save(self):
         r = Resume.objects.create(
@@ -57,7 +59,8 @@ class ResumeForm(forms.Form):
             technical_elective=self.cleaned_data.get('technical_elective'),
             markup_language=self.cleaned_data.get('markup_language'),
             tool_techonology=self.cleaned_data.get('tool_techonology'),
-            database=self.data.get('database'),
+            database=self.cleaned_data.get('database'),
+            resume_created = self.cleaned_data.get('resume_created'),
         )
         r.save()
         return r

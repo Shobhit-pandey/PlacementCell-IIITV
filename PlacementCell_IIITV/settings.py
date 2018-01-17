@@ -43,6 +43,7 @@ PHONENUMBER_DEFAULT_REGION = 'IN'
 
 INSTALLED_APPS = [
     'resume',
+    'wkhtmltopdf',
     'froala_editor',
     'quiz',
     'discussion',

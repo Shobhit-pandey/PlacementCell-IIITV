@@ -3,9 +3,157 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/resume.css' %}">
+{#    <link rel="stylesheet" type="text/css" href="{% static 'css/resume.css' %}">#}
 
     <title>Resume</title>
+    <style>
+
+#hr{
+    color: black;
+    margin-top: -0.5em;
+    border-style: solid;
+    border-width: 1px;
+}
+#hrqq{
+    color: #BDBDBD;
+    margin-top: -0.5em;
+    border-width: 0.7px;
+}
+.logo{
+    float: left;
+}
+.div4{
+    font-size: 1.3vw;
+}
+.div4h2{
+    font-size: 1.5vw;
+}
+.div4h4{
+    font-size: 1.5vw;
+}
+.div2h3{
+    font-size: 1.5vw;
+    font-family: "Georgia";
+    clear: both;
+}
+.div2hx{
+    font-size: 70px;
+    font-family: "Georgia";
+    font-weight:normal;
+    clear: both;
+}
+h3::first-letter{
+    font-size: 100px;
+}
+.div1{
+    float: left;
+    font-size: 1.1vw;
+
+}
+#div1h1{
+    font-family: "SansSerif";
+    font-size: 2.5vw;
+
+}
+#div1h4{
+    font-family: "SansSerif";
+    font-size: 1.5vw;
+
+}
+
+#image{
+    width: 18vw;
+    height: 18vw;
+    margin-right: 10vw;
+}
+#table{
+border: 0px solid black;
+border-collapse: collapse;
+font-size: 1.5vw;
+    font-family: "SansSerif";
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+@media (max-width: 980px){
+body{
+    background-color: white;
+}
+.container{
+    color: #000000;
+    background-color: white;
+    font-family: 'Oxygen', sans-serif;
+}
+.div4{
+    font-size: 1.3vw;
+}
+.div4h2{
+    font-size: 1.5vw;
+}
+.div4h4{
+    font-size: 1.5vw;
+}
+.div2h3{
+    font-size: 40px;
+    font-family: "Georgia";
+}
+.div2hx{
+    font-family: "Georgia";
+    font-weight:normal;
+    font-size: 2.2vw;
+}
+h3::first-letter{
+    font-size: 100px;
+}
+.div1{
+    font-size: 1.3vw;
+}
+#div1h1{
+    font-family: "SansSerif";
+    font-size: 3vw;
+}
+#div1h4{
+    font-family: "SansSerif";
+    font-size: 1.5vw;
+
+}
+#hr{
+    color: black;
+    margin-top: -0.5em;
+    border-style: solid;
+    border-width: 1px;
+}
+    #hrqq{
+    color: #dfdfdf;
+    margin-top: -0.5em;
+    border-style: solid;
+    border-width: 1px;
+}
+#image{
+    margin-top: 2em;
+    width: 14vw;
+    height: 14vw;
+    margin-right: 10vw;
+}
+#table{
+border: 0px solid black;
+border-collapse: collapse;
+font-size: 1.5vw;
+font-family: "SansSerif";
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+.list{
+    margin-left: -10px;
+    font-family: "SansSerif";
+    font-size: 40px;
+}
+
+}
+    </style>
 </head>
 <body>
 {% if not users %}
@@ -17,56 +165,58 @@
                 {% if resume.user_id|slugify == use.id|slugify %}
                     <div class="container">
                         <div class="logo">
-                            <img id="image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJcAAACXCAMAAAAvQTlLAAAAYFBMVEX///8AAADt7e2dnZ1qampKSkpERETq6uoMDAzW1tby8vJXV1cgICD8/PyWlpZycnKQkJDc3Nx/f3+JiYk+Pj64uLjk5OSpqakvLy8SEhI2NjbCwsJ4eHhPT08bGxtjY2MIvUseAAACiklEQVR4nO3c0W6jMBAF0GkgpECApBRIgGb//y/3pTESjLGtqp6rZu6rERwB8tgYINJoNBqNRqN50VRDzSUpnhtMdcKkrp7txYVtL/jD+bu+3riM/XODmW1/M8c98e2Hn7pKdrefxvXBtr+rK8h1B3Whni9Ul15HPV+v6NLrqOfrFV16Hf+GS6/j33D9+nyI+iuX3swP846Naa9yNhV/NI1Go9H8Uoq2mZlczQbJ/MHkYupMlzZM0uV54KEIT0WnT6563fPnXqt/bHnLTH2rXfUvK4PTHOiUcXs9L66UPezRHDdh298XF+/eTUeQrpEwXTmmayZMV4HpSgjSVRaYrokgXSVBukyhAXPVhOmqMF0dQbrKCtNljorlSgnSde4xXQlBum6E6ZowXU2F6boSpKslSNdt/bwVxDWsWCCubM0CceW0DoRr3rAgXI+eNkFw1bQNgCvj3p0DcHXERN5VEhd516oworjWhRHEdbYsREq7NoURw1Xa1keFXRNZIutqbCxhF1MYEVwJWSPpuu28VC7pst70si5rHyHrum8HzxAuex8h6nrsvwkj5trpIyRdX44Xh6Rce32EoIuZMSK49vsIORc3YwRwPdxfW4m42BmjvOvo8XKhhIufMYq7nH2EjOtmHzyLuhyFUco1erHiuzz6CAlXSn6J7fK66eO7Lp6syK7xhOnyvOlju7bLLRgu1+BZyOVVGAVcId/eR3T5FcbormPQrwriuQJu+pgufrlF3OWeMcq4LMst4q7Q76siuWzLLcKu3Uepgq7Amz6Wy3fwHNl19plgr10ju1vndydm4On87iSwMH6nGLjf7iTLeHdouSz/5ZnaC5N2KYbXQb/B1Gg0Go1GI5D/5rJhFOPBNhsAAAAASUVORK5CYII=" alt="iiitv-logo">
+                            <img id="image" style="width: 500px;height:500px;margin-bottom: -600px;margin-left: 200px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJcAAACXCAMAAAAvQTlLAAAAYFBMVEX///8AAADt7e2dnZ1qampKSkpERETq6uoMDAzW1tby8vJXV1cgICD8/PyWlpZycnKQkJDc3Nx/f3+JiYk+Pj64uLjk5OSpqakvLy8SEhI2NjbCwsJ4eHhPT08bGxtjY2MIvUseAAACiklEQVR4nO3c0W6jMBAF0GkgpECApBRIgGb//y/3pTESjLGtqp6rZu6rERwB8tgYINJoNBqNRqN50VRDzSUpnhtMdcKkrp7txYVtL/jD+bu+3riM/XODmW1/M8c98e2Hn7pKdrefxvXBtr+rK8h1B3Whni9Ul15HPV+v6NLrqOfrFV16Hf+GS6/j33D9+nyI+iuX3swP846Naa9yNhV/NI1Go9H8Uoq2mZlczQbJ/MHkYupMlzZM0uV54KEIT0WnT6563fPnXqt/bHnLTH2rXfUvK4PTHOiUcXs9L66UPezRHDdh298XF+/eTUeQrpEwXTmmayZMV4HpSgjSVRaYrokgXSVBukyhAXPVhOmqMF0dQbrKCtNljorlSgnSde4xXQlBum6E6ZowXU2F6boSpKslSNdt/bwVxDWsWCCubM0CceW0DoRr3rAgXI+eNkFw1bQNgCvj3p0DcHXERN5VEhd516oworjWhRHEdbYsREq7NoURw1Xa1keFXRNZIutqbCxhF1MYEVwJWSPpuu28VC7pst70si5rHyHrum8HzxAuex8h6nrsvwkj5trpIyRdX44Xh6Rce32EoIuZMSK49vsIORc3YwRwPdxfW4m42BmjvOvo8XKhhIufMYq7nH2EjOtmHzyLuhyFUco1erHiuzz6CAlXSn6J7fK66eO7Lp6syK7xhOnyvOlju7bLLRgu1+BZyOVVGAVcId/eR3T5FcbormPQrwriuQJu+pgufrlF3OWeMcq4LMst4q7Q76siuWzLLcKu3Uepgq7Amz6Wy3fwHNl19plgr10ju1vndydm4On87iSwMH6nGLjf7iTLeHdouSz/5ZnaC5N2KYbXQb/B1Gg0Go1GI5D/5rJhFOPBNhsAAAAASUVORK5CYII=" alt="iiitv-logo">
+
                         </div>
                         <div class="div1">
-                            <h1 id="div1h1">{{ resume.fullname }}</h1>
-                            <h4 id="div1h4">Indian Institute of Information Technology, Vadodara</h4>
-                            <p style="font-family:SansSerif;">
+
+                            <h1 id="div1h1" style="font-size: 90px;margin-left: 1000px">{{ resume.fullname }}</h1>
+                            <h4 id="div1h4" style="font-size: 50px;margin-left: 1000px">Indian Institute of Information Technology, Vadodara</h4>
+                            <p style="font-family:SansSerif;margin-left: 1000px;font-size: 50px">
                                 <strong>Email:</strong>&nbsp{{ resume.email }}&nbsp&nbsp&nbsp&nbsp&nbsp<strong>DOB:</strong>&nbsp{{ resume.dob }}
                             </p>
-                            <p style="font-family:SansSerif"><strong>Address:</strong>&nbspBlock no. 9 ,GEC ,Sector 28,Gandhinagar (382028)</p>
+                            <p style="font-family:SansSerif;margin-left: 1000px;font-size: 50px"><strong>Address:</strong>&nbspBlock no. 9 ,GEC ,Sector 28,Gandhinagar (382028)</p>
                             {% if resume.github %}
-                                <p style="font-family:SansSerif"><strong> Github Profile:</strong>&nbsp<a
+                                <p style="font-family:SansSerif;margin-left: 1000px;font-size: 50px"><strong> Github Profile:</strong>&nbsp<a
                                         href="{{ resume.github }}" style="color: #2068B9;text-decoration: none">{{ resume.github }}/</a></p>
                             {% endif %}
                             {% if resume.linkedin %}
-                                <p style="font-family:SansSerif"><strong> LinkedIn:</strong>&nbsp<a style="color: #2068B9;text-decoration: none" href="{{ resume.linkedin }}">{{ resume.linkedin }}/</a>
+                                <p style="font-family:SansSerif;margin-left: 1000px;font-size: 50px"><strong> LinkedIn:</strong>&nbsp<a style="color: #2068B9;text-decoration: none" href="{{ resume.linkedin }}">{{ resume.linkedin }}/</a>
                                 </p>
                             {% endif %}
                         </div>
                         <br>
                         <div class="div2">
-                            <h3 class="div2hx">EDUCATION</h3>
+                            <h3 class="div2hx" style="font-size: 70px;">EDUCATION</h3>
                             <hr id="hr">
                             <table id="table" style="width:100%">
-                                <tr id="table">
-                                    <th id="table">Degree</th>
-                                    <th id="table">Institute</th>
-                                    <th id="table">Year</th>
-                                    <th id="table">CPI/Aggregate</th>
+                                <tr id="table"style="font-size: 40px;">
+                                    <th id="table"style="text-align: left">Degree</th>
+                                    <th id="table"style="text-align: left">Institute</th>
+                                    <th id="table"style="text-align: left">Year</th>
+                                    <th id="table"style="text-align: left">CPI/Aggregate</th>
                                 </tr>
                                 {% if resume.mtech_institute %}
-                                    <tr id="table">
+                                    <tr id="table"style="font-size: 40px;">
                                         <td id="table">M.Tech.</td>
                                         <td id="table">{{ resume.mtech_institute }}</td>
                                         <td id="table">{{ resume.mtech_batch }}</td>
                                         <td id="table">{{ resume.mtech_cpi }}</td>
                                     </tr>
                                 {% endif %}
-                                <tr id="table">
+                                <tr id="table"style="font-size: 40px;margin-left: 300px">
                                     <td id="table" id="table">B.Tech.</td>
                                     <td id="table">{{ resume.btech_institute }}</td>
                                     <td id="table">{{ resume.btech_batch }}</td>
                                     <td id="table">{{ resume.btech_cpi }}</td>
                                 </tr>
-                                <tr id="table">
+                                <tr id="table"style="font-size: 40px;">
                                     <td id="table" id="table">Intermediate/+2</td>
                                     <td id="table">{{ resume.class_ten_institute }}</td>
                                     <td id="table">{{ resume.class_ten_passing_year }}</td>
                                     <td id="table">{{ resume.class_ten_cgpa }}</td>
                                 </tr>
-                                <tr id="table">
+                                <tr id="table"style="font-size: 40px;">
                                     <td id="table">High School</td>
                                     <td id="table">{{ resume.class_twelve_institute }}</td>
                                     <td id="table">{{ resume.class_twelve_passing_year }}</td>
@@ -113,12 +263,12 @@
                                     <h3 class="div2hx">PROJECTS</h3>
                                     <hr id="hr">
                                     {% endif %}
-                                    <p style="text-align: right;">{{ project.time }}</p>
+                                    <p class="div2h3" style="text-align: right;">{{ project.time }}</p>
                                     <h4 class="div2h3">{{ project.topic }}</h4>
-                                    <p style="text-align: right;font-family: SansSerif">Team Size - {{ project.team_size }}</p>
+                                    <p class="div2h3"style="text-align: right;font-family: SansSerif">Team Size - {{ project.team_size }}</p>
                                     <p></p>
                                     <h4 class="div2h3">Guide : {{ project.guide }}</h4>
-                                    <p style="font-family: SansSerif">  {{ project.description }}</p>
+                                    <p class="div2h3"style="font-family: SansSerif">  {{ project.description }}</p>
                                     <hr id="hrqq">
                                 {% if forloop.revcounter == 1 %}
                                 </div><br>
@@ -133,7 +283,7 @@
                                     <hr id="hr">
                                     <ul class="list">
                                 {% endif %}
-                            <li>{{ participation.topic }}</li>
+                            <li >{{ participation.topic }}</li>
                             {% if forloop.revcounter == 1 %}
                                 </ul>
                                 </div>
