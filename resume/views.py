@@ -16,7 +16,6 @@ from django.views.generic.base import TemplateResponseMixin, ContextMixin
 
 from resume.forms import ProjectFormset, ResumeForm, OtherFormset
 from resume.models import Resume, Project, Other
-from resume.utils import render_to_pdf
 
 
 def resume(request, pk2):
