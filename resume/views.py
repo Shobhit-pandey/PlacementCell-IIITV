@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from django.core.files.storage import FileSystemStorage
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+
+from weasyprint import HTML
 
 from wkhtmltopdf.views import PDFTemplateResponse, PDFTemplateView
 
@@ -85,6 +90,38 @@ def createresume(request, pk):
                    'other_formset': other_formset, 'resumes': resumes, 'current': current},
                   context_instance=RequestContext(request))
 
+
+def html_to_pdf_view(request,pk4):
+    users = User.objects.filter(username=pk4)
+    u = User.objects.get(username=pk4)
+    resumes = Resume.objects.filter(user_id=u.id)
+    r = Resume.objects.get(user_id=u.id)
+    projects = Project.objects.filter(resume_id=r.id)
+    # projects = Project.objects.all()
+    current = datetime.now().date()
+    participations = Other.objects.filter(choice="Participation", resume_id=r.id)
+    position_of_responsibity = Other.objects.filter(choice="Position of Responsibity", resume_id=r.id)
+    awards = Other.objects.filter(choice="Award Achievement", resume_id=r.id)
+    interests = Other.objects.filter(choice="Interest", resume_id=r.id)
+    context = {
+        "users": users,
+        "resumes": resumes,
+        "projects": projects,
+        "current": current,
+        "participations": participations,
+        "position_of_responsibity": position_of_responsibity,
+        "awards": awards,
+        "interests": interests,
+    }
+    html_string = render_to_string('pdf/Resume_n.html', context)
+
+    html = HTML(string=html_string)
+    pdf=html.write_pdf();
+
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="mypdf.pdf"'
+
+    return response
 
 class ResumePdf(PDFTemplateView):
     template_name = "pdf/Resume.html"
