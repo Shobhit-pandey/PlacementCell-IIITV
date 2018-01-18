@@ -138,6 +138,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+# WKHTMLTOPDF_CMD = '/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/wkhtmltopdf'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
