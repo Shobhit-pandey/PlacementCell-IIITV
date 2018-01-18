@@ -192,7 +192,7 @@
                         <p class="div2h3"><strong style="font-family: Georgia">Declaration :</strong>&nbspI hereby declare that all the details furnished above are true to the best of my knowledge and belief.
                         </p><br><br>
                         <p class="div2h3"><strong>{{ resume.fullname }}</strong></p>
-                        <p style="font-family: SansSerif;font-size: 1.5vw">{{ current }}</p>
+                        <p style="font-family: SansSerif;font-size: 1.5vw">{{ resume.resume_created }}</p>
                     </div>
                     <button id="button1"><a href="{% url 'resumes:pdf' pk4=use.username %}"><span>Download as PDF</span></a></button>
                 {% endif %}

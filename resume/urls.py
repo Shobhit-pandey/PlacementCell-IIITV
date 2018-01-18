@@ -1,8 +1,5 @@
 from django.conf.urls import patterns, url
-from wkhtmltopdf.views import PDFTemplateView
-
 from resume import views
-from resume.views import ResumePdf
 
 urlpatterns = [
     url(r'^resume/delete/$', views.delete_resume, name='delete_resume'),

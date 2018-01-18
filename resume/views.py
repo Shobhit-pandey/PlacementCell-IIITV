@@ -119,34 +119,34 @@ def html_to_pdf_view(request,pk4):
     pdf=html.write_pdf();
 
     response = HttpResponse(pdf, content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="mypdf.pdf"'
+    response['Content-Disposition'] = 'attachment; filename=pk4+".pdf"'
 
     return response
 
-class ResumePdf(PDFTemplateView):
-    template_name = "pdf/Resume.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        pk4 = get_object_or_404(User, username=context['pk4'])
-        users = User.objects.filter(username=pk4)
-        u = User.objects.get(username=pk4)
-        resumes = Resume.objects.filter(user_id=u.id)
-        r = Resume.objects.get(user_id=u.id)
-        projects = Project.objects.filter(resume_id=r.id)
-        # projects = Project.objects.all()
-        current = datetime.now().date()
-        participations = Other.objects.filter(choice="Participation", resume_id=r.id)
-        position_of_responsibity = Other.objects.filter(choice="Position of Responsibity", resume_id=r.id)
-        awards = Other.objects.filter(choice="Award Achievement", resume_id=r.id)
-        interests = Other.objects.filter(choice="Interest", resume_id=r.id)
-        context['pk4'] = pk4
-        context['users'] = users
-        context['resumes'] = resumes
-        context['projects'] = projects
-        context['current'] = current
-        context['participations'] = participations
-        context['position_of_responsibity'] = position_of_responsibity
-        context['awards'] = awards
-        context['interests'] = interests
-        return context
+# class ResumePdf(PDFTemplateView):
+#     template_name = "pdf/Resume.html"
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         pk4 = get_object_or_404(User, username=context['pk4'])
+#         users = User.objects.filter(username=pk4)
+#         u = User.objects.get(username=pk4)
+#         resumes = Resume.objects.filter(user_id=u.id)
+#         r = Resume.objects.get(user_id=u.id)
+#         projects = Project.objects.filter(resume_id=r.id)
+#         # projects = Project.objects.all()
+#         current = datetime.now().date()
+#         participations = Other.objects.filter(choice="Participation", resume_id=r.id)
+#         position_of_responsibity = Other.objects.filter(choice="Position of Responsibity", resume_id=r.id)
+#         awards = Other.objects.filter(choice="Award Achievement", resume_id=r.id)
+#         interests = Other.objects.filter(choice="Interest", resume_id=r.id)
+#         context['pk4'] = pk4
+#         context['users'] = users
+#         context['resumes'] = resumes
+#         context['projects'] = projects
+#         context['current'] = current
+#         context['participations'] = participations
+#         context['position_of_responsibity'] = position_of_responsibity
+#         context['awards'] = awards
+#         context['interests'] = interests
+#         return context
