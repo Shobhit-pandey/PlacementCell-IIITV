@@ -18,3 +18,6 @@ then copy paste this link
 # git clone https://github.com/YOUR-USERNAME/PlacementCell-IIITV.git
 
 # Open pycharm and then go the dir where you save that project and select that project and start improve this project
+ #for table migrations- 
+python manage.py migrate auth
+python manage.py migrate

@@ -1,6 +1,9 @@
-django-model-utils==2.0.3
 Django==1.8.0
+django-model-utils==2.0.3
 Pillow==2.5.0
 mysqlclient
+django-wkhtmltopdf
+django-froala-editor
+--pre xhtml2pdf
 # Only needed for running tests.
 tox

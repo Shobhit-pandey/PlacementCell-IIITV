@@ -91,6 +91,9 @@ function clicked(e)
                     {% csrf_token %}
                     <input id="id_user_id" maxlength="100" name="user_id" type="text"
                            value="{{ resume_form.user_id.value }}" hidden default={{ user.username }}>
+{#                {{ resume_form.resume_created }}#}
+{#                    <input id="id_resume_created" name="resume_created" type="text"#}
+{#                           value="{{ resume_form.resume_created.value }}" hidden default={{ current }}>#}
                     {#                {{ resume_form.user_id }}#}
                     <br>
                     <label for="content">Full Name*</label><br>

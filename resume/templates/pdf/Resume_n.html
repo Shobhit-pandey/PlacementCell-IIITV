@@ -3,8 +3,83 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/resume.css' %}">
+{#    <link rel="stylesheet" type="text/css" href="{% static 'css/resume.css' %}">#}
+    <style>
+        #button1{
+            color: #4630ff;
+            size: 100px;
+    position: relative;
+    left:500px;
+        }
+#hr{
+    color: black;
+    margin-top: -0.5em;
+    border-style: solid;
+    border-width: 1px;
+}
+#hrqq{
+    color: #BDBDBD;
+    margin-top: -0.5em;
+    border-width: 0.7px;
+}
+.logo{
+    float: left;
+}
+.div4{
+    font-size: 1.3vw;
+}
+.div4h2{
+    font-size: 1.5vw;
+}
+.div4h4{
+    font-size: 1.5vw;
+}
+.div2h3{
+    font-size: 1.5vw;
+    font-family: "Georgia";
+    clear: both;
+}
+.div2hx{
+    font-size: 2.2vw;
+    font-family: "Georgia";
+    font-weight:normal;
+    clear: both;
+}
+h3::first-letter{
+    font-size: 3.0vw;
+}
+.div1{
+    float: left;
+    font-size: 1.1vw;
 
+}
+#div1h1{
+    font-family: "SansSerif";
+    font-size: 2.5vw;
+
+}
+#div1h4{
+    font-family: "SansSerif";
+    font-size: 1.5vw;
+
+}
+
+#image{
+    width: 18vw;
+    height: 18vw;
+    margin-right: 10vw;
+}
+#table{
+border: 0px solid black;
+border-collapse: collapse;
+font-size: 1.5vw;
+    font-family: "SansSerif";
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+    </style>
     <title>Resume</title>
 </head>
 <body>
@@ -17,26 +92,26 @@
                 {% if resume.user_id|slugify == use.id|slugify %}
                     <div class="container">
                         <div class="logo">
-                            <img id="image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJcAAACXCAMAAAAvQTlLAAAAYFBMVEX///8AAADt7e2dnZ1qampKSkpERETq6uoMDAzW1tby8vJXV1cgICD8/PyWlpZycnKQkJDc3Nx/f3+JiYk+Pj64uLjk5OSpqakvLy8SEhI2NjbCwsJ4eHhPT08bGxtjY2MIvUseAAACiklEQVR4nO3c0W6jMBAF0GkgpECApBRIgGb//y/3pTESjLGtqp6rZu6rERwB8tgYINJoNBqNRqN50VRDzSUpnhtMdcKkrp7txYVtL/jD+bu+3riM/XODmW1/M8c98e2Hn7pKdrefxvXBtr+rK8h1B3Whni9Ul15HPV+v6NLrqOfrFV16Hf+GS6/j33D9+nyI+iuX3swP846Naa9yNhV/NI1Go9H8Uoq2mZlczQbJ/MHkYupMlzZM0uV54KEIT0WnT6563fPnXqt/bHnLTH2rXfUvK4PTHOiUcXs9L66UPezRHDdh298XF+/eTUeQrpEwXTmmayZMV4HpSgjSVRaYrokgXSVBukyhAXPVhOmqMF0dQbrKCtNljorlSgnSde4xXQlBum6E6ZowXU2F6boSpKslSNdt/bwVxDWsWCCubM0CceW0DoRr3rAgXI+eNkFw1bQNgCvj3p0DcHXERN5VEhd516oworjWhRHEdbYsREq7NoURw1Xa1keFXRNZIutqbCxhF1MYEVwJWSPpuu28VC7pst70si5rHyHrum8HzxAuex8h6nrsvwkj5trpIyRdX44Xh6Rce32EoIuZMSK49vsIORc3YwRwPdxfW4m42BmjvOvo8XKhhIufMYq7nH2EjOtmHzyLuhyFUco1erHiuzz6CAlXSn6J7fK66eO7Lp6syK7xhOnyvOlju7bLLRgu1+BZyOVVGAVcId/eR3T5FcbormPQrwriuQJu+pgufrlF3OWeMcq4LMst4q7Q76siuWzLLcKu3Uepgq7Amz6Wy3fwHNl19plgr10ju1vndydm4On87iSwMH6nGLjf7iTLeHdouSz/5ZnaC5N2KYbXQb/B1Gg0Go1GI5D/5rJhFOPBNhsAAAAASUVORK5CYII=" alt="iiitv-logo">
+                            <img id="image" style="width: 160px;height:160px;margin-top: -15px;margin-left: -1px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJcAAACXCAMAAAAvQTlLAAAAYFBMVEX///8AAADt7e2dnZ1qampKSkpERETq6uoMDAzW1tby8vJXV1cgICD8/PyWlpZycnKQkJDc3Nx/f3+JiYk+Pj64uLjk5OSpqakvLy8SEhI2NjbCwsJ4eHhPT08bGxtjY2MIvUseAAACiklEQVR4nO3c0W6jMBAF0GkgpECApBRIgGb//y/3pTESjLGtqp6rZu6rERwB8tgYINJoNBqNRqN50VRDzSUpnhtMdcKkrp7txYVtL/jD+bu+3riM/XODmW1/M8c98e2Hn7pKdrefxvXBtr+rK8h1B3Whni9Ul15HPV+v6NLrqOfrFV16Hf+GS6/j33D9+nyI+iuX3swP846Naa9yNhV/NI1Go9H8Uoq2mZlczQbJ/MHkYupMlzZM0uV54KEIT0WnT6563fPnXqt/bHnLTH2rXfUvK4PTHOiUcXs9L66UPezRHDdh298XF+/eTUeQrpEwXTmmayZMV4HpSgjSVRaYrokgXSVBukyhAXPVhOmqMF0dQbrKCtNljorlSgnSde4xXQlBum6E6ZowXU2F6boSpKslSNdt/bwVxDWsWCCubM0CceW0DoRr3rAgXI+eNkFw1bQNgCvj3p0DcHXERN5VEhd516oworjWhRHEdbYsREq7NoURw1Xa1keFXRNZIutqbCxhF1MYEVwJWSPpuu28VC7pst70si5rHyHrum8HzxAuex8h6nrsvwkj5trpIyRdX44Xh6Rce32EoIuZMSK49vsIORc3YwRwPdxfW4m42BmjvOvo8XKhhIufMYq7nH2EjOtmHzyLuhyFUco1erHiuzz6CAlXSn6J7fK66eO7Lp6syK7xhOnyvOlju7bLLRgu1+BZyOVVGAVcId/eR3T5FcbormPQrwriuQJu+pgufrlF3OWeMcq4LMst4q7Q76siuWzLLcKu3Uepgq7Amz6Wy3fwHNl19plgr10ju1vndydm4On87iSwMH6nGLjf7iTLeHdouSz/5ZnaC5N2KYbXQb/B1Gg0Go1GI5D/5rJhFOPBNhsAAAAASUVORK5CYII=" alt="iiitv-logo">
                         </div>
-                        <div class="div1">
+                        <div class="div1"style="font-size: 15px;margin-left: 200px;margin-top: -190px;">
                             <h1 id="div1h1">{{ resume.fullname }}</h1>
                             <h4 id="div1h4">Indian Institute of Information Technology, Vadodara</h4>
-                            <p style="font-family:SansSerif;">
-                                <strong>Email:</strong>&nbsp{{ resume.email }}&nbsp&nbsp&nbsp&nbsp&nbsp<strong>DOB:</strong>&nbsp{{ resume.dob }}
+                            <p style="font-family:SansSerif,sans-serif;">
+                                Email:&nbsp{{ resume.email }}&nbsp&nbsp&nbsp&nbsp&nbsp<strong>DOB:</strong>&nbsp{{ resume.dob }}
                             </p>
-                            <p style="font-family:SansSerif"><strong>Address:</strong>&nbspBlock no. 9 ,GEC ,Sector 28,Gandhinagar (382028)</p>
+                            <p style="font-family:SansSerif,sans-serif;">Address:&nbspBlock no. 9 ,GEC ,Sector 28,Gandhinagar (382028)</p>
                             {% if resume.github %}
-                                <p style="font-family:SansSerif"><strong> Github Profile:</strong>&nbsp<a
+                                <p style="font-family:SansSerif,sans-serif;"> Github Profile:&nbsp<a
                                         href="{{ resume.github }}" style="color: #2068B9;text-decoration: none">{{ resume.github }}/</a></p>
                             {% endif %}
                             {% if resume.linkedin %}
-                                <p style="font-family:SansSerif"><strong> LinkedIn:</strong>&nbsp<a style="color: #2068B9;text-decoration: none" href="{{ resume.linkedin }}">{{ resume.linkedin }}/</a>
+                                <p style="font-family:SansSerif,sans-serif;">LinkedIn:&nbsp<a style="color: #2068B9;text-decoration: none" href="{{ resume.linkedin }}">{{ resume.linkedin }}/</a>
                                 </p>
                             {% endif %}
                         </div>
                         <br>
-                        <div class="div2">
+                        <div class="div2" style="margin-right: -30px;margin-left: -30px">
                             <h3 class="div2hx">EDUCATION</h3>
                             <hr id="hr">
                             <table id="table" style="width:100%">
@@ -76,31 +151,31 @@
                         </div>
                         <br>
                         <div>
-                            <h3 class="div2hx">SKILLS</h3>
-                            <hr id="hr">
+                            <h3 class="div2hx" style="margin-right: -30px;margin-left: -30px">SKILLS</h3>
+                            <hr id="hr" style="margin-right: -30px;margin-left: -30px">
                             <table style="width:100%">
                                 <tr>
-                                    <th class="div2h3"><strong>Area of Interest</strong></th>
+                                    <th class="div2h3" style="margin-right: -30px;margin-left: -30px"><strong>Area of Interest</strong></th>
                                     <td class="div2h3">{{ resume.area_of_interest }}</td>
                                 </tr>
                                 <tr>
-                                    <th class="div2h3"><strong>Programming Language(s)</strong></th>
+                                    <th class="div2h3" style="margin-right: -30px;margin-left: -30px"><strong>Programming Language(s)</strong></th>
                                     <td class="div2h3">{{ resume.programming_language }}</td>
                                 </tr>
                                 <tr>
-                                    <th class="div2h3"><strong>Technical Electives</strong></th>
+                                    <th class="div2h3" style="margin-right: -30px;margin-left: -30px"><strong>Technical Electives</strong></th>
                                     <td class="div2h3">{{ resume.technical_elective }}</td>
                                 </tr>
                                 <tr>
-                                    <th class="div2h3"><strong>Markup Languages</strong></th>
+                                    <th class="div2h3" style="margin-right: -30px;margin-left: -30px"><strong>Markup Languages</strong></th>
                                     <td class="div2h3">{{ resume.markup_language }}</td>
                                 </tr>
                                 <tr>
-                                    <th class="div2h3"><strong>Tools and Technologies</strong></th>
+                                    <th class="div2h3" style="margin-right: -30px;margin-left: -30px"><strong>Tools and Technologies</strong></th>
                                     <td class="div2h3">{{ resume.tool_techonology }}</td>
                                 </tr>
                                 <tr>
-                                    <th class="div2h3"><strong>Database</strong></th>
+                                    <th class="div2h3" style="margin-right: -30px;margin-left: -30px"><strong>Database</strong></th>
                                     <td class="div2h3">{{ resume.database }}</td>
                                 </tr>
                             </table>
@@ -109,7 +184,7 @@
                         {% for project in projects %}
                             {% if project.resume_id|slugify == resume.id|slugify %}
                                 {% if forloop.counter == 1 %}
-                                <div class="div4">
+                                <div class="div4"style="margin-right: -30px;margin-left: -30px">
                                     <h3 class="div2hx">PROJECTS</h3>
                                     <hr id="hr">
                                     {% endif %}
@@ -128,7 +203,7 @@
                         {% for participation in participations %}
                             {% if participation.resume_id|slugify == resume.id|slugify %}
                                 {% if forloop.counter == 1 %}
-                                    <div class="div4">
+                                    <div class="div4" style="margin-right: -30px;margin-left: -30px">
                                     <h3 class="div2hx">PARTICIPATION</h3>
                                     <hr id="hr">
                                     <ul class="list">
@@ -144,7 +219,7 @@
                     {% for position in position_of_responsibity %}
                             {% if position.resume_id|slugify == resume.id|slugify %}
                                 {% if forloop.counter == 1 %}
-                                    <div class="div4">
+                                    <div class="div4" style="margin-right: -30px;margin-left: -30px">
                                     <h3 class="div2hx">POSITION OF RESPONSIBILTY</h3>
                                     <hr id="hr">
                                     <ul class="list">
@@ -160,7 +235,7 @@
                     {% for award in awards %}
                             {% if award.resume_id|slugify == resume.id|slugify %}
                                 {% if forloop.counter == 1 %}
-                                    <div class="div4">
+                                    <div class="div4" style="margin-right: -30px;margin-left: -30px">
                                     <h3 class="div2hx">AWARDS AND ACHIEVEMENTS</h3>
                                     <hr id="hr">
                                     <ul class="list">
@@ -176,7 +251,7 @@
                      {% for interest in interests %}
                             {% if interest.resume_id|slugify == resume.id|slugify %}
                                 {% if forloop.counter == 1 %}
-                                    <div class="div4">
+                                    <div class="div4" style="margin-right: -30px;margin-left: -30px">
                                     <h3 class="div2hx">INTERESTS AND ACTIVITIES</h3>
                                     <hr id="hr">
                                     <ul class="list">
@@ -190,11 +265,10 @@
                         {% endfor %}
                         <br><br><br>
 
-                        <p class="div2h3"><strong style="font-family: Georgia">Declaration :</strong>&nbspI hereby declare that all the details furnished above are true to the best of my knowledge and belief.
+                        <p class="div2h3" style="margin-right: -30px;margin-left: -30px"><strong style="font-family: Georgia">Declaration :</strong>&nbspI hereby declare that all the details furnished above are true to the best of my knowledge and belief.
                         </p><br><br>
-                        <p class="div2h3"><strong>{{ resume.fullname }}</strong></p>
-                        <p class="div2h3"><strong>{{ current }}</strong></p>
-{#                        <p style="font-family: SansSerif;font-size: 1.5vw">{{ current }}</p>#}
+                        <p class="div2h3" style="margin-right: -30px;margin-left: -30px"><strong>{{ resume.fullname }}</strong></p>
+                        <p style="font-family: SansSerif;font-size: 1.5vw">{{ resume.resume_created }}</p>
                     </div>
                 {% endif %}
             {% endfor %}

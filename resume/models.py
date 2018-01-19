@@ -20,7 +20,7 @@ class Resume(models.Model):
     user_id = models.CharField(max_length=100, default="null")
     fullname = models.CharField(max_length=100, default="null")
     email = models.EmailField(null=False, blank=False)
-    dob = models.DateField(null=False, blank=False)
+    dob = models.DateField(null=False, blank=False,help_text="YYYY-MM-DD")
     github = models.URLField()
     linkedin = models.URLField()
     class_ten_institute = models.CharField(max_length=1000, blank=False)
@@ -41,6 +41,7 @@ class Resume(models.Model):
     markup_language = models.CharField(max_length=1000, blank=False)
     tool_techonology = models.CharField(max_length=1000, blank=False)
     database = models.CharField(max_length=1000, blank=False)
+    resume_created=models.DateField(null=True, blank=True,default=datetime.now())
 
     def __str__(self):
         return self.user_id

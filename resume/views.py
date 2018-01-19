@@ -1,17 +1,20 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.contrib.auth.models import User
+from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
+
+from weasyprint import HTML
+
+from wkhtmltopdf.views import PDFTemplateResponse, PDFTemplateView
+
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect, get_object_or_404
 from django.template import RequestContext
 from datetime import datetime
 
-from django.template.loader import get_template
-from django.views.generic import View
-
 from resume.forms import ProjectFormset, ResumeForm, OtherFormset
 from resume.models import Resume, Project, Other
-from resume.utils import render_to_pdf
 
 
 def resume(request, pk2):
@@ -39,7 +42,7 @@ def resume(request, pk2):
     return render(request, 'Resume.html', {'users': users, 'resumes': resumes, 'projects': projects, 'current': current,
                                            'participations': participations,
                                            'position_of_responsibity': position_of_responsibity, 'awards': awards,
-                                           'interests': interests,'resume_name':resume_name})
+                                           'interests': interests, 'resume_name': resume_name})
 
 
 def delete_resume(request):
@@ -58,16 +61,18 @@ def delete_resume(request):
 
 def createresume(request, pk):
     resumes = Resume.objects.filter(user_id=request.user.id)
+    current = datetime.now()
     referer = request.META.get('HTTP_REFERER')
     if referer == None:
         return render(request, 'quiz/wrongurl.html')
     project_formset = ProjectFormset()
     other_formset = OtherFormset()
-    resume_form = ResumeForm(initial={'user_id': request.user.id})
+    resume_form = ResumeForm(initial={'user_id': request.user.id, 'resume_created': datetime.now()})
     if request.method == "POST":
-        resume_form = ResumeForm(request.POST, initial={'user_id': request.user.id})
+        resume_form = ResumeForm(request.POST, initial={'user_id': request.user.id, 'resume_created': datetime.now()})
         if resume_form.is_valid():
             resume_form.cleaned_data['user_id'] = request.user.id
+            resume_form.cleaned_data['resume_created'] = datetime.now()
             new_resume = resume_form.save()
             new_resume.save()
             project_formset = ProjectFormset(request.POST, instance=new_resume)
@@ -77,26 +82,18 @@ def createresume(request, pk):
                 other_formset.save()
                 return redirect('mywebsite:student')
     else:
-        resume_form = ResumeForm(request.POST, initial={'user_id': request.user.id})
+        resume_form = ResumeForm(request.POST, initial={'user_id': request.user.id, 'resume_created': datetime.now()})
         project_formset = ProjectFormset()
         other_formset = OtherFormset()
     return render(request, 'create_resume.html',
                   {'resume_form': resume_form, 'project_formset': project_formset,
-                   'other_formset': other_formset, 'resumes': resumes, },
+                   'other_formset': other_formset, 'resumes': resumes, 'current': current},
                   context_instance=RequestContext(request))
 
 
-# class GeneratePdf(View):
-#     def get(self, request, *args, **kwargs):
-#         data = {
-#
-#         }
-#         pdf = render_to_pdf('pdf/Resume.html', data)
-#         return HttpResponse(pdf, content_type='application/pdf')
-
-def generate_pdf(request,pk3):
-    users = User.objects.filter(username=pk3)
-    u = User.objects.get(username=pk3)
+def html_to_pdf_view(request,pk4):
+    users = User.objects.filter(username=pk4)
+    u = User.objects.get(username=pk4)
     resumes = Resume.objects.filter(user_id=u.id)
     r = Resume.objects.get(user_id=u.id)
     projects = Project.objects.filter(resume_id=r.id)
@@ -106,7 +103,6 @@ def generate_pdf(request,pk3):
     position_of_responsibity = Other.objects.filter(choice="Position of Responsibity", resume_id=r.id)
     awards = Other.objects.filter(choice="Award Achievement", resume_id=r.id)
     interests = Other.objects.filter(choice="Interest", resume_id=r.id)
-    template = get_template('pdf/Resume.html')
     context = {
         "users": users,
         "resumes": resumes,
@@ -117,38 +113,12 @@ def generate_pdf(request,pk3):
         "awards": awards,
         "interests": interests,
     }
-    html = template.render(context)
-    pdf = render_to_pdf('pdf/Resume.html', context)
-    if pdf:
-        response = HttpResponse(pdf, content_type='application/pdf')
-        filename = "Resume_%s.pdf" % ("12341231")
-        content = "inline; filename='%s'" % (filename)
-        download = request.GET.get("download")
-        if download:
-            content = "attachment; filename='%s'" % (filename)
-        response['Content-Disposition'] = content
-        return response
-    return HttpResponse("Not found")
+    html_string = render_to_string('pdf/Resume_n.html', context)
 
+    html = HTML(string=html_string)
+    pdf=html.write_pdf();
 
-# class GeneratePDF(View):
-#     def get(self, request, *args, **kwargs):
-#         template = get_template('Resume.html')
-#         context = {
-#             "invoice_id": 123,
-#             "customer_name": "John Cooper",
-#             "amount": 1399.99,
-#             "today": "Today",
-#         }
-#         html = template.render(context)
-#         pdf = render_to_pdf('Resume.html', context)
-#         if pdf:
-#             response = HttpResponse(pdf, content_type='application/pdf')
-#             filename = "Resume_%s.pdf" % ("12341231")
-#             content = "inline; filename='%s'" % (filename)
-#             download = request.GET.get("download")
-#             if download:
-#                 content = "attachment; filename='%s'" % (filename)
-#             response['Content-Disposition'] = content
-#             return response
-#         return HttpResponse("Not found")
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename=pk4+".pdf"'
+
+    return response
