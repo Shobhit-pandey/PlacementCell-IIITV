@@ -39,12 +39,12 @@ body{
 }
 .div2h3{
     font-size: 1.5vw;
-    font-family: "Georgia";
+    font-family: "Georgia", serif;
     clear: both;
 }
 .div2hx{
     font-size: 2.2vw;
-    font-family: "Georgia";
+    font-family: "Georgia", serif;
     font-weight:normal;
     clear: both;
 }
@@ -62,7 +62,7 @@ h3::first-letter{
 
 }
 #div1h4{
-    font-family: "SansSerif";
+    font-family: "SansSerif", sans-serif;
     font-size: 1.5vw;
 
 }
