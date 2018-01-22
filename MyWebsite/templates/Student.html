@@ -56,11 +56,13 @@
             text-align: center;
             font-size: 20px;
             padding: 15px;
-            width: 420px;
+            width: 250px;
             transition: all 0.2s;
             cursor: pointer;
             float: left;
         }
+
+
 
         .button1 span {
             cursor: pointer;
@@ -95,13 +97,13 @@
             <h1>
                 <div class="col-md-2 col-lg-2">
                 <a href="{% url 'resumes:createresume' pk=user.username %}">
-                    <button class="button1" style="vertical-align:middle"><span> Create/Update CV </span>
+                    <button class="button1" style="vertical-align:middle;"><span > Create/Update CV </span>
                     </button>
                 </a>
                 </div>
-                <div class="col-md-2 col-lg-2">
+                <div class="col-md-2 col-lg-2" >
                 <a href="{% url 'resumes:resume' pk2=user.username %}">
-                    <button class="button1" style="vertical-align:middle"><span> Your CV </span>
+                    <button class="button1" style="vertical-align:middle ;  "><span> Your CV </span>
                     </button>
                 </a>
                 </div>
