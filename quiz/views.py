@@ -69,10 +69,13 @@ class ViewQuizListByCategory(ListView):
     model = Quiz
     template_name = 'view_quiz_category.html'
     curent_datetime = timezone.now()
-    datetim = datetime.now()
     users = User.objects.all()
     students = CompaniesAppliedByStudents.objects.all()
     recruiters = Recruiter.objects.all()
+
+    def __init__(self, *args, **kwargs):
+        super(ViewQuizListByCategory, self).__init__(*args, **kwargs)
+        self.curent_datetime = timezone.now()
 
     def dispatch(self, request, *args, **kwargs):
         self.category = get_object_or_404(
@@ -89,7 +92,6 @@ class ViewQuizListByCategory(ListView):
 
         context['category'] = self.category
         context['current_datetime'] = self.curent_datetime
-        context['datetime'] = self.datetim
         context['users'] = self.users
         context['students'] = self.students
         context['recruiters'] = self.recruiters
