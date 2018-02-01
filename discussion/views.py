@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
@@ -35,12 +36,15 @@ def deletereply(request,pk2):
 
 @login_required()
 def sharecomment(request):
+    current_datetime = datetime.now()
     if request.method == 'POST':
-        comment_form = ShareReplyForm(request.POST, initial={'user_id': request.user.id})
+        comment_form = ShareReplyForm(request.POST, initial={'user_id': request.user.id,'timestamp':current_datetime})
         pk1 = request.POST['pk']
         if comment_form.is_valid():
             # pk1 = Thread.pk
-            com = comment_form.save()
+            comment_form.cleaned_data['timestamp'] = datetime.now()
+            com = comment_form.save(commit=False)
+            com.timestamp = datetime.now()
             com.save()
             lists = ShareReply.objects.filter(share_id=pk1)
             questions = Share.objects.filter(id=pk1)
@@ -58,32 +62,36 @@ def sharecomment(request):
 
 @login_required()
 def sharecomments(request, pk):
+    current_datetime = datetime.now()
     lists = ShareReply.objects.filter(share_id=pk)
     user_u = User.objects.all()
     questions = Share.objects.filter(id=pk)
     if request.method == 'POST':
-        reply_form = ShareRepliesForm(request.POST, initial={'user_id': request.user.id, 'share_id': pk})
+        reply_form = ShareRepliesForm(request.POST, initial={'user_id': request.user.id, 'share_id': pk,'timestamp':current_datetime})
         if reply_form.is_valid():
+            reply_form.cleaned_data['timestamp'] = datetime.now()
             new = reply_form.save(commit=False)
             new.user_id = request.user.id
             new.share_id = pk
+            new.timestamp = datetime.now()
             new.save()
             return redirect('share:replies', pk)
     else:
-        reply_form = ShareRepliesForm(initial={'user_id': request.user.id, 'share_id': pk})
+        reply_form = ShareRepliesForm(initial={'user_id': request.user.id, 'share_id': pk,'timestamp':current_datetime})
     return render(request, 'replies_per_share.html',
                   {'reply_form': reply_form, 'lists': lists, 'user_u': user_u, 'questions': questions})
 
 
 @login_required()
 def add_share(request):
+    current_datetime = datetime.now()
     ques = Share.objects.all()
     if request.method == 'POST':
-        q_form = ShareForm(request.POST)
+        q_form = ShareForm(request.POST,initial={'timestamp':current_datetime})
         if q_form.is_valid():
             q_question = q_form['question'].value()
             q_user = request.user
-            T = Share.objects.create(question=q_question, user_id=request.user.id)
+            T = Share.objects.create(question=q_question, user_id=request.user.id,timestamp=datetime.now())
             T.save()
             print(T)
             return redirect('share:share')
@@ -93,5 +101,5 @@ def add_share(request):
             return HttpResponseRedirect(reverse('mywebsite:student'))
 
     else:
-        q_form = ShareForm()
+        q_form = ShareForm(initial={'timestamp':current_datetime})
     return render(request, 'add_share.html', {'q_form': q_form, 'ques': ques})

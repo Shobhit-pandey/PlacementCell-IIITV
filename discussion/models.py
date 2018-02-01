@@ -8,9 +8,14 @@ from froala_editor.fields import FroalaField
 
 
 class Share(models.Model):
+    current_datetime = datetime.now()
     question = FroalaField(theme='dark',)
-    timestamp = models.DateTimeField(default=datetime.now())
+    timestamp = models.DateTimeField(default=current_datetime)
     user = models.ForeignKey(User,default="0")
+
+    def __init__(self, *args, **kwargs):
+        super(Share, self).__init__(*args, **kwargs)
+        self.current_datetime = datetime.now()
 
     def __str__(self):
         return self.question
