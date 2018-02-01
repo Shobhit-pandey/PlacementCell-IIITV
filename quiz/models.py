@@ -67,6 +67,7 @@ class SubCategory(models.Model):
 
 @python_2_unicode_compatible
 class Quiz(models.Model):
+    current_datetime = timezone.now()
     user_id = models.CharField(default='0', max_length=100, null=False, blank=False, editable=False)
 
     title = models.CharField(
@@ -79,16 +80,16 @@ class Quiz(models.Model):
 
     start_time = models.DateTimeField(
         verbose_name=_("Start Time"),
-        blank=False, help_text=_("Start time of quiz"), default=timezone.now(),
+        blank=False, help_text=_("Start time of quiz"), default=current_datetime,
     )
 
     end_time = models.DateTimeField(
         verbose_name=_("End Time"),
-        blank=False, help_text=_("End time of the quiz"), default=timezone.now(),
+        blank=False, help_text=_("End time of the quiz"), default=current_datetime,
     )
     time_of_quiz = models.IntegerField(
         verbose_name=_("Time of Quiz"),
-        blank=False, help_text=_("Maximum Time in minute"), default=1,
+        blank=False, help_text=_("Maximum Time in minute"), default=30,
     )
 
     category = models.ForeignKey(
@@ -148,6 +149,10 @@ class Quiz(models.Model):
                     " taken by users who can edit"
                     " quizzes."))
 
+    def __init__(self, *args, **kwargs):
+        super(Quiz, self).__init__(*args, **kwargs)
+        self.current_datetime = timezone.now()
+
     def save(self, force_insert=False, force_update=False, *args, **kwargs):
 
         if self.single_attempt is True:
@@ -156,7 +161,7 @@ class Quiz(models.Model):
         if self.pass_mark > 100:
             raise ValidationError('%s is above 100' % self.pass_mark)
 
-        if self.start_time <= timezone.now():
+        if self.start_time <= self.current_datetime:
             raise ValidationError("Start time must be in future not in Past")
 
         if self.end_time <= self.start_time:
