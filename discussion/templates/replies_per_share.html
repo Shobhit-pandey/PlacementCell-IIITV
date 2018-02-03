@@ -20,13 +20,7 @@
     <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src=" {% static 'froala_editor/js/froala_editor.min.js' %}"></script>
     <style>
-        .reply{
-            width: 10%;
-            height: 50px;
-            float: right;
 
-
-        }
 
         .card {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -65,34 +59,20 @@
             font-size: 14px;
 
         }
-    @media (max-width: 767px) {
-
-        .reply{
-             width: 60px;
-            height: 50px;
-            float: right;
-            text-align: center;
-        }
-    }
 
 
     </style>
 {% endblock %}
 {% block content %}
     <div class="row" style="margin-top: 100px;">
-    <div class="col-xm-12 col-md-12" style="align-content: center; position:fixed;">
+    <div class="col-xm-12 col-md-12" style="align-content: center;position: fixed">
         <a href="#reply">
-            <button class="btn btn-primary reply" style="text-align: center">
+            <button class="btn btn-primary" style="width: 130px;height: 50px;float: right">
                 <span style="font-size: 15px;">Reply</span></button>
         </a>
     </div>
 </div>
-    <div class=" " style=" width: 80%;
-            height: auto;
-            margin-top: 100px;
-            margin-left: 10%;
-            margin-right: 10%;
-            padding: 25px;">
+    <div class="card" style="margin-bottom:40px; padding:25px;margin-left: 40px;text-decoration: none;border-width: 0px">
     {% for question in questions %}
         {% for use in user_u %}
             {% if use.id|slugify == question.user_id|slugify %}
