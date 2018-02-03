@@ -24,59 +24,57 @@
 }
 .logo{
     float: left;
+    margin-top: -20px;
 }
 .div4{
-    font-size: 1.3vw;
+    font-size: 1.3em;
 }
 .div4h2{
-    font-size: 1.5vw;
+    font-size: 1.5em;
 }
 .div4h4{
-    font-size: 1.5vw;
+    font-size: 1.5em;
 }
 .div2h3{
-    font-size: 1.5vw;
-    font-family: "Georgia";
+    font-size: 0.90em;
+    font-family: "Georgia", sans-serif;
     clear: both;
 }
 .div2hx{
-    font-size: 2.2vw;
-    font-family: "Georgia";
+    font-size: 1.0em;
+    font-family: "Georgia", serif;
     font-weight:normal;
     clear: both;
 }
 h3::first-letter{
-    font-size: 3.0vw;
+    font-size: 1.4em;
 }
 .div1{
     float: left;
-    font-size: 1.1vw;
 
 }
 #div1h1{
-    font-family: "SansSerif";
-    font-size: 2.5vw;
+    font-size: 1.7em;
 
 }
 #div1h4{
-    font-family: "SansSerif";
-    font-size: 1.5vw;
+    font-family: "Georgia";
+    font-size: 0.9em;
 
 }
 
 #image{
-    width: 18vw;
-    height: 18vw;
-    margin-right: 10vw;
+    width: 10em;
+    height: 10em;
+    margin-left: -30px;
 }
 #table{
 border: 0px solid black;
 border-collapse: collapse;
-font-size: 1.5vw;
-    font-family: "SansSerif";
+font-size: 0.9em;
 }
 th, td {
-    padding: 5px;
+    padding: 1px;
     text-align: left;
 }
     </style>
@@ -92,21 +90,21 @@ th, td {
                 {% if resume.user_id|slugify == use.id|slugify %}
                     <div class="container">
                         <div class="logo">
-                            <img id="image" style="width: 160px;height:160px;margin-top: -15px;margin-left: -1px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJcAAACXCAMAAAAvQTlLAAAAYFBMVEX///8AAADt7e2dnZ1qampKSkpERETq6uoMDAzW1tby8vJXV1cgICD8/PyWlpZycnKQkJDc3Nx/f3+JiYk+Pj64uLjk5OSpqakvLy8SEhI2NjbCwsJ4eHhPT08bGxtjY2MIvUseAAACiklEQVR4nO3c0W6jMBAF0GkgpECApBRIgGb//y/3pTESjLGtqp6rZu6rERwB8tgYINJoNBqNRqN50VRDzSUpnhtMdcKkrp7txYVtL/jD+bu+3riM/XODmW1/M8c98e2Hn7pKdrefxvXBtr+rK8h1B3Whni9Ul15HPV+v6NLrqOfrFV16Hf+GS6/j33D9+nyI+iuX3swP846Naa9yNhV/NI1Go9H8Uoq2mZlczQbJ/MHkYupMlzZM0uV54KEIT0WnT6563fPnXqt/bHnLTH2rXfUvK4PTHOiUcXs9L66UPezRHDdh298XF+/eTUeQrpEwXTmmayZMV4HpSgjSVRaYrokgXSVBukyhAXPVhOmqMF0dQbrKCtNljorlSgnSde4xXQlBum6E6ZowXU2F6boSpKslSNdt/bwVxDWsWCCubM0CceW0DoRr3rAgXI+eNkFw1bQNgCvj3p0DcHXERN5VEhd516oworjWhRHEdbYsREq7NoURw1Xa1keFXRNZIutqbCxhF1MYEVwJWSPpuu28VC7pst70si5rHyHrum8HzxAuex8h6nrsvwkj5trpIyRdX44Xh6Rce32EoIuZMSK49vsIORc3YwRwPdxfW4m42BmjvOvo8XKhhIufMYq7nH2EjOtmHzyLuhyFUco1erHiuzz6CAlXSn6J7fK66eO7Lp6syK7xhOnyvOlju7bLLRgu1+BZyOVVGAVcId/eR3T5FcbormPQrwriuQJu+pgufrlF3OWeMcq4LMst4q7Q76siuWzLLcKu3Uepgq7Amz6Wy3fwHNl19plgr10ju1vndydm4On87iSwMH6nGLjf7iTLeHdouSz/5ZnaC5N2KYbXQb/B1Gg0Go1GI5D/5rJhFOPBNhsAAAAASUVORK5CYII=" alt="iiitv-logo">
+                            <img id="image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJcAAACXCAMAAAAvQTlLAAAAYFBMVEX///8AAADt7e2dnZ1qampKSkpERETq6uoMDAzW1tby8vJXV1cgICD8/PyWlpZycnKQkJDc3Nx/f3+JiYk+Pj64uLjk5OSpqakvLy8SEhI2NjbCwsJ4eHhPT08bGxtjY2MIvUseAAACiklEQVR4nO3c0W6jMBAF0GkgpECApBRIgGb//y/3pTESjLGtqp6rZu6rERwB8tgYINJoNBqNRqN50VRDzSUpnhtMdcKkrp7txYVtL/jD+bu+3riM/XODmW1/M8c98e2Hn7pKdrefxvXBtr+rK8h1B3Whni9Ul15HPV+v6NLrqOfrFV16Hf+GS6/j33D9+nyI+iuX3swP846Naa9yNhV/NI1Go9H8Uoq2mZlczQbJ/MHkYupMlzZM0uV54KEIT0WnT6563fPnXqt/bHnLTH2rXfUvK4PTHOiUcXs9L66UPezRHDdh298XF+/eTUeQrpEwXTmmayZMV4HpSgjSVRaYrokgXSVBukyhAXPVhOmqMF0dQbrKCtNljorlSgnSde4xXQlBum6E6ZowXU2F6boSpKslSNdt/bwVxDWsWCCubM0CceW0DoRr3rAgXI+eNkFw1bQNgCvj3p0DcHXERN5VEhd516oworjWhRHEdbYsREq7NoURw1Xa1keFXRNZIutqbCxhF1MYEVwJWSPpuu28VC7pst70si5rHyHrum8HzxAuex8h6nrsvwkj5trpIyRdX44Xh6Rce32EoIuZMSK49vsIORc3YwRwPdxfW4m42BmjvOvo8XKhhIufMYq7nH2EjOtmHzyLuhyFUco1erHiuzz6CAlXSn6J7fK66eO7Lp6syK7xhOnyvOlju7bLLRgu1+BZyOVVGAVcId/eR3T5FcbormPQrwriuQJu+pgufrlF3OWeMcq4LMst4q7Q76siuWzLLcKu3Uepgq7Amz6Wy3fwHNl19plgr10ju1vndydm4On87iSwMH6nGLjf7iTLeHdouSz/5ZnaC5N2KYbXQb/B1Gg0Go1GI5D/5rJhFOPBNhsAAAAASUVORK5CYII=" alt="iiitv-logo">
                         </div>
-                        <div class="div1"style="font-size: 15px;margin-left: 200px;margin-top: -190px;">
+                        <div class="div1"style="margin-left: 180px;margin-top: -160px;">
                             <h1 id="div1h1">{{ resume.fullname }}</h1>
                             <h4 id="div1h4">Indian Institute of Information Technology, Vadodara</h4>
-                            <p style="font-family:SansSerif,sans-serif;">
-                                Email:&nbsp{{ resume.email }}&nbsp&nbsp&nbsp&nbsp&nbsp<strong>DOB:</strong>&nbsp{{ resume.dob }}
+                            <p style="font-size: 0.9em"><strong>Email:</strong>
+                                &nbsp{{ resume.email }}&nbsp&nbsp&nbsp&nbsp&nbsp<strong>DOB:</strong>&nbsp{{ resume.dob }}
                             </p>
-                            <p style="font-family:SansSerif,sans-serif;">Address:&nbspBlock no. 9 ,GEC ,Sector 28,Gandhinagar (382028)</p>
+                            <p style="font-size: 0.9em"><strong>Address:</strong>&nbspBlock no. 9 ,GEC ,Sector 28,Gandhinagar (382028)</p>
                             {% if resume.github %}
-                                <p style="font-family:SansSerif,sans-serif;"> Github Profile:&nbsp<a
+                                <p style="font-size: 0.9em"><strong> Github Profile:</strong>&nbsp<a
                                         href="{{ resume.github }}" style="color: #2068B9;text-decoration: none">{{ resume.github }}/</a></p>
                             {% endif %}
                             {% if resume.linkedin %}
-                                <p style="font-family:SansSerif,sans-serif;">LinkedIn:&nbsp<a style="color: #2068B9;text-decoration: none" href="{{ resume.linkedin }}">{{ resume.linkedin }}/</a>
+                                <p style="font-size: 0.9em"><strong>LinkedIn:</strong>&nbsp<a style="color: #2068B9;text-decoration: none" href="{{ resume.linkedin }}">{{ resume.linkedin }}/</a>
                                 </p>
                             {% endif %}
                         </div>
@@ -188,12 +186,15 @@ th, td {
                                     <h3 class="div2hx">PROJECTS</h3>
                                     <hr id="hr">
                                     {% endif %}
-                                    <p style="text-align: right;">{{ project.time }}</p>
+                                    <p style="text-align: right;font-size: 0.9em">{{ project.time }}</p>
                                     <h4 class="div2h3">{{ project.topic }}</h4>
-                                    <p style="text-align: right;font-family: SansSerif">Team Size - {{ project.team_size }}</p>
-                                    <p></p>
+                                    <p style="text-align: right;font-family: SansSerif;font-size: 0.9em">Team Size - {{ project.team_size }}</p>
+                                    <p ></p>
                                     <h4 class="div2h3">Guide : {{ project.guide }}</h4>
-                                    <p style="font-family: SansSerif">  {{ project.description }}</p>
+                                    <p style="font-family: SansSerif;font-size: 0.9em">  {{ project.description }}</p>
+                                    {% if project.project_link %}
+                                        <p style="font-family: SansSerif;font-size: 0.9em"> Project Link :  {{ project.project_link }}</p>
+                                    {% endif %}
                                     <hr id="hrqq">
                                 {% if forloop.revcounter == 1 %}
                                 </div><br>
@@ -206,7 +207,7 @@ th, td {
                                     <div class="div4" style="margin-right: -30px;margin-left: -30px">
                                     <h3 class="div2hx">PARTICIPATION</h3>
                                     <hr id="hr">
-                                    <ul class="list">
+                                    <ul class="list" style="font-size: 0.9em">
                                 {% endif %}
                             <li>{{ participation.topic }}</li>
                             {% if forloop.revcounter == 1 %}
@@ -222,7 +223,7 @@ th, td {
                                     <div class="div4" style="margin-right: -30px;margin-left: -30px">
                                     <h3 class="div2hx">POSITION OF RESPONSIBILTY</h3>
                                     <hr id="hr">
-                                    <ul class="list">
+                                    <ul class="list"style="font-size: 0.9em;">
                                 {% endif %}
                             <li>{{ position.topic }}</li>
                             {% if forloop.revcounter == 1 %}
@@ -238,7 +239,7 @@ th, td {
                                     <div class="div4" style="margin-right: -30px;margin-left: -30px">
                                     <h3 class="div2hx">AWARDS AND ACHIEVEMENTS</h3>
                                     <hr id="hr">
-                                    <ul class="list">
+                                    <ul class="list"style="font-size: 0.9em">
                                 {% endif %}
                             <li>{{ award.topic }}</li>
                             {% if forloop.revcounter == 1 %}
@@ -254,7 +255,7 @@ th, td {
                                     <div class="div4" style="margin-right: -30px;margin-left: -30px">
                                     <h3 class="div2hx">INTERESTS AND ACTIVITIES</h3>
                                     <hr id="hr">
-                                    <ul class="list">
+                                    <ul class="list"style="font-size: 0.9em">
                                 {% endif %}
                             <li>{{ interest.topic }}</li>
                             {% if forloop.revcounter == 1 %}
@@ -268,7 +269,7 @@ th, td {
                         <p class="div2h3" style="margin-right: -30px;margin-left: -30px"><strong style="font-family: Georgia">Declaration :</strong>&nbspI hereby declare that all the details furnished above are true to the best of my knowledge and belief.
                         </p><br><br>
                         <p class="div2h3" style="margin-right: -30px;margin-left: -30px"><strong>{{ resume.fullname }}</strong></p>
-                        <p style="font-family: SansSerif;font-size: 1.5vw">{{ resume.resume_created }}</p>
+                        <p style="font-family: SansSerif;font-size: 0.9em;margin-right: -30px;margin-left: -30px">{{ resume.resume_created }}</p>
                     </div>
                 {% endif %}
             {% endfor %}
