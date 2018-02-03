@@ -34,6 +34,7 @@
     </style>
 {% endblock %}
 {% block content %}
+    <div class="container">
 <form  method="post" role="form">
     {% csrf_token %}
         <div class="form-group">
@@ -45,4 +46,5 @@
     </div>
         </div>
 </form>
+    </div>
 {% endblock %}
