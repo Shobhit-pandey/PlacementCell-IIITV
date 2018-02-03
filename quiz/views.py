@@ -212,6 +212,7 @@ class QuizTake(FormView):
     def get_context_data(self, **kwargs):
         context = super(QuizTake, self).get_context_data(**kwargs)
         context['question'] = self.question
+        print(self.question)
         context['quiz'] = self.quiz
         if hasattr(self, 'previous'):
             context['previous'] = self.previous
