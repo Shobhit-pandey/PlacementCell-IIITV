@@ -116,7 +116,7 @@ function docs(numcopy)
 {% block content %}
 
 <div class="row" style="margin-top: 100px;">
-    <div class="col-xm-12 col-md-12" style="align-content: center;position: fixed">
+    <div class="col-xm-12 col-md-12" style="align-content: center;">
         <a href="{% url 'share:add_share' %}">
             <button class="btn btn-primary" style="width: 250px;height: 70px;float: right">
                 <span style="font-size: 25px;">Post Experience</span></button>
@@ -132,7 +132,7 @@ function docs(numcopy)
                     {% for use in user_u %}
                         {% if use.id == temp.user_id %}
                             <a href="{% url 'resumes:resume' pk2=use.username %}">
-                  <div class = "cmnt_username" style="font-size:25px; color:#2f4f4f;padding-top:5px; margin-top:0px; ">{{ use.username }}</div></a>
+                  <div class = "cmnt_username" style="font-size:25px; color:#2f4f4f;padding-top:5px; margin-top:0px;">{{ use.username }}</div></a>
                         {% endif %}
                         {% endfor %}
 
