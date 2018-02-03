@@ -8,7 +8,7 @@
 {##}
 {#    <!-- Latest compiled JavaScript -->#}
 {#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" media="all" rel="stylesheet" />
 <link href="{% static 'froala_editor/css/froala_editor.min.css' %} " type="text/css" media="all" rel="stylesheet" />
 <link href="{% static 'froala_editor/css/froala_style.min.css' %}" type="text/css" media="all" rel="stylesheet" />
@@ -116,10 +116,11 @@ function docs(numcopy)
 {% block content %}
 
 <div class="row" style="margin-top: 100px;">
-    <div class="col-xm-12 col-md-12" style="align-content: center;">
+    <div class="col-xm-12 col-md-12" style="align-content: center;position: fixed">
         <a href="{% url 'share:add_share' %}">
-            <button class="btn btn-primary" style="width: 250px;height: 70px;float: right">
-                <span style="font-size: 25px;">Post Experience</span></button>
+{#            <button class="btn btn-primary" style="width: 250px;height: 70px;float: right">#}
+{#                <span style="font-size: 25px;">Post Experience</span></button>#}
+                <button  class="w3-button w3-xlarge w3-circle w3-blue" style="width: 50px;height: 50px; float: right">+</button>
         </a>
     </div>
 </div>
