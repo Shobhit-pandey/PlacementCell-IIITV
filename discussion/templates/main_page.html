@@ -17,11 +17,11 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
 
-       <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{#       <!-- jQuery library -->#}
+{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>#}
+{##}
+{#    <!-- Latest compiled JavaScript -->#}
+{#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
 
     <style>
         .card {
@@ -116,9 +116,9 @@ function docs(numcopy)
 {% block content %}
 
 <div class="row" style="margin-top: 100px;">
-    <div class="col-xm-12 col-md-12" style="align-content: center;">
+    <div class="col-xm-12 col-md-12" style="align-content: center;position: fixed">
         <a href="{% url 'share:add_share' %}">
-            <button class="btn btn-primary" style="width: 250px;height: 70px;float: right">
+            <button class="btn btn-primary" style="margin-top: -50px; width: 25%;height: 10%;float: right">
                 <span style="font-size: 25px;">Post Experience</span></button>
         </a>
     </div>
