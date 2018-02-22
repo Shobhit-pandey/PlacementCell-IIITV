@@ -20,6 +20,8 @@ from MyWebsite.models import BeyondAcademicImages, BeyondAcademicVideos, BeyondA
     CollegeTeamStudent, Alumni, Research, AcademicImage, AcademicVideo, AcademicHighlight, CompaniesAppliedByStudents
 from quiz.models import Quiz
 
+from django.contrib import messages
+
 
 def home(request):
     return render(request, 'home.html')
@@ -193,7 +195,9 @@ def change_password(request):
             update_session_auth_hash(request, form.user)
             return redirect("mywebsite:recruiter")
         else:
-            return redirect("mywebsite:recruiter")
+            form = PasswordChangeForm(user=request.user)
+            messages.info(request, 'Wrong Attempt!')
+            return render(request, 'change_password.html', {'form': form})
     else:
         form = PasswordChangeForm(user=request.user)
 
