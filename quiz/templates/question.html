@@ -5,6 +5,32 @@
 {% load quiz_tags %}
 {% block heade %}
 {#    <meta http-equiv="refresh" content="5;url=https://www.google.com">#}
+    <style>
+a {
+    {#text-decoration: none;#}
+    {#display: inline-block;#}
+    {#padding: 8px 16px;#}
+}
+
+a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.previous {
+    background-color: #f1f1f1;
+    color: black;
+}
+
+.next {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.round {
+    border-radius: 50%;
+}
+</style>
 {% endblock %}
 {% block title %} {{ quiz.title }} {% endblock %}
 {% block description %} {{ quiz.title }} - {{ quiz.description }} {% endblock %}
@@ -105,16 +131,12 @@
 {% if question %}
 
 {% if progress %}
-<div style="float: right;">
+<div style="float: left;">
 {% trans "Question" %} {{ progress.0|add:1 }} {% trans "of" %} {{ progress.1 }}
 </div>
 {% endif %}
-
-<p>
-  <small class="muted">{% trans "Question category" %}:</small>
-  <strong>{{ question.category }}</strong>
-</p>
-
+    <br>
+    <br>
 <p class="lead">{{ question.content }}</p>
 
 {% if question.figure %}
@@ -151,7 +173,7 @@
 {#    };#}
 {#</script>#}
 
-  <input type="submit" value="{% trans "Check" %}" class="btn btn-large btn-block btn-warning" >
+  <input type="submit" value="{% trans "Next &raquo;" %}" class="btn btn-large btn-block" style="background-color: #4CAF50;color: white; font-size: 20px">
 </form>
 
 {% endif %}
