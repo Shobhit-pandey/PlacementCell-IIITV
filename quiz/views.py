@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.db import transaction
-from django.forms import formset_factory, BaseFormSet
+from django.forms import formset_factory, BaseFormSet, model_to_dict
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone

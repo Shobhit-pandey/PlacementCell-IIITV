@@ -14,17 +14,20 @@ from django.views.generic import ListView
 from MyWebsite.form import RecruiterForm, BeyondAcademicImagesForm, BeyondAcademicVideosForm, \
     BeyondAcademicHighlightForm, RecruiterInternshipIndustrialForm, RecruiterInternshipNGOForm, PastRecruiterForm, \
     CompaniesAppliedByStudentsForm, AlumniForm, ResearchForm, CollegeTeamImageForm, CollegeTeamFacultyForm, \
-    CollegeTeamStudentForm, AcademicImageForm, AcademicVideoForm, AcademicHighlightForm, AddStudent, AddRecruiter
+    CollegeTeamStudentForm, AcademicImageForm, AcademicVideoForm, AcademicHighlightForm, AddStudent, AddRecruiter, \
+    PastRecruitersSelectionForm
 from MyWebsite.models import BeyondAcademicImages, BeyondAcademicVideos, BeyondAcademicsHighlight, PastRecruiter, \
     RecruiterInternshipIndustrial, RecruiterInternshipNGO, Recruiter, CollegeTeamImage, CollegeTeamFaculty, \
-    CollegeTeamStudent, Alumni, Research, AcademicImage, AcademicVideo, AcademicHighlight, CompaniesAppliedByStudents
+    CollegeTeamStudent, Alumni, Research, AcademicImage, AcademicVideo, AcademicHighlight, CompaniesAppliedByStudents, \
+    PastRecruitersSelection
 from quiz.models import Quiz
 
 from django.contrib import messages
 
 
 def home(request):
-    return render(request, 'home.html')
+    pastrecruiter = PastRecruitersSelection.objects.all()
+    return render(request, 'home.html',{'pastimage': pastrecruiter})
 
 
 def student(request):
@@ -184,6 +187,19 @@ def addPastRecruiterimage(request):
     else:
         form = PastRecruiterForm()
     return render(request, 'Addpastrecuiter.html', {'form': form})
+
+
+def add_pastrecruiters_image(request):
+    if request.method == 'POST':
+        form = PastRecruitersSelectionForm(request.POST, request.FILES)
+        if form.is_valid():
+            PastRecruitersSelection.objects.all().delete()
+            form.save()
+            return redirect('mywebsite:home')
+
+    else:
+        form = PastRecruitersSelectionForm()
+    return render(request, 'addmultiplerecruiter.html', {'form': form})
 
 
 @login_required

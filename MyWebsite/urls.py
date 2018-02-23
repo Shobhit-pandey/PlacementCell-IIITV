@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^beyond-academic$', views.beyond_academic, name='beyond_academic'),
     url(r'^addBeyondAcademicimage/$',views.AddBeyondAcademicimages,name='addBeyondAcademicimages'),
     url(r'^addPastRecruiterimage/$',views.addPastRecruiterimage,name='addPastRecruiterimage'),
+    url(r'^add-Past-Recruiters-image/$',views.add_pastrecruiters_image,name='add_pastrecruiters_image'),
     url(r'^addBeyondAcademicvideos/$',views.AddBeyondAcademicvideos,name='addBeyondAcademicvideos'),
     url(r'^addBeyondAcademichighlight/$',views.AddBeyondAcademicHighlight,name='addBeyondAcademichighlight'),
     url(r'^addinterndescrip/$',views.Addinterndescrip,name='addinterndescrip'),

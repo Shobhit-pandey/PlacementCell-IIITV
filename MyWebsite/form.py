@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 
 from MyWebsite.models import Recruiter, BeyondAcademicImages, BeyondAcademicVideos, BeyondAcademicsHighlight, \
     RecruiterInternshipIndustrial, RecruiterInternshipNGO, PastRecruiter, CompaniesAppliedByStudents, Alumni, Research, \
-    CollegeTeamImage, CollegeTeamStudent, CollegeTeamFaculty, AcademicImage, AcademicVideo, AcademicHighlight
+    CollegeTeamImage, CollegeTeamStudent, CollegeTeamFaculty, AcademicImage, AcademicVideo, AcademicHighlight, \
+    PastRecruitersSelection
 
 
 class RecruiterForm(forms.ModelForm):
@@ -15,6 +16,12 @@ class RecruiterForm(forms.ModelForm):
 class PastRecruiterForm(forms.ModelForm):
     class Meta:
         model = PastRecruiter
+        exclude = []
+
+
+class PastRecruitersSelectionForm(forms.ModelForm):
+    class Meta:
+        model = PastRecruitersSelection
         exclude = []
 
 

@@ -92,7 +92,12 @@
 	<div class="container bloc-md">
 		<div class="row">
 			<div class="col-sm-6">
-				<img src="{% static 'images/Companies-1.png' %}" class="img-responsive win-panel mg-sm">
+            {% if user.is_superuser %}
+                <a href="{% url 'mywebsite:add_pastrecruiters_image' %}"><button><span>Add New Images</span></button></a>
+            {% endif %}
+                {% for img in pastimage %}
+                <img src="{{ img.image.url }}" class="img-responsive win-panel mg-sm">
+                {% endfor %}
 				<h6 class="mg-sm">
 					<i>Some of IIIT Vadodara’s recruiters.</i>
 				</h6>
