@@ -4,12 +4,9 @@ from __future__ import unicode_literals
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
-from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
-from django.views.generic import ListView
 
 from MyWebsite.form import RecruiterForm, BeyondAcademicImagesForm, BeyondAcademicVideosForm, \
     BeyondAcademicHighlightForm, RecruiterInternshipIndustrialForm, RecruiterInternshipNGOForm, PastRecruiterForm, \
@@ -27,7 +24,7 @@ from django.contrib import messages
 
 def home(request):
     pastrecruiter = PastRecruitersSelection.objects.all()
-    return render(request, 'home.html',{'pastimage': pastrecruiter})
+    return render(request, 'home.html', {'pastimage': pastrecruiter})
 
 
 def student(request):
@@ -96,11 +93,11 @@ def recruiter_form(request):
             name = form.cleaned_data['Name']
             value.save()
             email = EmailMessage('Regarding Admission',
-                                     "Hey "+"we have received your mail we will contact you on"+str(contact)+
-                                     str(email),
-                                     to=[email,
-                                         'studymonk.se@gmail.com'],
-                                     reply_to=["studymonk.se@gmail.com",])
+                                 "Hey " + "we have received your mail we will contact you on" + str(contact) +
+                                 str(email),
+                                 to=[email,
+                                     'studymonk.se@gmail.com'],
+                                 reply_to=["studymonk.se@gmail.com", ])
             email.send()
             print("reached")
             return redirect('mywebsite:home')
@@ -116,7 +113,7 @@ def beyond_academic(request):
     return render(request, 'beyond_academics.html', {'image': image, 'video': video, 'highlight': highlight})
 
 
-def AddBeyondAcademicimages(request):
+def add_beyond_academic_images(request):
     if request.method == 'POST':
         form = BeyondAcademicImagesForm(request.POST, request.FILES)
 
@@ -128,7 +125,7 @@ def AddBeyondAcademicimages(request):
     return render(request, 'AddBeyondAcademicImage.html', {'form': form})
 
 
-def AddBeyondAcademicvideos(request):
+def add_beyond_academic_videos(request):
     if request.method == 'POST':
         form = BeyondAcademicVideosForm(request.POST, request.FILES)
 
@@ -140,7 +137,7 @@ def AddBeyondAcademicvideos(request):
     return render(request, 'AddBeyondAcademicVideo.html', {'form': form})
 
 
-def AddBeyondAcademicHighlight(request):
+def add_beyond_academic_highlight(request):
     if request.method == "POST":
         form = BeyondAcademicHighlightForm(request.POST)
 
@@ -152,7 +149,7 @@ def AddBeyondAcademicHighlight(request):
     return render(request, 'AddBeyondAcademicHighlight.html', {'form': form})
 
 
-def Addinterndescrip(request):
+def add_intern_descrip(request):
     if request.method == 'POST':
         form = RecruiterInternshipIndustrialForm(request.POST)
 
@@ -165,7 +162,7 @@ def Addinterndescrip(request):
     return render(request, 'AddRecruiterInternshipIndustrial.html', {'form': form})
 
 
-def Addngodescrip(request):
+def add_ngo_descrip(request):
     if request.method == 'POST':
         form = RecruiterInternshipNGOForm(request.POST)
         if form.is_valid():
@@ -177,7 +174,7 @@ def Addngodescrip(request):
     return render(request, 'AddRecruiterInternshipNGO.html', {'form': form})
 
 
-def addPastRecruiterimage(request):
+def add_past_recruiter_image(request):
     if request.method == 'POST':
         form = PastRecruiterForm(request.POST, request.FILES)
         if form.is_valid():
@@ -222,7 +219,7 @@ def change_password(request):
         return render(request, 'change_password.html', {'form': form})
 
 
-def RecruiterListView(request):
+def recruiter_listview(request):
     list = CompaniesAppliedByStudents.objects.filter(user_id=request.user.id).values_list('company_name')
     lists = []
     for x in range(0, len(list)):
