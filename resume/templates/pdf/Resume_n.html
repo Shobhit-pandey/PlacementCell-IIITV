@@ -193,7 +193,7 @@ th, td {
                                     <h4 class="div2h3">Guide : {{ project.guide }}</h4>
                                     <p style="font-family: SansSerif;font-size: 0.9em">  {{ project.description }}</p>
                                     {% if project.project_link %}
-                                        <p style="font-family: SansSerif;font-size: 0.9em"> Project Link :  {{ project.project_link }}</p>
+                                        <a href="{{ project.project_link }}"><p style="font-family: SansSerif;font-size: 0.9em"> PROJECT LINK </p></a>
                                     {% endif %}
                                     <hr id="hrqq">
                                 {% if forloop.revcounter == 1 %}
