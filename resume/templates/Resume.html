@@ -135,7 +135,7 @@
                                     <hr id="hr">
                                     <ul class="list">
                                 {% endif %}
-                            <li>{{pastexperience.topic }}</li>
+                            <li>{{pastexperience.topic|safe }}</li>
                             {% if forloop.revcounter == 1 %}
                                 </ul>
                                 </div>
@@ -151,7 +151,7 @@
                                     <hr id="hr">
                                     <ul class="list">
                                 {% endif %}
-                            <li>{{ participation.topic }}</li>
+                            <li>{{ participation.topic|safe }}</li>
                             {% if forloop.revcounter == 1 %}
                                 </ul>
                                 </div>
@@ -167,7 +167,7 @@
                                     <hr id="hr">
                                     <ul class="list">
                                 {% endif %}
-                            <li>{{ position.topic }}</li>
+                            <li>{{ position.topic|safe }}</li>
                             {% if forloop.revcounter == 1 %}
                                 </ul>
                                 </div>
@@ -183,7 +183,7 @@
                                     <hr id="hr">
                                     <ul class="list">
                                 {% endif %}
-                            <li>{{ award.topic }}</li>
+                            <li>{{ award.topic|safe }}</li>
                             {% if forloop.revcounter == 1 %}
                                 </ul>
                                 </div>
@@ -199,7 +199,7 @@
                                     <hr id="hr">
                                     <ul class="list">
                                 {% endif %}
-                            <li>{{ interest.topic }}</li>
+                            <li>{{ interest.topic|safe }}</li>
                             {% if forloop.revcounter == 1 %}
                                 </ul>
                                 </div>

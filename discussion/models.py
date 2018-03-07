@@ -24,7 +24,6 @@ class Share(models.Model):
         return reverse('mywebsite:student')
 
 
-
 class ShareReply(models.Model):
     content = FroalaField(theme='dark')
     timestamp = models.DateTimeField(default=datetime.now())

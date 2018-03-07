@@ -17,6 +17,7 @@ class ShareReplyForm(forms.ModelForm):
     def clean_user(self):
         return self.cleaned_data.get('user')
 
+
 class ShareRepliesForm(forms.ModelForm):
     class Meta:
         model = ShareReply
@@ -30,5 +31,6 @@ class ShareForm(forms.ModelForm):
     class Meta:
         model = Share
         fields = ['question',]
+
     def clean_question(self):
         return self.cleaned_data.get('question')

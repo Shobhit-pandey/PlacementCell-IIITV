@@ -113,7 +113,7 @@ def html_to_pdf_view(request,pk4):
         "position_of_responsibity": position_of_responsibity,
         "awards": awards,
         "interests": interests,
-        "pastexperience":pastexperience,
+        "pastexperiences":pastexperience,
     }
     html_string = render_to_string('pdf/Resume_n.html', context)
 

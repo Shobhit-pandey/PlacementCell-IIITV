@@ -201,6 +201,22 @@ th, td {
                                     {% endif %}
                             {% endif %}
                         {% endfor %}
+                    {% for pastexperience in pastexperiences %}
+                            {% if pastexperience.resume_id|slugify == resume.id|slugify %}
+                                {% if forloop.counter == 1 %}
+                                    <div class="div4" style="margin-right: -30px;margin-left: -30px">
+                                    <h3 class="div2hx">PAST EXPERIENCE</h3>
+                                    <hr id="hr">
+                                    <ul class="list" style="font-size: 0.9em">
+                                {% endif %}
+                            <li>{{ pastexperience.topic|safe }}</li>
+                            {% if forloop.revcounter == 1 %}
+                                </ul>
+                                </div>
+                            {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    <br>
                         {% for participation in participations %}
                             {% if participation.resume_id|slugify == resume.id|slugify %}
                                 {% if forloop.counter == 1 %}
@@ -209,7 +225,7 @@ th, td {
                                     <hr id="hr">
                                     <ul class="list" style="font-size: 0.9em">
                                 {% endif %}
-                            <li>{{ participation.topic }}</li>
+                            <li>{{ participation.topic|safe }}</li>
                             {% if forloop.revcounter == 1 %}
                                 </ul>
                                 </div>
@@ -225,7 +241,7 @@ th, td {
                                     <hr id="hr">
                                     <ul class="list"style="font-size: 0.9em;">
                                 {% endif %}
-                            <li>{{ position.topic }}</li>
+                            <li>{{ position.topic|safe }}</li>
                             {% if forloop.revcounter == 1 %}
                                 </ul>
                                 </div>
@@ -241,7 +257,7 @@ th, td {
                                     <hr id="hr">
                                     <ul class="list"style="font-size: 0.9em">
                                 {% endif %}
-                            <li>{{ award.topic }}</li>
+                            <li>{{ award.topic|safe }}</li>
                             {% if forloop.revcounter == 1 %}
                                 </ul>
                                 </div>
@@ -257,7 +273,7 @@ th, td {
                                     <hr id="hr">
                                     <ul class="list"style="font-size: 0.9em">
                                 {% endif %}
-                            <li>{{ interest.topic }}</li>
+                            <li>{{ interest.topic|safe }}</li>
                             {% if forloop.revcounter == 1 %}
                                 </ul>
                                 </div>

@@ -4,6 +4,35 @@
 {% block title %}{% trans "Add or Update Resume" %}{% endblock %}
 {% block head %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>#}
+{##}
+{#    <!-- Latest compiled JavaScript -->#}
+{#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
+
+
+<link href="{% static 'froala_editor/css/froala_editor.min.css' %} " type="text/css" media="all" rel="stylesheet" />
+<link href="{% static 'froala_editor/css/froala_style.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+    <script type="text/javascript" src="js/jQuery.js"></script>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src=" {% static 'froala_editor/js/froala_editor.min.js' %}"></script>
+
+
+    <meta charset="UTF-8">
+    <title>Create Resume</title>
+    <style>
+        .form-control{
+            width: 600px;
+            height: 150px;
+            margin-top: 150px;
+            margin-left: 350px;
+            margin-right: 350px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 {% endblock %}
@@ -87,8 +116,11 @@ function clicked(e)
                 <div><h1 style="font-size: 250%; text-align: center;">Add or Update Resume{{ forloop.revcounter }}</h1></div>
 
                 <h5 style="color: red; margin-left: 20px;">*Required</h5>
-                <form method="POST" style="padding:50px;" enctype="multipart/form-data">
+                <form method="POST" style="padding:50px;" enctype="multipart/form-data" role="form">
                     {% csrf_token %}
+                {{ other_formset.management_form }}
+{#                    {{ other_formset.media }}#}
+
                     <input id="id_user_id" maxlength="100" name="user_id" type="text"
                            value="{{ resume_form.user_id.value }}" hidden default={{ user.username }}>
 {#                {{ resume_form.resume_created }}#}
@@ -204,6 +236,7 @@ function clicked(e)
             </table>
             {% endfor %}
                 <br>
+
                     <h2>Other Details</h2>
             <table id="id_contact_info_table" border="0" cellpadding="0" cellspacing="5">
                 <thead>
@@ -216,6 +249,7 @@ function clicked(e)
                 </thead>
                 <tbody>
                     {% for form in other_formset.forms %}
+
                     <tr id="{{ form.prefix }}-row" class="form-container">
                         <td style="text-align:center;">{{ form.preferred }}</td>
                         <td> Choice* {{ form.choice }}</td>
@@ -229,6 +263,7 @@ function clicked(e)
             <p>
                 {{ project_formset.management_form }}
                 {{ other_formset.management_form }}
+
                 <input type="submit" value="Submit" />
             </p>
                 </form>
