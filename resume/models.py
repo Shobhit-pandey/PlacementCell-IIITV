@@ -4,6 +4,7 @@ import json
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from datetime import datetime
+from froala_editor.fields import FroalaField
 
 import django
 
@@ -12,6 +13,7 @@ CHOICE = (
     ('Position Of Responsibity', ('Position Of Responsibity')),
     ('Award Achievement', 'Award Achievement'),
     ('Interest', 'Interest'),
+    ('PastExperience','PastExperience'),
 )
 
 
@@ -42,6 +44,7 @@ class Resume(models.Model):
     tool_techonology = models.CharField(max_length=1000, blank=False)
     database = models.CharField(max_length=1000, blank=False)
     resume_created=models.DateField(null=True, blank=True,default=datetime.now())
+
 
     def __str__(self):
         return self.user_id
@@ -86,7 +89,7 @@ class Other(models.Model):
     choice = models.CharField(
         max_length=30, null=True, blank=True,
         choices=CHOICE, default='Participation')
-    topic = models.TextField(max_length=500,
+    topic = models.FroalaField(theme='dark',max_length=5000,
                              verbose_name=("Other"),
                              blank=False)
 

@@ -35,11 +35,13 @@ def resume(request, pk2):
     position_of_responsibity = Other.objects.filter(choice="Position of Responsibity", resume_id=r.id)
     awards = Other.objects.filter(choice="Award Achievement", resume_id=r.id)
     interests = Other.objects.filter(choice="Interest", resume_id=r.id)
+    pastexperience = Other.objects.filter(choice="PastExperience",resume_id=r.id)
     resume_name = pk2
     return render(request, 'Resume.html', {'users': users, 'resumes': resumes, 'projects': projects, 'current': current,
                                            'participations': participations,
                                            'position_of_responsibity': position_of_responsibity, 'awards': awards,
-                                           'interests': interests, 'resume_name': resume_name})
+                                           'interests': interests, 'resume_name': resume_name,
+                                            'pastexperiences':pastexperience})
 
 
 def delete_resume(request):
@@ -100,6 +102,8 @@ def html_to_pdf_view(request,pk4):
     position_of_responsibity = Other.objects.filter(choice="Position of Responsibity", resume_id=r.id)
     awards = Other.objects.filter(choice="Award Achievement", resume_id=r.id)
     interests = Other.objects.filter(choice="Interest", resume_id=r.id)
+    pastexperience = Other.objects.filter(choice="PastExperience", resume_id=r.id)
+
     context = {
         "users": users,
         "resumes": resumes,
@@ -109,6 +113,7 @@ def html_to_pdf_view(request,pk4):
         "position_of_responsibity": position_of_responsibity,
         "awards": awards,
         "interests": interests,
+        "pastexperience":pastexperience,
     }
     html_string = render_to_string('pdf/Resume_n.html', context)
 

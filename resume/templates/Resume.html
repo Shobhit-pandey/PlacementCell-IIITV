@@ -127,6 +127,22 @@
                                     {% endif %}
                             {% endif %}
                         {% endfor %}
+                    {% for pastexperience in pastexperiences %}
+                            {% if pastexperience.resume_id|slugify == resume.id|slugify %}
+                                {% if forloop.counter == 1 %}
+                                    <div class="div4">
+                                    <h3 class="div2hx">PAST EXPERIENCE</h3>
+                                    <hr id="hr">
+                                    <ul class="list">
+                                {% endif %}
+                            <li>{{pastexperience.topic }}</li>
+                            {% if forloop.revcounter == 1 %}
+                                </ul>
+                                </div>
+                            {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    <br>
                         {% for participation in participations %}
                             {% if participation.resume_id|slugify == resume.id|slugify %}
                                 {% if forloop.counter == 1 %}
