@@ -2,9 +2,9 @@ from django import forms
 from django.contrib.auth.models import User
 
 from MyWebsite.models import Recruiter, BeyondAcademicImages, BeyondAcademicVideos, BeyondAcademicsHighlight, \
-    RecruiterInternshipIndustrial, RecruiterInternshipNGO, PastRecruiter, CompaniesAppliedByStudents, Alumni, Research, \
-    CollegeTeamImage, CollegeTeamStudent, CollegeTeamFaculty, AcademicImage, AcademicVideo, AcademicHighlight, \
-    PastRecruitersSelection
+    RecruiterInternshipIndustrial, RecruiterInternshipNGO, PastRecruiter, CompaniesAppliedByStudents, Alumni, \
+    Research, CollegeTeamImage, CollegeTeamStudent, CollegeTeamFaculty, AcademicImage, AcademicVideo, \
+    AcademicHighlight, PastRecruitersSelection
 
 
 class RecruiterForm(forms.ModelForm):
@@ -68,7 +68,7 @@ class CompaniesAppliedByStudentsForm(forms.Form):
 
         )
         u.save()
-        return u;
+        return u
 
 
 class AlumniForm(forms.ModelForm):

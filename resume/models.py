@@ -1,19 +1,15 @@
 from __future__ import unicode_literals
-import re
-import json
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from datetime import datetime
 from froala_editor.fields import FroalaField
-
-import django
 
 CHOICE = (
     ('Participation', 'Participation'),
     ('Position Of Responsibity', ('Position Of Responsibity')),
     ('Award Achievement', 'Award Achievement'),
     ('Interest', 'Interest'),
-    ('PastExperience','PastExperience'),
+    ('PastExperience', 'PastExperience'),
 )
 
 
@@ -22,7 +18,7 @@ class Resume(models.Model):
     user_id = models.CharField(max_length=100, default="null")
     fullname = models.CharField(max_length=100, default="null")
     email = models.EmailField(null=False, blank=False)
-    dob = models.DateField(null=False, blank=False,help_text="YYYY-MM-DD",default=datetime.today())
+    dob = models.DateField(null=False, blank=False, help_text="YYYY-MM-DD", default=datetime.today())
     github = models.URLField()
     linkedin = models.URLField()
     class_ten_institute = models.CharField(max_length=1000, blank=False)
@@ -43,8 +39,7 @@ class Resume(models.Model):
     markup_language = models.CharField(max_length=1000, blank=False)
     tool_techonology = models.CharField(max_length=1000, blank=False)
     database = models.CharField(max_length=1000, blank=False)
-    resume_created=models.DateField(null=True, blank=True,default=datetime.now())
-
+    resume_created = models.DateField(null=True, blank=True, default=datetime.now())
 
     def __str__(self):
         return self.user_id
@@ -73,7 +68,7 @@ class Project(models.Model):
     description = models.TextField(max_length=500,
                                    verbose_name=("Description"),
                                    blank=False)
-    project_link = models.URLField(blank=True,null=True)
+    project_link = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.topic
@@ -89,7 +84,7 @@ class Other(models.Model):
     choice = models.CharField(
         max_length=30, null=True, blank=True,
         choices=CHOICE, default='Participation')
-    topic = FroalaField(theme='dark',verbose_name="Other",blank=False)
+    topic = FroalaField(theme='dark', verbose_name="Other", blank=False)
 
     def __str__(self):
         return self.topic

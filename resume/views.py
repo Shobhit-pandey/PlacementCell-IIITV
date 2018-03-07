@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 
 from weasyprint import HTML
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.template import RequestContext
 from datetime import datetime
 
@@ -35,13 +34,13 @@ def resume(request, pk2):
     position_of_responsibity = Other.objects.filter(choice="Position of Responsibity", resume_id=r.id)
     awards = Other.objects.filter(choice="Award Achievement", resume_id=r.id)
     interests = Other.objects.filter(choice="Interest", resume_id=r.id)
-    pastexperience = Other.objects.filter(choice="PastExperience",resume_id=r.id)
+    pastexperience = Other.objects.filter(choice="PastExperience", resume_id=r.id)
     resume_name = pk2
     return render(request, 'Resume.html', {'users': users, 'resumes': resumes, 'projects': projects, 'current': current,
                                            'participations': participations,
                                            'position_of_responsibity': position_of_responsibity, 'awards': awards,
                                            'interests': interests, 'resume_name': resume_name,
-                                            'pastexperiences':pastexperience})
+                                           'pastexperiences': pastexperience})
 
 
 def delete_resume(request):
@@ -62,7 +61,7 @@ def createresume(request, pk):
     resumes = Resume.objects.filter(user_id=request.user.id)
     current = datetime.now()
     referer = request.META.get('HTTP_REFERER')
-    if referer == None:
+    if referer is None:
         return render(request, 'quiz/wrongurl.html')
     project_formset = ProjectFormset()
     other_formset = OtherFormset()
@@ -90,7 +89,7 @@ def createresume(request, pk):
                   context_instance=RequestContext(request))
 
 
-def html_to_pdf_view(request,pk4):
+def html_to_pdf_view(request, pk4):
     users = User.objects.filter(username=pk4)
     u = User.objects.get(username=pk4)
     resumes = Resume.objects.filter(user_id=u.id)
@@ -113,12 +112,12 @@ def html_to_pdf_view(request,pk4):
         "position_of_responsibity": position_of_responsibity,
         "awards": awards,
         "interests": interests,
-        "pastexperiences":pastexperience,
+        "pastexperiences": pastexperience,
     }
     html_string = render_to_string('pdf/Resume_n.html', context)
 
     html = HTML(string=html_string)
-    pdf=html.write_pdf();
+    pdf = html.write_pdf()
 
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename=pk4+".pdf"'

@@ -39,12 +39,13 @@ urlpatterns = patterns('',
                            view=QuizTake.as_view(),
                            name='quiz_question'),
 
-                       url(r'^create/quiz/$',views.Createquiz,name='createquiz'),
-                       url(r'^add/question/$',views.Createquestion,name='createquestion'),
-                       url(r'^add/mcq/$',views.AddMcq,name='addmcq'),
-                       url(r'^add/tf/$',views.AddTF,name='addtf'),
-                       url(r'^add/essay/$',views.AddEssay,name='addessay'),
-                       url(r'^create/category$',views.CreateCategory,name='createcategory'),
-                       url(r'^recruiter/cateogerylist/(?P<quiz_name>[\w|\W-]+)/$',QuizRecruiterMarkingList.as_view(), name='recruitermarkinglist'),
+                       url(r'^create/quiz/$', views.Createquiz, name='createquiz'),
+                       url(r'^add/question/$', views.Createquestion, name='createquestion'),
+                       url(r'^add/mcq/$', views.AddMcq, name='addmcq'),
+                       url(r'^add/tf/$', views.AddTF, name='addtf'),
+                       url(r'^add/essay/$', views.AddEssay, name='addessay'),
+                       url(r'^create/category$', views.CreateCategory, name='createcategory'),
+                       url(r'^recruiter/cateogerylist/(?P<quiz_name>[\w|\W-]+)/$', QuizRecruiterMarkingList.as_view(),
+                           name='recruitermarkinglist'),
 
-)
+                       )

@@ -1,8 +1,6 @@
 from django import forms
 from django.contrib import admin
 from django.contrib.admin.widgets import FilteredSelectMultiple
-from django.contrib.auth.models import User
-from django.utils.functional import curry
 from django.utils.translation import ugettext_lazy as _
 
 from .models import Quiz, Category, SubCategory, Progress, Question
@@ -53,9 +51,10 @@ class QuizAdminForm(forms.ModelForm):
 class QuizAdmin(admin.ModelAdmin):
     form = QuizAdminForm
 
-    list_display = ('title', 'category' )
+    list_display = ('title', 'category')
     list_filter = ('category',)
     search_fields = ('description', 'category', )
+
 
 class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('category', )
@@ -103,6 +102,7 @@ class EssayQuestionAdmin(admin.ModelAdmin):
     fields = ('content', 'category', 'sub_category', 'quiz', 'explanation', )
     search_fields = ('content', 'explanation')
     filter_horizontal = ('quiz',)
+
 
 admin.site.register(Quiz, QuizAdmin)
 admin.site.register(Category, CategoryAdmin)

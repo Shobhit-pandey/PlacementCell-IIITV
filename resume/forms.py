@@ -1,6 +1,4 @@
 from django import forms
-from django.forms.widgets import RadioSelect, Textarea
-from django.utils import timezone
 from django.forms.models import inlineformset_factory
 from datetime import datetime
 
@@ -11,7 +9,7 @@ class ResumeForm(forms.Form):
     user_id = forms.CharField(max_length=100, required=True, initial="0")
     fullname = forms.CharField(max_length=100, required=True)
     email = forms.EmailField(required=True)
-    dob = forms.DateField(required=True,help_text="YYYY-MM-DD")
+    dob = forms.DateField(required=True, help_text="YYYY-MM-DD")
     github = forms.URLField(required=False)
     linkedin = forms.URLField(required=False)
     class_ten_institute = forms.CharField(max_length=1000, required=True)
@@ -32,7 +30,7 @@ class ResumeForm(forms.Form):
     markup_language = forms.CharField(max_length=1000, required=True)
     tool_techonology = forms.CharField(max_length=1000, required=True)
     database = forms.CharField(max_length=1000, required=True)
-    resume_created = forms.DateField(initial=datetime.now(),required=False)
+    resume_created = forms.DateField(initial=datetime.now(), required=False)
 
     def save(self):
         r = Resume.objects.create(
@@ -60,7 +58,7 @@ class ResumeForm(forms.Form):
             markup_language=self.cleaned_data.get('markup_language'),
             tool_techonology=self.cleaned_data.get('tool_techonology'),
             database=self.cleaned_data.get('database'),
-            resume_created = self.cleaned_data.get('resume_created'),
+            resume_created=self.cleaned_data.get('resume_created'),
         )
         r.save()
         return r

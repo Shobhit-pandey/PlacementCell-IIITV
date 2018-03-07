@@ -1,22 +1,15 @@
 import random
-
-from datetime import datetime
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
-from django.core.urlresolvers import reverse
-from django.db import transaction
-from django.forms import formset_factory, BaseFormSet, model_to_dict
-from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from django.utils.decorators import method_decorator
-from django.views.generic import DetailView, ListView, TemplateView, FormView, CreateView
+from django.views.generic import DetailView, ListView, TemplateView, FormView
 
 from MyWebsite.models import CompaniesAppliedByStudents, Recruiter
-from multichoice.models import Answer, MCQuestion
 
-from .forms import QuestionForm, EssayForm, CreatequizForm, MCQuestionForm, AnswerForm, MCQFormSet, TFForm, EssayEForm, \
+from .forms import QuestionForm, EssayForm, CreatequizForm, MCQuestionForm,  MCQFormSet, TFForm, EssayEForm, \
     CategoryForm
 from .models import Quiz, Category, Progress, Sitting, Question
 from essay.models import Essay_Question

@@ -21,7 +21,7 @@ class ShareReplyForm(forms.ModelForm):
 class ShareRepliesForm(forms.ModelForm):
     class Meta:
         model = ShareReply
-        fields = ['content',]
+        fields = ['content', ]
 
     def clean_content(self):
         return self.cleaned_data.get('content')
@@ -30,7 +30,7 @@ class ShareRepliesForm(forms.ModelForm):
 class ShareForm(forms.ModelForm):
     class Meta:
         model = Share
-        fields = ['question',]
+        fields = ['question', ]
 
     def clean_question(self):
         return self.cleaned_data.get('question')

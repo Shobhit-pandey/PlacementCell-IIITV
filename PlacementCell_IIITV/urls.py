@@ -14,33 +14,32 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf import settings
-from django.conf.urls import url, include, patterns
+from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views
 from django.contrib.auth.views import password_reset, password_reset_done, password_reset_complete, \
     password_reset_confirm
 
-import MyWebsite
-
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^quiz/', include('quiz.urls')),
-    url(r'^', include('MyWebsite.urls', namespace="mywebsite")),
-    url(r'^froala_editor/', include('froala_editor.urls')),
-    url(r'^share/', include('discussion.urls', namespace="share")),
-    url(r'^resume/', include('resume.urls', namespace="resumes")),
-    url(r'^student/login/$',views.login,{'template_name':'Student.html'},name='studentlogin'),
-    url(r'^recruiter/login/$',views.login,{'template_name':'Recruiter.html'},name='recruiterlogin'),
-    url(r'^accounts/logout/$',views.logout,name = 'logout', kwargs = {'next_page':'/'}),
-    url(r'^reset-password/$',password_reset,name='reset_password'),
-    url(r'^reset-password/done/$',password_reset_done,name='password_reset_done'),
-    url(r'^reset-password/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$',password_reset_confirm,name='password_reset_confirm'),
-    url(r'^reset-password/complete/$',password_reset_complete,name='password_reset_complete'),
-    ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                  url(r'^admin/', admin.site.urls),
+                  url(r'^quiz/', include('quiz.urls')),
+                  url(r'^', include('MyWebsite.urls', namespace="mywebsite")),
+                  url(r'^froala_editor/', include('froala_editor.urls')),
+                  url(r'^share/', include('discussion.urls', namespace="share")),
+                  url(r'^resume/', include('resume.urls', namespace="resumes")),
+                  url(r'^student/login/$', views.login, {'template_name': 'Student.html'}, name='studentlogin'),
+                  url(r'^recruiter/login/$', views.login, {'template_name': 'Recruiter.html'}, name='recruiterlogin'),
+                  url(r'^accounts/logout/$', views.logout, name='logout', kwargs={'next_page': '/'}),
+                  url(r'^reset-password/$', password_reset, name='reset_password'),
+                  url(r'^reset-password/done/$', password_reset_done, name='password_reset_done'),
+                  url(r'^reset-password/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', password_reset_confirm,
+                      name='password_reset_confirm'),
+                  url(r'^reset-password/complete/$', password_reset_complete, name='password_reset_complete'),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_URL)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_URL)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_URL)
 
 # if True:

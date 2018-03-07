@@ -2,7 +2,6 @@ from datetime import date
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.core.validators import URLValidator
-from django.utils import timezone
 
 Criteria_Choices = (
     ('0', '0'),

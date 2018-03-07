@@ -1,10 +1,6 @@
 from __future__ import unicode_literals
 import re
 import json
-
-from datetime import datetime
-
-import django
 from django.contrib.auth.models import User
 from django.db import models
 from django.core.exceptions import ValidationError, ImproperlyConfigured
