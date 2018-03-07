@@ -12,6 +12,7 @@ CHOICE = (
     ('Position Of Responsibity', ('Position Of Responsibity')),
     ('Award Achievement', 'Award Achievement'),
     ('Interest', 'Interest'),
+    ('PastExperience','PastExperience'),
 )
 
 
@@ -42,6 +43,7 @@ class Resume(models.Model):
     tool_techonology = models.CharField(max_length=1000, blank=False)
     database = models.CharField(max_length=1000, blank=False)
     resume_created=models.DateField(null=True, blank=True,default=datetime.now())
+
 
     def __str__(self):
         return self.user_id
