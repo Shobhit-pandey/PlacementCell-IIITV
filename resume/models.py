@@ -4,6 +4,7 @@ import json
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from datetime import datetime
+from froala_editor.fields import FroalaField
 
 import django
 
@@ -88,7 +89,7 @@ class Other(models.Model):
     choice = models.CharField(
         max_length=30, null=True, blank=True,
         choices=CHOICE, default='Participation')
-    topic = models.TextField(max_length=500,
+    topic = models.FroalaField(theme='dark',max_length=5000,
                              verbose_name=("Other"),
                              blank=False)
 
