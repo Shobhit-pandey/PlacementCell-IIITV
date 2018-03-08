@@ -123,7 +123,7 @@
                             <p style="text-align: right;font-family: SansSerif">Team Size - {{ project.team_size }}</p>
                             <p></p>
                             <h4 class="div2h3">Guide : {{ project.guide }}</h4>
-                            <p style="font-family: SansSerif">  {{ project.description }}</p>
+                            <p style="font-family: SansSerif">  {{ project.description|safe }}</p>
                             {% if project.project_link %}
                                 <p style="font-family: SansSerif"> Project Link : <a href="{{ project.project_link }}">Link</a>
                                 </p>
@@ -158,7 +158,7 @@
                                     <hr id="hr">
                                     <ul class="list">
                                 {% endif %}
-                            <li>{{ participation.topic }}</li>
+                            <li>{{ participation.topic|safe }}</li>
                             {% if forloop.revcounter == 1 %}
                                 </ul>
                                 </div>
@@ -174,7 +174,7 @@
                                     <hr id="hr">
                                     <ul class="list">
                                 {% endif %}
-                            <li>{{ position.topic }}</li>
+                            <li>{{ position.topic|safe }}</li>
                             {% if forloop.revcounter == 1 %}
                                 </ul>
                                 </div>
@@ -190,7 +190,7 @@
                                     <hr id="hr">
                                     <ul class="list">
                                 {% endif %}
-                            <li>{{ award.topic }}</li>
+                            <li>{{ award.topic|safe }}</li>
                             {% if forloop.revcounter == 1 %}
                                 </ul>
                                 </div>
@@ -206,7 +206,7 @@
                                     <hr id="hr">
                                     <ul class="list">
                                 {% endif %}
-                            <li>{{ interest.topic }}</li>
+                            <li>{{ interest.topic|safe }}</li>
                             {% if forloop.revcounter == 1 %}
                                 </ul>
                                 </div>
