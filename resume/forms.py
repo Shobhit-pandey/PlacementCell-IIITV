@@ -82,11 +82,5 @@ class OtherForm(forms.ModelForm):
         fields = ('choice', 'topic')
         exclude = []
 
-    def clean_choice(self):
-        return self.cleaned_data.get('choice')
-
-    def clean_topic(self):
-        return self.cleaned_data.get('topic')
-
 
 OtherFormset = inlineformset_factory(Resume, Other, form=OtherForm, can_delete=True, extra=1)

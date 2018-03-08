@@ -84,7 +84,10 @@ class Other(models.Model):
     choice = models.CharField(
         max_length=30, null=True, blank=True,
         choices=CHOICE, default='Participation')
-    topic = models.TextField( verbose_name="Other", blank=False)
+
+    topic = FroalaField(theme='dark',max_length=5000,
+                             verbose_name=("Other"),
+                             blank=False)
 
     def __str__(self):
         return self.topic
