@@ -421,6 +421,12 @@ class Sitting(models.Model):
     class Meta:
         permissions = (("view_sittings", _("Can see completed exams.")),)
 
+    def get_all_questions(self):
+        pass
+
+    def get_remaining_questions(self):
+        pass
+
     def get_first_question(self):
         """
         Returns the next question.

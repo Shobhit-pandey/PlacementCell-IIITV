@@ -209,19 +209,22 @@
                             {% if project.resume_id|slugify == resume.id|slugify %}
                                 {% if forloop.counter == 1 %}
                                     <div class="div4" style="margin-right: -30px;margin-left: -30px">
-                                    <h3 class="div2hx">PROJECTS</h3>
+                                    <h4 class="div2hx">PROJECTS</h4>
                                     <hr id="hr">
                                 {% endif %}
                             <p style="text-align: right;font-size: 0.9em">{{ project.time }}</p>
-                            <h4 class="div2h3">{{ project.topic }}</h4>
+                            <h5 class="div2h3">{{ project.topic }}</h5>
                             <p style="text-align: right;font-family: SansSerif;font-size: 0.9em">Team Size
                                 - {{ project.team_size }}</p>
                             <p></p>
-                            <h4 class="div2h3">Guide : {{ project.guide }}</h4>
+                            <h5 class="div2h3">Guide : {{ project.guide }}</h5>
                             <p style="font-family: SansSerif;font-size: 0.9em">  {{ project.description|safe }}</p>
                             {% if project.project_link %}
-                                <a href="{{ project.project_link }}"><p style="font-family: SansSerif;font-size: 0.9em">
-                                    PROJECT LINK </p></a>
+                                <p style="font-size: 0.9em"><strong> Project link:</strong>&nbsp<a
+                                        href="{{ project.project_link }}"
+                                        style="color: #2068B9;text-decoration: none">{{ project.project_link }}</a></p>
+{#                                <a href=""><p style="font-family: SansSerif;font-size: 0.9em">#}
+{#                                    PROJECT LINK </p></a>#}
                             {% endif %}
                             <hr id="hrqq">
                             {% if forloop.revcounter == 1 %}
@@ -233,7 +236,7 @@
                             {% if pastexperience.resume_id|slugify == resume.id|slugify %}
                                 {% if forloop.counter == 1 %}
                                     <div class="div4" style="margin-right: -30px;margin-left: -30px">
-                                    <h3 class="div2hx">PAST EXPERIENCE</h3>
+                                    <h4 class="div2hx">PAST EXPERIENCE</h4>
                                     <hr id="hr">
                                     <ul class="list" style="font-size: 0.9em">
                                 {% endif %}
@@ -249,7 +252,7 @@
                             {% if participation.resume_id|slugify == resume.id|slugify %}
                                 {% if forloop.counter == 1 %}
                                     <div class="div4" style="margin-right: -30px;margin-left: -30px">
-                                    <h3 class="div2hx">PARTICIPATION</h3>
+                                    <h4 class="div2hx">PARTICIPATION</h4>
                                     <hr id="hr">
                                     <ul class="list" style="font-size: 0.9em">
                                 {% endif %}
@@ -265,7 +268,7 @@
                             {% if position.resume_id|slugify == resume.id|slugify %}
                                 {% if forloop.counter == 1 %}
                                     <div class="div4" style="margin-right: -30px;margin-left: -30px">
-                                    <h3 class="div2hx">POSITION OF RESPONSIBILTY</h3>
+                                    <h4 class="div2hx">POSITION OF RESPONSIBILTY</h4>
                                     <hr id="hr">
                                     <ul class="list" style="font-size: 0.9em;">
                                 {% endif %}
@@ -281,7 +284,7 @@
                             {% if award.resume_id|slugify == resume.id|slugify %}
                                 {% if forloop.counter == 1 %}
                                     <div class="div4" style="margin-right: -30px;margin-left: -30px">
-                                    <h3 class="div2hx">AWARDS AND ACHIEVEMENTS</h3>
+                                    <h4 class="div2hx">AWARDS AND ACHIEVEMENTS</h4>
                                     <hr id="hr">
                                     <ul class="list" style="font-size: 0.9em">
                                 {% endif %}
@@ -297,7 +300,7 @@
                             {% if interest.resume_id|slugify == resume.id|slugify %}
                                 {% if forloop.counter == 1 %}
                                     <div class="div4" style="margin-right: -30px;margin-left: -30px">
-                                    <h3 class="div2hx">INTERESTS AND ACTIVITIES</h3>
+                                    <h4 class="div2hx">INTERESTS AND ACTIVITIES</h4>
                                     <hr id="hr">
                                     <ul class="list" style="font-size: 0.9em">
                                 {% endif %}
