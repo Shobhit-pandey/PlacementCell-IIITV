@@ -120,6 +120,6 @@ def html_to_pdf_view(request, pk4):
     pdf = html.write_pdf()
 
     response = HttpResponse(pdf, content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename=pk4+".pdf"'
+    response['Content-Disposition'] = 'attachment; filename=resume_'+str(pk4)+".pdf"
 
     return response
